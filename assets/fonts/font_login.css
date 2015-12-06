@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'Alef';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Alef Regular'), local('Alef-Regular'), url(http://themes.googleusercontent.com/static/fonts/alef/v2/C8wmYJieZdfX3SNk-GwKVA.woff) format('woff');
+}
+@font-face {
+  font-family: 'Alef';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Alef Bold'), local('Alef-Bold'), url(http://themes.googleusercontent.com/static/fonts/alef/v2/-Kr5IHxOfJcJ-pnH-9NRPA.woff) format('woff');
+}
