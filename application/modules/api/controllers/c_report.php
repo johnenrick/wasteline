@@ -17,19 +17,34 @@ class C_report extends API_Controller {
     }
     public function createReport(){
         $this->accessNumber = 1;
-        if($this->checkACL()){
-            $this->form_validation->set_rules('entry_ID', 'Entry ID', 'required');
-            $this->form_validation->set_rules('report_type_ID', 'First Parameter', 'required');
-            $this->form_validation->set_rules('description', 'First Parameter', 'required');
-            $this->form_validation->set_rules('datetime', 'First Parameter', 'required');
+        if($this->checkACL() && user_id()){
+            $this->form_validation->set_rules('associated_ID', 'Associated ID', 'required');
+            $this->form_validation->set_rules('report_type_ID', 'Report Type', 'required');
+            $this->form_validation->set_rules('detail', 'Detail', 'required');
             
             if($this->form_validation->run()){
                 $result = $this->m_report->createReport(
-                        $this->input->post("entry_ID"),
+                        $this->input->post("associated_ID"),
                         $this->input->post("report_type_ID"),
-                        $this->input->post("description"),
-                        $this->input->post("datetime")
+                        user_id(),
+                        $this->input->post("detail")
                         );
+                if($this->input->post("report_type_ID") == 3){
+                    $this->load->model("M_map_marker");
+                    $mapMarker = $this->M_map_marker->createMapMarker(
+                            $result,
+                            3,
+                            $this->input->post("longitude"),
+                            $this->input->post("latitude")
+                            );
+                    if(!$mapMarker){
+                        $this->m_report->deleteReport(
+                            $result
+                        );
+                        $this->responseError(5, "Coordinates required");
+                        $result = false;
+                    }
+                }
                 if($result){
                     $this->actionLog($result);
                     $this->responseData($result);
@@ -50,23 +65,28 @@ class C_report extends API_Controller {
     }
     public function retrieveReport(){
         $this->accessNumber = 2;
+        $condition = ($this->input->post("condition")) ? $this->input->post("condition") : array();
+        if(user_type() != 3){
+            $condition["reporter_account_ID"] = user_id();
+        }
         if($this->checkACL()){
+            
             $result = $this->m_report->retrieveReport(
                     $this->input->post("retrieve_type"),
                     $this->input->post("limit"),
                     $this->input->post("offset"), 
                     $this->input->post("sort"),
                     $this->input->post("ID"), 
-                    $this->input->post("condition")
+                    $condition
                     );
             if($this->input->post("limit")){
                 $this->responseResultCount($this->m_report->retrieveReport(
-                    1, // 1 - search, 0 - match
+                    1,
                     NULL,
                     NULL,
                     NULL,
                     $this->input->post("ID"), 
-                    $this->input->post("condition")
+                    $condition
                     ));
             }
             if($result){
@@ -82,11 +102,14 @@ class C_report extends API_Controller {
     }
     public function updateReport(){
         $this->accessNumber = 4;
+        $condition = ($this->input->post("condition")) ? $this->input->post("condition") : array();
+        if(user_type() != 3){
+            $condition["reporter_account_ID"] = user_id();
+        }
         if($this->checkACL()){
-            
             $result = $this->m_report->updateReport(
                     $this->input->post("ID"),
-                    $this->input->post("condition"),
+                    $condition,
                     $this->input->post("updated_data")
                     );
             if($result){

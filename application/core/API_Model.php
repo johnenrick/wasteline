@@ -64,7 +64,7 @@ class API_Model extends CI_Model{
         //Sorting entry
         if(is_array($sort)){
             foreach($sort as $key => $value){
-                $this->db->order_by(str_replace("__", ".",$key), ($value) ? "asc" : "desc");
+                $this->db->order_by(str_replace("__", ".",$key), ($value == "asc") ? "asc" : "desc");
             }
         }
         //($limit)?$this->db->limit($limit, $offset):0;
@@ -97,11 +97,8 @@ class API_Model extends CI_Model{
         $this->db->start_cache();
         $this->db->flush_cache();
         
-        if($ID === NULL){
-            $this->addCondition($condition);
-        }else{
-            $this->db->where("$this->TABLE.ID", $ID);
-        }
+        $this->addCondition($condition);
+        $this->db->where("$this->TABLE.ID", $ID);
         $result = false;
         if(count($condition) > 0){
             if(count($newData) > 0){
@@ -131,6 +128,22 @@ class API_Model extends CI_Model{
                         $tableName = (count($segment) === 3) ? $segment[1] : $this->TABLE;
                         $this->db->or_where("$tableName.$tableColumn", $value);
                         break;
+                    case "lesser":
+                        $tableName = (count($segment) === 3) ? $segment[1] : $this->TABLE;
+                        $this->db->where("$tableName.$tableColumn<", $value);
+                        break;
+                    case "lesser_equal":
+                        $tableName = (count($segment) === 3) ? $segment[1] : $this->TABLE;
+                        $this->db->where("$tableName.$tableColumn<=", $value);
+                        break;
+                    case "greater_equal":
+                        $tableName = (count($segment) === 3) ? $segment[1] : $this->TABLE;
+                        $this->db->where("$tableName.$tableColumn>=", $value);
+                        break;
+                    case "greater":
+                        $tableName = (count($segment) === 3) ? $segment[1] : $this->TABLE;
+                        $this->db->where("$tableName.$tableColumn>", $value);
+                        break;
                     default :
                         $tableName = (count($segment) === 2) ? $segment[0] : $this->TABLE;
                         if(is_array($value)){
@@ -149,12 +162,9 @@ class API_Model extends CI_Model{
         if($ID === NULL){
             $this->addCondition($condition);
         }else{
-            $this->db->like("$this->TABLE.ID", $ID);
+            $this->db->where("$this->TABLE.ID", $ID);
         }
-        $result = false;
-        if(count($condition) > 0){
-            $result = $this->db->delete("sample_template");
-        }
+        $result = $this->db->delete("$this->TABLE");
         $this->db->flush_cache();
         $this->db->stop_cache();
         return $result;
@@ -164,7 +174,7 @@ class API_Model extends CI_Model{
         $this->db->flush_cache();
         $result = false;
         if(count($sampleTemplate) > 0){
-            $this->db->insert_batch("sample_template", $sampleTemplate);
+            $this->db->insert_batch("$this->TABLE", $sampleTemplate);
             $result = $this->db->insert_id();
         }
         $this->db->flush_cache();
@@ -176,7 +186,7 @@ class API_Model extends CI_Model{
         $this->db->flush_cache();
         $result = false;
         if(count($sampleTemplate) > 0){
-            $this->db->update_batch("sample_template", $sampleTemplate, "ID");
+            $this->db->update_batch("$this->TABLE", $sampleTemplate, "ID");
             $result = true;
         }
         $this->db->flush_cache();
@@ -187,7 +197,7 @@ class API_Model extends CI_Model{
         $this->db->start_cache();
         $this->db->flush_cache();
         $this->db->where_in("ID", $sampleTemplateID);
-        $result = $this->db->delete("sample_template");
+        $result = $this->db->delete("$this->TABLE");
         $this->db->flush_cache();
         $this->db->stop_cache();
         return $result;

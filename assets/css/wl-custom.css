@@ -1,0 +1,100 @@
+@font-face {
+    font-family: Gotham;
+    src: url('../fonts/GOTHAM-LIGHT.OTF') format("opentype");
+}
+
+body, html{
+    height: 100%;
+    min-height: 100%;
+}
+body{
+    background: #edf5ed;
+    font-family: Gotham;
+}
+
+
+/* Design 1*/
+
+
+/* Design 2*/
+.sidebar-brand{
+    margin-bottom: 40px;
+}
+ul.sidebar-nav li a{
+    font-size: 30px;
+    text-align: center;
+    color: white;
+}
+.wl-top-nav{
+    height:100px;
+    background: #fff;
+    font-size: 18px;
+    padding-right: 0;
+}
+.wl-top-nav .wl-top-grp{
+    height:100px;
+}
+.wl-top-nav .form-group{
+    margin: 0;
+}
+.wl-top-grp{
+    padding-top: 15px;
+}
+.wl-top-grp:nth-child(2){
+    text-align: center;
+}
+.wl-top-grp:nth-child(3){
+    text-align: right;
+    padding-right: 0;
+}
+
+.wl-btn-post{
+    background-color: #50c14e;
+    height: 100px;
+    width: 100%;
+    text-align: center;
+    font-size: 40px;
+    padding-top: 20px;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* tools */
+.unselectable{
+    -webkit-user-select: none; /* Chrome/Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+ */
+}
+.no-padding{
+    padding: 0 !important;
+}
+.padding-left-15{
+    padding-left: 15px;
+}
+.padding-top-15{
+    padding-top: 15px;
+}
+
+/* colors */
+.wl-c-green-1{
+    color: #50c14e;
+}
+.wl-c-green-2{
+    color: #aed0ae;
+}
+.wl-c-green-3{
+    color: #dde4dd;
+}
+.wl-c-green-4{
+    color: #97b697;
+}
+.wl-c-green-5{
+    color: #58c258;
+}
+.wl-c-gray-1{
+    color: #d5d6d7;
+}
+
+.wl-c-black-1{
+    color: #413f4c;
+}

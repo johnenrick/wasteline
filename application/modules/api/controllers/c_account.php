@@ -37,10 +37,10 @@ class C_account extends API_Controller {
                 if($result){
                     $this->load->model("m_account_basic_information");
                     $this->m_account_basic_information->createAccountBasicInformation(
-                            $result, 
-                            $this->input->post("first_name"), 
-                            $this->input->post("middle_name"), 
-                            $this->input->post("last_name"), 
+                            $result,
+                            $this->input->post("first_name"),
+                            $this->input->post("middle_name"),
+                            $this->input->post("last_name"),
                             $this->input->post("address"),
                             $this->input->post("status")
                             );
@@ -74,7 +74,7 @@ class C_account extends API_Controller {
                     );
             if($this->input->post("limit")){
                 $this->responseResultCount($this->m_account->retrieveAccount(
-                    1, // 1 - search, 0 - match
+                    1,
                     NULL,
                     NULL,
                     NULL,

@@ -5,7 +5,7 @@
 }
 function user_type(){
     $CI =& get_instance();
-    return $CI->session->userdata('user_type');
+    return 1;//$CI->session->userdata('user_type');
 }
 function user_first_name(){
     $CI =& get_instance();
