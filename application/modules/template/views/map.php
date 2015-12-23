@@ -26,12 +26,11 @@
     <!-- Custom CSS -->
     <link href="<?=asset_url('css/nav.css')?>" rel="stylesheet">
     <link href="<?=asset_url('css/simple-sidebar.css')?>" rel="stylesheet">
-
     <link href="<?=asset_url('css/linearicons.css')?>" rel="stylesheet">
     <link href="<?=asset_url('css/wl-custom.css')?>" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="style.css"/>
-    <link rel="stylesheet" href="Leaflet/leaflet.css"/>
-    <script src="Leaflet/leaflet.js"></script>
+    <link href="<?=asset_url('css/leaflet.css')?>" rel="stylesheet">
+    <link href="<?=asset_url('css/style.css')?>" rel="stylesheet" type="text/css">
+    <script src="<?=asset_url('js/leaflet.js')?>"></script>
     <script>
         window.onload = function(){
             // We’ll add a OSM tile layer to our map
@@ -49,7 +48,7 @@
 
             var pointers = L.Icon.extend({
                 options:{
-                shadowUrl:'Leaflet/images/marker-shadow.png',
+                shadowUrl:'/wasteline/assets/images/marker-shadow.png',
                 iconSize:     [25, 42], // size of the icon
                 shadowSize:   [25, 30], // size of the shadow
                 iconAnchor:   [25, 44], // point of the icon which will correspond to marker's location
@@ -58,11 +57,11 @@
                 }
                 });
 
-            var violetIcon = new pointers({iconUrl:'Leaflet/images/lgu.png'}),
-                greenIcon = new pointers({iconUrl:'Leaflet/images/garbage.png'}),
-                yellowIcon = new pointers({iconUrl:'Leaflet/images/dumpingarea.png'}),
-                pinkIcon = new pointers({iconUrl:'Leaflet/images/report.png'}),
-                blueIcon = new pointers({iconUrl:'Leaflet/images/services.png'});
+            var violetIcon = new pointers({iconUrl:'/wasteline/assets/images/lgu.png'}),
+                greenIcon = new pointers({iconUrl:'/wasteline/assets/images/garbage.png'}),
+                yellowIcon = new pointers({iconUrl:'/wasteline/assets/images/dumpingarea.png'}),
+                pinkIcon = new pointers({iconUrl:'/wasteline/assets/images/report.png'}),
+                blueIcon = new pointers({iconUrl:'/wasteline/assets/images/services.png'});
          
                 L.marker([10.339634, 123.922587], {icon: violetIcon, title:"Brgy. Banilad Hall", alt: "Brgy. Banilad Hall", riseOnHover: true}).addTo(map);
                 L.marker([10.330432, 123.921994], {icon: blueIcon, title:"Junk Shop", alt: "Junk Shop", riseOnHover: true}).addTo(map);
@@ -123,7 +122,7 @@
                     <a href="#home"><span class="lnr lnr-home"></span></a>
                 </li>
                 <li>
-                    <a href="#web-map"><span class="lnr lnr-map"></span></a>
+                    <a href="/wasteline/template/map"><span class="lnr lnr-map"></span></a>
                 </li>
                 <li>
                     <a href="#articles-guidelines"><span class="lnr lnr-book"></span></a>
