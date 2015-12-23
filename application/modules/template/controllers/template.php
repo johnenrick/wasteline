@@ -7,4 +7,7 @@ class Template extends API_Controller{
     public function design(){
         $this->load->view('design_2');
     }
+    public function map(){
+    	$this->load->view('map');
+    }
 }
