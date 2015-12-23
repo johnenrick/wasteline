@@ -22443,19 +22443,19 @@ output {
   padding-bottom: 8px;
   min-height: 38px;
 }
-.input-sm '.input-sm' {
+.input-sm/* '.input-sm'*/ {
   height: 24px;
   padding: 3px 0px;
   font-size: 11px;
   line-height: 1.5;
   border-radius: 3px;
 }
-.input-sm select'.input-sm' {
+.input-sm select/*'.input-sm'*/ {
   height: 24px;
   line-height: 24px;
 }
-.input-sm textarea'.input-sm',
-.input-sm select[multiple]'.input-sm' {
+.input-sm textarea/*'.input-sm'*/,
+.input-sm select[multiple]/*'.input-sm'*/ {
   height: auto;
 }
 .form-group-sm .form-control {
@@ -22479,19 +22479,19 @@ output {
   font-size: 11px;
   line-height: 1.5;
 }
-.input-lg '.input-lg' {
+.input-lg /*'.input-lg'*/ {
   height: 44px;
   padding: 9px 0px;
   font-size: 18px;
   line-height: 1.3333333;
   border-radius: 6px;
 }
-.input-lg select'.input-lg' {
+.input-lg select/*'.input-lg'*/ {
   height: 44px;
   line-height: 44px;
 }
-.input-lg textarea'.input-lg',
-.input-lg select[multiple]'.input-lg' {
+.input-lg textarea/*'.input-lg'*/,
+.input-lg select[multiple]/*'.input-lg'*/ {
   height: auto;
 }
 .form-group-lg .form-control {

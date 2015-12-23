@@ -33,10 +33,13 @@ class M_map_marker extends API_Model{
     public function retrieveMapMarker($retrieveType = false, $limit = NULL, $offset = 0, $sort = array(), $ID = NULL, $condition = NULL) {
         $joinedTable = array(
             "report" => "report.ID=map_marker.associated_ID AND map_marker.map_marker_type_ID=3",
-            "account_address" => "account_address.account_ID=map_marker.associated_ID AND map_marker.map_marker_type_ID=1"
+            "account_address" => "account_address.account_ID=map_marker.associated_ID AND map_marker.map_marker_type_ID=1",
+            "dumping_location" => "dumping_location.ID=map_marker.associated_ID AND map_marker.map_marker_type_ID=2"
         );
         $selectedColumn = array(
-            "map_marker.*"
+            "map_marker.*",
+            "account_address.description AS account_address_description",
+            "dumping_location.description AS dumping_location_description"
         );
         return $this->retrieveTableEntry($retrieveType, $limit, $offset, $sort, $ID, $condition, $selectedColumn, $joinedTable);
     }

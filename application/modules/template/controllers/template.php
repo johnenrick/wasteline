@@ -1,6 +1,6 @@
 <?php
 
-class template extends API_Controller{
+class Template extends API_Controller{
     public function index(){
         $this->load->view('design_1');
     }
