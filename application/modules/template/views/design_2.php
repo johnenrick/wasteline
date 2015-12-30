@@ -44,7 +44,7 @@
                     <a href="#home"><span class="lnr lnr-home"></span></a>
                 </li>
                 <li>
-                    <a href="#waste-map"><span class="lnr lnr-map"></span></a>
+                    <a href="/wasteline/template/map"><span class="lnr lnr-map"></span></a>
                 </li>
                 <li>
                     <a href="#articles-guidelines"><span class="lnr lnr-book"></span></a>
