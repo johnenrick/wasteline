@@ -9,9 +9,10 @@ class FE_Controller extends API_Controller{
         //sleep(5);
     }
     public function loadPage($bodyLink, $bodyScriptLink = false, $data = array()){
-        $this->load->view("system/page_header", $data);
+        $this->load->view("system_application/page_header", $data);
         $this->load->view($bodyLink);
-        $this->load->view("system/system_script");
+        $this->load->view("system_application/system");
+        $this->load->view("system_application/system_script");
         if($bodyScriptLink){
             $this->load->view($bodyScriptLink);
         }

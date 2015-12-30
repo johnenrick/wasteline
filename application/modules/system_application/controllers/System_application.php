@@ -11,10 +11,14 @@
  *
  * @author johnenrick
  */
-class Portal extends FE_Controller{
+class System_application extends FE_Controller{
     //put your code here
     function index(){
         echo user_id();
+    }
+    function loadPageComponent(){
+        $this->load->view("page_component/".$this->input->post("component"));
+        $this->load->view("page_component/".$this->input->post("component")."_script");
     }
     function login(){
         $this->form_validation->set_rules('username', 'Username', 'required');

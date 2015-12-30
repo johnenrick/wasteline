@@ -14,7 +14,7 @@
 class Portal extends FE_Controller{
     //put your code here
     function index(){
-        echo user_id();
+        $this->loadPage("portal");
     }
     function login(){
         $this->form_validation->set_rules('username', 'Username', 'required');

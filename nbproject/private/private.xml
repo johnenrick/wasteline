@@ -2,6 +2,14 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/xampp/htdocs/wasteline/application/modules/template/views/design_1.php</file>
+            <file>file:/C:/xampp/htdocs/wasteline/application/modules/manage_report/views/manage_report_script.php</file>
+            <file>file:/C:/xampp/htdocs/wasteline/application/core/FE_Controller.php</file>
+            <file>file:/C:/xampp/htdocs/wasteline/application/modules/manage_report/views/manage_report.php</file>
+            <file>file:/C:/xampp/htdocs/wasteline/application/modules/portal/views/portal.php</file>
+            <file>file:/C:/xampp/htdocs/wasteline/assets/js/tableAPIPagination.js</file>
+            <file>file:/C:/xampp/htdocs/wasteline/application/modules/manage_report/controllers/Manage_report.php</file>
+        </group>
     </open-files>
 </project-private>

@@ -54,7 +54,6 @@
 
                     <!-- main content -->
                     <div class="col-sm-12" style="background-color:#66cc66;padding:50px 80px">
-
                         <div class="well" style="padding:50px 40px">
                          <form class="form-horizontal">
                           <fieldset>

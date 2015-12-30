@@ -34,3 +34,17 @@
        return systemData.url.asset_url+link; 
     }
 </script>
+
+<script>
+    function loadPageComponent(component, callBack){
+        if($("."+component).length === 0 ){
+            $.post("<?=base_url()?>system_application/loadPageComponent", {component : component}, function(data){
+                $("#pageComponentContainer").append(data);
+                callBack();
+            });
+        }else{
+            callBack();
+        }
+        
+    }
+</script>
