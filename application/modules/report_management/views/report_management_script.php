@@ -2,10 +2,11 @@
     var reportManagement = {};
     
     reportManagement.initializeReportManagementTable = function(){
-        $("#ReportTableContainer").append($("#pageComponentContainer .table_component").clone());
+        var reportManagementTable = new TableComponent("#reportTableContainer");
+        
         
     };
     $(document).ready(function(){
-        loadPageComponent("table_component", reportManagement.initializeReportManagementTable);
+        load_page_component("table_component", reportManagement.initializeReportManagementTable);
     });
 </script>
