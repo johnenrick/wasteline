@@ -30,9 +30,9 @@
             </form>
         </div>
     </div>
-    <div class="row">
+    <div class="row table-responsive">
         <div class="col-sm-12">
-            <table class="table table-hover">
+            <table class="table table-hover ">
                 <thead>
                     <tr>
                         <th>ID <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span></th>
