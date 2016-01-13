@@ -14,7 +14,7 @@
 class Portal extends FE_Controller{
     //put your code here
     function index(){
-        $this->loadPage("portal");
+        $this->loadPage("portal", array("registration_script"), array(), false);
     }
     function login(){
         $this->form_validation->set_rules('username', 'Username', 'required');
@@ -29,5 +29,8 @@ class Portal extends FE_Controller{
             }
         }
         $this->outputResponse();
+    }
+    function carousel(){
+        $this->load->view("carousel");
     }
 }

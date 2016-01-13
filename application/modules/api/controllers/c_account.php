@@ -17,6 +17,11 @@ class C_account extends API_Controller {
     }
     public function createAccount(){
         $this->accessNumber = 1;
+        //registration
+        $valid  =true;
+        if(!$valid){
+            $this->responseError(5, "Captcha Required");
+        }
         if($this->checkACL()){
             $this->form_validation->set_rules('username', 'Username', 'required|is_unique[account.username]');
             $this->form_validation->set_rules('password', 'Password', 'required');
