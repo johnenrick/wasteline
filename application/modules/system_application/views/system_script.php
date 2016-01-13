@@ -49,6 +49,7 @@
                 callBack();
             });
         }else{
+            console.log($("."+component));
             callBack();
         }
         

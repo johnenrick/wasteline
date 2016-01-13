@@ -1,14 +1,15 @@
 
 <script>
-    var wastemapComponent = function(containerSelector){
+    var WastemapComponent = function(containerSelector){
+        var wastemapComponentObject = this;
         this.wastemapContainer = $(containerSelector);
-        this.wastemapContainer.append($("#pageComponentContainer .wastemap_component").clone());
-    };
-</script>
+        var mapNumber = 'map'+(new Date()).getTime();
+        this.wastemapContainer.append($("#pageComponentContainer .wastemap_component").clone().find(".mapHolder").attr("id", mapNumber));
 
- <script>
-        window.onload = function(){
+
+       window.onload = function(){
             // We’ll add a OSM tile layer to our map
+            
             var osmUrl = 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
                 osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> Banilad Waste Map',
                 osm = L.tileLayer(osmUrl, {
@@ -16,9 +17,12 @@
                 attribution: osmAttrib
                 });
             // initialize the map on the "map" div with a given center and zoom
-            var map = L.map('map').setView([10.343, 123.919], 16).addLayer(osm);
+           
+            var map = L.map(mapNumber).setView([10.343, 123.919], 16).addLayer(osm);
+            console.log(mapNumber);
+
             // attaching function on map click
-            map.on('click', onMapClick);
+            map.on('click', this.onMapClick);
             // Script for adding marker on map click
 
             var pointers = L.Icon.extend({
@@ -41,8 +45,8 @@
                 L.marker([10.339634, 123.922587], {icon: violetIcon, title:"Brgy. Banilad Hall", alt: "Brgy. Banilad Hall", riseOnHover: true}).addTo(map);
                 L.marker([10.330432, 123.921994], {icon: blueIcon, title:"Junk Shop", alt: "Junk Shop", riseOnHover: true}).addTo(map);
                 L.marker([10.337708, 123.935018], {icon: blueIcon, title:"Bakilid Junk Shop", alt: "Bakilid Junk Shop", riseOnHover: true}).addTo(map);
-                
-        function onMapClick(e) {
+        
+        this.onMapClick = function(e) {
 
             var geojsonFeature = {
             "type": "Feature",
@@ -63,14 +67,14 @@
                 draggable: true,
                 icon: yellowIcon
                 }).bindPopup("<input type='button' value='Delete Marker' class='marker-delete-button'/>");
-                marker.on("popupopen", onPopupOpen);
+                marker.on("popupopen", this.onPopupOpen);
                 
                 return marker;
                     }
                 }).addTo(map);    
             }
             // Function to handle delete as well as other events on marker popup open
-         function onPopupOpen() {
+         this.onPopupOpen = function(){
             var tempMarker = this;
             //var tempMarkerGeoJSON = this.toGeoJSON();
             //var lID = tempMarker._leaflet_id; // Getting Leaflet ID of this marker
@@ -80,4 +84,7 @@
                     });
                 }
         }
-    </script>
+
+            };
+    
+</script>

@@ -11,7 +11,7 @@
  *
  * @author yong
  */
-class Wastemap_management extends FE_Controller{
+class Wastemap extends FE_Controller{
     //put your code here
     function index(){
         $this->loadPage("wastemap_management", "wastemap_management_script");
