@@ -52,6 +52,9 @@
                 <li>
                     <a href="#user"><span class="lnr lnr-user"></span></a>
                 </li>
+                <li class="wl-btn-logout">
+                    <a href="#logout"><span class="lnr lnr-power-switch"></span></a>
+                </li>
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -60,8 +63,8 @@
 
         <!-- Page Content -->
         <div id="page-content-wrapper">
-            <div class="container-fluid">
-                <div class="row">
+            <div class="container-fluid wl-full-height">
+                <div class="row wl-full-height">
 
                     <!-- top -->
                     <div class="wl-top-nav col-xs-12 col-sm-12">
@@ -115,8 +118,10 @@
                     <!-- end top -->
 
                     <!-- main content -->
-                    <div class="col-sm-12">
-                        test
+                    <div class="wl-main-content wl-full-height col-sm-12" style="background-color:black;color:white;">
+                        <div id="wl-side-content">
+
+                        </div>
                     </div>
                     <!-- end main content -->
 
@@ -162,7 +167,9 @@
             setTimeout(function(){run_date_time()}, 1000);
         }
         run_date_time();
-
+        $(".wl-btn-post").click(function(){
+            $("#wl-side-content").hide('slide',{direction:'right'},1000);
+        });
     });
     </script>
 
