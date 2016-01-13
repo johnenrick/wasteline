@@ -81,8 +81,9 @@ ul.sidebar-nav li a{
     right: 0;
     position: absolute;
     background-color: white;
-    border: solid 1px #50c14e;
+    border: solid 2px #D3DAD3;
     border-left: none;
+    display: none;
 }
 
 /* tools */
@@ -120,12 +121,18 @@ ul.sidebar-nav li a{
 .wl-c-gray-1{
     color: #d5d6d7;
 }
+.wl-c-gray-2{
+    color: #d5d6d7;
+}
 
 .wl-c-black-1{
     color: #413f4c;
 }
 .wl-c-black-2{
     color: #6f6f6f;
+}
+.wl-c-white-1{
+    color: #fff;
 }
 
 /*background-color*/

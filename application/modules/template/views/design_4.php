@@ -17,6 +17,9 @@
 
     <!-- Bootstrap CSS -->
     <link href="<?=asset_url('css/bootstrap.min.css')?>" rel="stylesheet">
+    <link href="<?=asset_url('css/jquery-ui.min.css')?>" rel="stylesheet">
+    <link href="<?=asset_url('css/jquery-ui.structure.min.css')?>" rel="stylesheet">
+    <link href="<?=asset_url('css/jquery-ui.theme.min.css')?>" rel="stylesheet">
 
     <!-- Material Design for Bootstrap -->
     <link href="<?=asset_url('css/roboto.min.css')?>" rel="stylesheet">
@@ -71,13 +74,13 @@
                                     </p>
                                     <div class="form-group label-floating">
                                       <label class="control-label" for="focusedUsername">Username</label>
-                                      <input class="form-control" id="focusedUsername" type="text">
-                                      <p class="help-block">You should really write something here</p>
+                                      <input class="form-control-light form-control" id="focusedUsername" type="text">
+                                      <p class="help-block wl-c-gray-1">You should really write something here</p>
                                     </div>
                                     <div class="form-group label-floating">
                                       <label class="control-label" for="focusedPassword">Password</label>
-                                      <input class="form-control" id="focusedPassword" type="password">
-                                      <p class="help-block">You should really write something here</p>
+                                      <input class="form-control-light form-control" id="focusedPassword" type="password">
+                                      <p class="help-block wl-c-gray-1">You should really write something here</p>
                                     </div>
                                     <div class="form-group">
                                         <a href="javascript:void(0)" class="btn btn-raised btn-success">
@@ -88,20 +91,30 @@
                                 </div>
                                 <div id="register-form" class="col-md-7 col-md-offset-1 col-sm-8 col-sm-offset-1" style="display:none">
                                     <h1 style="color:white;">Register</h1>
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="inputEmail" placeholder="First Name">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label" for="inputFirstName">First Name</label>
+                                        <input type="text" class="form-control-light form-control" id="inputEmail">
+                                        <p class="help-block wl-c-gray-1">You should really write something here</p>
                                     </div>
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="inputEmail" placeholder="Middle Name">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label" for="inputMiddleName">Middle Name</label>
+                                        <input type="text" class="form-control-light form-control" id="inputMiddleName">
+                                        <p class="help-block wl-c-gray-1">You should really write something here</p>
                                     </div>
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="inputEmail" placeholder="Last Name">
+                                    <div class="form-group label-floating has-success">
+                                        <label class="control-label" for="inputLastName">Last Name</label>
+                                        <input type="text" class="form-control-light form-control" id="inputLastName">
+                                        <p class="help-block wl-c-gray-1">Success Sample</p>
                                     </div>
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="inputEmail" placeholder="Username">
+                                    <div class="form-group label-floating has-warning">
+                                        <label class="control-label" for="inputUsername">Username</label>
+                                        <input type="text" class="form-control-light form-control" id="inputUsername">
+                                        <p class="help-block wl-c-gray-1">Warning Sample</p>
                                     </div>
-                                    <div class="form-group">
-                                        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                                    <div class="form-group label-floating has-error">
+                                        <label class="control-label" for="inputPassword">Password</label>
+                                        <input class="form-control-light form-control" id="inputPassword" type="password">
+                                        <p class="help-block wl-c-gray-1">Error Sample</p>
                                     </div>
                                     <div class="form-group">
                                         <a href="javascript:void(0)" class="btn btn-raised btn-success">
@@ -126,6 +139,7 @@
 
     <!-- jQuery -->
     <script src="<?=asset_url('js/jquery-2.1.4.min.js')?>"></script>
+    <script src="<?=asset_url('js/jquery-ui.min.js')?>"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="<?=asset_url('js/bootstrap.min.js')?>"></script>
@@ -142,8 +156,14 @@
     <script type="text/javascript">
         $(document).ready(function(){
             $(".btn-landingform").click(function(){
-                $("#login-form").toggle();
-                $("#register-form").toggle();
+                if($("#login-form").is(":visible")){
+                    $("#login-form").hide();
+                    $("#register-form").fadeIn(400);
+                }
+                else{
+                    $("#login-form").fadeIn(400);
+                    $("#register-form").hide();
+                }
             });
         });
     </script>

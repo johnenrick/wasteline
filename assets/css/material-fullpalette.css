@@ -22559,6 +22559,12 @@ output {
   box-shadow: none;
   border-radius: 0;
 }
+.form-group .form-control-light {
+  color: white;
+}
+.form-group .form-control-dark {
+
+}
 .form-group .form-control::-moz-placeholder {
   color: #BDBDBD;
   font-weight: normal;
