@@ -76,11 +76,13 @@ ul.sidebar-nav li a{
     position: fixed;
 }
 #wl-side-content{
-    width: 25%;
+    width: 30%;
     height: 100%;
     right: 0;
     position: absolute;
     background-color: white;
+    border: solid 1px #50c14e;
+    border-left: none;
 }
 
 /* tools */

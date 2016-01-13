@@ -17,6 +17,9 @@
 
     <!-- Bootstrap CSS -->
     <link href="<?=asset_url('css/bootstrap.min.css')?>" rel="stylesheet">
+    <link href="<?=asset_url('css/jquery-ui.min.css')?>" rel="stylesheet">
+    <link href="<?=asset_url('css/jquery-ui.structure.min.css')?>" rel="stylesheet">
+    <link href="<?=asset_url('css/jquery-ui.theme.min.css')?>" rel="stylesheet">
 
     <!-- Material Design for Bootstrap -->
     <link href="<?=asset_url('css/roboto.min.css')?>" rel="stylesheet">
@@ -118,7 +121,10 @@
                     <!-- end top -->
 
                     <!-- main content -->
-                    <div class="wl-main-content wl-full-height col-sm-12" style="background-color:black;color:white;">
+                    <div class="wl-main-content wl-full-height col-sm-12">
+
+
+                        <!-- post form -->
                         <div id="wl-side-content">
 
                         </div>
@@ -135,6 +141,7 @@
 
     <!-- jQuery -->
     <script src="<?=asset_url('js/jquery-2.1.4.min.js')?>"></script>
+    <script src="<?=asset_url('js/jquery-ui.min.js')?>"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="<?=asset_url('js/bootstrap.min.js')?>"></script>
@@ -168,7 +175,10 @@
         }
         run_date_time();
         $(".wl-btn-post").click(function(){
-            $("#wl-side-content").hide('slide',{direction:'right'},1000);
+            if($("#wl-side-content").is(":visible"))
+                $("#wl-side-content").hide("slide", { direction: "right" }, 200);
+            else
+                $("#wl-side-content").show("slide", { direction: "right" }, 400);
         });
     });
     </script>
