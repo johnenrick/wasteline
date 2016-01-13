@@ -30,6 +30,9 @@
     <link href="<?=asset_url('css/linearicons.css')?>" rel="stylesheet">
     <link href="<?=asset_url('css/wl-custom.css')?>" rel="stylesheet">
     <link href="<?=asset_url('css/additional_style.css')?>" rel="stylesheet">
+    <link href="<?=asset_url('css/leaflet.css')?>" rel="stylesheet">
+    <link href="<?=asset_url('css/style.css')?>" rel="stylesheet" type="text/css">
+    <script src="<?=asset_url('js/leaflet.js')?>"></script>
     
     <!-- jQuery -->
     <script src="<?=asset_url('js/jquery-2.1.4.min.js')?>"></script>
@@ -41,6 +44,7 @@
     <!-- Material Design for Bootstrap -->
     <script src="<?=asset_url('js/material.js')?>"></script>
     <script src="<?=asset_url('js/ripples.min.js')?>"></script>
+    
 </head>
 
 <body>

@@ -8,13 +8,21 @@ class FE_Controller extends API_Controller{
         //$this->load->model("api/m_change_log");
         //sleep(5);
     }
-    public function loadPage($bodyLink, $bodyScriptLink = false, $data = array()){
-        $this->load->view("system_application/page_header", $data);
+    public function loadPage($bodyLink, $bodyScriptLink = false, $data = array(), $hasHeaderFooter = true){
+        if($hasHeaderFooter){
+            $this->load->view("system_application/page_header", $data);
+        }
         $this->load->view($bodyLink);
         $this->load->view("system_application/system");
         $this->load->view("system_application/system_script");
         if($bodyScriptLink){
-            $this->load->view($bodyScriptLink);
+            if(is_array($bodyScriptLink)){
+                foreach($bodyScriptLink as $value){
+                    $this->load->view($value);
+                }
+            }else{
+                $this->load->view($bodyScriptLink);
+            }
         }
     }
     public function generateResponse($data = false, $error = array()){

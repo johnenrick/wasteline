@@ -43,7 +43,7 @@
             // initialize the map on the "map" div with a given center and zoom
             var map = L.map('map').setView([10.343, 123.919], 16).addLayer(osm);
             // attaching function on map click
-            map.on('click', onMapClick);
+            map.on('click', this.onMapClick);
             // Script for adding marker on map click
 
             var pointers = L.Icon.extend({
@@ -67,7 +67,7 @@
                 L.marker([10.330432, 123.921994], {icon: blueIcon, title:"Junk Shop", alt: "Junk Shop", riseOnHover: true}).addTo(map);
                 L.marker([10.337708, 123.935018], {icon: blueIcon, title:"Bakilid Junk Shop", alt: "Bakilid Junk Shop", riseOnHover: true}).addTo(map);
                 
-        function onMapClick(e) {
+        this.onMapClick = function(e) {
 
             var geojsonFeature = {
             "type": "Feature",
@@ -88,14 +88,14 @@
                 draggable: true,
                 icon: yellowIcon
                 }).bindPopup("<input type='button' value='Delete Marker' class='marker-delete-button'/>");
-                marker.on("popupopen", onPopupOpen);
+                marker.on("popupopen", this.onPopupOpen);
                 
                 return marker;
                     }
                 }).addTo(map);    
             }
             // Function to handle delete as well as other events on marker popup open
-         function onPopupOpen() {
+            this.onPopupOpen = function() {
             var tempMarker = this;
             //var tempMarkerGeoJSON = this.toGeoJSON();
             //var lID = tempMarker._leaflet_id; // Getting Leaflet ID of this marker
@@ -158,7 +158,7 @@
                         <div class="wl-top-grp col-sm-4 no-padding">
                             <div class="col-sm-10 padding-top-15">
                                 <div class="col-sm-12 no-padding">
-                                    <span class="wl-c-green-4">Hi, <span class="wl-c-green-5">John Doe</span></span>
+                                    <span class="wl-c-green-4">Hi, <span class="wl-c-green-5">Yong Mercader</span></span>
                                 </div>
                                 <div class="col-sm-12 no-padding">
 
