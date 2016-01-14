@@ -44,19 +44,19 @@
                     <a href="#wasteline"><span class="lnr lnr-trash"></span></a>
                 </li>
                 <li>
-                    <a href="#home"><span class="lnr lnr-home"></span></a>
+                    <a href="#home" data-page-link="home"><span class="lnr lnr-home"></span></a>
                 </li>
                 <li>
-                    <a href="/wasteline/template/map"><span class="lnr lnr-map"></span></a>
+                    <a href="#map" data-page-link="map"><span class="lnr lnr-map"></span></a>
                 </li>
                 <li>
-                    <a href="#articles-guidelines"><span class="lnr lnr-book"></span></a>
+                    <a href="#information" data-page-link="information"><span class="lnr lnr-book"></span></a>
                 </li>
                 <li>
-                    <a href="#user"><span class="lnr lnr-user"></span></a>
+                    <a href="#profile" data-page-link="profile"><span class="lnr lnr-user"></span></a>
                 </li>
                 <li class="wl-btn-logout">
-                    <a href="#logout"><span class="lnr lnr-power-switch"></span></a>
+                    <a href="#logout" data-page-link="logout"><span class="lnr lnr-power-switch"></span></a>
                 </li>
             </ul>
         </div>
@@ -70,14 +70,14 @@
                 <div class="row wl-full-height">
 
                     <!-- top -->
-                    <div class="wl-top-nav col-xs-12 col-sm-12">
+                    <div class="wl-header-content col-xs-12 col-sm-12">
 
                         <div class="wl-top-grp col-sm-4">
                                 <span class="wl-c-green-1">Wasteline</span>
                                 <span class="wl-c-gray-1">&nbsp;|&nbsp;</span>
                                 <span class="wl-c-black-1">Information</span>
                         </div>
-                        <div class="wl-top-grp col-sm-4">
+                        <div class="wl-top-grp col-sm-4 unselectable">
                             <span class="lnr lnr-calendar-full wl-c-green-1"></span>
                             <span class="wl-c-green-2 wl-date">--/--/--</span>
                             <span class="wl-c-green-3">&nbsp;|&nbsp;</span>
@@ -88,14 +88,10 @@
                                 <div class="col-sm-12 no-padding">
                                     <span class="wl-c-green-4">Hi, <span class="wl-c-green-5">John Doe</span></span>
                                 </div>
-                                <div class="col-sm-12 no-padding">
-
-                                <div class="form-group">
-                                    <div class="togglebutton">
-                                      <label style="text-align:left;">
-                                        <input type="checkbox" id="menu-toggle" checked="">
+                                <div class="col-sm-12" style="padding: 5px 0 0">
+                                    <div class="form-group">
                                         <div class="btn-group">
-                                          <a href="#" data-target="#" class="btn btn-default btn-raised dropdown-toggle" data-toggle="dropdown">
+                                          <a href="#" data-target="#" class="btn btn-default btn-raised btn-sm dropdown-toggle" data-toggle="dropdown">
                                               <span class="lnr lnr-funnel"></span>
                                               <span>Filter&nbsp;</span>
                                               <span class="caret"></span>
@@ -106,9 +102,7 @@
                                             <li><a href="javascript:void(0)">filter 3</a></li>
                                           </ul>
                                         </div>
-                                      </label>
                                     </div>
-                                </div>
                                 </div>
                             </div>
 
@@ -121,13 +115,35 @@
                     <!-- end top -->
 
                     <!-- main content -->
-                    <div class="wl-main-content wl-full-height col-sm-12">
+                    <div class="wl-main-content col-sm-12">
+                        <!-- Home -->
+                        <div class="wl-home-content wl-page-content col-sm-12" style="background-color:gray;">
+
+                        </div>
+
+                        <!-- Map -->
+                        <div class="wl-map-content wl-page-content col-sm-12 wl-hide" style="background-color:yellow;">
+                            <!-- footer container-->
+                            <div id="wl-footer-content">
+                            </div>
+                        </div>
+
+                        <!-- Information -->
+                        <div class="wl-information-content wl-page-content col-sm-12 wl-hide" style="background-color:red;">
+
+                        </div>
+
+                        <!-- Profile -->
+                        <div class="wl-profile-content wl-page-content col-sm-12 wl-hide" style="background-color:blue;">
+
+                        </div>
 
 
                         <!-- post form -->
                         <div id="wl-side-content">
 
                         </div>
+
                     </div>
                     <!-- end main content -->
 
@@ -151,7 +167,8 @@
     <script src="<?=asset_url('js/material.js')?>"></script>
     <script src="<?=asset_url('js/ripples.min.js')?>"></script>
     <script>
-      $.material.init();
+        $.material.init();
+        $.material.ripples(".sidebar-nav li, .wl-btn-post");
     </script>
 
     <!-- Dropdown.js
@@ -170,15 +187,29 @@
         function run_date_time(){
             var d = new Date();
             $('.wl-date').text((d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear().toString().substr(2,2));
-            $('.wl-time').text(d.getHours()+':'+d.getMinutes());
+            $('.wl-time').text(("0"+d.getHours()).slice(-2)+':'+("0"+d.getMinutes()).slice(-2));
             setTimeout(function(){run_date_time()}, 1000);
         }
         run_date_time();
+
         $(".wl-btn-post").click(function(){
             if($("#wl-side-content").is(":visible"))
-                $("#wl-side-content").hide("slide", { direction: "right" }, 200);
+                $("#wl-side-content").hide("slide", { direction: "right" }, 100);
             else
-                $("#wl-side-content").show("slide", { direction: "right" }, 400);
+                $("#wl-side-content").show("slide", { direction: "right" }, 300);
+        });
+
+        $(document).mouseup(function (e)
+        {
+            var container = $("#wl-side-content");
+            if (container.is(":visible") && !container.is(e.target) && container.has(e.target).length === 0)
+                $("#wl-side-content").hide("slide", { direction: "right" }, 100);
+        });
+
+        $(".sidebar-nav li:not(.sidebar-brand)").click(function(){
+                var page = $(this).children('a').data('pageLink');
+                $('.wl-page-content:not(.wl-'+page+'-content)').hide();
+                $('.wl-'+page+'-content').fadeIn(500);
         });
     });
     </script>

@@ -83,10 +83,8 @@
                                       <p class="help-block wl-c-gray-1">You should really write something here</p>
                                     </div>
                                     <div class="form-group">
-                                        <a href="javascript:void(0)" class="btn btn-raised btn-success">
-                                            <span>LOGIN</span>
-                                        </a>
-                                        <label class="wl-c-green-1" style="padding-left:15px"><a href="#signup" class="btn-landingform">SIGN UP</a></label>
+                                        <a href="javascript:void(0)" class="btn btn-raised btn-success">LOGIN</a>
+                                        <a href="javascript:void(0)" class="btn btn-landingform"><span class="wl-c-green-1">SIGN UP</span></a>
                                     </div>
                                 </div>
                                 <div id="register-form" class="col-md-7 col-md-offset-1 col-sm-8 col-sm-offset-1" style="display:none">
@@ -117,10 +115,8 @@
                                         <p class="help-block wl-c-gray-1">Error Sample</p>
                                     </div>
                                     <div class="form-group">
-                                        <a href="javascript:void(0)" class="btn btn-raised btn-success">
-                                            <span>Submit</span>
-                                        </a>
-                                        <label class="wl-c-green-1" style="padding-left:15px"><a href="#signin" class="btn-landingform">CANCEL</a></label>
+                                        <a href="javascript:void(0)" class="btn btn-raised btn-success">SUBMIT</a>
+                                        <a href="javascript:void(0)" class="btn btn-landingform"><span class="wl-c-green-1">CANCEL</span></a>
                                     </div>
                                 </div>
 
