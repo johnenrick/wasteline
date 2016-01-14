@@ -41,19 +41,19 @@
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
-                    <a href="#wasteline"><span class="lnr lnr-trash"></span></a>
+                    <a href="javascript:void(0)"><span class="lnr lnr-trash"></span></a>
+                </li>
+                <li class="wl-active-page">
+                    <a href="javascript:void(0)" data-page-link="home"><span class="lnr lnr-home"></span></a>
                 </li>
                 <li>
-                    <a href="#home" data-page-link="home"><span class="lnr lnr-home"></span></a>
+                    <a href="javascript:void(0)" data-page-link="map"><span class="lnr lnr-map"></span></a>
                 </li>
                 <li>
-                    <a href="#map" data-page-link="map"><span class="lnr lnr-map"></span></a>
+                    <a href="javascript:void(0)" data-page-link="information"><span class="lnr lnr-book"></span></a>
                 </li>
                 <li>
-                    <a href="#information" data-page-link="information"><span class="lnr lnr-book"></span></a>
-                </li>
-                <li>
-                    <a href="#profile" data-page-link="profile"><span class="lnr lnr-user"></span></a>
+                    <a href="javascript:void(0)" data-page-link="profile"><span class="lnr lnr-user"></span></a>
                 </li>
                 <li class="wl-btn-logout">
                     <a href="#logout" data-page-link="logout"><span class="lnr lnr-power-switch"></span></a>
@@ -168,7 +168,7 @@
     <script src="<?=asset_url('js/ripples.min.js')?>"></script>
     <script>
         $.material.init();
-        $.material.ripples(".sidebar-nav li, .wl-btn-post");
+        $.material.ripples(".sidebar-nav li:not(.sidebar-brand), .wl-btn-post");
     </script>
 
     <!-- Dropdown.js
@@ -207,9 +207,16 @@
         });
 
         $(".sidebar-nav li:not(.sidebar-brand)").click(function(){
-                var page = $(this).children('a').data('pageLink');
-                $('.wl-page-content:not(.wl-'+page+'-content)').hide();
-                $('.wl-'+page+'-content').fadeIn(500);
+            var ths = $(this);
+            var page = ths.children('a').data('pageLink');
+            $.when( $('.wl-page-content:not(.wl-'+page+'-content)').hide())
+                .done(function(){
+                    if($('.wl-page-content:not(.wl-'+page+'-content)').is(":visible"))
+                        $('.wl-page-content:not(.wl-'+page+'-content)').hide();
+                    $('.wl-'+page+'-content').fadeIn(500);
+                    $('.sidebar-nav li.wl-active-page').toggleClass('wl-active-page');
+                    ths.toggleClass('wl-active-page');
+                });
         });
     });
     </script>

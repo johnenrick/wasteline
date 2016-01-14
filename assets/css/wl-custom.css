@@ -29,11 +29,19 @@ h1,h2,h3,h4,h5{
 .sidebar-brand{
     margin-bottom: 40px;
 }
+
 ul.sidebar-nav li a{
     font-size: 30px;
     text-align: center;
     color: white;
 }
+.sidebar-nav li.wl-active-page{
+    background-color: #50c14e;
+}
+.sidebar-nav li.wl-active-page a{
+    color: #fff;
+}
+
 .wl-header-content{
     height:100px;
     background: #fff;
