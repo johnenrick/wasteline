@@ -33,15 +33,6 @@
     <link href="<?=asset_url('css/linearicons.css')?>" rel="stylesheet">
     <link href="<?=asset_url('css/wl-custom.css')?>" rel="stylesheet">
 
-
-    <style>
-    .wl-reg-form{
-        color: white;
-    }
-
-
-
-    </style>
 </head>
 
 <body>

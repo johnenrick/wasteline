@@ -41,22 +41,25 @@
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
-                    <a href="javascript:void(0)"><span class="lnr lnr-trash"></span></a>
+                    <a><span class="lnr lnr-trash"></span></a>
                 </li>
                 <li class="wl-active-page">
-                    <a href="javascript:void(0)" data-page-link="home"><span class="lnr lnr-home"></span></a>
+                    <a data-page-link="home"><span class="lnr lnr-home"></span></a>
                 </li>
                 <li>
-                    <a href="javascript:void(0)" data-page-link="map"><span class="lnr lnr-map"></span></a>
+                    <a data-page-link="map"><span class="lnr lnr-map"></span></a>
                 </li>
                 <li>
-                    <a href="javascript:void(0)" data-page-link="information"><span class="lnr lnr-book"></span></a>
+                    <a data-page-link="information"><span class="lnr lnr-book"></span></a>
                 </li>
                 <li>
-                    <a href="javascript:void(0)" data-page-link="profile"><span class="lnr lnr-user"></span></a>
+                    <a data-page-link="profile"><span class="lnr lnr-user"></span></a>
+                </li>
+                <li>
+                    <a data-page-link="manage-users"><span class="lnr lnr-users"></span></a>
                 </li>
                 <li class="wl-btn-logout">
-                    <a href="#logout" data-page-link="logout"><span class="lnr lnr-power-switch"></span></a>
+                    <a data-page-link="logout"><span class="lnr lnr-power-switch"></span></a>
                 </li>
             </ul>
         </div>
@@ -91,15 +94,15 @@
                                 <div class="col-sm-12" style="padding: 5px 0 0">
                                     <div class="form-group">
                                         <div class="btn-group">
-                                          <a href="#" data-target="#" class="btn btn-default btn-raised btn-sm dropdown-toggle" data-toggle="dropdown">
+                                          <a data-target="#" class="btn btn-default btn-raised btn-sm dropdown-toggle" data-toggle="dropdown">
                                               <span class="lnr lnr-funnel"></span>
                                               <span>Filter&nbsp;</span>
                                               <span class="caret"></span>
                                           </a>
                                           <ul class="dropdown-menu">
-                                            <li><a href="javascript:void(0)">filter 1</a></li>
-                                            <li><a href="javascript:void(0)">filter 2</a></li>
-                                            <li><a href="javascript:void(0)">filter 3</a></li>
+                                            <li><a>filter 1</a></li>
+                                            <li><a>filter 2</a></li>
+                                            <li><a>filter 3</a></li>
                                           </ul>
                                         </div>
                                     </div>
@@ -135,6 +138,11 @@
 
                         <!-- Profile -->
                         <div class="wl-profile-content wl-page-content col-sm-12 wl-hide" style="background-color:blue;">
+
+                        </div>
+
+                        <!-- Manage Users -->
+                        <div class="wl-manage-users-content wl-page-content col-sm-12 wl-hide" style="background-color:green;">
 
                         </div>
 
