@@ -22,7 +22,7 @@ class C_account extends API_Controller {
         if(!$valid){
             $this->responseError(5, "Captcha Required");
         }
-        if($this->checkACL()){
+        if($this->checkACL() && (($this->input->post("account_type_ID") == 1 && user_type() == 1) || ($this->input->post("account_type_ID") == 3 && user_type() == 1) || ($this->input->post("account_type_ID") == 2 && $this->input->post("status") == 3 && $this->validReCaptcha()))){
             $this->form_validation->set_rules('username', 'Username', 'required|is_unique[account.username]');
             $this->form_validation->set_rules('password', 'Password', 'required');
             $this->form_validation->set_rules('account_type_ID', 'Account Type', 'required');
@@ -30,7 +30,7 @@ class C_account extends API_Controller {
             $this->form_validation->set_rules('first_name', 'First Name', 'required|alpha');
             $this->form_validation->set_rules('middle_name', 'Middle Name', 'required|alpha');
             $this->form_validation->set_rules('last_name', 'Last Name', 'required');
-            $this->form_validation->set_rules('address', 'Address', 'required');
+            $this->form_validation->set_rules('email_address', 'Email Address', 'required|valid_email|is_unique[account_contact_information.detail]');
             
             if($this->form_validation->run()){
                 $result = $this->m_account->createAccount(
@@ -45,10 +45,26 @@ class C_account extends API_Controller {
                             $result,
                             $this->input->post("first_name"),
                             $this->input->post("middle_name"),
-                            $this->input->post("last_name"),
-                            $this->input->post("address"),
-                            $this->input->post("status")
+                            $this->input->post("last_name") 
                             );
+                    $this->load->model("M_account_contact_information");
+                    $this->M_account_contact_information->createAccountContactInformation(
+                            $result,
+                            1,
+                            $this->input->post("email_address")
+                            );
+                    //Send Email Confirmation
+                    if($this->input->post("account_type_ID") == 2){
+                        $this->load->library('email');
+
+                        $this->email->from('plenosjohn@yahoo.com', 'John Enrick');
+                        $this->email->to($this->input->post("email_address"));
+
+                        $this->email->subject('Wasteline Registration Verification');
+                        $this->email->message("Good day ".$this->input->post('username') ."! Thank you for registering in Wasteline.\nTo verify you accout, please click the following link: ".  base_url("porta/accountVerification/".((""+$result).(""+ time()))));	
+
+                        $this->email->send();
+                    }
                     $this->actionLog($result);
                     $this->responseData($result);
                 }else{
@@ -135,5 +151,23 @@ class C_account extends API_Controller {
             $this->responseError(1, "Not Authorized");
         }
         $this->outputResponse();
+    }
+    public function validReCaptcha(){
+//        $url = 'https://www.google.com/recaptcha/api/siteverify';
+//        $data = array('secret' => '6LehRRUTAAAAAI4FaRRWhVpjjNarhe4ZYjaodC7y', 'response' => "The value of 'g-recaptcha-response'.");
+//
+//        // use key 'http' even if you send the request to https://...
+//        $options = array(
+//            'http' => array(
+//                'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+//                'method'  => 'POST',
+//                'content' => http_build_query($data),
+//            ),
+//        );
+//        $context  = stream_context_create($options);
+//        $result = file_get_contents($url, false, $context);
+//        if ($result === FALSE) { /* Handle error */ }
+//        $response = json_decode($result, true);
+        return true;
     }
 }

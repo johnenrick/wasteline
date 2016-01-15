@@ -1,4 +1,4 @@
-
+                        </div>
                     </div>
                     <!-- end main content -->
 
@@ -10,7 +10,16 @@
     </div>
     <!-- /#wrapper -->
 
-    
+    <!-- jQuery -->
+    <script src="<?=asset_url('js/jquery-2.1.4.min.js')?>"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="<?=asset_url('js/bootstrap.min.js')?>"></script>
+
+
+    <!-- Material Design for Bootstrap -->
+    <script src="<?=asset_url('js/material.js')?>"></script>
+    <script src="<?=asset_url('js/ripples.min.js')?>"></script>
     <script>
       $.material.init();
     </script>
@@ -35,7 +44,9 @@
             setTimeout(function(){run_date_time()}, 1000);
         }
         run_date_time();
-
+        $(".wl-btn-post").click(function(){
+            $("#wl-side-content").hide('slide',{direction:'right'},1000);
+        });
     });
     </script>
 

@@ -14,23 +14,56 @@
 class Portal extends FE_Controller{
     //put your code here
     function index(){
-        $this->loadPage("portal", array("registration_script"), array(), false);
+        $this->loadPage("portal", array("portal_script", "registration_script"), array("message" => false), false);
     }
     function login(){
         $this->form_validation->set_rules('username', 'Username', 'required');
         $this->form_validation->set_rules('password', 'Password', 'required');
         if($this->form_validation->run()){
-            $this->load->model("api/m_account");
-        }else{
-            if($this->input->post()){
-                $this->responseError(100, $this->form_validation->error_array());
+            $this->load->model("api/M_account");
+            $result = $this->M_account->retrieveAccount(NULL, NULL, NULL, NULL, NULL,
+                    array(
+                        "username" => $this->input->post("username"),
+                        "password" => sha1($this->input->post("password"))
+                    ));
+            if($result){
+                $this->session->set_userdata(array(
+                    "first_name" => $result[0]["first_name"],
+                    "last_name" => $result[0]["last_name"],
+                    "middle_name" => $result[0]["middle_name"],
+                    "user_type" => $result[0]["account_type_ID"],
+                ));
+                $this->responseData(true);
             }else{
-                $this->responseError(101, "Required information not found");
+                $this->responseError(5, "Username and Password Mismatch");
             }
+        }else{
+           if(count($this->form_validation->error_array())){
+                    $this->responseError(102, $this->form_validation->error_array());
+                }else{
+                    $this->responseError(4, "Required Fields are empty");
+                }
         }
         $this->outputResponse();
     }
-    function carousel(){
-        $this->load->view("carousel");
+    function accountVerification($verificationCode){
+        $this->load->model("M_account");
+        $accountID = substr($verificationCode, 0, strlen($verificationCode)-10);
+        $result = $this->M_account->retrieveAccount(NULL, NULL, NULL, NULL, NULL,
+                    array(
+                        "ID" => $accountID
+                    ));
+        $message = "";
+        if($result){
+            if($result["status"] === 3){
+                $this->M_account->updateAccount($accountID, NULL, array("status" => 2));
+                $message = "Congratulation".$result["username"]."! Your account has been verified. ";
+            }else{
+                $message = "Your account has already been verified";
+            }
+        }else{
+            $message = "Verification Code is invalid. Contact us if you feel there's something wrong.";
+        }
+        $this->loadPage("portal", array("portal_script", "registration_script"), array("message"=> $message), false);
     }
 }

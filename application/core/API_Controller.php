@@ -82,5 +82,10 @@ class API_Controller extends MX_Controller{
         //check module with parent
         return $this->m_action_log->createActionLog(user_id(), $this->APICONTROLLERID, $this->accessNumberID, $detail);
     }
+    public function printR($data){
+        echo "<pre>";
+        print_r($data);
+        echo "</pre>";
+    }
 }
 

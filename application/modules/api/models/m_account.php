@@ -19,13 +19,13 @@ class M_account extends API_Model{
     public function createAccount($username, $password, $accountTypeID, $status = 2){
         $newData = array(
             "username" => $username,
-            "password" => $password,
+            "password" => sha1($password),
             "account_type_ID" => $accountTypeID,
-            "sattus" => $status
+            "status" => $status
         );
         return $this->createTableEntry($newData);
     }
-    public function retrieveAccount($retrieveType = false, $limit = NULL, $offset = 0, $sort = array(), $ID = NULL, $condition = array()) {
+    public function retrieveAccount($retrieveType = 0, $limit = NULL, $offset = 0, $sort = array(), $ID = NULL, $condition = array()) {
         
         $joinedTable = array(
             "account_basic_information" => "account_basic_information.account_ID=account.ID",
@@ -37,6 +37,7 @@ class M_account extends API_Model{
             "account_basic_information.*",
             "account_type.description AS account_type_description"
         );
+        
         return $this->retrieveTableEntry($retrieveType, $limit, $offset, $sort, $ID, $condition, $selectedColumn, $joinedTable);
     }
     public function updateAccount($ID = NULL, $condition = array(), $newData = array()) {

@@ -19,6 +19,3 @@ function user_middle_name(){
     $CI =& get_instance();
     return $CI->session->userdata('middle_name');
 }
-function current_academic_year(){
-
-}

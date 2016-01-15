@@ -6,8 +6,13 @@
                 
             },
             success : function(data){
-                console.log(data);
-               // var response = JSON.parse(data);
+                var response = JSON.parse(data);
+                console.log(response);
+                if(!response["error"].length){
+                    
+                }else{
+                    
+                }
             }
         });
     });

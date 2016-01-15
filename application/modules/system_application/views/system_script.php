@@ -10,8 +10,12 @@
             base_url : "<?=base_url()?>",
             api_url : "<?=api_url()?>",
             asset_url : "<?=asset_url()?>"
+        },
+        data : {
+            
         }
     }
+   
     function user_id(){
         return system_data.account_information.user_ID;
     }

@@ -37,7 +37,6 @@ class API_Model extends CI_Model{
     public function retrieveTableEntry($retrieveType = false, $limit = NULL, $offset = 0, $sort = array(), $ID = NULL, $condition = array(), $selectedColumn = array(), $joinedTable = array()){
         $this->db->start_cache();
         $this->db->flush_cache();
-        
         //Select column
         if(is_array($selectedColumn)){
         $selectedQuery = "";
@@ -60,12 +59,15 @@ class API_Model extends CI_Model{
         }else{
             $this->db->where("$this->TABLE.ID", $ID);
         }
-        
         //Sorting entry
         if(is_array($sort)){
             foreach($sort as $key => $value){
                 $this->db->order_by(str_replace("__", ".",$key), ($value == "asc") ? "asc" : "desc");
             }
+        }
+        //limits and offset
+        if($limit !== NULL){
+            $this->db->limit($limit, $offset);
         }
         //($limit)?$this->db->limit($limit, $offset):0;
         if(!($retrieveType)){
@@ -77,6 +79,7 @@ class API_Model extends CI_Model{
             }else{
                 return false;
             }
+            
         }else{
             $result = $this->db->count_all_results($this->TABLE);
             $this->db->flush_cache();

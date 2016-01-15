@@ -20,31 +20,16 @@
 
     <!-- Material Design for Bootstrap -->
     <link href="<?=asset_url('css/roboto.min.css')?>" rel="stylesheet">
-    <link href="<?=asset_url('css/material-fullpalette.css')?>" rel="stylesheet">
-    <link href="<?=asset_url('css/ripples.min.css')?>" rel="stylesheet">
-    
+    <link href="<?=asset_url('/css/material-fullpalette.css')?>" rel="stylesheet">
+    <link href="<?=asset_url('/css/ripples.min.css')?>" rel="stylesheet">
+
     <!-- Custom CSS -->
     <link href="<?=asset_url('css/nav.css')?>" rel="stylesheet">
     <link href="<?=asset_url('css/simple-sidebar.css')?>" rel="stylesheet">
 
     <link href="<?=asset_url('css/linearicons.css')?>" rel="stylesheet">
     <link href="<?=asset_url('css/wl-custom.css')?>" rel="stylesheet">
-    <link href="<?=asset_url('css/additional_style.css')?>" rel="stylesheet">
-    <link href="<?=asset_url('css/leaflet.css')?>" rel="stylesheet">
-    <link href="<?=asset_url('css/style.css')?>" rel="stylesheet" type="text/css">
-    <script src="<?=asset_url('js/leaflet.js')?>"></script>
-    
-    <!-- jQuery -->
-    <script src="<?=asset_url('js/jquery-2.1.4.min.js')?>"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="<?=asset_url('js/bootstrap.min.js')?>"></script>
-
-
-    <!-- Material Design for Bootstrap -->
-    <script src="<?=asset_url('js/material.js')?>"></script>
-    <script src="<?=asset_url('js/ripples.min.js')?>"></script>
-    
 </head>
 
 <body>
@@ -59,13 +44,16 @@
                     <a href="#home"><span class="lnr lnr-home"></span></a>
                 </li>
                 <li>
-                    <a href="#waste-map"><span class="lnr lnr-map"></span></a>
+                    <a href="/wasteline/template/map"><span class="lnr lnr-map"></span></a>
                 </li>
                 <li>
                     <a href="#articles-guidelines"><span class="lnr lnr-book"></span></a>
                 </li>
                 <li>
                     <a href="#user"><span class="lnr lnr-user"></span></a>
+                </li>
+                <li class="wl-btn-logout">
+                    <a href="#logout"><span class="lnr lnr-power-switch"></span></a>
                 </li>
             </ul>
         </div>
@@ -75,8 +63,8 @@
 
         <!-- Page Content -->
         <div id="page-content-wrapper">
-            <div class="container-fluid">
-                <div class="row">
+            <div class="container-fluid wl-full-height">
+                <div class="row wl-full-height">
 
                     <!-- top -->
                     <div class="wl-top-nav col-xs-12 col-sm-12">
@@ -130,5 +118,5 @@
                     <!-- end top -->
 
                     <!-- main content -->
-                    <div class="col-sm-12">
-                        
+                    <div class="wl-main-content wl-full-height col-sm-12" style="background-color:black;color:white;">
+                        <div id="wl-side-content">

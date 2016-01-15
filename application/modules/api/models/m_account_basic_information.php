@@ -16,13 +16,12 @@ class M_account_basic_information extends API_Model{
         parent::__construct();
         $this->TABLE = "account_basic_information";
     }
-    public function createAccountBasicInformation($accountID, $firstName, $middleName, $lastName, $address){
+    public function createAccountBasicInformation($accountID, $firstName, $middleName, $lastName){
         $newData = array(
             "account_ID" => $accountID,
             "first_name" => $firstName,
             "middle_name" => $middleName,
-            "last_name" => $lastName,
-            "address" => $address
+            "last_name" => $lastName
         );
         return $this->createTableEntry($newData);
     }
