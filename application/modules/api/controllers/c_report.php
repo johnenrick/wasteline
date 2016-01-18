@@ -55,7 +55,7 @@ class C_report extends API_Controller {
                 if(count($this->form_validation->error_array())){
                     $this->responseError(102, $this->form_validation->error_array());
                 }else{
-                    $this->responseError(4, "Required Fields are empty");
+                    $this->responseError(100, "Required Fields are empty");
                 }
             }
         }else{

@@ -14,7 +14,7 @@
 class Portal extends FE_Controller{
     //put your code here
     function index(){
-        $this->loadPage("portal", array("portal_script", "registration_script"), array("message" => false), false);
+        $this->loadPage("portal", array("portal_script", "registration_script", "login_script"), array("message" => false), false);
     }
     function login(){
         $this->form_validation->set_rules('username', 'Username', 'required');
@@ -39,10 +39,10 @@ class Portal extends FE_Controller{
             }
         }else{
            if(count($this->form_validation->error_array())){
-                    $this->responseError(102, $this->form_validation->error_array());
-                }else{
-                    $this->responseError(4, "Required Fields are empty");
-                }
+                $this->responseError(102, $this->form_validation->error_array());
+            }else{
+                $this->responseError(100, "Required Fields are empty");
+            }
         }
         $this->outputResponse();
     }

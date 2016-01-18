@@ -3,20 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/wasteline/application/modules/system_application/views/page_footer.php</file>
-            <file>file:/C:/xampp/htdocs/wasteline/application/core/API_Controller.php</file>
-            <file>file:/C:/xampp/htdocs/wasteline/application/modules/api/controllers/C_account.php</file>
-            <file>file:/C:/xampp/htdocs/wasteline/application/modules/system_application/views/system_script.php</file>
-            <file>file:/C:/xampp/htdocs/wasteline/application/modules/portal/views/portal.php</file>
-            <file>file:/C:/xampp/htdocs/wasteline/application/modules/portal/controllers/Portal.php</file>
-            <file>file:/C:/xampp/htdocs/wasteline/application/modules/system_application/views/page_header.php</file>
-            <file>file:/C:/xampp/htdocs/wasteline/application/modules/api/models/M_account_basic_information.php</file>
-            <file>file:/C:/xampp/htdocs/wasteline/application/core/API_Model.php</file>
+            <file>file:/C:/xampp/htdocs/wasteline/application/modules/portal/views/login_script.php</file>
             <file>file:/C:/xampp/htdocs/wasteline/application/modules/portal/views/registration_script.php</file>
+            <file>file:/C:/xampp/htdocs/wasteline/application/modules/system_application/views/page_footer.php</file>
+            <file>file:/C:/xampp/htdocs/wasteline/application/modules/system_application/views/page_header_script.php</file>
             <file>file:/C:/xampp/htdocs/wasteline/application/modules/template/controllers/template.php</file>
-            <file>file:/C:/xampp/htdocs/wasteline/application/modules/api/models/M_account.php</file>
+            <file>file:/C:/xampp/htdocs/wasteline/application/core/FE_Controller.php</file>
             <file>file:/C:/xampp/htdocs/wasteline/application/modules/portal/views/portal_script.php</file>
-            <file>file:/C:/xampp/htdocs/wasteline/application/helpers/user_info_helper.php</file>
+            <file>file:/C:/xampp/htdocs/wasteline/application/modules/system_application/views/system_script.php</file>
+            <file>file:/C:/xampp/htdocs/wasteline/application/modules/api/controllers/c_account.php</file>
+            <file>file:/C:/xampp/htdocs/wasteline/application/modules/portal/views/portal.php</file>
+            <file>file:/C:/xampp/htdocs/wasteline/application/modules/system_application/views/page_header.php</file>
+            <file>file:/C:/xampp/htdocs/wasteline/application/modules/portal/controllers/portal.php</file>
         </group>
     </open-files>
 </project-private>

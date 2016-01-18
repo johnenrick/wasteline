@@ -1,7 +1,7 @@
 <script>
     $(document).ready(function(){
-        $("#registrationForm").attr("action", api_url("c_account/createAccount"));
-        $("#registrationForm").ajaxForm({
+        $("#loginForm").attr("action", base_url("portal/login"));
+        $("#loginForm").ajaxForm({
             beforeSubmit : function(){
             },
             success : function(data){
@@ -10,7 +10,7 @@
                 if(!response["error"].length){
                     
                 }else{
-                    
+                    show_form_error($("#loginForm"), response["error"]);
                 }
             }
         });

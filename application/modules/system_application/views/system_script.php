@@ -38,7 +38,28 @@
        return system_data.url.asset_url+link; 
     }
 </script>
-
+<!--Standard Form validation-->
+<script>
+    /**
+     * 
+     * @param {DOM} elementSelected the form that has been submitted
+     * @param {type} errorList list of error from the api
+     * @returns {undefined}
+     */
+    function show_form_error(elementSelected, errorList){
+        elementSelected.find(".formMessage").empty();
+        errorList.forEach(function(errorValue){
+            if(errorValue["status"] > 100){
+                errorValue["message"].forEach(function( messageValue){
+                });
+                
+            }else{
+                
+            }
+        });
+    }
+</script>
+<!--Component-->
 <script>
     /**
      * Load a Page Component to the Document.
