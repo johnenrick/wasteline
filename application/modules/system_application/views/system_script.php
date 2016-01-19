@@ -1,7 +1,7 @@
 <script>
     var system_data = {
         account_information : {
-            user_ID : "<?=user_id()?>",
+            user_ID : "<?=user_id()?>"*1,
             first_name : "<?=user_first_name()?>",
             middle_name : "<?=user_middle_name()?>",
             last_name : "<?=user_last_name()?>"
@@ -41,22 +41,28 @@
 <!--Standard Form validation-->
 <script>
     /**
-     * 
+     * Shows error in the form submitted
      * @param {DOM} elementSelected the form that has been submitted
      * @param {type} errorList list of error from the api
      * @returns {undefined}
      */
     function show_form_error(elementSelected, errorList){
         elementSelected.find(".formMessage").empty();
+        elementSelected.find(".has-error").removeClass(".has-error");
         errorList.forEach(function(errorValue){
             if(errorValue["status"] > 100){
-                errorValue["message"].forEach(function( messageValue){
-                });
-                
+                for(var index in errorValue["message"]){
+                    elementSelected.find(".formMessage").append(errorValue["message"][index]+"<br>");
+                    elementSelected.find("input[name='"+index+"']").parent().addClass("has-error");
+                }
             }else{
-                
+                elementSelected.find(".formMessage").append(errorValue["message"]+"<br>");
             }
         });
+    }
+    function clear_form_error(elementSelected){
+        elementSelected.find(".formMessage").empty();
+        elementSelected.find(".has-error").removeClass(".has-error");
     }
 </script>
 <!--Component-->

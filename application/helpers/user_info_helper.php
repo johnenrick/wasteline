@@ -1,11 +1,11 @@
 <?php
  function user_id(){
     $CI =& get_instance();
-    return 5;//$CI->session->userdata('user_ID')*1;
+    return $CI->session->userdata('user_ID')*1;
 }
 function user_type(){
     $CI =& get_instance();
-    return 1;//$CI->session->userdata('user_type');
+    return $CI->session->userdata('user_type');
 }
 function user_first_name(){
     $CI =& get_instance();

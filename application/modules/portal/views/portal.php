@@ -13,8 +13,8 @@
         <div class="row wl-full-height">
 
             <!-- main content -->
-            <div class="wl-full-height col-sm-12 no-padding">
-                <div class="wl-full-height col-sm-7 no-padding" style="background:#2f323a;color:white;">
+            <div  class="wl-full-height col-sm-12 no-padding">
+                <div id="portalInformationPanel" class="wl-full-height col-sm-7 no-padding" style="background:#2f323a;color:white;">
                     <div class="col-md-12">
                         <h4 style="padding:20px"><span class="lnr lnr-trash"></span>&nbsp;WasteLine</h4>
                     </div>
@@ -57,7 +57,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-5 no-padding" style="height:100%;background: url('./assets/images/lp-img4.jpg') no-repeat center center;background-size:cover;">
+                <div id='portalLoginPanel' class="col-sm-5 no-padding" style="height:100%;background: url('./assets/images/lp-img4.jpg') no-repeat center center;background-size:cover;">
                     <div class="col-md-12" style="height:100%;padding-top:10%; background:rgba(47,50,58,0.9);">
                         <div id="login-form" class="col-md-7 col-md-offset-1 col-sm-8 col-sm-offset-1" style="padding-top:15%; ">
                             <form id="loginForm" method="post" action="">
@@ -70,12 +70,12 @@
                                 </p>
                                 <div class="form-group label-floating ">
                                     <label class="control-label" for="focusedUsername">Username</label>
-                                    <input name="username" class="form-control-light form-control" id="focusedUsername" type="text" required="true">
+                                    <input name="username" class="form-control-light form-control"  type="text" required="true">
                                     <p  class="help-block wl-c-gray-1">You should really write something here</p>
                                 </div>
                                 <div class="form-group label-floating">
                                     <label class="control-label" for="focusedPassword">Password</label>
-                                    <input name="password" class="form-control-light form-control" id="focusedPassword" type="password">
+                                    <input name="password" class="form-control-light form-control" type="password" required="true">
                                     <p class="help-block wl-c-gray-1">You should really write something here</p>
                                 </div>
                                 <div class="form-group">
@@ -83,39 +83,59 @@
                                     <a href="javascript:void(0)" class="btn btn-landingform"><span class="wl-c-green-1">SIGN UP</span></a>
                                 </div>
                             </form>
-                        </div>
-                        <div id="register-form" class="col-md-7 col-md-offset-1 col-sm-8 col-sm-offset-1" style="display:none">
-                            <form id="registrationForm" method="post" action="">
-                                <h1 style="color:white;">Register</h1>
-                                <input name="account_type_ID" type="hidden" value="2">
-                                <input name="status" type="hidden" value="3">
-                                <div class="form-group label-floating has-error">
-                                    <label class="control-label" for="inputFirstName">First Name</label>
-                                    <input name="first_name" type="text" class="form-control-light form-control" id="inputFirstName">
-                                    <p class="help-block wl-c-gray-1">You should really write something here</p>
-                                </div>
+                            <br>
+                            <span style="color: white">Forgot Password?</span>
+                            <form id="passwordRecoveryForm" method="post" action="">
                                 <div class="form-group label-floating">
-                                    <label class="control-label" for="inputMiddleName">Middle Name</label>
-                                    <input name="middle_name" type="text" class="form-control-light form-control" id="inputMiddleName">
-                                    <p class="help-block wl-c-gray-1">You should really write something here</p>
-                                </div>
-                                <div class="form-group label-floating has-success">
-                                    <label class="control-label" for="inputLastName">Last Name</label>
-                                    <input name="last_name" type="text" class="form-control-light form-control" id="inputLastName">
-                                    <p class="help-block wl-c-gray-1">Success Sample</p>
-                                </div>
-                                <div class="form-group label-floating has-warning">
-                                    <label class="control-label" for="inputUsername">Username</label>
-                                    <input name="username" type="text" class="form-control-light form-control" id="inputUsername">
-                                    <p class="help-block wl-c-gray-1">Warning Sample</p>
-                                </div>
-                                <div class="form-group label-floating has-error">
-                                    <label class="control-label" for="inputPassword">Password</label>
-                                    <input name="password" class="form-control-light form-control" id="inputPassword" type="password">
-                                    <p class="help-block wl-c-gray-1">Error Sample</p>
+                                    <label class="control-label">Email</label>
+                                    <input name="email_address" type="email" class="form-control-light form-control" required="true">
+                                    <p class="help-block wl-c-gray-1">We will send your reset link through this email</p>
                                 </div>
                                 <div class="form-group">
-                                    <button href="javascript:void(0)" class="btn btn-raised btn-success">SUBMIT</button>
+                                    <button href="javascript:void(0)" class="btn btn-raised btn-success">RECOVER PASSWORD</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div id="register-form" class="col-md-7 col-md-offset-1 col-sm-8 col-sm-offset-1" style="display:none">
+                            <form id="registrationForm" method="post" action="" >
+                                <h1 style="color:white;">Register</h1>
+                                <p class="formMessage" >
+                                    
+                                </p>
+                                <input name="account_type_ID" type="hidden" value="2">
+                                <input name="status" type="hidden" value="3">
+                                <div class="form-group label-floating">
+                                    <label class="control-label">First Name</label>
+                                    <input name="first_name" type="text" class="form-control-light form-control" required="true">
+                                    <p class="help-block wl-c-gray-1">Use your real name so that your LGU can recognize you</p>
+                                </div>
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Middle Name</label>
+                                    <input name="middle_name" type="text" class="form-control-light form-control" required="true">
+                                    <p class="help-block wl-c-gray-1">Its okay if you don't remember</p>
+                                </div>
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Last Name</label>
+                                    <input name="last_name" type="text" class="form-control-light form-control" required="true">
+                                    <p class="help-block wl-c-gray-1">Use your real name so that your LGU can recognize you</p>
+                                </div>
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Email</label>
+                                    <input name="email_address" type="email" class="form-control-light form-control" required="true">
+                                    <p class="help-block wl-c-gray-1">A valid email is necessary</p>
+                                </div>
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Username</label>
+                                    <input name="username" type="text" class="form-control-light form-control" required="true">
+                                    <p class="help-block wl-c-gray-1">Something unique and cool</p>
+                                </div>
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Password</label>
+                                    <input name="password" type="password" class="form-control-light form-control" required="true" data-minlength="6" >
+                                    <p class="help-block wl-c-gray-1">Minimum of 6 alphanumeric characters</p>
+                                </div>
+                                <div class="form-group">
+                                    <button class="btn btn-raised btn-success">SUBMIT</button>
                                     <a href="javascript:void(0)" class="btn btn-landingform"><span class="wl-c-green-1">CANCEL</span></a>
                                 </div>
                             </form>

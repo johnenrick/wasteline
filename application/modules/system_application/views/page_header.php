@@ -38,6 +38,7 @@
     <!-- jQuery -->
     <script src="<?=asset_url('js/jquery-2.1.4.min.js')?>"></script>
     <script src="<?=asset_url('js/jquery-ui.min.js')?>"></script>
+    <script src="<?=asset_url('js/validator.js')?>"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="<?=asset_url('js/bootstrap.min.js')?>"></script>
