@@ -78,7 +78,7 @@
                         <div class="wl-top-grp col-sm-4">
                                 <span class="wl-c-green-1">Wasteline</span>
                                 <span class="wl-c-gray-1">&nbsp;|&nbsp;</span>
-                                <span class="wl-c-black-1">Information</span>
+                                <span class="wl-c-black-1 wl-page-title">Home</span>
                         </div>
                         <div class="wl-top-grp col-sm-4 unselectable">
                             <span class="lnr lnr-calendar-full wl-c-green-1"></span>
@@ -95,7 +95,7 @@
                                     <div class="form-group">
                                         <div class="btn-group">
                                           <a data-target="#" class="btn btn-default btn-raised btn-sm dropdown-toggle" data-toggle="dropdown">
-                                              <span class="lnr lnr-funnel"></span>
+                                              <span class="lnr lnr-funnel wl-c-green-1"></span>
                                               <span>Filter&nbsp;</span>
                                               <span class="caret"></span>
                                           </a>
@@ -149,7 +149,54 @@
 
                         <!-- post form -->
                         <div id="wl-side-content">
-
+                            <div id="wl-side-header" class="col-sm-12">
+                                <div class="col-sm-3 no-padding">
+                                    <h3 class="wl-c-green-6">Post</h3>
+                                </div>
+                                <div class="form-group col-sm-9 no-margin no-padding">
+                                    <a id="wl-btn-side-repost" class="btn btn-warning btn-raised" style="float:right"><span>Repost</span></a>
+                                    <a id="wl-btn-side-submit" class="btn btn-success btn-raised" style="float:right;display:none"><span>Submit</span></a>
+                                </div>
+                            </div>
+                            <div id="wl-side-menu" class="col-sm-12">
+                                <ul class="unselectable">
+                                    <li>
+                                        <a class="wl-active">Own Waste</a>
+                                    </li>
+                                    <li>
+                                        <a>Waste Accepted</a>
+                                    </li>
+                                    <li>
+                                        <a>Services</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <hr class="col-sm-12 no-padding"></hr>
+                            <div id="wl-side-list" class="col-sm-12 no-padding">
+                                <ul>
+                                    <li id="wl-rectangle-dummy" class="wl-rectangle-list col-sm-12">
+                                        <div class="col-sm-2">
+                                            <div class="circle"></div>
+                                        </div>
+                                        <div class="col-sm-10">
+                                            <p class="wl-list-desciption wl-c-green-1" contenteditable="true">Description</p>
+                                            <p class="wl-list-quantity-price">
+                                                <span class="wl-list-quantity" contenteditable="true">Quantity</span>
+                                                &nbsp;|&nbsp;
+                                                <span class="wl-list-price" contenteditable="true">Price</span></p>
+                                            <p class="wl-list-category" contenteditable="true">Category</p>
+                                        </div>
+                                    </li>
+                                    <li class="wl-rectangle-add col-sm-12 unselectable">
+                                        <div class="col-sm-2">
+                                            <div class="circle wl-c-green-1">+</div>
+                                        </div>
+                                        <div class="col-sm-10">
+                                            <span class="wl-c-green-1">Add item to post</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
 
                     </div>
@@ -194,7 +241,7 @@
         });
         function run_date_time(){
             var d = new Date();
-            $('.wl-date').text((d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear().toString().substr(2,2));
+            $('.wl-date').text(("0"+(d.getMonth()+1)).slice(-2)+'/'+("0"+d.getDate()).slice(-2)+'/'+d.getFullYear().toString().substr(2,2));
             $('.wl-time').text(("0"+d.getHours()).slice(-2)+':'+("0"+d.getMinutes()).slice(-2));
             setTimeout(function(){run_date_time()}, 1000);
         }
@@ -224,6 +271,32 @@
                     $('.wl-'+page+'-content').fadeIn(500);
                     $('.sidebar-nav li.wl-active-page').toggleClass('wl-active-page');
                     ths.toggleClass('wl-active-page');
+                    $(".wl-page-title").text(page);
+                });
+        });
+        $(".wl-rectangle-add").click(function(){
+            if(!$("#wl-btn-side-submit").is('visible')) {
+                $("#wl-btn-side-submit").show('fade',400);
+                $("#wl-btn-side-repost").hide();
+            }
+
+            var dummy = $("#wl-rectangle-dummy").clone().removeAttr('id').show();
+            $(dummy).insertBefore(this);
+            setTimeout(function() {
+               dummy.addClass('wl-show')
+            }, 10);
+        });
+
+        $("#wl-side-menu a").click(function(){
+            var ths = $(this);
+            $('#wl-side-menu a').removeClass('wl-active');
+            $.when( $('.wl-rectangle-list:not(#wl-rectangle-dummy)').remove())
+                .done(function(){
+                    if(!$("#wl-btn-side-submit").is('visible')) {
+                        $("#wl-btn-side-repost").show('fade',400);
+                        $("#wl-btn-side-submit").hide();
+                    }
+                    $(ths).addClass('wl-active');
                 });
         });
     });

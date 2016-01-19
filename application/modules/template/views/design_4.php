@@ -50,7 +50,7 @@
                     <div class="wl-full-height col-sm-12 no-padding">
                         <div class="wl-full-height col-sm-7 no-padding" style="background:#2f323a;color:white;">
                             <div class="col-md-12">
-                                <h4 style="padding:20px"><span class="lnr lnr-trash"></span>&nbsp;WasteLine</h4>
+                                <h4 style="padding:20px;"><span class="lnr lnr-trash wl-logo-1"></span>&nbsp;WasteLine</h4>
                             </div>
                             <div class="col-md-12">
 
@@ -74,8 +74,8 @@
                                       <p class="help-block wl-c-gray-1">You should really write something here</p>
                                     </div>
                                     <div class="form-group">
-                                        <a href="javascript:void(0)" class="btn btn-raised btn-success">LOGIN</a>
-                                        <a href="javascript:void(0)" class="btn btn-landingform"><span class="wl-c-green-1">SIGN UP</span></a>
+                                        <a class="btn btn-raised btn-success">LOGIN</a>
+                                        <a class="btn btn-landingform"><span class="wl-c-green-1">SIGN UP</span></a>
                                     </div>
                                 </div>
                                 <div id="register-form" class="col-md-7 col-md-offset-1 col-sm-8 col-sm-offset-1" style="display:none">
@@ -106,8 +106,8 @@
                                         <p class="help-block wl-c-gray-1">Error Sample</p>
                                     </div>
                                     <div class="form-group">
-                                        <a href="javascript:void(0)" class="btn btn-raised btn-success">SUBMIT</a>
-                                        <a href="javascript:void(0)" class="btn btn-landingform"><span class="wl-c-green-1">CANCEL</span></a>
+                                        <a class="btn btn-raised btn-success">SUBMIT</a>
+                                        <a class="btn btn-landingform"><span class="wl-c-green-1">CANCEL</span></a>
                                     </div>
                                 </div>
 
