@@ -175,6 +175,12 @@ ul.sidebar-nav li a{
     border: 2px solid #e4e7ec;
     border-radius: 4px;
 }
+.wl-rectangle-list{
+    transition: all 0.3s ease-out;
+    opacity: 0;
+    display: none;
+    height: 0;
+}
 
 .wl-rectangle-list div, .wl-side-add div{
     padding: 0;
@@ -244,13 +250,7 @@ ul.sidebar-nav li a{
     vertical-align: middle;
     padding-left: 10px;
 }
-#wl-rectangle-dummy{
-    transition: all 0.3s ease-out;
-    opacity: 0;
-    display: none;
-    height: 0;
-}
-#wl-rectangle-dummy.wl-show{
+.wl-rectangle-list.wl-show{
     opacity: 1;
     height: 75px;
 }
