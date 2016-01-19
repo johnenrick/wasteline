@@ -46,6 +46,9 @@ class Portal extends FE_Controller{
         }
         $this->outputResponse();
     }
+    function passwordRecovery(){
+        
+    }
     function accountVerification($verificationCode){
         $this->load->model("M_account");
         $accountID = substr($verificationCode, 0, strlen($verificationCode)-10);

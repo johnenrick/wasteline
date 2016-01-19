@@ -24,7 +24,7 @@ class C_account extends API_Controller {
         }
         if($this->checkACL() && (($this->input->post("account_type_ID") == 1 && user_type() == 1) || ($this->input->post("account_type_ID") == 3 && user_type() == 1) || ($this->input->post("account_type_ID") == 2 && $this->input->post("status") == 3 && $this->validReCaptcha()))){
             $this->form_validation->set_rules('username', 'Username', 'required|is_unique[account.username]');
-            $this->form_validation->set_rules('password', 'Password', 'required');
+            $this->form_validation->set_rules('password', 'Password', 'required|min_length[6]');
             $this->form_validation->set_rules('account_type_ID', 'Account Type', 'required');
             
             $this->form_validation->set_rules('first_name', 'First Name', 'required|alpha');
