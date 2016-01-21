@@ -68,12 +68,13 @@
 .sidebar-nav li a {
     display: block;
     text-decoration: none;
-    color: #999999;
+    color: #fff;
+    opacity: 0.5;
 }
 
 .sidebar-nav li a:hover {
     text-decoration: none;
-    color: #50c14e;
+    opacity: 1;
 }
 
 .sidebar-nav li a:active,
@@ -88,7 +89,8 @@
 }
 
 .sidebar-nav > .sidebar-brand a {
-    color: #999999;
+    color: #fff;
+    opacity: 1;
 }
 
 .sidebar-nav > .sidebar-brand a:hover {

@@ -45,6 +45,7 @@ ul.sidebar-nav li a{
 }
 .sidebar-nav li.wl-active-page a{
     color: #fff;
+    opacity: 1;
 }
 
 .wl-header-content{
@@ -158,6 +159,7 @@ ul.sidebar-nav li a{
 
 #wl-side-list{
     height: calc(100% - 122px);
+    max-height: calc(100% - 122px);
     position: relative;
     overflow-y: auto;
 }
@@ -222,6 +224,12 @@ ul.sidebar-nav li a{
 .wl-rectangle-add{
     border-style: dashed;
     background-color: #f8f8f8;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+    margin-bottom: 0;
+}
+.wl-rectangle-add:hover{
+    border-color: rgba(80,193,78,0.6);
     cursor: pointer;
 }
 .wl-rectangle-add div{
@@ -332,3 +340,13 @@ ul.sidebar-nav li a{
     background-color: #ffffff;
 }
 
+.scroll-shadow{
+    background:
+        linear-gradient(white 30%, hsla(0,0%,100%, 0)),
+        linear-gradient(hsla(0,0%,100%,0) 10px, white 70%) bottom,
+        radial-gradient(at top, rgba(0,0,0,0.2), transparent 70%),
+        radial-gradient(at bottom, rgba(0,0,0,0.2), transparent 70%) bottom;
+    background-repeat:no-repeat;
+    background-size: 100% 20px, 100% 20px, 100% 10px, 100% 10px;
+    background-attachment:local, local, scroll, scroll;
+}

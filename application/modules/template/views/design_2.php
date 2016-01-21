@@ -172,7 +172,7 @@
                                 </ul>
                             </div>
                             <hr class="col-sm-12 no-padding"></hr>
-                            <div id="wl-side-list" class="col-sm-12 no-padding">
+                            <div id="wl-side-list" class="col-sm-12 no-padding scroll-shadow">
                                 <ul>
                                     <li id="wl-rectangle-dummy" class="wl-rectangle-list col-sm-12">
                                         <div class="col-sm-2">
@@ -271,7 +271,7 @@
                     $('.wl-'+page+'-content').fadeIn(500);
                     $('.sidebar-nav li.wl-active-page').toggleClass('wl-active-page');
                     ths.toggleClass('wl-active-page');
-                    $(".wl-page-title").text(page);
+                    $(".wl-page-title").text(page.replace('-', ' '));
                 });
         });
         $(".wl-rectangle-add").click(function(){
