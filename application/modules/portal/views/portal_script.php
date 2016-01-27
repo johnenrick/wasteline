@@ -18,12 +18,17 @@
             paginationNumbers : true,
             autoHeight : true
         });
-        //check if logged in
+        //check if logged in    
         if(user_id()){
             $("#portalLoginPanel").hide();
             $("#portalInformationPanel").removeClass("col-sm-7");
             $("#portalLoginPanel").removeClass("col-sm-5");
             $("#portalInformationPanel").addClass("col-sm-12");
+        }else{
+//            $("#pageHeader").hide();
+//            $(".wl-main-content ").css("margin-top","0px");
+//            $("#sidebar-wrapper").hide();
+//            $("#wrapper").css("padding-left", "0px");
         }
     });
 </script>

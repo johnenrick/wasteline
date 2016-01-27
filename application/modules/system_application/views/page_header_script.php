@@ -39,5 +39,13 @@
                     ths.toggleClass('wl-active-page');
                 });
         });
+        //page navigation
+        $(".sidebar-nav").on("click", "a", function(){
+            if(isNaN($(this).attr("module_loaded")*1) || isNaN($(this).attr("module_loaded")*1)===0){//if mocdule is not already loaded
+                
+            }else{
+                
+            }
+        });
     });
 </script>

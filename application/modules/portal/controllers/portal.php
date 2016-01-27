@@ -14,7 +14,7 @@
 class Portal extends FE_Controller{
     //put your code here
     function index(){
-        $this->loadPage("portal", array("portal_script", "registration_script", "login_script"), array("message" => false), false);
+        $this->loadPage("portal", array("portal_script", "registration_script", "login_script"), array("message" => false));
     }
     function login(){
         $this->form_validation->set_rules('username', 'Username', 'required');
@@ -32,6 +32,7 @@ class Portal extends FE_Controller{
                     "last_name" => $result[0]["last_name"],
                     "middle_name" => $result[0]["middle_name"],
                     "user_type" => $result[0]["account_type_ID"],
+                    "user_ID" => $result[0]["ID"]
                 ));
                 $this->responseData(true);
             }else{
@@ -45,6 +46,16 @@ class Portal extends FE_Controller{
             }
         }
         $this->outputResponse();
+    }
+    function logout(){
+        $this->session->set_userdata(array(
+            "first_name" => false,
+            "last_name" => false,
+            "middle_name" => false,
+            "user_type" => false,
+            "user_ID" => false
+        ));
+        $this->loadPage("portal", array("portal_script", "registration_script", "login_script"), array("message" => false));
     }
     function passwordRecovery(){
         

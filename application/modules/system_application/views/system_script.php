@@ -15,7 +15,6 @@
             
         }
     }
-   
     function user_id(){
         return system_data.account_information.user_ID;
     }
@@ -29,7 +28,7 @@
         return system_data.account_information.last_name;
     }
     function base_url(link){
-       return system_data.url.base_url+link;
+       return system_data.url.base_url+((typeof link === "undefined") ? "" : link);
     }
     function api_url(link){
        return system_data.url.api_url+link;
@@ -52,11 +51,11 @@
         errorList.forEach(function(errorValue){
             if(errorValue["status"] > 100){
                 for(var index in errorValue["message"]){
-                    elementSelected.find(".formMessage").append(errorValue["message"][index]+"<br>");
+                    elementSelected.find(".formMessage").append("* "+errorValue["message"][index]+"<br>");
                     elementSelected.find("input[name='"+index+"']").parent().addClass("has-error");
                 }
             }else{
-                elementSelected.find(".formMessage").append(errorValue["message"]+"<br>");
+                elementSelected.find(".formMessage").append("* "+errorValue["message"]+"<br>");
             }
         });
     }

@@ -14,6 +14,6 @@
 class Report_management extends FE_Controller{
     //put your code here
     function index(){
-        $this->loadPage("report_management", "report_management_script");
+        $this->loadPage("report_management", "report_management_script", array());
     }
 }
