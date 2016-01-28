@@ -8,9 +8,8 @@
             success : function(data){
                 var response = JSON.parse(data);
                 clear_form_error($("#loginForm"));
-                 console.log(response);
                 if(!response["error"].length){
-                    console.log(response);
+                    window.location = base_url();
                 }else{
                     show_form_error($("#loginForm"), response["error"]);
                 }

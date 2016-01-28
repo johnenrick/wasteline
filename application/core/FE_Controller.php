@@ -8,12 +8,18 @@ class FE_Controller extends API_Controller{
         //$this->load->model("api/m_change_log");
         //sleep(5);
     }
-    public function loadPage($bodyLink, $bodyScriptLink = false, $data = array(), $hasHeaderFooter = true){
-        $this->load->view("system_application/page_header");
-        
+    public function loadPage($bodyLink, $bodyScriptLink = false, $data = array(), $loadPage = true){
+        if($loadPage){
+            $this->load->view("system_application/page_head");
+        }
+        if(user_id() && $loadPage){
+            $this->load->view("system_application/page_header");
+        }
         $this->load->view($bodyLink);
-        $this->load->view("system_application/system");
-        $this->load->view("system_application/system_script");
+        if($loadPage){
+            $this->load->view("system_application/system");
+            $this->load->view("system_application/system_script");
+        }
         if($bodyScriptLink){
             if(is_array($bodyScriptLink)){
                 foreach($bodyScriptLink as $value){
@@ -23,8 +29,12 @@ class FE_Controller extends API_Controller{
                 $this->load->view($bodyScriptLink);
             }
         }
-        $this->load->view("system_application/page_footer");
-        $this->load->view("system_application/page_header_script", $data);
+        if(user_id() && $loadPage){
+            $this->load->view("system_application/page_footer");
+        }
+        if($loadPage){
+            $this->load->view("system_application/page_header_script", $data);
+        }
     }
     public function generateResponse($data = false, $error = array()){
         return array(

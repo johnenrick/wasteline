@@ -3,7 +3,7 @@
 <link href="<?= asset_url('css/owl.transitions.css') ?>" rel="stylesheet">
 
 <script src="<?= asset_url("js/owl.carousel.js") ?>" ></script>
-<script src="<?= asset_url("js/jquery.form.min.js"); ?>"></script>
+
 
 
 
@@ -65,7 +65,7 @@
                                 <p  style="color:white;font-size:13px;">
                                     Lorem ipsum dolor sit amet, ea eum choro homero forensibus, tantas noster corrumpit sea in.
                                 </p>
-                                <p class="formMessage" >
+                                <p class="formMessage" style="color:white">
                                     
                                 </p>
                                 <div class="form-group label-floating ">
@@ -99,7 +99,7 @@
                         <div id="register-form" class="col-md-7 col-md-offset-1 col-sm-8 col-sm-offset-1" style="display:none">
                             <form id="registrationForm" method="post" action="" >
                                 <h1 style="color:white;">Register</h1>
-                                <p class="formMessage" >
+                                <p class="formMessage" style="color:white" >
                                     
                                 </p>
                                 <input name="account_type_ID" type="hidden" value="2">
@@ -111,7 +111,7 @@
                                 </div>
                                 <div class="form-group label-floating">
                                     <label class="control-label">Middle Name</label>
-                                    <input name="middle_name" type="text" class="form-control-light form-control" required="true">
+                                    <input name="middle_name" type="text" class="form-control-light form-control">
                                     <p class="help-block wl-c-gray-1">Its okay if you don't remember</p>
                                 </div>
                                 <div class="form-group label-floating">
@@ -134,9 +134,16 @@
                                     <input name="password" type="password" class="form-control-light form-control" required="true" data-minlength="6" >
                                     <p class="help-block wl-c-gray-1">Minimum of 6 alphanumeric characters</p>
                                 </div>
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Confirm Password</label>
+                                    <input name="confirm_password" type="password" class="form-control-light form-control" required="true" data-minlength="6" >
+                                    <p class="help-block wl-c-gray-1">Retype you password for security purposes</p>
+                                </div>
                                 <div class="form-group">
                                     <button class="btn btn-raised btn-success">SUBMIT</button>
-                                    <a href="javascript:void(0)" class="btn btn-landingform"><span class="wl-c-green-1">CANCEL</span></a>
+                                    <a href="javascript:void(0)" class="btn btn-landingform cancelFormButton">
+                                        <span class="wl-c-green-1">CANCEL</span>
+                                    </a>
                                 </div>
                             </form>
                         </div>

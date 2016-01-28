@@ -27,8 +27,8 @@ class C_account extends API_Controller {
             $this->form_validation->set_rules('password', 'Password', 'required|min_length[6]');
             $this->form_validation->set_rules('account_type_ID', 'Account Type', 'required');
             
-            $this->form_validation->set_rules('first_name', 'First Name', 'required|alpha');
-            $this->form_validation->set_rules('middle_name', 'Middle Name', 'required|alpha');
+            $this->form_validation->set_rules('first_name', 'First Name', 'required');
+            $this->form_validation->set_rules('middle_name', 'Middle Name', 'required');
             $this->form_validation->set_rules('last_name', 'Last Name', 'required');
             $this->form_validation->set_rules('email_address', 'Email Address', 'required|valid_email|is_unique[account_contact_information.detail]');
             
@@ -104,6 +104,12 @@ class C_account extends API_Controller {
                     ));
             }
             if($result){
+                if($this->input->post("with_contact_information") || $this->input->post("all_information")){
+                    $this->load->model("m_account_contact_information");
+                    $condition = array("account_contact_information__account_ID" => $result["ID"]);
+                    $result["contact_information"] = $this->m_account_contact_information->retrieveAccountContactInformation(NULL, NULL, NULL, NULL, NULL, $condition);
+                }
+                
                 $this->actionLog(json_encode($this->input->post()));
                 $this->responseData($result);
             }else{

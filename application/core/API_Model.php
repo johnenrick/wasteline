@@ -34,7 +34,7 @@ class API_Model extends CI_Model{
      *                              e.g. [condition_type__database_table__table_column], [condition_type__table_column], [database_table__table_column]
      * @param array $selectedColumn Specify the columns to retrieve. All columns in default table is selected and prioritized
      */
-    public function retrieveTableEntry($retrieveType = false, $limit = NULL, $offset = 0, $sort = array(), $ID = NULL, $condition = array(), $selectedColumn = array(), $joinedTable = array()){
+    public function retrieveTableEntry($retrieveType = 0, $limit = NULL, $offset = 0, $sort = array(), $ID = NULL, $condition = array(), $selectedColumn = array(), $joinedTable = array()){
         $this->db->start_cache();
         $this->db->flush_cache();
         //Select column
