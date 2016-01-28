@@ -271,6 +271,37 @@ ul.sidebar-nav li a{
     height: 60px;
 }
 
+
+/* Profile */
+
+.wl-pro-full-info{
+    height: 100%;
+    background-color: white;
+    border: 2px #eee solid;
+    border-bottom: none;
+    border-left: none;
+}
+.wl-pro-edit{
+    height: 100%;
+    background-color: white;
+    border: 2px #eee solid;
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+    padding: 30px 60px;
+    overflow-y: auto;
+}
+.wl-pro-edit div.form-group label{
+    width: 100%;
+}
+.wl-pro-edit div.form-group input{
+    margin-bottom: 1px;
+}
+.wl-pro-history{
+    height: 100%;
+    background: url('../../assets/images/lp-img1.jpg') no-repeat center center;background-size:cover;
+}
+
 /* tools */
 .unselectable{
     -webkit-user-select: none; /* Chrome/Safari */
@@ -349,4 +380,16 @@ ul.sidebar-nav li a{
     background-repeat:no-repeat;
     background-size: 100% 20px, 100% 20px, 100% 10px, 100% 10px;
     background-attachment:local, local, scroll, scroll;
+}
+
+[contenteditable='true']:focus{
+    -moz-appearance: textfield;
+    -webkit-appearance: textfield;
+    background-color: white;
+    background-color: -moz-field;
+    border: 1px solid darkgray;
+    box-shadow: 1px 1px 1px 0 lightgray inset;
+    font: -moz-field;
+    font: -webkit-small-control;
+    padding: 0.2em 0.5em;
 }

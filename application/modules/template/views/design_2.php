@@ -132,13 +132,64 @@
                         </div>
 
                         <!-- Information -->
-                        <div class="wl-information-content wl-page-content col-sm-12 wl-hide" style="background-color:red;">
+                        <div class="wl-information-content wl-page-content col-sm-12 wl-hide">
 
                         </div>
 
                         <!-- Profile -->
-                        <div class="wl-profile-content wl-page-content col-sm-12 wl-hide" style="background-color:blue;">
+                        <div class="wl-profile-content wl-page-content col-sm-12 wl-hide no-padding" style="background-color:white;">
+                            <div class="col-sm-3 no-padding wl-pro-full-info">
 
+                            </div>
+
+                            <div class="col-sm-4 wl-pro-edit" style="height:100%;">
+                                <div class="form-group">
+                                    <label for="inputFirstName" class="col-md-2 control-label">First Name</label>
+                                    <div class="col-md-12">
+                                        <input type="text" class="form-control" id="inputFirstName" placeholder="first name" value="John">
+                                        <p class="help-block wl-c-gray-1">You should really write something here</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputMiddleName" class="col-md-2 control-label">Middle Name</label>
+                                    <div class="col-md-12">
+                                        <input type="text" class="form-control" id="inputMiddleName" placeholder="middle name" value="Michael">
+                                        <p class="help-block wl-c-gray-1">You should really write something here</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputLastName" class="col-md-2 control-label">Last Name</label>
+                                    <div class="col-md-12">
+                                        <input type="text" class="form-control" id="inputLastName" placeholder="last name" value="Doe">
+                                        <p class="help-block wl-c-gray-1">You should really write something here</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputUsername" class="col-md-2 control-label">Username</label>
+                                    <div class="col-md-12">
+                                        <input type="text" class="form-control" id="inputUsername" placeholder="username" value="john.doe">
+                                        <p class="help-block wl-c-gray-1">You should really write something here</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPassword" class="col-md-2 control-label">Password</label>
+                                    <div class="col-md-12">
+                                        <input type="password" class="form-control" id="inputPassword" placeholder="Password" value="johndoe">
+                                        <p class="help-block wl-c-gray-1">You should really write something here</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="textArea" class="col-md-2 control-label">Complete Address</label>
+                                    <div class="col-md-12">
+                                        <textarea class="form-control" rows="1" id="textArea">51st St. Banilad, Mandaue City, Cebu</textarea>
+                                        <span class="help-block">A longer block of help text that breaks onto a new line and may extend beyond one line.</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-5 wl-pro-history" style="height:100%;">
+
+                            </div>
                         </div>
 
                         <!-- Manage Users -->
@@ -179,10 +230,10 @@
                                             <div class="circle"></div>
                                         </div>
                                         <div class="col-sm-10">
-                                            <p class="wl-list-desciption wl-c-green-1" contenteditable="true">Description</p>
+                                            <p class="wl-list-desciption wl-c-green-1" contenteditable="true">Click to add Description</p>
                                             <p class="wl-list-quantity-price">
                                                 <span class="wl-list-quantity" contenteditable="true">Quantity</span>
-                                                &nbsp;|&nbsp;
+                                                &nbsp;|&nbsp;Php.
                                                 <span class="wl-list-price" contenteditable="true">Price</span></p>
                                             <p class="wl-list-category" contenteditable="true">Category</p>
                                         </div>

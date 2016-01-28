@@ -79,7 +79,7 @@
                                     </div>
                                 </div>
                                 <div id="register-form" class="col-md-7 col-md-offset-1 col-sm-8 col-sm-offset-1" style="display:none">
-                                    <h1 style="color:white;">Register</h1>
+                                    <h5 style="color:white;">Register</h5>
                                     <div class="form-group label-floating">
                                         <label class="control-label" for="inputFirstName">First Name</label>
                                         <input type="text" class="form-control-light form-control" id="inputEmail">
