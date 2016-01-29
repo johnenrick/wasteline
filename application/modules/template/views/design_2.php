@@ -139,10 +139,27 @@
                         <!-- Profile -->
                         <div class="wl-profile-content wl-page-content col-sm-12 wl-hide no-padding" style="background-color:white;">
                             <div class="col-sm-3 no-padding wl-pro-full-info">
-
+                                <a height="32" width="32" class="circle">
+                                    <img src="http://data.freelancer.com/logo/2752925/negris_avatar.jpg" alt="Oh! It's you.">
+                                </a>
+                                <p class="wl-full-name">
+                                    John Michael Doe
+                                </p>
+                                <p class="wl-username">
+                                    john.doe
+                                </p>
+                                <p class="wl-complete-address">
+                                    A. S. Fortuna St, Banilad, Mandaue City, Cebu
+                                </p>
+                                <hr>
+                                <p class="wl-slogan">Your Slogan</p>
+                                <p class="wl-slogan-edit">( Just start typing to edit )</p>
+                                <p class="wl-slogan-text" contenteditable="true">
+                                    You can’t change the past but you can change the future, always remember to recycle
+                                </p>
                             </div>
 
-                            <div class="col-sm-4 wl-pro-edit" style="height:100%;">
+                            <div class="col-sm-4 wl-pro-edit scroll-on" style="height:100%;">
                                 <h5>Edit Your Personal Settings</h5>
                                 <hr>
                                 <div class="form-group">
@@ -187,9 +204,13 @@
                                         <span class="help-block">A longer block of help text that breaks onto a new line and may extend beyond one line.</span>
                                     </div>
                                 </div>
+
+                                <div class="form-group wl-update-info">
+                                    <a class="btn btn-success btn-raised" style="float:right;"><span>Update Information</span></a>
+                                </div>
                             </div>
 
-                            <div class="col-sm-5 wl-pro-history" style="height:100%;">
+                            <div class="col-sm-5 wl-pro-map" style="height:100%;">
 
                             </div>
                         </div>
@@ -225,7 +246,7 @@
                                 </ul>
                             </div>
                             <hr class="col-sm-12 no-padding"></hr>
-                            <div id="wl-side-list" class="col-sm-12 no-padding scroll-shadow">
+                            <div id="wl-side-list" class="col-sm-12 no-padding scroll-shadow scroll-on">
                                 <ul>
                                     <li id="wl-rectangle-dummy" class="wl-rectangle-list col-sm-12">
                                         <div class="col-sm-2">
@@ -266,6 +287,10 @@
     <!-- jQuery -->
     <script src="<?=asset_url('js/jquery-2.1.4.min.js')?>"></script>
     <script src="<?=asset_url('js/jquery-ui.min.js')?>"></script>
+    <script src="<?=asset_url('js/jQuery.scrollSpeed.js')?>"></script>
+    <script>
+        //$.scrollSpeed(100, 800);
+    </script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="<?=asset_url('js/bootstrap.min.js')?>"></script>
