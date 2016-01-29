@@ -92,6 +92,7 @@
                 L.marker([10.339634, 123.922587], {icon: violetIcon, title:"Brgy. Banilad Hall", alt: "Brgy. Banilad Hall", riseOnHover: true}).addTo(map);
                 L.marker([10.330432, 123.921994], {icon: blueIcon, title:"Junk Shop", alt: "Junk Shop", riseOnHover: true}).addTo(map);
                 L.marker([10.337708, 123.935018], {icon: blueIcon, title:"Bakilid Junk Shop", alt: "Bakilid Junk Shop", riseOnHover: true}).addTo(map);
+                L.polyline(boundaries, {smoothFactor: 1, opacity: 1, weight: 2, fill: true, fillOpacity: 0.1, clickable: false}).addTo(map);
                 getUserLocation();
                 retrieveMarker(waste_post);
 
