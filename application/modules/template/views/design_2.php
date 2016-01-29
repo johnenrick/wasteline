@@ -143,45 +143,47 @@
                             </div>
 
                             <div class="col-sm-4 wl-pro-edit" style="height:100%;">
+                                <h5>Edit Your Personal Settings</h5>
+                                <hr>
                                 <div class="form-group">
-                                    <label for="inputFirstName" class="col-md-2 control-label">First Name</label>
+                                    <label for="inputFirstName" class="col-md-12 control-label">First Name</label>
                                     <div class="col-md-12">
                                         <input type="text" class="form-control" id="inputFirstName" placeholder="first name" value="John">
                                         <p class="help-block wl-c-gray-1">You should really write something here</p>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputMiddleName" class="col-md-2 control-label">Middle Name</label>
+                                    <label for="inputMiddleName" class="col-md-12 control-label">Middle Name</label>
                                     <div class="col-md-12">
                                         <input type="text" class="form-control" id="inputMiddleName" placeholder="middle name" value="Michael">
                                         <p class="help-block wl-c-gray-1">You should really write something here</p>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputLastName" class="col-md-2 control-label">Last Name</label>
+                                    <label for="inputLastName" class="col-md-12 control-label">Last Name</label>
                                     <div class="col-md-12">
                                         <input type="text" class="form-control" id="inputLastName" placeholder="last name" value="Doe">
                                         <p class="help-block wl-c-gray-1">You should really write something here</p>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputUsername" class="col-md-2 control-label">Username</label>
+                                    <label for="inputUsername" class="col-md-12 control-label">Username</label>
                                     <div class="col-md-12">
                                         <input type="text" class="form-control" id="inputUsername" placeholder="username" value="john.doe">
                                         <p class="help-block wl-c-gray-1">You should really write something here</p>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputPassword" class="col-md-2 control-label">Password</label>
+                                    <label for="inputPassword" class="col-md-12 control-label">Password</label>
                                     <div class="col-md-12">
                                         <input type="password" class="form-control" id="inputPassword" placeholder="Password" value="johndoe">
                                         <p class="help-block wl-c-gray-1">You should really write something here</p>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="textArea" class="col-md-2 control-label">Complete Address</label>
+                                    <label for="textArea" class="col-md-12 control-label">Complete Address</label>
                                     <div class="col-md-12">
-                                        <textarea class="form-control" rows="1" id="textArea">51st St. Banilad, Mandaue City, Cebu</textarea>
+                                        <textarea class="form-control" rows="2" id="textArea">A. S. Fortuna St, Banilad, Mandaue City, Cebu</textarea>
                                         <span class="help-block">A longer block of help text that breaks onto a new line and may extend beyond one line.</span>
                                     </div>
                                 </div>
