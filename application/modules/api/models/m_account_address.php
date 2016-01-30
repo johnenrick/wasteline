@@ -23,19 +23,22 @@ class M_account_address extends API_Model{
             "description" => $description,
             "status" => $status
         );
+        print_r($newData);
         return $this->createTableEntry($newData);
     }
     public function retrieveAccountAddress($retrieveType = false, $limit = NULL, $offset = 0, $sort = array(), $ID = NULL, $condition = NULL) {
         $joinedTable = array(
-            
+            "map_marker" => "map_marker.associated_ID=account_address.ID AND map_marker_type_ID=1"
         );
         $selectedColumn = array(
-            "account_address.*"
+            "account_address.*",
+            "map_marker.*",
+            "map_marker.ID as map_marker_ID"
         );
-        
         return $this->retrieveTableEntry($retrieveType, $limit, $offset, $sort, $ID, $condition, $selectedColumn, $joinedTable);
     }
     public function updateAccountAddress($ID = NULL, $condition = array(), $newData = array()) {
+        
         return $this->updateTableEntry($ID, $condition, $newData);
     }
     public function deleteAccountAddress($ID = NULL, $condition = array()){

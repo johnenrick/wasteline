@@ -106,8 +106,28 @@ class C_account extends API_Controller {
             if($result){
                 if($this->input->post("with_contact_information") || $this->input->post("all_information")){
                     $this->load->model("m_account_contact_information");
-                    $condition = array("account_contact_information__account_ID" => $result["ID"]);
-                    $result["contact_information"] = $this->m_account_contact_information->retrieveAccountContactInformation(NULL, NULL, NULL, NULL, NULL, $condition);
+                    
+                    if($this->input->post("ID")){
+                        $condition = array("account_contact_information__account_ID" => $result["ID"]);
+                        $result["contact_information"] = $this->m_account_contact_information->retrieveAccountContactInformation(NULL, NULL, NULL, NULL, NULL, $condition);
+                    }else{
+                        foreach($result as $resulKey => $resultValue){
+                            $condition = array("account_contact_information__account_ID" => $resultValue["ID"]);
+                            $result[$resulKey]["contact_information"] = $this->m_account_contact_information->retrieveAccountContactInformation(NULL, NULL, NULL, NULL, NULL, $condition);
+                        }
+                    }
+                }
+                if($this->input->post("with_address") || $this->input->post("all_information")){
+                    $this->load->model("M_account_address");
+                    if($this->input->post("ID")){
+                        $condition = array("account_address__account_ID" => $result["ID"]);
+                        $result["address"] = $this->M_account_address->retrieveAccountAddress(NULL, NULL, NULL, NULL, NULL, $condition);
+                    }else{
+                        foreach($result as $resulKey => $resultValue){
+                            $condition = array("account_address__account_ID" => $resultValue["ID"]);
+                            $result[$resulKey]["address"] = $this->M_account_address->retrieveAccountAddress(NULL, NULL, NULL, NULL, NULL, $condition);
+                        }
+                    }
                 }
                 
                 $this->actionLog(json_encode($this->input->post()));
@@ -120,10 +140,10 @@ class C_account extends API_Controller {
         }
         $this->outputResponse();
     }
+    
     public function updateAccount(){
         $this->accessNumber = 4;
         if($this->checkACL()){
-            
             $result = $this->m_account->updateAccount(
                     $this->input->post("ID"),
                     $this->input->post("condition"),

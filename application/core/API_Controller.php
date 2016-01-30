@@ -87,5 +87,9 @@ class API_Controller extends MX_Controller{
         print_r($data);
         echo "</pre>";
     }
+    public function is_associative(array $array) {
+        return count(array_filter(array_keys($array), 'is_string')) > 0;
+    }
+
 }
 
