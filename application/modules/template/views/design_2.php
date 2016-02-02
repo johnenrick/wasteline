@@ -33,6 +33,7 @@
     <link href="<?=asset_url('css/linearicons.css')?>" rel="stylesheet">
     <link href="<?=asset_url('css/wl-custom.css')?>" rel="stylesheet">
 
+
 </head>
 
 <body>
@@ -125,7 +126,8 @@
                         </div>
 
                         <!-- Map -->
-                        <div class="wl-map-content wl-page-content col-sm-12 wl-hide" style="background-color:yellow;">
+                        <div id="map" data-mode="" style="Height:">
+                            <input type="hidden" data-map-markers="" value="" name="map-geojson-data"/>
                             <!-- footer container-->
                             <div id="wl-footer-content">
                             </div>
