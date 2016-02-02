@@ -10,7 +10,6 @@
     <meta name="author" content="">
 
     <title>WasteLine</title>
-
     <!-- Material Design fonts -->
     <!--<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
@@ -118,7 +117,7 @@
                     <!-- end top -->
 
                     <!-- main content -->
-                    <div class="wl-main-content col-sm-12">
+                    <div id="moduleContainer" class="wl-main-content col-sm-12">
                         <!-- Home -->
                         <div class="wl-home-content wl-page-content col-sm-12" style="background-color:gray;">
 

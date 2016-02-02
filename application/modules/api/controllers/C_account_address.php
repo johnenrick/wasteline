@@ -18,7 +18,7 @@ class C_account_address extends API_Controller {
     public function createAccountAddress(){
         $this->accessNumber = 1;
         if($this->checkACL()){
-            $this->form_validation->set_rules('account_ID', 'Account', 'required');
+            $this->form_validation->set_rules('account_ID', 'Account', 'required|test_valid');
             $this->form_validation->set_rules('barangay_ID', 'Barangay ID', 'required');
             $this->form_validation->set_rules('description', 'Description', 'required');
             $this->form_validation->set_rules('status', 'Status', 'required');
@@ -46,6 +46,18 @@ class C_account_address extends API_Controller {
             $this->responseError(1, "Not Authorized");
         }
         $this->outputResponse();
+    }
+    public function testing(){
+         $this->form_validation->set_rules('account_ID', 'Account', 'test_valid');
+         if($this->form_validation->run()){
+             echo "test";
+         }else{
+             print_r($this->form_validation->error_array());
+         }
+    }
+    public function _test_valid(){
+        $this->form_validation->set_message("test_valid", 'year should be greater then current year.');
+        return true;
     }
     public function retrieveAccountAddress(){
         $this->accessNumber = 2;

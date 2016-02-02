@@ -32,13 +32,13 @@
 
     <link href="<?=asset_url('css/linearicons.css')?>" rel="stylesheet">
     <link href="<?=asset_url('css/wl-custom.css')?>" rel="stylesheet">
-
     
     
     <!-- jQuery -->
     <script src="<?=asset_url('js/jquery-2.1.4.min.js')?>"></script>
     <script src="<?=asset_url('js/jquery-ui.min.js')?>"></script>
     <script src="<?=asset_url('js/validator.js')?>"></script>
+    <script src="<?=asset_url('js/jQuery.scrollSpeed.js')?>"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="<?=asset_url('js/bootstrap.min.js')?>"></script>

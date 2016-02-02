@@ -3,7 +3,7 @@
     <div id="wrapper">
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
-                <li class="sidebar-brand" >
+                <li class="sidebar-brand">
                     <a><span class="lnr lnr-trash"></span></a>
                 </li>
                 <li class="wl-active-page">
@@ -36,12 +36,12 @@
                 <div class="row wl-full-height">
 
                     <!-- top -->
-                    <div id="pageHeader" class="wl-header-content col-xs-12 col-sm-12" style="">
+                    <div class="wl-header-content col-xs-12 col-sm-12">
 
                         <div class="wl-top-grp col-sm-4">
                                 <span class="wl-c-green-1">Wasteline</span>
                                 <span class="wl-c-gray-1">&nbsp;|&nbsp;</span>
-                                <span class="wl-c-black-1">Information</span>
+                                <span class="wl-c-black-1 wl-page-title">Home</span>
                         </div>
                         <div class="wl-top-grp col-sm-4 unselectable">
                             <span class="lnr lnr-calendar-full wl-c-green-1"></span>
@@ -58,7 +58,7 @@
                                     <div class="form-group">
                                         <div class="btn-group">
                                           <a data-target="#" class="btn btn-default btn-raised btn-sm dropdown-toggle" data-toggle="dropdown">
-                                              <span class="lnr lnr-funnel"></span>
+                                              <span class="lnr lnr-funnel wl-c-green-1"></span>
                                               <span>Filter&nbsp;</span>
                                               <span class="caret"></span>
                                           </a>
@@ -81,7 +81,7 @@
                     <!-- end top -->
 
                     <!-- main content -->
-                    <div class="wl-main-content col-sm-12">
+                    <div id="moduleContainer" class="wl-main-content col-sm-12">
                         <!-- Home -->
-                        <div id="moduleContainer" class="wl-home-content wl-page-content col-sm-12" style="background-color:gray;">
+                        <div  class="wl-home-content wl-page-content col-sm-12" style="background-color:gray;">
                         

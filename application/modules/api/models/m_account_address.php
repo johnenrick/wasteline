@@ -23,7 +23,6 @@ class M_account_address extends API_Model{
             "description" => $description,
             "status" => $status
         );
-        print_r($newData);
         return $this->createTableEntry($newData);
     }
     public function retrieveAccountAddress($retrieveType = false, $limit = NULL, $offset = 0, $sort = array(), $ID = NULL, $condition = NULL) {

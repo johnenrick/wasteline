@@ -29,13 +29,14 @@ class M_account extends API_Model{
         
         $joinedTable = array(
             "account_basic_information" => "account_basic_information.account_ID=account.ID",
-            "account_type" => "account_type.ID=account.account_type_ID"
+            "account_type" => "account_type.ID=account.account_type_ID",
+            "account_contact_information AS email" => "email.account_ID=account.ID AND email.type=1"
         );
         $selectedColumn = array(
-            "account.username",
-            "account.account_type_ID",
+            "account.username, account.account_type_ID",
             "account_basic_information.*",
-            "account_type.description AS account_type_description"
+            "account_type.description AS account_type_description",
+            "email.type AS email_type, email.detail AS email_detail, email.ID AS email_ID"
         );
         
         return $this->retrieveTableEntry($retrieveType, $limit, $offset, $sort, $ID, $condition, $selectedColumn, $joinedTable);

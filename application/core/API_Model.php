@@ -105,6 +105,9 @@ class API_Model extends CI_Model{
             $this->db->where("$this->TABLE.ID", $ID);
         }
         $result = false;
+        if(isset($newData["ID"])){
+            unset($newData["ID"]);
+        }
         if((count($condition) > 0) || ($ID !== NULL)){
             if(count($newData) > 0){
                 $updatedData = array();

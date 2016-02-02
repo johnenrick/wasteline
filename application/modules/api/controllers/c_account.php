@@ -85,12 +85,17 @@ class C_account extends API_Controller {
     public function retrieveAccount(){
         $this->accessNumber = 2;
         if($this->checkACL()){
+            $ID = $this->input->post("ID");
+            if(user_type() == 2 || user_type() == 0){
+                $ID = user_id();
+            }
+           
             $result = $this->m_account->retrieveAccount(
                     $this->input->post("retrieve_type"),
                     $this->input->post("limit"),
                     $this->input->post("offset"), 
                     $this->input->post("sort"),
-                    $this->input->post("ID"), 
+                    $ID, 
                     $this->input->post("condition")
                     );
             if($this->input->post("limit")){
@@ -99,7 +104,7 @@ class C_account extends API_Controller {
                     NULL,
                     NULL,
                     NULL,
-                    $this->input->post("ID"), 
+                    $ID, 
                     $this->input->post("condition")
                     ));
             }
@@ -140,20 +145,48 @@ class C_account extends API_Controller {
         }
         $this->outputResponse();
     }
-    
+    public function testing(){
+        $test = array("Tae"=>"123", "tobol"=>2);
+        print_r($test);
+        unset($test["Tae"]);
+        print_r($test);
+    }
     public function updateAccount(){
         $this->accessNumber = 4;
+        
         if($this->checkACL()){
-            $result = $this->m_account->updateAccount(
-                    $this->input->post("ID"),
-                    $this->input->post("condition"),
-                    $this->input->post("updated_data")
-                    );
-            if($result){
-                $this->actionLog(json_encode($this->input->post()));
-                $this->responseData($result);
+            if($this->input->post("updated_data[username]") != username()){
+                $this->form_validation->set_rules('updated_data[username]', 'Username', 'is_unique[account.username]');
+            }
+            $this->form_validation->set_rules('updated_data[password]', 'Password', 'min_length[6]');
+            $this->form_validation->set_rules('updated_data[email_address]', 'Email Address', 'valid_email|is_unique[account_contact_information.detail]');
+            
+            if($this->form_validation->run()){
+                $updatedData = $this->input->post('updated_data');
+                $condition = $this->input->post('condition');
+                if(user_type() == 2){
+                    if($this->input->post("account_type_ID")){
+                        $updatedData["account_type_ID"] = 2;
+                    }
+                    $condition["ID"] = user_id();
+                }
+                $result = $this->m_account->updateAccount(
+                        $this->input->post("ID"),
+                        $condition,
+                        $updatedData
+                        );
+                if($result){
+                    $this->actionLog(json_encode($this->input->post()));
+                    $this->responseData($result);
+                }else{
+                    $this->responseError(3, "Failed to Update");
+                }
             }else{
-                $this->responseError(3, "Failed to Update");
+                if(count($this->form_validation->error_array())){
+                    $this->responseError(102, $this->form_validation->error_array());
+                }else{
+                    $this->responseError(100, "Required Fields are empty");
+                }
             }
         }else{
             $this->responseError(1, "Not Authorized");

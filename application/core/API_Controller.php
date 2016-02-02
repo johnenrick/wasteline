@@ -73,9 +73,9 @@ class API_Controller extends MX_Controller{
      * 
      * @param type $accessNumber The access number of a function of an API controller
      */
-    public function checkACL(){
+    public function checkACL($requireLogin = true){
         //check module with parent
-        return 1;//$this->m_access_control_list->checkGoupACL(user_id(), $this->APICONTROLLERID, $this->accessNumberID);
+        return ($requireLogin==false) ? 1 : 1;//$this->m_access_control_list->checkGoupACL(user_id(), $this->APICONTROLLERID, $this->accessNumberID);
        
     }
     public function actionLog($detail){
