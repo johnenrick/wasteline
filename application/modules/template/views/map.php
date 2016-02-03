@@ -105,6 +105,7 @@
                 })
                 .on('locationerror', function(e){
                     console.log(e);
+                    map.stopLocate();
                 });
         }
                
