@@ -9,9 +9,6 @@
     <div id="page-content-wrapper">
         <div class="container-fluid wl-full-height">
             <div class="row wl-full-height">
-asdasd2222
-ds
-d2
                 <!-- main content -->
                 <div  class="wl-full-height col-sm-12 no-padding">
                     <div id="portalInformationPanel" class="wl-full-height col-sm-7 no-padding" style="background:#2f323a;color:white;">
