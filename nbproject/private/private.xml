@@ -6,20 +6,20 @@
             <file>file:/C:/xampp/htdocs/wasteline/application/modules/api/controllers/C_access_control_list.php</file>
             <file>file:/C:/xampp/htdocs/wasteline/application/core/API_Controller.php</file>
             <file>file:/C:/xampp/htdocs/wasteline/application/modules/system_application/views/system_script.php</file>
-            <file>file:/C:/xampp/htdocs/wasteline/application/modules/portal/views/portal.php</file>
             <file>file:/C:/xampp/htdocs/wasteline/application/modules/api/controllers/c_account.php</file>
+            <file>file:/C:/xampp/htdocs/wasteline/application/modules/portal/views/portal.php</file>
             <file>file:/C:/xampp/htdocs/wasteline/application/modules/profile_management/views/profile_management.php</file>
             <file>file:/C:/xampp/htdocs/wasteline/application/modules/portal/views/registration_script.php</file>
             <file>file:/C:/xampp/htdocs/wasteline/application/modules/system_application/views/page_header_script.php</file>
             <file>file:/C:/xampp/htdocs/wasteline/application/modules/api/models/M_access_control_list.php</file>
             <file>file:/C:/xampp/htdocs/wasteline/application/modules/profile_management/views/profile_management_script.php</file>
             <file>file:/C:/xampp/htdocs/wasteline/application/modules/portal/views/portal_script.php</file>
-            <file>file:/C:/xampp/htdocs/wasteline/application/modules/api/models/m_account_basic_information.php</file>
             <file>file:/C:/xampp/htdocs/wasteline/application/modules/api/models/M_sample_template.php</file>
             <file>file:/C:/xampp/htdocs/wasteline/application/helpers/user_info_helper.php</file>
+            <file>file:/C:/xampp/htdocs/wasteline/application/modules/api/models/m_account_basic_information.php</file>
             <file>file:/C:/xampp/htdocs/wasteline/application/modules/portal/controllers/portal.php</file>
-            <file>file:/C:/xampp/htdocs/wasteline/application/modules/api/models/m_account.php</file>
             <file>file:/C:/xampp/htdocs/wasteline/application/modules/system_application/views/system_frame.php</file>
+            <file>file:/C:/xampp/htdocs/wasteline/application/modules/api/models/m_account.php</file>
         </group>
     </open-files>
 </project-private>
