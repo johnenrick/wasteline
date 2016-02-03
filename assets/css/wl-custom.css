@@ -297,6 +297,31 @@ ul.sidebar-nav li a{
     height: 60px;
 }
 
+/* Information */
+
+.wl-info-list, .wl-info-display{
+    height: 100%;
+    background-color: white;
+    border-top: 2px solid #eee;
+}
+.wl-info-list{
+    border-right: 1px solid #eee;
+
+}
+.wl-info-display{
+
+}
+.wl-info-header{
+    height: 60px;
+    border-bottom: 1px solid #eee;
+}
+.wl-info-header span:first-child{
+    font-size: 16px;
+    line-height: 60px;
+}
+.wl-info-header span:nth-child(2){
+    margin-top: -4px;
+}
 
 /* Profile */
 

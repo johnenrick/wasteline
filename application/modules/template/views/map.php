@@ -241,8 +241,8 @@
                     <!-- end top -->
 
                     <!-- main content -->
-                    <div id="map" data-mode="">
-                        <input type="hidden" data-map-markers="" value="" name="map-geojson-data" />
+                    <div id="map" data-mode="" style="height:100px;width:1289px">
+                        <input type="hidden" data-map-markers="" value="" name="map-geojson-data"/>
                     </div>
                     <!-- end main content -->
 

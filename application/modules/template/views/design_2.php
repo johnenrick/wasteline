@@ -32,6 +32,7 @@
     <link href="<?=asset_url('css/linearicons.css')?>" rel="stylesheet">
     <link href="<?=asset_url('css/wl-custom.css')?>" rel="stylesheet">
 
+
 </head>
 
 <body>
@@ -124,7 +125,8 @@
                         </div>
 
                         <!-- Map -->
-                        <div class="wl-map-content wl-page-content col-sm-12 wl-hide" style="background-color:yellow;">
+                        <div id="map" data-mode="" style="Height:">
+                            <input type="hidden" data-map-markers="" value="" name="map-geojson-data"/>
                             <!-- footer container-->
                             <div id="wl-footer-content">
                             </div>
@@ -132,11 +134,26 @@
 
                         <!-- Information -->
                         <div class="wl-information-content wl-page-content col-sm-12 wl-hide">
+                            <div class="col-sm-4 wl-info-list no-padding">
+                                <div class="col-sm-12 wl-info-header">
+                                    <span>Information Thread</span> <span class="badge">105</span>
+                                </div>
+                                <div class="col-sm-12 wl-info-mainlist">
+                                    <ul>
+                                        <li>
+                                            <p>Proper Garbage Disposal</p>
+                                            <p>just now</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-sm-8 wl-info-display">
 
+                            </div>
                         </div>
 
                         <!-- Profile -->
-                        <div class="wl-profile-content wl-page-content col-sm-12 wl-hide no-padding" style="background-color:white;">
+                        <div class="wl-profile-content wl-page-content col-sm-12 wl-hide no-padding">
                             <div class="col-sm-3 no-padding wl-pro-full-info">
                                 <a height="32" width="32" class="circle">
                                     <img src="http://data.freelancer.com/logo/2752925/negris_avatar.jpg" alt="Oh! It's you.">
