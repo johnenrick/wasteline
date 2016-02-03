@@ -3,6 +3,7 @@
     profileManagement.viewProfile = function(){
         $.post(api_url("c_account/retrieveAccount"), {}, function(data){
             var response = JSON.parse(data);
+            
             if(!response["error"].length){
                 $("#profileManagementForm").find("[name='updated_data[first_name]']").val(response["data"]["first_name"]).attr("initial_value", response["data"]["first_name"]);
                 $("#profileManagementForm").find("[name='updated_data[middle_name]']").val(response["data"]["middle_name"]).attr("initial_value", response["data"]["middle_name"]);
@@ -18,10 +19,9 @@
         $("#profileManagementForm").validator();
         $("#profileManagementForm").attr("action", api_url("c_account/updateAccount"));
         $("#profileManagementForm").ajaxForm({
-            beforeSubmit : function(data){
+            beforeSubmit : function(data, $form, options){
                 //password confirmation 5 and 6
-                console.log(data[4]);
-                if(!(data[5]["value"] === data[6]["value"])){
+                if(!(data[5]["value"] === data[6]["value"]) && data[5]["value"] !== ""){
                     $("#profileManagementForm").find(".formMessage").text("* Password mismatch");
                     $("#profileManagementForm").find("input[name='password']").val("");
                     $("#profileManagementForm").find("input[name='confirm_password']").val("");
@@ -29,11 +29,15 @@
                     $("#profileManagementForm").find("input[name='confirm_password']").trigger("change");
                     return false;
                 }
-                data.splice(2);
+                //email is 4
+                if($("#profileManagementForm").find("[name='updated_data[email]']").attr("initial_value") === $("#profileManagementForm").find("[name='updated_data[email]']").val()){
+                    data.splice(3,1);
+                }
             },
             success : function(data){
                 //console.log(data);
                 var response = JSON.parse(data);
+                console.log(response);
                 clear_form_error($("#profileManagementForm"));
                 if(!response["error"].length){
                 }else{

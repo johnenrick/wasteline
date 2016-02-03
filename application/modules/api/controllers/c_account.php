@@ -13,6 +13,7 @@ class C_account extends API_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model("m_account");
+        $this->load->model("M_account_basic_information");
         $this->APICONTROLLERID = 1;
     }
     public function createAccount(){
@@ -163,15 +164,23 @@ class C_account extends API_Controller {
             
             if($this->form_validation->run()){
                 $updatedData = $this->input->post('updated_data');
-                $condition = $this->input->post('condition');
+                $ID = $this->input->post('ID');
+                $condition = $this->input->post("condition");
                 if(user_type() == 2){
                     if($this->input->post("account_type_ID")){
                         $updatedData["account_type_ID"] = 2;
                     }
-                    $condition["ID"] = user_id();
+                    $ID = user_id();
+                    $condition["account_ID"] = $ID;
                 }
+                $this->responseDebug($updatedData);
                 $result = $this->m_account->updateAccount(
-                        $this->input->post("ID"),
+                        $ID,
+                        $condition,
+                        $updatedData
+                        );
+                $this->M_account_basic_information->updateAccountBasicInformation(
+                        NULL,
                         $condition,
                         $updatedData
                         );
