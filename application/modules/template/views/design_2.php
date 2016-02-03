@@ -136,7 +136,7 @@
                         <div class="wl-information-content wl-page-content col-sm-12 wl-hide">
                             <div class="col-sm-4 wl-info-list no-padding">
                                 <div class="col-sm-12 wl-info-header">
-                                    <span>Information Thread</span> <span class="badge">105</span>
+                                    <span>Information Thread</span> <span class="badge">5k</span>
                                 </div>
                                 <div class="col-sm-12 wl-info-mainlist">
                                     <ul>
