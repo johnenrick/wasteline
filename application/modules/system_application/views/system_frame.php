@@ -63,9 +63,10 @@
                     <li module_id="2" module_link="" module_name="home">
                         <a data-page-link="map"><span class="lnr lnr-map"></span></a>
                     </li>
-                    <li module_id="3" module_link="" module_name="home">
+                    <li module_id="3" module_link="report_management" module_name="home">
                         <a data-page-link="information"><span class="lnr lnr-book"></span></a>
                     </li>
+                    
                     <li id="tae" module_id="4" module_link="profile_management" module_name="profile_management">
                         <a data-page-link="profile" ><span class="lnr lnr-user"></span></a>
                     </li>
