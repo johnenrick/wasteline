@@ -60,7 +60,7 @@
                     <li  class="" module_id="1" module_link="portal" module_name="home">
                         <a data-page-link="home" ><span class="lnr lnr-home"></span></a>
                     </li>
-                    <li module_id="2" module_link="" module_name="home">
+                    <li module_id="2" module_link="wastemap" module_name="home">
                         <a data-page-link="map"><span class="lnr lnr-map"></span></a>
                     </li>
                     <li module_id="3" module_link="report_management" module_name="home">
