@@ -30,18 +30,28 @@ class M_account extends API_Model{
         $joinedTable = array(
             "account_basic_information" => "account_basic_information.account_ID=account.ID",
             "account_type" => "account_type.ID=account.account_type_ID",
-            "account_contact_information AS email" => "email.account_ID=account.ID AND email.type=1"
+            "account_contact_information AS email" => "email.account_ID=account.ID AND email.type=1",
+            "account_contact_information AS contact_number" => "contact_number.account_ID=account.ID AND contact_number.type=3",
+            //account address
+            "account_address" => "account_address.account_ID=account.ID",
+            "map_marker AS account_address_map_marker" => "account_address_map_marker.associated_ID = account_address.ID AND map_marker_type_ID = 1" 
         );
         $selectedColumn = array(
             "account.username, account.account_type_ID",
             "account_basic_information.*",
             "account_type.description AS account_type_description",
-            "email.type AS email_type, email.detail AS email_detail, email.ID AS email_ID"
+            "email.type AS email_type, email.detail AS email_detail, email.ID AS email_ID",
+            "contact_number.type AS contact_number_type, contact_number.detail AS contact_number_detail, contact_number.ID AS contact_number_ID",
+            "account_address.ID AS acount_address_ID, account_address.description AS account_address_description",
+            "account_address_map_marker.ID AS account_address_map_marker_ID, account_address_map_marker.longitude AS account_address_longitude, account_address_map_marker.latitude AS account_address_latitude"
         );
         
         return $this->retrieveTableEntry($retrieveType, $limit, $offset, $sort, $ID, $condition, $selectedColumn, $joinedTable);
     }
     public function updateAccount($ID = NULL, $condition = array(), $newData = array()) {
+        if(isset($newData["password"])){
+            $newData["password"] = sha1($newData["password"]);
+        }
         return $this->updateTableEntry($ID, $condition, $newData);
     }
     public function deleteAccount($ID = NULL, $condition = array()){

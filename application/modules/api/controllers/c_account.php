@@ -172,19 +172,79 @@ class C_account extends API_Controller {
                     }
                     $ID = user_id();
                     $condition["account_ID"] = $ID;
+                    
                 }
-                $this->responseDebug($updatedData);
                 $result = $this->m_account->updateAccount(
                         $ID,
                         $condition,
                         $updatedData
                         );
-                $this->M_account_basic_information->updateAccountBasicInformation(
+                $result1 = $this->M_account_basic_information->updateAccountBasicInformation(
                         NULL,
                         $condition,
                         $updatedData
                         );
-                if($result){
+                if($result || $result1){
+                    /**Updating Contact Information**/
+                    
+                    $this->load->model("M_account_contact_information");
+                    /*Email*/
+                    if(isset($updatedData["email_ID"]) && $updatedData["email_ID"] && $updatedData["email_detail"]){//update email
+                        $this->M_account_contact_information->updateAccountContactInformation( 
+                                NULL, 
+                                array(
+                                    "account_ID" => user_id(), 
+                                    "ID" => $updatedData["email_ID"]
+                                ), 
+                                array(
+                                    "detail" => $updatedData["email_detail"]
+                                ));
+                    }else if(isset($updatedData["email_ID"]) && $updatedData["email_ID"] == 0 && $updatedData["email_detail"]){//create email
+                        $this->M_account_contact_information->createAccountContactInformation(user_id(), 1, $updatedData["email_detail"]);
+                    }
+                    /*Contact Number*/
+                    if(isset($updatedData["contact_number_ID"]) && $updatedData["contact_number_ID"] && $updatedData["contact_number_detail"]){//update contact_number
+                        $this->M_account_contact_information->updateAccountContactInformation( 
+                                NULL, 
+                                array(
+                                    "account_ID" => user_id(), 
+                                    "ID" => $updatedData["contact_number_ID"]
+                                ), 
+                                array(
+                                    "detail" => $updatedData["contact_number_detail"]
+                                ));
+                    }else if(isset($updatedData["contact_number_ID"]) && $updatedData["contact_number_ID"] == 0 && $updatedData["contact_number_detail"]){//create contact_number
+                        $this->M_account_contact_information->createAccountContactInformation(user_id(), 3, $updatedData["contact_number_detail"]);
+                    }
+                    /**Updating Address Information**/
+                    $this->load->model("M_account_address");
+                    $this->load->model("M_map_marker");
+                    $this->responseDebug(isset($updatedData["account_address_ID"]) && $updatedData["account_address_ID"]);
+                    if(isset($updatedData["account_address_ID"]) && $updatedData["account_address_ID"] && $updatedData["account_address_description"]){//update account_address
+                        /*Account Address*/
+                        $this->M_account_address->updateAccountAddress( NULL, 
+                                array(
+                                    "account_ID" => user_id(),
+                                    "ID" => $updatedData["account_address_ID"]
+                                ), 
+                                array(
+                                    "description" => $updatedData["account_address_description"],
+                                ));
+                        /*Map Marker*/
+                        $this->M_map_marker->updateMapMarker( NULL, 
+                                array(
+                                    "account_address.account_ID" => user_id(),
+                                    "ID" => $updatedData["account_address_map_marker_ID"],
+                                    "map_marker_type_ID" => 1
+                                ), 
+                                array(
+                                    "longitude" => $updatedData["account_address_longitude"],
+                                    "latitude" => $updatedData["account_address_latitude"],
+                                ));
+                    }else if(isset($updatedData["account_address_ID"]) && $updatedData["account_address_ID"] == 0 && $updatedData["account_address_description"]){//create account_address
+                        $accountAddressID = $this->M_account_address->createAccountAddress(user_id(), 2, $updatedData["account_address_description"]);
+                        $this->M_map_marker->createMapMarker($accountAddressID, 1, $updatedData["account_address_longitude"], $updatedData["account_address_latitude"]);
+                    }
                     $this->actionLog(json_encode($this->input->post()));
                     $this->responseData($result);
                 }else{

@@ -44,7 +44,10 @@ class M_map_marker extends API_Model{
         return $this->retrieveTableEntry($retrieveType, $limit, $offset, $sort, $ID, $condition, $selectedColumn, $joinedTable);
     }
     public function updateMapMarker($ID = NULL, $condition = array(), $newData = array()) {
-        return $this->updateTableEntry($ID, $condition, $newData);
+        $joinedTable = array(
+            "account_address" => "account_address.ID = map_marker.associated_ID"
+        );
+        return $this->updateTableEntry($ID, $condition, $newData, $joinedTable);
     }
     public function deleteMapMarker($ID = NULL, $condition = array()){
         return $this->deleteTableEntry($ID, $condition);

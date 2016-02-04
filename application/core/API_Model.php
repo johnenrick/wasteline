@@ -96,7 +96,7 @@ class API_Model extends CI_Model{
      * @param type $newData     Updated data
      * @return int
      */
-    public function updateTableEntry($ID = NULL, $condition = array(), $newData = array()){
+    public function updateTableEntry($ID = NULL, $condition = array(), $newData = array(), $joinedTable = array()){
         $this->initializeTableColumn();
         $this->db->start_cache();
         $this->db->flush_cache();
@@ -107,6 +107,9 @@ class API_Model extends CI_Model{
         $result = false;
         if(isset($newData["ID"])){
             unset($newData["ID"]);
+        }
+        foreach($joinedTable as $key => $value){
+            $this->db->join($key, $value, "left");
         }
         if((count($condition) > 0) || ($ID !== NULL)){
             if(count($newData) > 0){
@@ -206,12 +209,12 @@ class API_Model extends CI_Model{
         $this->db->stop_cache();
         return $result;
     }
-    public function batchUpdateTableEntry($sampleTemplate){
+    public function batchUpdateTableEntry($conditionColumn, $newData){
         $this->db->start_cache();
         $this->db->flush_cache();
         $result = false;
-        if(count($sampleTemplate) > 0){
-            $this->db->update_batch("$this->TABLE", $sampleTemplate, "ID");
+        if(count($newData) > 0){
+            $this->db->update_batch("$this->TABLE", $newData, $conditionColumn);
             $result = true;
         }
         $this->db->flush_cache();

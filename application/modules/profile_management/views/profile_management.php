@@ -2,29 +2,28 @@
     <a height="32" width="32" class="circle">
         <img src="<?=  asset_url("images/profile_picture/simpleswag.jpg")?>" alt="Oh! It's you.">
     </a>
-    <p class="wl-full-name">
+    <p id="profileManagementFullName" class="wl-full-name">
         John Michael Doe
     </p>
-    <p class="wl-username">
+    <p id="profileManagementUsername" class="wl-username">
         john.doe
     </p>
-    <p class="wl-complete-address">
+    <p id="profileManagementCompleteAddress" class="wl-complete-address">
         A. S. Fortuna St, Banilad, Mandaue City, Cebu
     </p>
     <hr>
-    <p class="wl-slogan">Your Slogan</p>
-    <p class="wl-slogan-edit">( Just start typing to edit )</p>
-    <p class="wl-slogan-text" contenteditable="true">
-        You can’t change the past but you can change the future, always remember to recycle
-    </p>
+    <p id="profileManagementEmailAddress" class="wl-slogan">plenosjohn@yahoo.com</p>
+    <p class="wl-slogan-edit">Email</p>
+    <p id="profileManagementContactNumber" class="wl-slogan">09275835504</p>
+    <p class="wl-slogan-edit">Contact Number</p>
 </div>
 
 <div class="col-sm-4 wl-pro-edit scroll-on" style="height:100%;">
     <form id="profileManagementForm" method="post">
         <h5>Edit Your Personal Settings</h5>
         
-        
         <hr>
+        
         <div class="form-group">
             <div class="col-md-12">
                 <p class="formMessage" ></p>
@@ -32,8 +31,10 @@
         </div>
         
         <div class="form-group">
+            
             <label for="inputFirstName" class="col-md-12 control-label">First Name</label>
             <div class="col-md-12">
+                
                 <input name="updated_data[first_name]" type="text" class="form-control" placeholder="First Name">
                 <p class="help-block wl-c-gray-1">Use your real name so that your LGU can recognize you</p>
             </div>
@@ -52,11 +53,21 @@
                 <p class="help-block wl-c-gray-1">Use your real name so that your LGU can recognize you</p>
             </div>
         </div>
+        
         <div class="form-group">
             <label for="inputLastName" class="col-md-12 control-label">Email</label>
             <div class="col-md-12">
-                <input name="updated_data[email]" type="email" class="form-control" placeholder="Last Name" >
+                <input name="updated_data[email_ID]" value="0" type="hidden" >
+                <input name="updated_data[email_detail]" type="email" class="form-control" placeholder="Email Address" >
                 <p class="help-block wl-c-gray-1">A valid email is necessary</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputLastName" class="col-md-12 control-label">Contact Number</label>
+            <div class="col-md-12">
+                <input name="updated_data[contact_number_ID]" value="0" type="hidden" class="form-control" >
+                <input name="updated_data[contact_number_detail]" type="text" class="form-control" placeholder="Contact Number" >
+                <p class="help-block wl-c-gray-1">Your contact number. You may separate multiple number with "/" </p>
             </div>
         </div>
         <div class="form-group">
@@ -76,15 +87,19 @@
         <div class="form-group">
             <label for="inputPassword" class="col-md-12 control-label">Confirm Password</label>
             <div class="col-md-12">
-                <input name="updated_data[password]" type="password" class="form-control" id="inputPassword" placeholder="Password">
+                <input name="updated_data[confirm_password]" type="password" class="form-control" id="inputPassword" placeholder="Password">
                 <p class="help-block wl-c-gray-1">Retype your password for security purposes</p>
             </div>
         </div>
         <div class="form-group">
             <label for="textArea" class="col-md-12 control-label">Complete Address</label>
             <div class="col-md-12">
-                <textarea class="form-control" rows="2" id="textArea"></textarea>
-                <span class="help-block">A longer block of help text that breaks onto a new line and may extend beyond one line.</span>
+                <input name="updated_data[account_address_ID]" type="hidden" >
+                <input name="updated_data[account_address_longitude]" type="hidden">
+                <input name="updated_data[account_address_latitude]" type="hidden">
+                <input name="updated_data[account_address_map_marker_ID]" type="hidden">
+                <textarea name="updated_data[account_address_description]" class="form-control" rows="2" placeholder="Complete Address"></textarea>
+                <span class="help-block">Click the map on the right to indicate your address. Or use GPS location on the bottom left in the map</span>
             </div>
         </div>
 

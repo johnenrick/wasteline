@@ -40,4 +40,7 @@ class M_account_contact_information extends API_Model{
     public function deleteAccountContactInformation($ID = NULL, $condition = array()){
         return $this->deleteTableEntry($ID, $condition);
     }
+    public function batchUpdateAccountContactInformation($condition, $newData) {
+        return $this->batchUpdateTableEntry($condition, $newData);
+    }
 }
