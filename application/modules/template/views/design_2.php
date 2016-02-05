@@ -81,9 +81,9 @@
                     <div class="wl-header-content col-xs-12 col-sm-12">
 
                         <div class="wl-top-grp col-sm-4">
-                                <span class="wl-c-green-1">Wasteline</span>
-                                <span class="wl-c-gray-1">&nbsp;|&nbsp;</span>
-                                <span class="wl-c-black-1 wl-page-title">Home</span>
+                            <span class="wl-c-green-1">Wasteline</span>
+                            <span class="wl-c-gray-1">&nbsp;|&nbsp;</span>
+                            <span class="wl-c-black-1 wl-page-title">Home</span>
                         </div>
                         <div class="wl-top-grp col-sm-4 unselectable">
                             <span class="lnr lnr-calendar-full wl-c-green-1"></span>
@@ -100,16 +100,16 @@
                                 <div class="col-sm-12" style="padding: 5px 0 0">
                                     <div class="form-group">
                                         <div class="btn-group">
-                                          <a data-target="#" class="btn btn-default btn-raised btn-sm dropdown-toggle" data-toggle="dropdown">
-                                              <span class="lnr lnr-funnel wl-c-green-1"></span>
-                                              <span>Filter&nbsp;</span>
-                                              <span class="caret"></span>
-                                          </a>
-                                          <ul class="dropdown-menu">
-                                            <li><a>filter 1</a></li>
-                                            <li><a>filter 2</a></li>
-                                            <li><a>filter 3</a></li>
-                                          </ul>
+                                            <a data-target="#" class="btn btn-default btn-raised btn-sm dropdown-toggle" data-toggle="dropdown">
+                                                <span class="lnr lnr-funnel wl-c-green-1"></span>
+                                                <span>Filter&nbsp;</span>
+                                                <span class="caret"></span>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li><a>filter 1</a></li>
+                                                <li><a>filter 2</a></li>
+                                                <li><a>filter 3</a></li>
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
@@ -129,26 +129,26 @@
                     <div class="wl-main-content col-sm-12">
                         <div class="alert-container">
                             <div class="alert alert-dismissible alert-danger">
-                              <button type="button" class="close" data-dismiss="alert">×</button>
-                              <strong>Oh snap!</strong>
-                              <a href="javascript:void(0)" class="alert-link">Change a few things up</a> and try submitting again.
+                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                <strong>Oh snap!</strong>
+                                <a href="javascript:void(0)" class="alert-link">Change a few things up</a> and try submitting again.
                             </div>
                             <div class="alert alert-dismissible alert-success">
-                              <button type="button" class="close" data-dismiss="alert">×</button>
-                              <strong>Well done!</strong> You successfully read
-                              <a href="javascript:void(0)" class="alert-link">this important alert message</a>.
+                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                <strong>Well done!</strong> You successfully read
+                                <a href="javascript:void(0)" class="alert-link">this important alert message</a>.
                             </div>
                             <div class="alert alert-dismissible alert-info">
-                              <button type="button" class="close" data-dismiss="alert">×</button>
-                              <strong>Heads up!</strong> This
-                              <a href="javascript:void(0)" class="alert-link">alert needs your attention</a>, but it's not super important.
+                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                <strong>Heads up!</strong> This
+                                <a href="javascript:void(0)" class="alert-link">alert needs your attention</a>, but it's not super important.
                             </div>
                             <div class="alert alert-dismissible alert-warning">
-                              <button type="button" class="close" data-dismiss="alert">×</button>
-                              <h4>Warning!</h4>
+                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                <h4>Warning!</h4>
 
-                              <p>Best check yo self, you're not looking too good. Nulla vitae elit libero, a pharetra augue. Praesent commodo cursus magna,
-                                <a href="javascript:void(0)" class="alert-link">vel scelerisque nisl consectetur et</a>.</p>
+                                <p>Best check yo self, you're not looking too good. Nulla vitae elit libero, a pharetra augue. Praesent commodo cursus magna,
+                                    <a href="javascript:void(0)" class="alert-link">vel scelerisque nisl consectetur et</a>.</p>
                             </div>
                         </div>
 
@@ -186,7 +186,7 @@
                                         </li>
                                         <li class="wl-info-li">
                                             <div class="col-sm-2">
-                                                 <img data-name="Reduce, Reuse and Recycle (3Rs)" class="wl-info-box">
+                                                <img data-name="Reduce, Reuse and Recycle (3Rs)" class="wl-info-box">
                                             </div>
                                             <div class="col-sm-10">
                                                 <p class="wl-list-title">Reduce, Reuse and Recycle (3Rs)</p>
@@ -195,7 +195,7 @@
                                         </li>
                                         <li class="wl-info-li">
                                             <div class="col-sm-2">
-                                                 <img data-name="No Segregation - No Collection" class="wl-info-box">
+                                                <img data-name="No Segregation - No Collection" class="wl-info-box">
                                             </div>
                                             <div class="col-sm-10">
                                                 <p class="wl-list-title">No Segregation - No Collection</p>
@@ -204,7 +204,7 @@
                                         </li>
                                         <li class="wl-info-li">
                                             <div class="col-sm-2">
-                                                 <img data-name="10 things to do with Softdrink Bottles" class="wl-info-box">
+                                                <img data-name="10 things to do with Softdrink Bottles" class="wl-info-box">
                                             </div>
                                             <div class="col-sm-10">
                                                 <p class="wl-list-title">10 things to do with Softdrink Bottles</p>
@@ -213,7 +213,7 @@
                                         </li>
                                         <li class="wl-info-li">
                                             <div class="col-sm-2">
-                                                 <img data-name="Garbage Day is... Payday? Why Your Trash is Worth More Than You Think" class="wl-info-box">
+                                                <img data-name="Garbage Day is... Payday? Why Your Trash is Worth More Than You Think" class="wl-info-box">
                                             </div>
                                             <div class="col-sm-10">
                                                 <p class="wl-list-title">Garbage Day is... Payday? Why Your Trash is Worth More Than You Think</p>
@@ -228,7 +228,7 @@
                                     <div class="col-sm-12 wl-info-description">
                                         <div class="col-sm-12 wl-info-fixed">
                                             <div class="wl-info-box">
-                                                 <img data-name="Garbage Day is... Payday? Why Your Trash is Worth More Than You Think" class="wl-box">
+                                                <img data-name="Garbage Day is... Payday? Why Your Trash is Worth More Than You Think" class="wl-box">
                                             </div>
                                             <div class="wl-info-title">
                                                 <h2>Garbage Day is... Payday? Why Your Trash is Worth More Than You Think</h2>
@@ -326,7 +326,7 @@
                         <!-- Profile -->
                         <div class="wl-profile-content wl-page-content col-sm-12 wl-hide no-padding">
                             <div class="col-sm-3 no-padding wl-pro-full-info">
-                                    <img data-name="John" class="wl-profile-img">
+                                <img data-name="John" class="wl-profile-img">
                                 <p class="wl-full-name">
                                     John Michael Doe
                                 </p>
@@ -440,8 +440,7 @@
                                         <div class="col-sm-10">
                                             <p class="wl-list-desciption wl-c-green-1" contenteditable="true">Click to add Description</p>
                                             <p class="wl-list-quantity-price">
-                                                <span class="wl-list-quantity" contenteditable="true">Quantity</span>
-                                                &nbsp;|&nbsp;Php.
+                                                <span class="wl-list-quantity" contenteditable="true">Quantity</span> &nbsp;|&nbsp;Php.
                                                 <span class="wl-list-price" contenteditable="true">Price</span></p>
                                             <p class="wl-list-category" contenteditable="true">Category</p>
                                         </div>
@@ -494,128 +493,11 @@
     <script src="<?=asset_url('js/wysiwyg-editor.min.js')?>"></script>
     <script src="<?=asset_url('js/jquery.wysiwyg.js')?>"></script>
 
-    <!-- Dropdown.js
-    <script src="https://cdn.rawgit.com/FezVrasta/dropdown.js/master/jquery.dropdown.js"></script>
-    <script>
-      $("#dropdown-menu select").dropdown();
-    </script> -->
+    <!-- WL plugins -->
+    <script src="<?=asset_url('js/wl-global.js')?>"></script>
+    <script src="<?=asset_url('js/wl-info.js')?>"></script>
+    <script src="<?=asset_url('js/wl-profile.js')?>"></script>
 
-    <!-- Menu Toggle Script -->
-    <script>
-    $(document).ready(function(){
-        $('.wl-profile-img').initial({
-            height: 130,
-            width: 130
-        });
-        $('.wl-header-img').initial({
-            height: 30,
-            width: 30,
-            fontSize: 16
-        });
-        $('.wl-info-li .wl-info-box').initial({
-            height: 28,
-            width: 28,
-            fontSize: 16
-        });
-        $('.wl-info-description .wl-info-box .wl-box').initial({
-            height: 120,
-            width: 120
-        });
-        $("#menu-toggle").change(function(e) {
-            e.preventDefault();
-            $("#wrapper").toggleClass("toggled");
-        });
-        function run_date_time(){
-            var d = new Date();
-            $('.wl-date').text(("0"+(d.getMonth()+1)).slice(-2)+'/'+("0"+d.getDate()).slice(-2)+'/'+d.getFullYear().toString().substr(2,2));
-            $('.wl-time').text(("0"+d.getHours()).slice(-2)+':'+("0"+d.getMinutes()).slice(-2));
-            setTimeout(function(){run_date_time()}, 1000);
-        }
-        run_date_time();
-
-        $(".wl-btn-post").click(function(){
-            if($("#wl-side-content").is(":visible"))
-                $("#wl-side-content").hide("slide", { direction: "right" }, 100);
-            else
-                $("#wl-side-content").show("slide", { direction: "right" }, 300);
-        });
-
-        $(document).mouseup(function (e)
-        {
-            var container = $("#wl-side-content");
-            if (container.is(":visible") && !container.is(e.target) && container.has(e.target).length === 0)
-                $("#wl-side-content").hide("slide", { direction: "right" }, 100);
-        });
-
-        $(".sidebar-nav li:not(.sidebar-brand)").click(function(){
-            var ths = $(this);
-            var page = ths.children('a').data('pageLink');
-            $.when( $('.wl-page-content:not(.wl-'+page+'-content)').hide())
-                .done(function(){
-                    if($('.wl-page-content:not(.wl-'+page+'-content)').is(":visible"))
-                        $('.wl-page-content:not(.wl-'+page+'-content)').hide();
-                    $('.wl-'+page+'-content').fadeIn(500);
-                    $('.sidebar-nav li.wl-active-page').toggleClass('wl-active-page');
-                    ths.toggleClass('wl-active-page');
-                    $(".wl-page-title").text(page.replace('-', ' '));
-                });
-        });
-        $(".wl-rectangle-add").click(function(){
-            if(!$("#wl-btn-side-submit").is(':visible')) {
-                $("#wl-btn-side-submit").show('fade',400);
-                $("#wl-btn-side-repost").hide();
-            }
-
-            var dummy = $("#wl-rectangle-dummy").clone().removeAttr('id').show();
-            $(dummy).insertBefore(this);
-            setTimeout(function() {
-               dummy.addClass('wl-show')
-            }, 10);
-        });
-
-        $("#wl-side-menu a").click(function(){
-            var ths = $(this);
-            $('#wl-side-menu a').removeClass('wl-active');
-            $.when( $('.wl-rectangle-list:not(#wl-rectangle-dummy)').remove())
-                .done(function(){
-                    if(!$("#wl-btn-side-submit").is('visible')) {
-                        $("#wl-btn-side-repost").show('fade',400);
-                        $("#wl-btn-side-submit").hide();
-                    }
-                    $(ths).addClass('wl-active');
-                });
-        });
-
-        $(".wl-info-mainlist").on('click','.wl-info-li',function(){
-            $('.wl-info-li').removeClass('active');
-            $(this).addClass('active');
-        });
-
-        $('[data-toggle="tooltip"]').tooltip({container:'body'});
-
-        $(".scroll-on").mCustomScrollbar({
-            theme:"minimal-dark",
-            live:"true",
-            mouseWheel:{ deltaFactor: 50},
-            callbacks:{
-                whileScrolling:function(){
-                    if($(".wl-info-full").is(':visible')){
-                        var desc_e = $(".wl-info-full .wl-info-description");
-                        var scrollTop = parseInt($(".wl-info-full .mCSB_container").css('top'),10);
-                        var calc_h = parseInt(desc_e.css('margin-top'),10) + parseInt(desc_e.css('height'),10);
-                        if(scrollTop < -calc_h){
-                            desc_e.children('.wl-info-fixed').addClass('wl-fixed');
-                        }
-                        else{
-                            desc_e.children('.wl-info-fixed').removeClass('wl-fixed');
-                        }
-                    }
-                }
-            }
-        });
-
-    });
-    </script>
 </body>
 
 </html>
