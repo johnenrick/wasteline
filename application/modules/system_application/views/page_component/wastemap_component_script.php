@@ -1,13 +1,40 @@
-
+<link href="<?=asset_url('css/leaflet.css')?>" rel="stylesheet">
+<script src="<?=asset_url('js/leaflet.js')?>"></script>
 <script>
+    var waste_post = [
+                        {lat : 10.342615, lng : 123.916554},
+                        {lat : 10.343206, lng : 123.914559},
+                        {lat : 10.342995, lng : 123.915331},
+                        {lat : 10.342721, lng : 123.916898},
+                        {lat : 10.342003, lng : 123.917842},
+                        {lat : 10.342489, lng : 123.920331},
+                        {lat : 10.340061, lng : 123.919258},
+                        {lat : 10.340082, lng : 123.923399},
+                        {lat : 10.338668, lng : 123.920073},
+                        {lat : 10.337359, lng : 123.920631}
+                    ];
+    var boundaries = [  [10.351753, 123.916018],
+                        [10.343744, 123.925821],
+                        [10.332431, 123.922617],
+                        [10.333841, 123.919955],
+                        [10.332925, 123.919518],
+                        [10.334833, 123.917631],
+                        [10.336474, 123.917177],
+                        [10.336712, 123.915270],
+                        [10.338482, 123.914606],
+                        [10.339323, 123.913082],
+                        [10.340333, 123.912693],
+                        [10.350694, 123.915531],
+                        [10.351753, 123.916018]
+                    ];
     var WastemapComponent = function(containerSelector){
         var wastemapComponentObject = this;
         this.wastemapContainer = $(containerSelector);
-        var mapNumber = 'map'+(new Date()).getTime();
+        var mapNumber = 'map-'+(new Date()).getTime();
         this.wastemapContainer.append($("#pageComponentContainer .wastemap_component").clone().find(".mapHolder").attr("id", mapNumber));
 
 
-       window.onload = function(){
+       window.onload = new function(){
             // We’ll add a OSM tile layer to our map
             
             var osmUrl = 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
@@ -43,8 +70,28 @@
                 blueIcon = new pointers({iconUrl:'/wasteline/assets/images/services.png'});
          
                 L.marker([10.339634, 123.922587], {icon: violetIcon, title:"Brgy. Banilad Hall", alt: "Brgy. Banilad Hall", riseOnHover: true}).addTo(map);
-                L.marker([10.330432, 123.921994], {icon: blueIcon, title:"Junk Shop", alt: "Junk Shop", riseOnHover: true}).addTo(map);
-                L.marker([10.337708, 123.935018], {icon: blueIcon, title:"Bakilid Junk Shop", alt: "Bakilid Junk Shop", riseOnHover: true}).addTo(map);
+                L.polyline(boundaries, {smoothFactor: 1, opacity: 1, weight: 2, fill: true, fillOpacity: 0.1, clickable: false}).addTo(map);
+                getUserLocation();
+                retrieveMarker(waste_post);
+
+        function getUserLocation(){
+            map.locate({watch: true}) /* This will return map so you can do chaining */
+                .on('locationfound', function(e){
+                    L.marker([e.latlng.lat, e.latlng.lng], {icon: pinkIcon, title:"yes!", alt: "yes!", riseOnHover: true}).addTo(map);
+                    map.stopLocate();
+                })
+                .on('locationerror', function(e){
+                    console.log(e);
+                    map.stopLocate();
+                });
+        }
+               
+        function retrieveMarker(locations){
+            // api code
+            for(var x in locations){
+                L.marker([locations[x].lat, locations[x].lng], {title:"Garbage ni", alt: "Garbage ni", riseOnHover: true, icon: greenIcon}).addTo(map); 
+            }
+        }
         
         this.onMapClick = function(e) {
 
