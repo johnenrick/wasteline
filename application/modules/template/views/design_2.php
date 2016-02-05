@@ -29,9 +29,13 @@
     <link href="<?=asset_url('css/nav.css')?>" rel="stylesheet">
     <link href="<?=asset_url('css/simple-sidebar.css')?>" rel="stylesheet">
 
+    <link href="<?=asset_url('css/font-awesome.min.css')?>" rel="stylesheet">
+    <link href="<?=asset_url('css/wysiwyg-editor.min.css')?>" rel="stylesheet">
+
     <link href="<?=asset_url('css/linearicons.css')?>" rel="stylesheet">
     <link href="<?=asset_url('css/jquery.mCustomScrollbar.min.css')?>" rel="stylesheet">
     <link href="<?=asset_url('css/wl-custom.css')?>" rel="stylesheet">
+
 
 
 </head>
@@ -77,9 +81,9 @@
                     <div class="wl-header-content col-xs-12 col-sm-12">
 
                         <div class="wl-top-grp col-sm-4">
-                                <span class="wl-c-green-1">Wasteline</span>
-                                <span class="wl-c-gray-1">&nbsp;|&nbsp;</span>
-                                <span class="wl-c-black-1 wl-page-title">Home</span>
+                            <span class="wl-c-green-1">Wasteline</span>
+                            <span class="wl-c-gray-1">&nbsp;|&nbsp;</span>
+                            <span class="wl-c-black-1 wl-page-title">Home</span>
                         </div>
                         <div class="wl-top-grp col-sm-4 unselectable">
                             <span class="lnr lnr-calendar-full wl-c-green-1"></span>
@@ -90,21 +94,22 @@
                         <div class="wl-top-grp col-sm-4 no-padding">
                             <div class="col-sm-10 padding-top-15">
                                 <div class="col-sm-12 no-padding">
-                                    <span class="wl-c-green-4">Hi, <span class="wl-c-green-5">John Doe</span></span>
+                                    <img data-name="John" class="wl-header-img">
+                                    <span class="wl-c-green-5">John Doe</span>
                                 </div>
                                 <div class="col-sm-12" style="padding: 5px 0 0">
                                     <div class="form-group">
                                         <div class="btn-group">
-                                          <a data-target="#" class="btn btn-default btn-raised btn-sm dropdown-toggle" data-toggle="dropdown">
-                                              <span class="lnr lnr-funnel wl-c-green-1"></span>
-                                              <span>Filter&nbsp;</span>
-                                              <span class="caret"></span>
-                                          </a>
-                                          <ul class="dropdown-menu">
-                                            <li><a>filter 1</a></li>
-                                            <li><a>filter 2</a></li>
-                                            <li><a>filter 3</a></li>
-                                          </ul>
+                                            <a data-target="#" class="btn btn-default btn-raised btn-sm dropdown-toggle" data-toggle="dropdown">
+                                                <span class="lnr lnr-funnel wl-c-green-1"></span>
+                                                <span>Filter&nbsp;</span>
+                                                <span class="caret"></span>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li><a>filter 1</a></li>
+                                                <li><a>filter 2</a></li>
+                                                <li><a>filter 3</a></li>
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
@@ -124,26 +129,26 @@
                     <div class="wl-main-content col-sm-12">
                         <div class="alert-container">
                             <div class="alert alert-dismissible alert-danger">
-                              <button type="button" class="close" data-dismiss="alert">×</button>
-                              <strong>Oh snap!</strong>
-                              <a href="javascript:void(0)" class="alert-link">Change a few things up</a> and try submitting again.
+                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                <strong>Oh snap!</strong>
+                                <a href="javascript:void(0)" class="alert-link">Change a few things up</a> and try submitting again.
                             </div>
                             <div class="alert alert-dismissible alert-success">
-                              <button type="button" class="close" data-dismiss="alert">×</button>
-                              <strong>Well done!</strong> You successfully read
-                              <a href="javascript:void(0)" class="alert-link">this important alert message</a>.
+                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                <strong>Well done!</strong> You successfully read
+                                <a href="javascript:void(0)" class="alert-link">this important alert message</a>.
                             </div>
                             <div class="alert alert-dismissible alert-info">
-                              <button type="button" class="close" data-dismiss="alert">×</button>
-                              <strong>Heads up!</strong> This
-                              <a href="javascript:void(0)" class="alert-link">alert needs your attention</a>, but it's not super important.
+                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                <strong>Heads up!</strong> This
+                                <a href="javascript:void(0)" class="alert-link">alert needs your attention</a>, but it's not super important.
                             </div>
                             <div class="alert alert-dismissible alert-warning">
-                              <button type="button" class="close" data-dismiss="alert">×</button>
-                              <h4>Warning!</h4>
+                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                <h4>Warning!</h4>
 
-                              <p>Best check yo self, you're not looking too good. Nulla vitae elit libero, a pharetra augue. Praesent commodo cursus magna,
-                                <a href="javascript:void(0)" class="alert-link">vel scelerisque nisl consectetur et</a>.</p>
+                                <p>Best check yo self, you're not looking too good. Nulla vitae elit libero, a pharetra augue. Praesent commodo cursus magna,
+                                    <a href="javascript:void(0)" class="alert-link">vel scelerisque nisl consectetur et</a>.</p>
                             </div>
                         </div>
 
@@ -172,7 +177,7 @@
                                     <ul>
                                         <li class="wl-info-li active">
                                             <div class="col-sm-2">
-                                                <div class="square"></div>
+                                                <img data-name="Proper Garbage Disposal" class="wl-info-box">
                                             </div>
                                             <div class="col-sm-10">
                                                 <p class="wl-list-title">Proper Garbage Disposal</p>
@@ -181,7 +186,7 @@
                                         </li>
                                         <li class="wl-info-li">
                                             <div class="col-sm-2">
-                                                <div class="square"></div>
+                                                <img data-name="Reduce, Reuse and Recycle (3Rs)" class="wl-info-box">
                                             </div>
                                             <div class="col-sm-10">
                                                 <p class="wl-list-title">Reduce, Reuse and Recycle (3Rs)</p>
@@ -190,7 +195,7 @@
                                         </li>
                                         <li class="wl-info-li">
                                             <div class="col-sm-2">
-                                                <div class="square"></div>
+                                                <img data-name="No Segregation - No Collection" class="wl-info-box">
                                             </div>
                                             <div class="col-sm-10">
                                                 <p class="wl-list-title">No Segregation - No Collection</p>
@@ -199,7 +204,7 @@
                                         </li>
                                         <li class="wl-info-li">
                                             <div class="col-sm-2">
-                                                <div class="square"></div>
+                                                <img data-name="10 things to do with Softdrink Bottles" class="wl-info-box">
                                             </div>
                                             <div class="col-sm-10">
                                                 <p class="wl-list-title">10 things to do with Softdrink Bottles</p>
@@ -208,7 +213,7 @@
                                         </li>
                                         <li class="wl-info-li">
                                             <div class="col-sm-2">
-                                                <div class="square"></div>
+                                                <img data-name="Garbage Day is... Payday? Why Your Trash is Worth More Than You Think" class="wl-info-box">
                                             </div>
                                             <div class="col-sm-10">
                                                 <p class="wl-list-title">Garbage Day is... Payday? Why Your Trash is Worth More Than You Think</p>
@@ -222,7 +227,9 @@
                                 <div class="col-sm-12 wl-info-full scroll-on no-padding">
                                     <div class="col-sm-12 wl-info-description">
                                         <div class="col-sm-12 wl-info-fixed">
-                                            <div class="wl-info-box"></div>
+                                            <div class="wl-info-box">
+                                                <img data-name="Garbage Day is... Payday? Why Your Trash is Worth More Than You Think" class="wl-box">
+                                            </div>
                                             <div class="wl-info-title">
                                                 <h2>Garbage Day is... Payday? Why Your Trash is Worth More Than You Think</h2>
                                                 <h4>
@@ -234,17 +241,63 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-12 wl-info-content">
-                                        <p>
-                                            Lorem ipsum dolor sit amet, fugit oporteat detraxit et his. Et mei hinc exerci, no verear mediocritatem vix, ipsum persius consequat ea nam. Ad usu legere graeci, melius ponderum mel te. Ubique voluptua percipit an eum, falli phaedrum adipisci his id. Ius in nibh persius, libris mandamus sed id, nec ex dictas numquam propriae.
+                                        <textarea id="wl-info-editor" name="editor" placeholder="Type your text here...">
 
-Ut sed posse omnesque quaestio, cu sit habemus tractatos dissentiet. Essent gubergren id sea, sit laboramus sententiae id. Vis stet tation adolescens in. His at everti numquam delicatissimi, no ius augue nullam.
-
-Est ex eleifend senserit voluptaria, habeo erant qui et, paulo vitae ne ius. Nonumy mentitum constituam pro id, ut vocent apeirian patrioque per. Dico idque ut has, at vel doctus tritani vulputate. Mandamus urbanitas sea id, eos ea ignota doctus principes. Alii gloriatur eum no, aliquip posidonium qui ea. Pro id oratio inciderint, an his dolore posidonium intellegam.
-
-Suas dolorem maiestatis est in. Eu ornatus constituto nec, ut choro definiebas eloquentiam usu, usu falli omnium numquam cu. Labore maiorum ex mei, has nonumy lucilius ne, vel ei aliquip ceteros periculis. Tamquam splendide est ea, modus tractatos referrentur ad eos. Sit adhuc novum necessitatibus in, id per debet nusquam, hinc mutat saepe vel ne. Has ea nusquam nominati, ubique causae honestatis pro ut.
-
-Quo falli sanctus ne, ut eum suavitate maluisset omittantur. Usu in enim timeam repudiare, bonorum incorrupte instructior pri ad, ius ne invidunt indoctum philosophia. Nam veniam molestiae ea, quis indoctum has ad. Cum quas nulla aperiri no, vim at omnesque elaboraret. Mea an oratio constituam, tempor constituam reformidans ut quo.
-                                        </p>
+                                            <img src="" alt="" style="max-width: 600px; max-height: 200px;">
+                                            <img src="http://cdn7.thepennyhoarder.com/wp-content/uploads/2014/08/5575089139_ffec7b5846_z.jpg" alt="" width="100%" height="auto">
+                                            <p style="margin-bottom: 28px; padding: 0px; max-height: 1e+06px; color: rgb(70, 70, 70); font-family: Roboto, Arial, Helvetica, sans-serif; font-size: 20px; line-height: 28px; background-color: rgb(255, 255, 255);">
+                                                <br>
+                                            </p>
+                                            <p style="margin-bottom: 28px; padding: 0px; max-height: 1e+06px; color: rgb(70, 70, 70); font-family: Roboto, Arial, Helvetica, sans-serif; font-size: 20px; line-height: 28px; background-color: rgb(255, 255, 255);">Do you know how much garbage you produce each week?</p>
+                                            <p style="margin-bottom: 28px; padding: 0px; max-height: 1e+06px; color: rgb(70, 70, 70); font-family: Roboto, Arial, Helvetica, sans-serif; font-size: 20px; line-height: 28px; background-color: rgb(255, 255, 255);">Better question: Are you prepared to see it firsthand, getting up close and personal by lying amid a week’s worth of your trash?</p>
+                                            <p style="margin-bottom: 28px; padding: 0px; max-height: 1e+06px; color: rgb(70, 70, 70); font-family: Roboto, Arial, Helvetica, sans-serif; font-size: 20px; line-height: 28px; background-color: rgb(255, 255, 255);">Amazingly, some people were, and photographer Gregg Segal captured the results in his startling series&nbsp;<a title="7 Days of Garbage" href="http://fence.photovillenyc.org/f-2014/atlanta/home/gregg-segal/" target="_blank" style="margin: 0px; padding: 0px; max-height: 1e+06px; color: rgb(168, 100, 168); text-decoration: underline; outline: 0px; font-weight: bold; font-size: 22px;">“7 Days of Garbage.”</a>&nbsp;You can take a look at what a typical week of trash looks like for different households in&nbsp;<a title="Mesmerizing Photos of People Lying in a Week’s Worth of Their Trash " href="http://www.slate.com/blogs/behold/2014/07/08/gregg_segal_photographs_people_with_a_week_s_worth_of_their_trash_in_his.html" target="_blank" style="margin: 0px; padding: 0px; max-height: 1e+06px; color: rgb(168, 100, 168); text-decoration: underline; outline: 0px; font-weight: bold; font-size: 22px;">this recent article on Slate</a>.</p>
+                                            <p style="margin-bottom: 28px; padding: 0px; max-height: 1e+06px; color: rgb(70, 70, 70); font-family: Roboto, Arial, Helvetica, sans-serif; font-size: 20px; line-height: 28px; background-color: rgb(255, 255, 255);">We see two morals in this pungent story:</p>
+                                            <div style="margin: 10px 0px; padding: 0px; max-height: 1e+06px; color: rgb(70, 70, 70); font-family: Roboto, Arial, Helvetica, sans-serif; font-size: 20px; line-height: 28px; float: none; text-align: center; background-color: rgb(255, 255, 255);">
+                                                <center style="margin: 0px; padding: 0px; max-height: 1e+06px;">
+                                                    <div id="googmob" style="margin: 0px; padding: 0px; max-height: 1e+06px;"></div>
+                                                </center>
+                                            </div>
+                                            <p style="margin-bottom: 28px; padding: 0px; max-height: 1e+06px; color: rgb(70, 70, 70); font-family: Roboto, Arial, Helvetica, sans-serif; font-size: 20px; line-height: 28px; background-color: rgb(255, 255, 255);">1. Americans produce a scary amount of trash.</p>
+                                            <p style="margin-bottom: 28px; padding: 0px; max-height: 1e+06px; color: rgb(70, 70, 70); font-family: Roboto, Arial, Helvetica, sans-serif; font-size: 20px; line-height: 28px; background-color: rgb(255, 255, 255);">2. Some of that trash could be put to better use making them cold, hard cash.</p>
+                                            <p style="margin-bottom: 28px; padding: 0px; max-height: 1e+06px; color: rgb(70, 70, 70); font-family: Roboto, Arial, Helvetica, sans-serif; font-size: 20px; line-height: 28px; background-color: rgb(255, 255, 255);">We took a closer look at these unpleasant but powerful photos to identify some ways these people could be turning their trash into cash — and you could be, too.</p>
+                                            <h3 style="margin: 28px 0px 14px; max-height: 1e+06px; font-family: Roboto, Arial, Helvetica, sans-serif; font-weight: bold; color: rgb(70, 70, 70); font-size: 1.15em; padding: 0px !important; background-color: rgb(255, 255, 255) !important;">Recycling</h3>
+                                            <p style="margin-bottom: 28px; padding: 0px; max-height: 1e+06px; color: rgb(70, 70, 70); font-family: Roboto, Arial, Helvetica, sans-serif; font-size: 20px; line-height: 28px; background-color: rgb(255, 255, 255);"><b style="margin: 0px; padding: 0px; max-height: 1e+06px;">Item: Bottles and cans</b></p>
+                                            <div style="margin: 10px 0px; padding: 0px; max-height: 1e+06px; color: rgb(70, 70, 70); font-family: Roboto, Arial, Helvetica, sans-serif; font-size: 20px; line-height: 28px; float: none; text-align: center; background-color: rgb(255, 255, 255);">
+                                                <center style="margin: 0px; padding: 0px; max-height: 1e+06px;">
+                                                    <div id="placement_197470_0" style="margin: 0px; padding: 0px; max-height: 1e+06px;"></div>
+                                                </center>
+                                            </div>
+                                            <p style="margin-bottom: 28px; padding: 0px; max-height: 1e+06px; color: rgb(70, 70, 70); font-family: Roboto, Arial, Helvetica, sans-serif; font-size: 20px; line-height: 28px; background-color: rgb(255, 255, 255);"><b style="margin: 0px; padding: 0px; max-height: 1e+06px;">Better use:&nbsp;</b>Depending on your state’s return laws, you can save them up and<a title="How I Made $1,500 Collecting Soda Cans at Work" href="http://www.thepennyhoarder.com/collecting-cans/" target="_blank" style="margin: 0px; padding: 0px; max-height: 1e+06px; color: rgb(168, 100, 168); text-decoration: underline; outline: 0px; font-weight: bold; font-size: 22px;">return them</a>&nbsp;to your local grocery store or recycling center for profit.</p>
+                                            <p style="margin-bottom: 28px; padding: 0px; max-height: 1e+06px; color: rgb(70, 70, 70); font-family: Roboto, Arial, Helvetica, sans-serif; font-size: 20px; line-height: 28px; background-color: rgb(255, 255, 255);"><b style="margin: 0px; padding: 0px; max-height: 1e+06px;">Item: Wine bottles and corks</b></p>
+                                            <p style="margin-bottom: 28px; padding: 0px; max-height: 1e+06px; color: rgb(70, 70, 70); font-family: Roboto, Arial, Helvetica, sans-serif; font-size: 20px; line-height: 28px; background-color: rgb(255, 255, 255);"><b style="margin: 0px; padding: 0px; max-height: 1e+06px;">Better use:&nbsp;</b>They’re actually hot material for DIY projects, and arts and crafters will pay for them on eBay. Just wash them off,&nbsp;<a title="Make Money Recycling Wine Corks" href="http://www.thepennyhoarder.com/make-money-recycling-wine-corks/" target="_blank" style="margin: 0px; padding: 0px; max-height: 1e+06px; color: rgb(168, 100, 168); text-decoration: underline; outline: 0px; font-weight: bold; font-size: 22px;">list them</a>&nbsp;and profit!</p>
+                                            <p style="margin-bottom: 28px; padding: 0px; max-height: 1e+06px; color: rgb(70, 70, 70); font-family: Roboto, Arial, Helvetica, sans-serif; font-size: 20px; line-height: 28px; background-color: rgb(255, 255, 255);"><b style="margin: 0px; padding: 0px; max-height: 1e+06px;">Item: Metal bits and pieces</b></p>
+                                            <p style="margin-bottom: 28px; padding: 0px; max-height: 1e+06px; color: rgb(70, 70, 70); font-family: Roboto, Arial, Helvetica, sans-serif; font-size: 20px; line-height: 28px; background-color: rgb(255, 255, 255);"><b style="margin: 0px; padding: 0px; max-height: 1e+06px;">Better use:&nbsp;</b>You don’t have to have a big item like a beat-up car to cash in on<a title="Scrap Your Way to Hundreds" href="http://www.thepennyhoarder.com/scrap-your-way-to-hundreds/" target="_blank" style="margin: 0px; padding: 0px; max-height: 1e+06px; color: rgb(168, 100, 168); text-decoration: underline; outline: 0px; font-weight: bold; font-size: 22px;">selling scrap metal</a>. Everything from old door locks to copper wiring can fetch a decent price if you collect enough of it.</p>
+                                            <p style="margin-bottom: 28px; padding: 0px; max-height: 1e+06px; color: rgb(70, 70, 70); font-family: Roboto, Arial, Helvetica, sans-serif; font-size: 20px; line-height: 28px; background-color: rgb(255, 255, 255);"><b style="margin: 0px; padding: 0px; max-height: 1e+06px;">Item: All other miscellaneous recyclable material</b></p>
+                                            <p style="margin-bottom: 28px; padding: 0px; max-height: 1e+06px; color: rgb(70, 70, 70); font-family: Roboto, Arial, Helvetica, sans-serif; font-size: 20px; line-height: 28px; background-color: rgb(255, 255, 255);"><b style="margin: 0px; padding: 0px; max-height: 1e+06px;">Better use #1:&nbsp;</b>Get paid for having your city haul it away!&nbsp;<a title="Recyclebank" href="https://www.recyclebank.com/curbside/details" target="_blank" style="margin: 0px; padding: 0px; max-height: 1e+06px; color: rgb(168, 100, 168); text-decoration: underline; outline: 0px; font-weight: bold; font-size: 22px;">Recyclebank</a>works with waste haulers in many communities to track how much recycling they collect from your curb. You earn points for each haul, which can be converted into rewards like magazine subscriptions and shopping discounts. (<a href="http://ctt.ec/9ho1z" target="_blank" style="margin: 0px; padding: 0px; max-height: 1e+06px; color: rgb(168, 100, 168); text-decoration: underline; outline: 0px; font-weight: bold; font-size: 22px;">Like this idea? Click to tweet it</a>!)</p>
+                                            <p style="margin-bottom: 28px; padding: 0px; max-height: 1e+06px; color: rgb(70, 70, 70); font-family: Roboto, Arial, Helvetica, sans-serif; font-size: 20px; line-height: 28px; background-color: rgb(255, 255, 255);"><b style="margin: 0px; padding: 0px; max-height: 1e+06px;">Better use #2:</b>&nbsp;If you prefer to give back,&nbsp;<a title="Terracycle" href="http://www.terracycle.com/en-US/" target="_blank" style="margin: 0px; padding: 0px; max-height: 1e+06px; color: rgb(168, 100, 168); text-decoration: underline; outline: 0px; font-weight: bold; font-size: 22px;">Terracycle</a>&nbsp;will send you a prepaid box to mail your trash in to them. Every box you send in earns you points that can be redeemed for charitable gifts or donations to the nonprofit or school of your choice.</p>
+                                            <h3 style="margin: 28px 0px 14px; max-height: 1e+06px; font-family: Roboto, Arial, Helvetica, sans-serif; font-weight: bold; color: rgb(70, 70, 70); font-size: 1.15em; padding: 0px !important; background-color: rgb(255, 255, 255) !important;">Reusing</h3>
+                                            <p style="margin-bottom: 28px; padding: 0px; max-height: 1e+06px; color: rgb(70, 70, 70); font-family: Roboto, Arial, Helvetica, sans-serif; font-size: 20px; line-height: 28px; background-color: rgb(255, 255, 255);"><b style="margin: 0px; padding: 0px; max-height: 1e+06px;">Item: Unused fruit</b></p>
+                                            <p style="margin-bottom: 28px; padding: 0px; max-height: 1e+06px; color: rgb(70, 70, 70); font-family: Roboto, Arial, Helvetica, sans-serif; font-size: 20px; line-height: 28px; background-color: rgb(255, 255, 255);"><b style="margin: 0px; padding: 0px; max-height: 1e+06px;">Better use&nbsp;</b>Not sure you’ll be able to eat all that fruit before it goes bad? Make it into jam or preserves and sell them at your local&nbsp;<a title="Dream of Selling Jam or Produce at a Farmers Market? Here’s Your Guide" href="http://www.thepennyhoarder.com/dream-selling-jam-produce-farmers-market-heres-guide/" target="_blank" style="margin: 0px; padding: 0px; max-height: 1e+06px; color: rgb(168, 100, 168); text-decoration: underline; outline: 0px; font-weight: bold; font-size: 22px;">farmers market</a>.</p>
+                                            <p style="margin-bottom: 28px; padding: 0px; max-height: 1e+06px; color: rgb(70, 70, 70); font-family: Roboto, Arial, Helvetica, sans-serif; font-size: 20px; line-height: 28px; background-color: rgb(255, 255, 255);"><b style="margin: 0px; padding: 0px; max-height: 1e+06px;">Item: Soggy coffee grounds</b></p>
+                                            <p style="margin-bottom: 28px; padding: 0px; max-height: 1e+06px; color: rgb(70, 70, 70); font-family: Roboto, Arial, Helvetica, sans-serif; font-size: 20px; line-height: 28px; background-color: rgb(255, 255, 255);"><b style="margin: 0px; padding: 0px; max-height: 1e+06px;">Better use:&nbsp;</b>Used coffee grounds actually make great compost, as two business students found out and leveraged into their&nbsp;<a title="Back to the Roots" href="https://www.backtotheroots.com/about-us" target="_blank" style="margin: 0px; padding: 0px; max-height: 1e+06px; color: rgb(168, 100, 168); text-decoration: underline; outline: 0px; font-weight: bold; font-size: 22px;">Back to the Roots</a>urban mushroom growing kits.</p>
+                                            <p style="margin-bottom: 28px; padding: 0px; max-height: 1e+06px; color: rgb(70, 70, 70); font-family: Roboto, Arial, Helvetica, sans-serif; font-size: 20px; line-height: 28px; background-color: rgb(255, 255, 255);"><b style="margin: 0px; padding: 0px; max-height: 1e+06px;">Item: Food scraps</b></p>
+                                            <p style="margin-bottom: 28px; padding: 0px; max-height: 1e+06px; color: rgb(70, 70, 70); font-family: Roboto, Arial, Helvetica, sans-serif; font-size: 20px; line-height: 28px; background-color: rgb(255, 255, 255);"><b style="margin: 0px; padding: 0px; max-height: 1e+06px;">Better use:&nbsp;</b>Create a compost heap in your yard and use it to fertilize a kitchen garden to&nbsp;<a title="Choose the Best, Money-Saving Plants for Your Vegetable Garden" href="http://lifehacker.com/choose-the-best-money-saving-plants-for-your-vegetable-510676441" target="_blank" style="margin: 0px; padding: 0px; max-height: 1e+06px; color: rgb(168, 100, 168); text-decoration: underline; outline: 0px; font-weight: bold; font-size: 22px;">reduce your grocery bills</a>.</p>
+                                            <p style="margin-bottom: 28px; padding: 0px; max-height: 1e+06px; color: rgb(70, 70, 70); font-family: Roboto, Arial, Helvetica, sans-serif; font-size: 20px; line-height: 28px; background-color: rgb(255, 255, 255);"><b style="margin: 0px; padding: 0px; max-height: 1e+06px;">Item: Random fabric scraps and other odds and ends that can’t be recycled</b></p>
+                                            <p style="margin-bottom: 28px; padding: 0px; max-height: 1e+06px; color: rgb(70, 70, 70); font-family: Roboto, Arial, Helvetica, sans-serif; font-size: 20px; line-height: 28px; background-color: rgb(255, 255, 255);"><b style="margin: 0px; padding: 0px; max-height: 1e+06px;">Better use:&nbsp;</b>Get crafty! You can make everything from purses to picture frames with a little artistic creativity and sell them on sites like Etsy.&nbsp;<a title="She Turns Trash Into Cash" href="http://www.more.com/reinvention-money/second-acts/she-turns-trash-into-cash" target="_blank" style="margin: 0px; padding: 0px; max-height: 1e+06px; color: rgb(168, 100, 168); text-decoration: underline; outline: 0px; font-weight: bold; font-size: 22px;">This woman in Turkey</a>&nbsp;built a whole business out of turning used packaging like candy wrappers and canned-food labels into clutches and handbags.</p>
+                                            <h3 style="margin: 28px 0px 14px; max-height: 1e+06px; font-family: Roboto, Arial, Helvetica, sans-serif; font-weight: bold; color: rgb(70, 70, 70); font-size: 1.15em; padding: 0px !important; background-color: rgb(255, 255, 255) !important;">Selling</h3>
+                                            <p style="margin-bottom: 28px; padding: 0px; max-height: 1e+06px; color: rgb(70, 70, 70); font-family: Roboto, Arial, Helvetica, sans-serif; font-size: 20px; line-height: 28px; background-color: rgb(255, 255, 255);"><b style="margin: 0px; padding: 0px; max-height: 1e+06px;">Item: Food packaging</b></p>
+                                            <p style="margin-bottom: 28px; padding: 0px; max-height: 1e+06px; color: rgb(70, 70, 70); font-family: Roboto, Arial, Helvetica, sans-serif; font-size: 20px; line-height: 28px; background-color: rgb(255, 255, 255);"><b style="margin: 0px; padding: 0px; max-height: 1e+06px;">Better use:&nbsp;</b>Cut out those&nbsp;<a title="Boxtops For Education" href="http://www.thepennyhoarder.com/blog-posting-7/" target="_blank" style="margin: 0px; padding: 0px; max-height: 1e+06px; color: rgb(168, 100, 168); text-decoration: underline; outline: 0px; font-weight: bold; font-size: 22px;">Boxtops for Education</a>&nbsp;and sell them on eBay — you may not have any use for them, but other people will pay for them.</p>
+                                            <p style="margin-bottom: 28px; padding: 0px; max-height: 1e+06px; color: rgb(70, 70, 70); font-family: Roboto, Arial, Helvetica, sans-serif; font-size: 20px; line-height: 28px; background-color: rgb(255, 255, 255);"><b style="margin: 0px; padding: 0px; max-height: 1e+06px;">Item: Old baby toys/household items/etc.</b></p>
+                                            <p style="margin-bottom: 28px; padding: 0px; max-height: 1e+06px; color: rgb(70, 70, 70); font-family: Roboto, Arial, Helvetica, sans-serif; font-size: 20px; line-height: 28px; background-color: rgb(255, 255, 255);"><b style="margin: 0px; padding: 0px; max-height: 1e+06px;">Better use:</b>&nbsp;Just because you’re no longer using something, that doesn’t mean someone else won’t be able to get many more years out of it. Rather than trashing your gently used items, consider selling them at a&nbsp;<a title="A Fun and Low-Cost Business: Selling at Flea Markets" href="http://www.thepennyhoarder.com/selling-at-flea-markets/" target="_blank" style="margin: 0px; padding: 0px; max-height: 1e+06px; color: rgb(168, 100, 168); text-decoration: underline; outline: 0px; font-weight: bold; font-size: 22px;">flea market</a>, garage sale or on Craigslist to put some extra cash in your pocket (and keep one more item out of a landfill).</p>
+                                            <p style="margin-bottom: 28px; padding: 0px; max-height: 1e+06px; color: rgb(70, 70, 70); font-family: Roboto, Arial, Helvetica, sans-serif; font-size: 20px; line-height: 28px; background-color: rgb(255, 255, 255);"><b style="margin: 0px; padding: 0px; max-height: 1e+06px;">Item: Defunct phones</b></p>
+                                            <p style="margin-bottom: 28px; padding: 0px; max-height: 1e+06px; color: rgb(70, 70, 70); font-family: Roboto, Arial, Helvetica, sans-serif; font-size: 20px; line-height: 28px; background-color: rgb(255, 255, 255);"><b style="margin: 0px; padding: 0px; max-height: 1e+06px;">Better use:&nbsp;</b>Upgraded to something cooler? Don’t junk your old device;&nbsp;<a title="How to Sell Your Old Phone for the Most Amount of Cash" href="http://www.thepennyhoarder.com/how-to-sell-your-old-phone-for-the-most-amount-of-cash/" target="_blank" style="margin: 0px; padding: 0px; max-height: 1e+06px; color: rgb(168, 100, 168); text-decoration: underline; outline: 0px; font-weight: bold; font-size: 22px;">you can sell it</a>&nbsp;for profit.</p>
+                                            <p style="margin-bottom: 28px; padding: 0px; max-height: 1e+06px; color: rgb(70, 70, 70); font-family: Roboto, Arial, Helvetica, sans-serif; font-size: 20px; line-height: 28px; background-color: rgb(255, 255, 255);"><b style="margin: 0px; padding: 0px; max-height: 1e+06px;">Item: Used stuffed animals</b></p>
+                                            <p style="margin-bottom: 28px; padding: 0px; max-height: 1e+06px; color: rgb(70, 70, 70); font-family: Roboto, Arial, Helvetica, sans-serif; font-size: 20px; line-height: 28px; background-color: rgb(255, 255, 255);"><b style="margin: 0px; padding: 0px; max-height: 1e+06px;">Better use:&nbsp;</b>Give them a clean-up and&nbsp;<a title="How to Sell Used Stuffed Animals for Extra Cash" href="http://www.thepennyhoarder.com/how-to-sell-used-stuffed-animals-for-extra-cash/" target="_blank" style="margin: 0px; padding: 0px; max-height: 1e+06px; color: rgb(168, 100, 168); text-decoration: underline; outline: 0px; font-weight: bold; font-size: 22px;">sell them on eBay</a>. Collectors, gift-givers and people looking to recapture their childhood are all willing to pay to take them off your hands.</p>
+                                            <h3 style="margin: 28px 0px 14px; max-height: 1e+06px; font-family: Roboto, Arial, Helvetica, sans-serif; font-weight: bold; color: rgb(70, 70, 70); font-size: 1.15em; padding: 0px !important; background-color: rgb(255, 255, 255) !important;">For Bonus Points</h3>
+                                            <p style="margin-bottom: 28px; padding: 0px; max-height: 1e+06px; color: rgb(70, 70, 70); font-family: Roboto, Arial, Helvetica, sans-serif; font-size: 20px; line-height: 28px; background-color: rgb(255, 255, 255);">Once you’ve learned how to max out the profit with your own trash, why not take it up a notch and starting&nbsp;<a title="Why You Should See Dollar Signs When Your Neighbor Puts Junk On the Curb" href="http://www.thepennyhoarder.com/i-found-50-in-the-garbage/" target="_blank" style="margin: 0px; padding: 0px; max-height: 1e+06px; color: rgb(168, 100, 168); text-decoration: underline; outline: 0px; font-weight: bold; font-size: 22px;">selling other people’s junk</a>? Dumpster-diving and curbside-trolling aren’t just for recent grads hoping to score a futon; they can also become a nice side business if you’re willing to put in a little work. You can also snag&nbsp;<a title="How to Make Money Reselling Craigslist Freebies" href="http://www.thepennyhoarder.com/how-to-make-money-reselling-craigslist-freebies/" target="_blank" style="margin: 0px; padding: 0px; max-height: 1e+06px; color: rgb(168, 100, 168); text-decoration: underline; outline: 0px; font-weight: bold; font-size: 22px;">free items on Craigslist</a>&nbsp;and resell them for a profit.</p>
+                                            <p style="margin-bottom: 28px; padding: 0px; max-height: 1e+06px; color: rgb(70, 70, 70); font-family: Roboto, Arial, Helvetica, sans-serif; font-size: 20px; line-height: 28px; background-color: rgb(255, 255, 255);">Look at you, saving the planet and making money at the same time!</p>
+                                            <p style="margin-bottom: 28px; padding: 0px; max-height: 1e+06px; color: rgb(70, 70, 70); font-family: Roboto, Arial, Helvetica, sans-serif; font-size: 20px; line-height: 28px; background-color: rgb(255, 255, 255);"><b style="margin: 0px; padding: 0px; max-height: 1e+06px;">Your Turn: These are just a few ideas for making money from commonly thrown-away items. What other ways can you think of to turn your trash into cash?</b></p>
+                                        </textarea>
                                     </div>
                                 </div>
 
@@ -273,9 +326,7 @@ Quo falli sanctus ne, ut eum suavitate maluisset omittantur. Usu in enim timeam 
                         <!-- Profile -->
                         <div class="wl-profile-content wl-page-content col-sm-12 wl-hide no-padding">
                             <div class="col-sm-3 no-padding wl-pro-full-info">
-                                <a height="32" width="32" class="circle">
-                                    <img src="http://data.freelancer.com/logo/2752925/negris_avatar.jpg" alt="Oh! It's you.">
-                                </a>
+                                <img data-name="John" class="wl-profile-img">
                                 <p class="wl-full-name">
                                     John Michael Doe
                                 </p>
@@ -389,8 +440,7 @@ Quo falli sanctus ne, ut eum suavitate maluisset omittantur. Usu in enim timeam 
                                         <div class="col-sm-10">
                                             <p class="wl-list-desciption wl-c-green-1" contenteditable="true">Click to add Description</p>
                                             <p class="wl-list-quantity-price">
-                                                <span class="wl-list-quantity" contenteditable="true">Quantity</span>
-                                                &nbsp;|&nbsp;Php.
+                                                <span class="wl-list-quantity" contenteditable="true">Quantity</span> &nbsp;|&nbsp;Php.
                                                 <span class="wl-list-price" contenteditable="true">Price</span></p>
                                             <p class="wl-list-category" contenteditable="true">Category</p>
                                         </div>
@@ -435,114 +485,19 @@ Quo falli sanctus ne, ut eum suavitate maluisset omittantur. Usu in enim timeam 
     </script>
 
     <!-- Other Plugins -->
+    <script src="<?=asset_url('js/initial.min.js')?>"></script>
     <script src="<?=asset_url('js/moment.min.js')?>"></script>
     <script src="<?=asset_url('js/livestamp.min.js')?>"></script>
     <script src="<?=asset_url('js/jquery.mCustomScrollbar.concat.min.js')?>"></script>
+    <script src="<?=asset_url('js/wysiwyg.min.js')?>"></script>
+    <script src="<?=asset_url('js/wysiwyg-editor.min.js')?>"></script>
+    <script src="<?=asset_url('js/jquery.wysiwyg.js')?>"></script>
 
-    <!-- Dropdown.js
-    <script src="https://cdn.rawgit.com/FezVrasta/dropdown.js/master/jquery.dropdown.js"></script>
-    <script>
-      $("#dropdown-menu select").dropdown();
-    </script> -->
+    <!-- WL plugins -->
+    <script src="<?=asset_url('js/wl-global.js')?>"></script>
+    <script src="<?=asset_url('js/wl-info.js')?>"></script>
+    <script src="<?=asset_url('js/wl-profile.js')?>"></script>
 
-    <!-- Menu Toggle Script -->
-    <script>
-    $(document).ready(function(){
-        $("#menu-toggle").change(function(e) {
-            e.preventDefault();
-            $("#wrapper").toggleClass("toggled");
-        });
-        function run_date_time(){
-            var d = new Date();
-            $('.wl-date').text(("0"+(d.getMonth()+1)).slice(-2)+'/'+("0"+d.getDate()).slice(-2)+'/'+d.getFullYear().toString().substr(2,2));
-            $('.wl-time').text(("0"+d.getHours()).slice(-2)+':'+("0"+d.getMinutes()).slice(-2));
-            setTimeout(function(){run_date_time()}, 1000);
-        }
-        run_date_time();
-
-        $(".wl-btn-post").click(function(){
-            if($("#wl-side-content").is(":visible"))
-                $("#wl-side-content").hide("slide", { direction: "right" }, 100);
-            else
-                $("#wl-side-content").show("slide", { direction: "right" }, 300);
-        });
-
-        $(document).mouseup(function (e)
-        {
-            var container = $("#wl-side-content");
-            if (container.is(":visible") && !container.is(e.target) && container.has(e.target).length === 0)
-                $("#wl-side-content").hide("slide", { direction: "right" }, 100);
-        });
-
-        $(".sidebar-nav li:not(.sidebar-brand)").click(function(){
-            var ths = $(this);
-            var page = ths.children('a').data('pageLink');
-            $.when( $('.wl-page-content:not(.wl-'+page+'-content)').hide())
-                .done(function(){
-                    if($('.wl-page-content:not(.wl-'+page+'-content)').is(":visible"))
-                        $('.wl-page-content:not(.wl-'+page+'-content)').hide();
-                    $('.wl-'+page+'-content').fadeIn(500);
-                    $('.sidebar-nav li.wl-active-page').toggleClass('wl-active-page');
-                    ths.toggleClass('wl-active-page');
-                    $(".wl-page-title").text(page.replace('-', ' '));
-                });
-        });
-        $(".wl-rectangle-add").click(function(){
-            if(!$("#wl-btn-side-submit").is(':visible')) {
-                $("#wl-btn-side-submit").show('fade',400);
-                $("#wl-btn-side-repost").hide();
-            }
-
-            var dummy = $("#wl-rectangle-dummy").clone().removeAttr('id').show();
-            $(dummy).insertBefore(this);
-            setTimeout(function() {
-               dummy.addClass('wl-show')
-            }, 10);
-        });
-
-        $("#wl-side-menu a").click(function(){
-            var ths = $(this);
-            $('#wl-side-menu a').removeClass('wl-active');
-            $.when( $('.wl-rectangle-list:not(#wl-rectangle-dummy)').remove())
-                .done(function(){
-                    if(!$("#wl-btn-side-submit").is('visible')) {
-                        $("#wl-btn-side-repost").show('fade',400);
-                        $("#wl-btn-side-submit").hide();
-                    }
-                    $(ths).addClass('wl-active');
-                });
-        });
-
-        $(".wl-info-mainlist").on('click','.wl-info-li',function(){
-            $('.wl-info-li').removeClass('active');
-            $(this).addClass('active');
-        });
-
-        $('[data-toggle="tooltip"]').tooltip({container:'body'});
-
-        $(".scroll-on").mCustomScrollbar({
-            theme:"minimal-dark",
-            live:"true",
-            mouseWheel:{ deltaFactor: 50},
-            callbacks:{
-                whileScrolling:function(){
-                    if($(".wl-info-full").is(':visible')){
-                        var desc_e = $(".wl-info-full .wl-info-description");
-                        var scrollTop = parseInt($(".wl-info-full .mCSB_container").css('top'),10);
-                        var calc_h = parseInt(desc_e.css('margin-top'),10) + parseInt(desc_e.css('height'),10);
-                        if(scrollTop < -calc_h){
-                            desc_e.children('.wl-info-fixed').addClass('wl-fixed');
-                        }
-                        else{
-                            desc_e.children('.wl-info-fixed').removeClass('wl-fixed');
-                        }
-                    }
-                }
-            }
-        });
-
-    });
-    </script>
 </body>
 
 </html>
