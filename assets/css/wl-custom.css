@@ -75,7 +75,10 @@ ul.sidebar-nav li a{
     text-align: right;
     padding-right: 0;
 }
-
+.wl-header-img{
+    border-radius: 50%;
+    margin-top: -5px;
+}
 .wl-page-title{
     text-transform: capitalize;
 }
@@ -403,12 +406,10 @@ ul.sidebar-nav li a{
 }
 .wl-info-li div:first-child{
 }
-.wl-info-li div.square{
-    height: 28px;
-    width: 28px;
-    background-color: #50c14e;
+.wl-info-li .wl-info-box{
     margin: 0 auto;
     margin-top: 4px;
+    margin-left: 25%;
 }
 .wl-info-li p{
     margin: 0;
@@ -448,12 +449,12 @@ ul.sidebar-nav li a{
     color: #fff;
 }
 .wl-info-full .wl-info-description .wl-info-box{
-    background-color: firebrick;
     width: 120px;
     height: 120px;
     float: left;
 }
-.wl-info-full .wl-info-description .wl-info-fixed.wl-fixed .wl-info-box{
+.wl-info-full .wl-info-description .wl-info-fixed.wl-fixed .wl-info-box,
+.wl-info-full .wl-info-description .wl-info-fixed.wl-fixed .wl-info-box .wl-box{
     height: 80px;
     width: 80px;
 }
@@ -472,14 +473,24 @@ ul.sidebar-nav li a{
     overflow: hidden;
     text-overflow: ellipsis;
 }
-.wl-info-full .wl-info-description .wl-info-fixed .wl-info-title h4 .wl-info-stamp{
-    font-size: 16px
-}
 .wl-info-full .wl-info-description .wl-info-fixed.wl-fixed .wl-info-title h4{
     font-size: 15px;
 }
+.wl-info-full .wl-info-description .wl-info-fixed .wl-info-author{
+    color: #298028;
+}
+.wl-info-full .wl-info-description .wl-info-fixed.wl-fixed .wl-info-author{
+    color: #50c14e;
+}
+.wl-info-full .wl-info-description .wl-info-fixed .wl-info-stamp{
+    color: #797979;
+    font-size: 16px
+}
+.wl-info-full .wl-info-description .wl-info-fixed.wl-fixed .wl-info-stamp{
+    color: #b3b3b3;
+}
 .wl-info-full .wl-info-content{
-    height: 800px;
+    height: auto;
     width: 100%;
     padding: 20px 8% 0 calc(7% + 130px);
 }
@@ -493,21 +504,10 @@ ul.sidebar-nav li a{
     border-bottom: none;
     border-left: none;
 }
-.wl-pro-full-info .circle {
-    line-height: 0;
-    display: inline-block;
+.wl-pro-full-info .wl-profile-img {
     margin: 30px calc(50% - 68px);
     margin-bottom: 20px;
-    border: 3px solid rgba(0,0,0,0.15);
     border-radius: 50%;
-    transition: linear 0.25s;
-    height: 136px;
-    width: 136px;
-}
-.wl-pro-full-info .circle img {
-    border-radius: 50%;
-    height: 130px;
-    width: 130px;
 }
 .wl-pro-full-info .circle:hover {
     transition: ease-out 0.2s;
@@ -692,3 +692,48 @@ ul.sidebar-nav li a{
     background-color: rgba(0,0,0,0.4);
 }
 */
+
+/* wysiwyg */
+.wysiwyg-popup{
+    z-index: 2;
+}
+.wysiwyg-plugin-list {
+    max-height: 16em;
+    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+.wysiwyg-plugin-list a,
+.wysiwyg-plugin-list a:link,
+.wysiwyg-plugin-list a:visited {
+    display: block;
+    color: black;
+    padding: 5px 10px;
+    text-decoration: none;
+    cursor: pointer;
+}
+.wysiwyg-plugin-list a:hover {
+    color: HighlightText;
+    background-color: Highlight;
+}
+/* CSS for the smiley plugin */
+.wysiwyg-plugin-smilies {
+    padding: 10px;
+    text-align: center;
+    white-space: normal;
+}
+.wysiwyg-plugin-smilies img {
+    display: -moz-inline-stack; /* inline-block: http://blog.mozilla.org/webdev/2009/02/20/cross-browser-inline-block/ */
+    display: inline-block;
+    *display: inline;
+}
+/* Fake bootstrap + uikit */
+.fake-bootstrap.wysiwyg-container.wysiwyg-active {
+    /* colors shamelessly stolen from bootstrap.form-control:focus */
+    border-color: #66afe9;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(102, 175, 233, 0.6)
+}
+.fake-uikit.wysiwyg-container.wysiwyg-active {
+    border-color: #99baca !important;
+    background: #f5fbfe !important;
+}
