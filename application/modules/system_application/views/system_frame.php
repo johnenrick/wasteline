@@ -33,6 +33,8 @@
         <link href="<?= asset_url('css/linearicons.css') ?>" rel="stylesheet">
         <link href="<?= asset_url('css/wl-custom.css') ?>" rel="stylesheet">
 
+        <!-- Leaflet CSS -->
+        <link href="<?=asset_url('css/leaflet.css')?>" rel="stylesheet">
 
         <!-- jQuery -->
         <script src="<?= asset_url('js/jquery-2.1.4.min.js') ?>"></script>
@@ -49,6 +51,9 @@
         <script src="<?= asset_url('js/ripples.min.js') ?>"></script>
 
         <script src="<?= asset_url("js/jquery.form.min.js"); ?>"></script>
+
+        <!-- Leaflet JavaScript -->
+        <script src="<?=asset_url('js/leaflet.js')?>"></script>
 
     </head>
     <body>
