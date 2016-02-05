@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 03, 2016 at 12:38 PM
+-- Generation Time: Feb 05, 2016 at 09:29 AM
 -- Server version: 5.6.20
 -- PHP Version: 5.5.15
 
@@ -44,16 +44,14 @@ CREATE TABLE IF NOT EXISTS `account` (
   `password` varchar(70) DEFAULT NULL,
   `account_type_ID` int(10) unsigned NOT NULL,
   `status` int(11) NOT NULL COMMENT '0 - deleted, 1 - ok, 2 - draft, 3 - not confirmed'
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=28 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=29 ;
 
 --
 -- Dumping data for table `account`
 --
 
 INSERT INTO `account` (`ID`, `username`, `password`, `account_type_ID`, `status`) VALUES
-(25, 'johnenrick', '', 2, 3),
-(26, 'ajima', '541947c6dbb9ce362975bcdca5192e5ce133ed88', 2, 3),
-(27, 'asdsdasdsad', '61010e3577590d1d016d9d951efd2bf22257760e', 2, 3);
+(28, 'johnenrick', '7c33109462910f92e6fe204c549d8c94a3bc8a46', 2, 3);
 
 -- --------------------------------------------------------
 
@@ -67,14 +65,17 @@ CREATE TABLE IF NOT EXISTS `account_address` (
   `barangay_ID` int(11) NOT NULL,
   `description` varchar(100) NOT NULL,
   `status` int(11) NOT NULL COMMENT '0 - deleted, 1 - ok'
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `account_address`
 --
 
 INSERT INTO `account_address` (`ID`, `account_ID`, `barangay_ID`, `description`, `status`) VALUES
-(1, 1, 2, 'testssde', 31);
+(2, 28, 2, 's2ss2', 1),
+(3, 3, 2, '123', 2),
+(4, 28, 2, 's', 1),
+(5, 28, 2, 's', 1);
 
 -- --------------------------------------------------------
 
@@ -88,16 +89,14 @@ CREATE TABLE IF NOT EXISTS `account_basic_information` (
   `first_name` varchar(45) DEFAULT NULL,
   `middle_name` varchar(45) DEFAULT NULL,
   `last_name` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=27 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=28 ;
 
 --
 -- Dumping data for table `account_basic_information`
 --
 
 INSERT INTO `account_basic_information` (`ID`, `account_ID`, `first_name`, `middle_name`, `last_name`) VALUES
-(24, 25, 'John Enrick', 'Retubados', 'Plenoss'),
-(25, 26, 'ajima', 'gwapa', '143'),
-(26, 27, 'asd', 'sad', 'asd');
+(27, 28, 'John Enrick', 'Retubado', 'Plenos');
 
 -- --------------------------------------------------------
 
@@ -110,16 +109,15 @@ CREATE TABLE IF NOT EXISTS `account_contact_information` (
   `account_ID` int(10) unsigned NOT NULL,
   `type` int(10) unsigned NOT NULL COMMENT 'cell number, email',
   `detail` text
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=25 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=42 ;
 
 --
 -- Dumping data for table `account_contact_information`
 --
 
 INSERT INTO `account_contact_information` (`ID`, `account_ID`, `type`, `detail`) VALUES
-(22, 25, 1, 'plenosjohn@yahoo.com'),
-(23, 26, 1, 'sadkasopkd@sda.c'),
-(24, 27, 1, 'sad@y.c');
+(40, 28, 1, 'plenosj2ohn@yahoo.com'),
+(41, 28, 3, '09275835504');
 
 -- --------------------------------------------------------
 
@@ -130,7 +128,7 @@ INSERT INTO `account_contact_information` (`ID`, `account_ID`, `type`, `detail`)
 CREATE TABLE IF NOT EXISTS `account_contact_type` (
 `ID` int(10) unsigned NOT NULL,
   `type` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `account_contact_type`
@@ -139,8 +137,7 @@ CREATE TABLE IF NOT EXISTS `account_contact_type` (
 INSERT INTO `account_contact_type` (`ID`, `type`) VALUES
 (1, 'Email Address'),
 (2, 'F.A.X'),
-(3, 'Telephone No.'),
-(4, 'Cellphone No.');
+(3, 'Telephone No.');
 
 -- --------------------------------------------------------
 
@@ -175,7 +172,7 @@ CREATE TABLE IF NOT EXISTS `action_log` (
   `access_number_ID` int(11) NOT NULL,
   `detail` text NOT NULL,
   `datetime` double NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=293 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=618 ;
 
 --
 -- Dumping data for table `action_log`
@@ -473,7 +470,332 @@ INSERT INTO `action_log` (`ID`, `account_ID`, `api_controller_ID`, `access_numbe
 (289, 25, 1, 0, '[]', 1454438176),
 (290, 25, 1, 0, '[]', 1454438176),
 (291, 25, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubados","last_name":"Plenoss","email":"plenosjohsn@yahoo.com","username":"johnenrick","password":""}}', 1454438180),
-(292, 0, 1, 0, '27', 1454499492);
+(292, 0, 1, 0, '27', 1454499492),
+(293, 0, 1, 0, '28', 1454500064),
+(294, 28, 1, 0, '[]', 1454500070),
+(295, 28, 1, 0, '[]', 1454500070),
+(296, 28, 1, 0, '[]', 1454500097),
+(297, 28, 1, 0, '[]', 1454500097),
+(298, 28, 1, 0, '[]', 1454500103),
+(299, 28, 1, 0, '[]', 1454500103),
+(300, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","username":"johnenrick","password":""}}', 1454500105),
+(301, 28, 1, 0, '[]', 1454500223),
+(302, 28, 1, 0, '[]', 1454500223),
+(303, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","username":"johnenrick","password":""}}', 1454500226),
+(304, 28, 1, 0, '[]', 1454500250),
+(305, 28, 1, 0, '[]', 1454500250),
+(306, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","username":"johnenrick","password":""}}', 1454500252),
+(307, 28, 1, 0, '[]', 1454500278),
+(308, 28, 1, 0, '[]', 1454500278),
+(309, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","username":"johnenrick","password":""}}', 1454500279),
+(310, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","email":"plenosjohsn@yahoo.com","username":"johnenrick","password":""}}', 1454500310),
+(311, 28, 1, 0, '[]', 1454500359),
+(312, 28, 1, 0, '[]', 1454500359),
+(313, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","username":"johnenrick","confirm_password":""}}', 1454500361),
+(314, 28, 1, 0, '[]', 1454500375),
+(315, 28, 1, 0, '[]', 1454500375),
+(316, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","username":"johnenrick"}}', 1454500377),
+(317, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","username":"johnenrick","password":"johnenrick","confirm_password":"johnenrick"}}', 1454500742),
+(318, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","username":"johnenrick","password":"johnenrick","confirm_password":"johnenrick"}}', 1454500747),
+(319, 28, 1, 0, '[]', 1454500749),
+(320, 28, 1, 0, '[]', 1454500749),
+(321, 28, 1, 0, '[]', 1454509554),
+(322, 28, 1, 0, '[]', 1454509554),
+(323, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","username":"johnenrick"}}', 1454509557),
+(324, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","username":"johnenrick"}}', 1454509558),
+(325, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","username":"johnenrick"}}', 1454509558),
+(326, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","username":"johnenrick","password":"johnenrick1","confirm_password":"johnenrick1"}}', 1454509574),
+(327, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","username":"johnenrick","password":"johnenrick","confirm_password":"johnenrick"}}', 1454509581),
+(328, 28, 1, 0, '[]', 1454509595),
+(329, 28, 1, 0, '[]', 1454509595),
+(330, 28, 1, 0, '[]', 1454510040),
+(331, 28, 1, 0, '[]', 1454510040),
+(332, 28, 1, 0, '[]', 1454510079),
+(333, 28, 1, 0, '[]', 1454510079),
+(334, 28, 1, 0, '[]', 1454510163),
+(335, 28, 1, 0, '[]', 1454510163),
+(336, 28, 1, 0, '[]', 1454510176),
+(337, 28, 1, 0, '[]', 1454510176),
+(338, 28, 1, 0, '[]', 1454510204),
+(339, 28, 1, 0, '[]', 1454510204),
+(340, 28, 1, 0, '[]', 1454510212),
+(341, 28, 1, 0, '[]', 1454510212),
+(342, 28, 1, 0, '[]', 1454510219),
+(343, 28, 1, 0, '[]', 1454510219),
+(344, 28, 1, 0, '[]', 1454510225),
+(345, 28, 1, 0, '[]', 1454510225),
+(346, 28, 1, 0, '[]', 1454510254),
+(347, 28, 1, 0, '[]', 1454510254),
+(348, 28, 1, 0, '[]', 1454510266),
+(349, 28, 1, 0, '[]', 1454510266),
+(350, 28, 1, 0, '[]', 1454510277),
+(351, 28, 1, 0, '[]', 1454510277),
+(352, 28, 1, 0, '[]', 1454510281),
+(353, 28, 1, 0, '[]', 1454510281),
+(354, 28, 1, 0, '[]', 1454510289),
+(355, 28, 1, 0, '[]', 1454510289),
+(356, 28, 1, 0, '[]', 1454510298),
+(357, 28, 1, 0, '[]', 1454510298),
+(358, 28, 1, 0, '[]', 1454512277),
+(359, 28, 1, 0, '[]', 1454512278),
+(360, 28, 1, 0, '[]', 1454512281),
+(361, 28, 1, 0, '[]', 1454512281),
+(362, 28, 1, 0, '[]', 1454552262),
+(363, 28, 1, 0, '[]', 1454552262),
+(364, 28, 1, 0, '[]', 1454552300),
+(365, 28, 1, 0, '[]', 1454553593),
+(366, 28, 1, 0, '[]', 1454553650),
+(367, 28, 1, 0, '[]', 1454553650),
+(368, 28, 1, 0, '[]', 1454558848),
+(369, 28, 1, 0, '[]', 1454558848),
+(370, 28, 1, 0, '[]', 1454588644),
+(371, 28, 1, 0, '[]', 1454588644),
+(372, 28, 1, 0, '[]', 1454588688),
+(373, 28, 1, 0, '[]', 1454588688),
+(374, 28, 1, 0, '[]', 1454588850),
+(375, 28, 1, 0, '[]', 1454588851),
+(376, 28, 1, 0, '[]', 1454588852),
+(377, 28, 1, 0, '[]', 1454588852),
+(378, 28, 1, 0, '[]', 1454588885),
+(379, 28, 1, 0, '[]', 1454588885),
+(380, 28, 1, 0, '[]', 1454590143),
+(381, 28, 1, 0, '[]', 1454590144),
+(382, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","email_detail":"plenosjohn@yahoo.com","username":"johnenrick","password":"","confirm_password":""}}', 1454590148),
+(383, 28, 1, 0, '[]', 1454590159),
+(384, 28, 1, 0, '[]', 1454590159),
+(385, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","email_detail":"plenosjohn@yahoo.com","username":"johnenrick","password":"","confirm_password":""}}', 1454590160),
+(386, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","email_detail":"plenosjohn@yahoo.com","username":"johnenrick","password":"","confirm_password":""}}', 1454590330),
+(387, 28, 1, 0, '[]', 1454590357),
+(388, 28, 1, 0, '[]', 1454590357),
+(389, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","email_detail":"plenosjohn@yahoo.com","username":"johnenrick","password":"","confirm_password":""}}', 1454590392),
+(390, 28, 1, 0, '[]', 1454590407),
+(391, 28, 1, 0, '[]', 1454590407),
+(392, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","email_detail":"plenosjohn@yahoo.com","username":"johnenrick","password":"","confirm_password":""}}', 1454590408),
+(393, 28, 1, 0, '[]', 1454590422),
+(394, 28, 1, 0, '[]', 1454590422),
+(395, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","email_detail":"plenosjohn@yahoo.com","username":"johnenrick","password":"","confirm_password":""}}', 1454590424),
+(396, 28, 1, 0, '[]', 1454590458),
+(397, 28, 1, 0, '[]', 1454590458),
+(398, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","email_detail":"plenosjohn@yahoo.com","username":"johnenrick","password":"","confirm_password":""}}', 1454590461),
+(399, 28, 1, 0, '[]', 1454590472),
+(400, 28, 1, 0, '[]', 1454590472),
+(401, 28, 1, 0, '[]', 1454590491),
+(402, 28, 1, 0, '[]', 1454590491),
+(403, 28, 1, 0, '[]', 1454590512),
+(404, 28, 1, 0, '[]', 1454590512),
+(405, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","contact_number_ID":"","password":"","confirm_password":""}}', 1454590515),
+(406, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","contact_number_ID":"","password":"","confirm_password":""}}', 1454590526),
+(407, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","contact_number_ID":"","password":"","confirm_password":""}}', 1454590531),
+(408, 28, 1, 0, '[]', 1454590555),
+(409, 28, 1, 0, '[]', 1454590555),
+(410, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","contact_number_ID":"","password":"","confirm_password":""}}', 1454590559),
+(411, 28, 1, 0, '[]', 1454590586),
+(412, 28, 1, 0, '[]', 1454590586),
+(413, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","contact_number_ID":"","password":"","confirm_password":""}}', 1454590595),
+(414, 28, 1, 0, '[]', 1454590636),
+(415, 28, 1, 0, '[]', 1454590636),
+(416, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","email_ID":"asdsad2@sd","contact_number_ID":"","contact_number_detail":"","username":"johnenrick","password":"","confirm_password":""}}', 1454590641),
+(417, 28, 1, 0, '[]', 1454590673),
+(418, 28, 1, 0, '[]', 1454590673),
+(419, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","0":"3","email_detail":"plenosjohn@yahoo.com","contact_number_ID":"","contact_number_detail":"","username":"johnenrick","password":"","confirm_password":""}}', 1454590676),
+(420, 28, 1, 0, '[]', 1454590695),
+(421, 28, 1, 0, '[]', 1454590695),
+(422, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","email_ID":"25","email_detail":"plenosjohn@yahoo.com","contact_number_ID":"","contact_number_detail":"","username":"johnenrick","password":"","confirm_password":""}}', 1454590696),
+(423, 28, 1, 0, '[]', 1454590696),
+(424, 28, 1, 0, '[]', 1454590776),
+(425, 28, 1, 0, '[]', 1454590776),
+(426, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","email_ID":"25","contact_number_ID":"","contact_number_detail":"","username":"johnenrick","confirm_password":""}}', 1454590778),
+(427, 28, 1, 0, '[]', 1454590815),
+(428, 28, 1, 0, '[]', 1454590815),
+(429, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","email_detail":"plenosjohn@yahoo.com","contact_number_detail":"","username":"johnenrick","confirm_password":""}}', 1454590817),
+(430, 28, 1, 0, '[]', 1454590878),
+(431, 28, 1, 0, '[]', 1454590878),
+(432, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","email_detail":"plenosjohn@yahoo.com","contact_number_detail":"","username":"johnenrick","confirm_password":""}}', 1454590882),
+(433, 28, 1, 0, '[]', 1454590882),
+(434, 28, 1, 0, '[]', 1454590949),
+(435, 28, 1, 0, '[]', 1454590949),
+(436, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","email_detail":"plenosjohn@yahoo.com","contact_number_detail":"","username":"johnenrick","confirm_password":""}}', 1454590951),
+(437, 28, 1, 0, '[]', 1454590951),
+(438, 28, 1, 0, '[]', 1454590963),
+(439, 28, 1, 0, '[]', 1454590963),
+(440, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","email_detail":"plenosjohn@yahoo.com","contact_number_detail":"","username":"johnenrick","confirm_password":""}}', 1454590964),
+(441, 28, 1, 0, '[]', 1454590964),
+(442, 28, 1, 0, '[]', 1454591201),
+(443, 28, 1, 0, '[]', 1454591201),
+(444, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","contact_number_ID":"","contact_number_detail":"","username":"johnenrick"}}', 1454591204),
+(445, 28, 1, 0, '[]', 1454591204),
+(446, 28, 1, 0, '[]', 1454591211),
+(447, 28, 1, 0, '[]', 1454591211),
+(448, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","contact_number_ID":"","contact_number_detail":"","username":"johnenrick"}}', 1454591214),
+(449, 28, 1, 0, '[]', 1454591214),
+(450, 28, 1, 0, '[]', 1454591217),
+(451, 28, 1, 0, '[]', 1454591217),
+(452, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","contact_number_ID":"","contact_number_detail":"","username":"johnenrick"}}', 1454591220),
+(453, 28, 1, 0, '[]', 1454591220),
+(454, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","contact_number_ID":"","contact_number_detail":"","username":"johnenrick"}}', 1454591251),
+(455, 28, 1, 0, '[]', 1454591251),
+(456, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","contact_number_ID":"","contact_number_detail":"","username":"johnenrick"}}', 1454591280),
+(457, 28, 1, 0, '[]', 1454591280),
+(458, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","contact_number_ID":"","contact_number_detail":"","username":"johnenrick"}}', 1454591286),
+(459, 28, 1, 0, '[]', 1454591286),
+(460, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","contact_number_ID":"","contact_number_detail":"","username":"johnenrick"}}', 1454591293),
+(461, 28, 1, 0, '[]', 1454591294),
+(462, 28, 1, 0, '[]', 1454591322),
+(463, 28, 1, 0, '[]', 1454591322),
+(464, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","contact_number_ID":"","contact_number_detail":"","username":"johnenrick"}}', 1454591324),
+(465, 28, 1, 0, '[]', 1454591324),
+(466, 28, 1, 0, '[]', 1454591474),
+(467, 28, 1, 0, '[]', 1454591474),
+(468, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","contact_number_ID":"","contact_number_detail":"","username":"johnenrick"}}', 1454591478),
+(469, 28, 1, 0, '[]', 1454591478),
+(470, 28, 1, 0, '[]', 1454591524),
+(471, 28, 1, 0, '[]', 1454591525),
+(472, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","contact_number_ID":"","contact_number_detail":"","username":"johnenrick"}}', 1454591528),
+(473, 28, 1, 0, '[]', 1454591528),
+(474, 28, 1, 0, '[]', 1454591586),
+(475, 28, 1, 0, '[]', 1454591586),
+(476, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","contact_number_ID":"","contact_number_detail":"","username":"johnenrick","password":"","confirm_password":""}}', 1454591587),
+(477, 28, 1, 0, '[]', 1454591587),
+(478, 28, 1, 0, '[]', 1454591609),
+(479, 28, 1, 0, '[]', 1454591609),
+(480, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","email_ID":"25","email_detail":"plenosjohn@yahoo.com","contact_number_ID":"","contact_number_detail":"","username":"johnenrick","password":"","confirm_password":""}}', 1454591612),
+(481, 28, 1, 0, '[]', 1454591612),
+(482, 28, 1, 0, '[]', 1454591628),
+(483, 28, 1, 0, '[]', 1454591628),
+(484, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","email_ID":"25","email_detail":"plenosjohn@yahoo.com","contact_number_ID":"","contact_number_detail":"","username":"johnenrick"}}', 1454591629),
+(485, 28, 1, 0, '[]', 1454591629),
+(486, 28, 1, 0, '[]', 1454591668),
+(487, 28, 1, 0, '[]', 1454591668),
+(488, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","email_ID":"25","email_detail":"plenosjoshn@yahoo.com","contact_number_ID":"","contact_number_detail":"","username":"johnenrick"}}', 1454591671),
+(489, 28, 1, 0, '[]', 1454591671),
+(490, 28, 1, 0, '[]', 1454591708),
+(491, 28, 1, 0, '[]', 1454591708),
+(492, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","contact_number_ID":"","contact_number_detail":"","username":"johnenrick"}}', 1454591718),
+(493, 28, 1, 0, '[]', 1454591718),
+(494, 28, 1, 0, '[]', 1454591722),
+(495, 28, 1, 0, '[]', 1454591722),
+(496, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","email_ID":"25","email_detail":"plenosjohn@yahoo.com","contact_number_ID":"","contact_number_detail":"","username":"johnenrick"}}', 1454591725),
+(497, 28, 1, 0, '[]', 1454591725),
+(498, 28, 1, 0, '[]', 1454591727),
+(499, 28, 1, 0, '[]', 1454591727),
+(500, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","contact_number_ID":"","contact_number_detail":"1254","username":"johnenrick"}}', 1454592054),
+(501, 28, 1, 0, '[]', 1454592054),
+(502, 28, 1, 0, '[]', 1454592095),
+(503, 28, 1, 0, '[]', 1454592095),
+(504, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","contact_number_ID":"","contact_number_detail":"1232","username":"johnenrick"}}', 1454592099),
+(505, 28, 1, 0, '[]', 1454592099),
+(506, 28, 1, 0, '[]', 1454592194),
+(507, 28, 1, 0, '[]', 1454592194),
+(508, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","contact_number_ID":"","contact_number_detail":"s","username":"johnenrick"}}', 1454592196),
+(509, 28, 1, 0, '[]', 1454592197),
+(510, 28, 1, 0, '[]', 1454592216),
+(511, 28, 1, 0, '[]', 1454592216),
+(512, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","contact_number_ID":"","contact_number_detail":"2","username":"johnenrick"}}', 1454592218),
+(513, 28, 1, 0, '[]', 1454592218),
+(514, 28, 1, 0, '[]', 1454592233),
+(515, 28, 1, 0, '[]', 1454592233),
+(516, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","contact_number_ID":"","contact_number_detail":"2","username":"johnenrick"}}', 1454592235),
+(517, 28, 1, 0, '[]', 1454592235),
+(518, 28, 1, 0, '[]', 1454592316),
+(519, 28, 1, 0, '[]', 1454592316),
+(520, 28, 1, 0, '[]', 1454592376),
+(521, 28, 1, 0, '[]', 1454592376),
+(522, 28, 1, 0, '[]', 1454592398),
+(523, 28, 1, 0, '[]', 1454592398),
+(524, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","email_ID":"","email_detail":"plenosjohn@yahoo.com","contact_number_ID":"","contact_number_detail":"09275835504","username":"johnenrick"}}', 1454592408),
+(525, 28, 1, 0, '[]', 1454592408),
+(526, 28, 1, 0, '[]', 1454592463),
+(527, 28, 1, 0, '[]', 1454592463),
+(528, 28, 1, 0, '[]', 1454594169),
+(529, 28, 1, 0, '[]', 1454594169),
+(530, 28, 1, 0, '[]', 1454594197),
+(531, 28, 1, 0, '[]', 1454594197),
+(532, 28, 1, 0, '[]', 1454595658),
+(533, 28, 1, 0, '[]', 1454595658),
+(534, 28, 1, 0, '[]', 1454595692),
+(535, 28, 1, 0, '[]', 1454595692),
+(536, 28, 1, 0, '[]', 1454595701),
+(537, 28, 1, 0, '[]', 1454595701),
+(538, 28, 1, 0, '[]', 1454595824),
+(539, 28, 1, 0, '[]', 1454595824),
+(540, 28, 1, 0, '[]', 1454602100),
+(541, 28, 1, 0, '[]', 1454602100),
+(542, 28, 1, 0, '[]', 1454604777),
+(543, 28, 1, 0, '[]', 1454604777),
+(544, 28, 1, 0, '[]', 1454605243),
+(545, 28, 1, 0, '[]', 1454605243),
+(546, 28, 1, 0, '[]', 1454605321),
+(547, 28, 1, 0, '[]', 1454605321),
+(548, 28, 1, 0, '[]', 1454605338),
+(549, 28, 1, 0, '[]', 1454605338),
+(550, 28, 1, 0, '[]', 1454605399),
+(551, 28, 1, 0, '[]', 1454605399),
+(552, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","contact_number_ID":"41","contact_number_detail":"09275835504","username":"johnenrick","acount_address_ID":"0","account_address_longitude":"","account_address_latitude":"","account_address_map_marker_ID":"0","account_address_description":"test"}}', 1454605404),
+(553, 28, 1, 0, '[]', 1454605404),
+(554, 28, 1, 0, '[]', 1454605407),
+(555, 28, 1, 0, '[]', 1454605407),
+(556, 28, 1, 0, '[]', 1454605448),
+(557, 28, 1, 0, '[]', 1454605448),
+(558, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","contact_number_ID":"41","contact_number_detail":"09275835504","username":"johnenrick","acount_address_ID":"0","account_address_longitude":"","account_address_latitude":"","account_address_map_marker_ID":"0","account_address_description":"sa"}}', 1454605452),
+(559, 28, 1, 0, '[]', 1454605452),
+(560, 28, 1, 0, '[]', 1454605482),
+(561, 28, 1, 0, '[]', 1454605482),
+(562, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","contact_number_ID":"41","contact_number_detail":"09275835504","username":"johnenrick","acount_address_ID":"0","account_address_longitude":"","account_address_latitude":"","account_address_map_marker_ID":"0","account_address_description":"s"}}', 1454605485),
+(563, 28, 1, 0, '[]', 1454605485),
+(564, 28, 1, 0, '[]', 1454605543),
+(565, 28, 1, 0, '[]', 1454605543),
+(566, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","contact_number_ID":"41","contact_number_detail":"09275835504","username":"johnenrick","acount_address_ID":"0","account_address_longitude":"","account_address_latitude":"","account_address_map_marker_ID":"0","account_address_description":"3"}}', 1454605545),
+(567, 28, 1, 0, '[]', 1454605546),
+(568, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","contact_number_ID":"41","contact_number_detail":"09275835504","username":"johnenrick","acount_address_ID":"0","account_address_longitude":"","account_address_latitude":"","account_address_map_marker_ID":"0","account_address_description":"3"}}', 1454606758),
+(569, 28, 1, 0, '[]', 1454606758),
+(570, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","contact_number_ID":"41","contact_number_detail":"09275835504","username":"johnenrick","acount_address_ID":"0","account_address_longitude":"","account_address_latitude":"","account_address_map_marker_ID":"0","account_address_description":"3"}}', 1454606774),
+(571, 28, 1, 0, '[]', 1454606774),
+(572, 28, 1, 0, '[]', 1454606827),
+(573, 28, 1, 0, '[]', 1454606827),
+(574, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","contact_number_ID":"41","contact_number_detail":"09275835504","username":"johnenrick","account_address_ID":"","account_address_longitude":"","account_address_latitude":"","account_address_map_marker_ID":"0","account_address_description":"s"}}', 1454606830),
+(575, 28, 1, 0, '[]', 1454606830),
+(576, 28, 1, 0, '[]', 1454606836),
+(577, 28, 1, 0, '[]', 1454606836),
+(578, 28, 1, 0, '[]', 1454606872),
+(579, 28, 1, 0, '[]', 1454606872),
+(580, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","contact_number_ID":"41","contact_number_detail":"09275835504","username":"johnenrick","account_address_ID":"","account_address_longitude":"0","account_address_latitude":"0","account_address_map_marker_ID":"4","account_address_description":"s"}}', 1454606878),
+(581, 28, 1, 0, '[]', 1454606878),
+(582, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","contact_number_ID":"41","contact_number_detail":"09275835504","username":"johnenrick","account_address_ID":"","account_address_longitude":"0","account_address_latitude":"0","account_address_map_marker_ID":"4","account_address_description":"s"}}', 1454606885),
+(583, 28, 1, 0, '[]', 1454606885),
+(584, 28, 1, 0, '[]', 1454606950),
+(585, 28, 1, 0, '[]', 1454606950),
+(586, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","contact_number_ID":"41","contact_number_detail":"09275835504","username":"johnenrick","account_address_ID":"2","account_address_longitude":"0","account_address_latitude":"0","account_address_map_marker_ID":"4","account_address_description":"s2"}}', 1454607000),
+(587, 28, 1, 0, '[]', 1454607000),
+(588, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","contact_number_ID":"41","contact_number_detail":"09275835504","username":"johnenrick","account_address_ID":"2","account_address_longitude":"0","account_address_latitude":"0","account_address_map_marker_ID":"4","account_address_description":"s2ss"}}', 1454607007),
+(589, 28, 1, 0, '[]', 1454607007),
+(590, 28, 1, 0, '[]', 1454607018),
+(591, 28, 1, 0, '[]', 1454607018),
+(592, 28, 1, 0, '[]', 1454607091),
+(593, 28, 1, 0, '[]', 1454607091),
+(594, 28, 1, 0, '[]', 1454610776),
+(595, 28, 1, 0, '[]', 1454610776),
+(596, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","contact_number_ID":"41","contact_number_detail":"09275835504","username":"johnenrick","account_address_ID":"2","account_address_longitude":"0","account_address_latitude":"0","account_address_map_marker_ID":"4","account_address_description":"s2ss"}}', 1454610778),
+(597, 28, 1, 0, '[]', 1454610778),
+(598, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","email_ID":"40","email_detail":"plenosj2ohn@yahoo.com","contact_number_ID":"41","contact_number_detail":"09275835504","username":"johnenrick","account_address_ID":"2","account_address_longitude":"0","account_address_latitude":"0","account_address_map_marker_ID":"4","account_address_description":"s2ss2"}}', 1454610787),
+(599, 28, 1, 0, '[]', 1454610787),
+(600, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","contact_number_ID":"41","contact_number_detail":"09275835504","username":"johnenrick","password":"johnenrick","confirm_password":"johnenrick","account_address_ID":"2","account_address_longitude":"0","account_address_latitude":"0","account_address_map_marker_ID":"4","account_address_description":"s2ss2"}}', 1454610800),
+(601, 28, 1, 0, '[]', 1454610800),
+(602, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","contact_number_ID":"41","contact_number_detail":"09275835504","username":"johnenrick","password":"johnenrick1","confirm_password":"johnenrick1","account_address_ID":"2","account_address_longitude":"0","account_address_latitude":"0","account_address_map_marker_ID":"4","account_address_description":"s2ss2"}}', 1454610810),
+(603, 28, 1, 0, '[]', 1454610810),
+(604, 28, 1, 0, '{"updated_data":{"first_name":"John Enrick","middle_name":"Retubado","last_name":"Plenos","contact_number_ID":"41","contact_number_detail":"09275835504","username":"johnenrick","password":"johnenrick","confirm_password":"johnenrick","account_address_ID":"2","account_address_longitude":"0","account_address_latitude":"0","account_address_map_marker_ID":"4","account_address_description":"s2ss2"}}', 1454610816),
+(605, 28, 1, 0, '[]', 1454610816),
+(606, 28, 1, 0, '[]', 1454610854),
+(607, 28, 1, 0, '[]', 1454610854),
+(608, 28, 1, 0, '[]', 1454611053),
+(609, 28, 1, 0, '[]', 1454611053),
+(610, 28, 1, 0, '[]', 1454611116),
+(611, 28, 1, 0, '[]', 1454611372),
+(612, 28, 1, 0, '[]', 1454650176),
+(613, 28, 1, 0, '[]', 1454650176),
+(614, 28, 1, 0, '[]', 1454650193),
+(615, 28, 1, 0, '[]', 1454651427),
+(616, 28, 1, 0, '[]', 1454657987),
+(617, 28, 1, 0, '[]', 1454657988);
 
 -- --------------------------------------------------------
 
@@ -584,15 +906,16 @@ CREATE TABLE IF NOT EXISTS `map_marker` (
   `map_marker_type_ID` int(11) NOT NULL,
   `longitude` double DEFAULT NULL,
   `latitude` double DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `map_marker`
 --
 
 INSERT INTO `map_marker` (`ID`, `associated_ID`, `map_marker_type_ID`, `longitude`, `latitude`) VALUES
-(2, 15, 3, 1, 2),
-(3, 18, 3, 231, 3);
+(4, 2, 1, 0, 0),
+(5, 4, 1, 0, 0),
+(6, 5, 1, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -989,27 +1312,27 @@ MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-MODIFY `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=28;
+MODIFY `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=29;
 --
 -- AUTO_INCREMENT for table `account_address`
 --
 ALTER TABLE `account_address`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `account_basic_information`
 --
 ALTER TABLE `account_basic_information`
-MODIFY `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=27;
+MODIFY `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT for table `account_contact_information`
 --
 ALTER TABLE `account_contact_information`
-MODIFY `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
+MODIFY `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=42;
 --
 -- AUTO_INCREMENT for table `account_contact_type`
 --
 ALTER TABLE `account_contact_type`
-MODIFY `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `account_type`
 --
@@ -1019,7 +1342,7 @@ MODIFY `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 -- AUTO_INCREMENT for table `action_log`
 --
 ALTER TABLE `action_log`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=293;
+MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=618;
 --
 -- AUTO_INCREMENT for table `api_controller`
 --
@@ -1049,7 +1372,7 @@ MODIFY `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 -- AUTO_INCREMENT for table `map_marker`
 --
 ALTER TABLE `map_marker`
-MODIFY `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `map_marker_type`
 --
