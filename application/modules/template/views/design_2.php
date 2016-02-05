@@ -30,6 +30,7 @@
     <link href="<?=asset_url('css/simple-sidebar.css')?>" rel="stylesheet">
 
     <link href="<?=asset_url('css/linearicons.css')?>" rel="stylesheet">
+    <link href="<?=asset_url('css/jquery.mCustomScrollbar.min.css')?>" rel="stylesheet">
     <link href="<?=asset_url('css/wl-custom.css')?>" rel="stylesheet">
 
 
@@ -43,23 +44,23 @@
                 <li class="sidebar-brand">
                     <a><span class="lnr lnr-trash"></span></a>
                 </li>
-                <li class="wl-active-page">
-                    <a data-page-link="home"><span class="lnr lnr-home"></span></a>
+                <li>
+                    <a data-page-link="home" class="wl-active-page" data-toggle="tooltip" data-placement="right" title="" data-original-title="Home"><span class="lnr lnr-home"></span></a>
                 </li>
                 <li>
-                    <a data-page-link="map"><span class="lnr lnr-map"></span></a>
+                    <a data-page-link="map" data-toggle="tooltip" data-placement="right" title="" data-original-title="Map"><span class="lnr lnr-map"></span></a>
                 </li>
                 <li>
-                    <a data-page-link="information"><span class="lnr lnr-book"></span></a>
+                    <a data-page-link="information" data-toggle="tooltip" data-placement="right" title="" data-original-title="Information"><span class="lnr lnr-book"></span></a>
                 </li>
                 <li>
-                    <a data-page-link="profile"><span class="lnr lnr-user"></span></a>
+                    <a data-page-link="profile" data-toggle="tooltip" data-placement="right" title="" data-original-title="Profile"><span class="lnr lnr-user"></span></a>
                 </li>
                 <li>
-                    <a data-page-link="manage-users"><span class="lnr lnr-users"></span></a>
+                    <a data-page-link="manage-users" data-toggle="tooltip" data-placement="right" title="" data-original-title="Manage Users"><span class="lnr lnr-users"></span></a>
                 </li>
                 <li class="wl-btn-logout">
-                    <a data-page-link="logout"><span class="lnr lnr-power-switch"></span></a>
+                    <a data-page-link="logout" data-toggle="tooltip" data-placement="right" title="" data-original-title="Log Out"><span class="lnr lnr-power-switch"></span></a>
                 </li>
             </ul>
         </div>
@@ -110,7 +111,9 @@
                             </div>
 
                             <div class="col-sm-2 no-padding">
-                                <div class="wl-btn-post unselectable">+</div>
+                                <a data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Post to Waste Map">
+                                    <div class="wl-btn-post unselectable">+</div>
+                                </a>
                             </div>
                         </div>
 
@@ -118,15 +121,39 @@
                     <!-- end top -->
 
                     <!-- main content -->
-                    <div id="moduleContainer" class="wl-main-content col-sm-12">
+                    <div class="wl-main-content col-sm-12">
+                        <div class="alert-container">
+                            <div class="alert alert-dismissible alert-danger">
+                              <button type="button" class="close" data-dismiss="alert">×</button>
+                              <strong>Oh snap!</strong>
+                              <a href="javascript:void(0)" class="alert-link">Change a few things up</a> and try submitting again.
+                            </div>
+                            <div class="alert alert-dismissible alert-success">
+                              <button type="button" class="close" data-dismiss="alert">×</button>
+                              <strong>Well done!</strong> You successfully read
+                              <a href="javascript:void(0)" class="alert-link">this important alert message</a>.
+                            </div>
+                            <div class="alert alert-dismissible alert-info">
+                              <button type="button" class="close" data-dismiss="alert">×</button>
+                              <strong>Heads up!</strong> This
+                              <a href="javascript:void(0)" class="alert-link">alert needs your attention</a>, but it's not super important.
+                            </div>
+                            <div class="alert alert-dismissible alert-warning">
+                              <button type="button" class="close" data-dismiss="alert">×</button>
+                              <h4>Warning!</h4>
+
+                              <p>Best check yo self, you're not looking too good. Nulla vitae elit libero, a pharetra augue. Praesent commodo cursus magna,
+                                <a href="javascript:void(0)" class="alert-link">vel scelerisque nisl consectetur et</a>.</p>
+                            </div>
+                        </div>
+
                         <!-- Home -->
                         <div class="wl-home-content wl-page-content col-sm-12" style="background-color:gray;">
 
                         </div>
 
                         <!-- Map -->
-                        <div id="map" data-mode="" style="Height:">
-                            <input type="hidden" data-map-markers="" value="" name="map-geojson-data"/>
+                        <div class="wl-map-content wl-page-content col-sm-12 wl-hide">
                             <!-- footer container-->
                             <div id="wl-footer-content">
                             </div>
@@ -134,21 +161,112 @@
 
                         <!-- Information -->
                         <div class="wl-information-content wl-page-content col-sm-12 wl-hide">
-                            <div class="col-sm-4 wl-info-list no-padding">
+                            <div class="col-sm-4 col-md-3 wl-info-list no-padding">
                                 <div class="col-sm-12 wl-info-header">
-                                    <span>Information Thread</span> <span class="badge">105</span>
+                                    <span>Shared Information</span> <span class="badge">105</span>
+                                    <span data-toggle="modal" data-target="#wl-info-modal">
+                                        <a id="wl-info-addbtn" class="btn btn-default" data-toggle="tooltip" data-placement="right" title="" data-original-title="Create new information">+</a>
+                                    </span>
                                 </div>
-                                <div class="col-sm-12 wl-info-mainlist">
+                                <div class="col-sm-12 wl-info-mainlist scroll-on no-padding">
                                     <ul>
-                                        <li>
-                                            <p>Proper Garbage Disposal</p>
-                                            <p>just now</p>
+                                        <li class="wl-info-li active">
+                                            <div class="col-sm-2">
+                                                <div class="square"></div>
+                                            </div>
+                                            <div class="col-sm-10">
+                                                <p class="wl-list-title">Proper Garbage Disposal</p>
+                                                <p class="wl-list-sub"><span data-livestamp="1454512170"></span></p>
+                                            </div>
+                                        </li>
+                                        <li class="wl-info-li">
+                                            <div class="col-sm-2">
+                                                <div class="square"></div>
+                                            </div>
+                                            <div class="col-sm-10">
+                                                <p class="wl-list-title">Reduce, Reuse and Recycle (3Rs)</p>
+                                                <p class="wl-list-sub"><span data-livestamp="1454502170"></span></p>
+                                            </div>
+                                        </li>
+                                        <li class="wl-info-li">
+                                            <div class="col-sm-2">
+                                                <div class="square"></div>
+                                            </div>
+                                            <div class="col-sm-10">
+                                                <p class="wl-list-title">No Segregation - No Collection</p>
+                                                <p class="wl-list-sub"><span data-livestamp="1454415170"></span></p>
+                                            </div>
+                                        </li>
+                                        <li class="wl-info-li">
+                                            <div class="col-sm-2">
+                                                <div class="square"></div>
+                                            </div>
+                                            <div class="col-sm-10">
+                                                <p class="wl-list-title">10 things to do with Softdrink Bottles</p>
+                                                <p class="wl-list-sub"><span data-livestamp="1454315170"></span></p>
+                                            </div>
+                                        </li>
+                                        <li class="wl-info-li">
+                                            <div class="col-sm-2">
+                                                <div class="square"></div>
+                                            </div>
+                                            <div class="col-sm-10">
+                                                <p class="wl-list-title">Garbage Day is... Payday? Why Your Trash is Worth More Than You Think</p>
+                                                <p class="wl-list-sub"><span data-livestamp="1453315170"></span></p>
+                                            </div>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
-                            <div class="col-sm-8 wl-info-display">
+                            <div class="col-sm-8 col-md-9 wl-info-display no-padding">
+                                <div class="col-sm-12 wl-info-full scroll-on no-padding">
+                                    <div class="col-sm-12 wl-info-description">
+                                        <div class="col-sm-12 wl-info-fixed">
+                                            <div class="wl-info-box"></div>
+                                            <div class="wl-info-title">
+                                                <h2>Garbage Day is... Payday? Why Your Trash is Worth More Than You Think</h2>
+                                                <h4>
+                                                    <span class="wl-info-author">by Kelly Gurnett</span>
+                                                    &nbsp;|&nbsp;
+                                                    <span class="wl-info-stamp" data-livestamp="1453315170"></span>
+                                                </h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 wl-info-content">
+                                        <p>
+                                            Lorem ipsum dolor sit amet, fugit oporteat detraxit et his. Et mei hinc exerci, no verear mediocritatem vix, ipsum persius consequat ea nam. Ad usu legere graeci, melius ponderum mel te. Ubique voluptua percipit an eum, falli phaedrum adipisci his id. Ius in nibh persius, libris mandamus sed id, nec ex dictas numquam propriae.
 
+Ut sed posse omnesque quaestio, cu sit habemus tractatos dissentiet. Essent gubergren id sea, sit laboramus sententiae id. Vis stet tation adolescens in. His at everti numquam delicatissimi, no ius augue nullam.
+
+Est ex eleifend senserit voluptaria, habeo erant qui et, paulo vitae ne ius. Nonumy mentitum constituam pro id, ut vocent apeirian patrioque per. Dico idque ut has, at vel doctus tritani vulputate. Mandamus urbanitas sea id, eos ea ignota doctus principes. Alii gloriatur eum no, aliquip posidonium qui ea. Pro id oratio inciderint, an his dolore posidonium intellegam.
+
+Suas dolorem maiestatis est in. Eu ornatus constituto nec, ut choro definiebas eloquentiam usu, usu falli omnium numquam cu. Labore maiorum ex mei, has nonumy lucilius ne, vel ei aliquip ceteros periculis. Tamquam splendide est ea, modus tractatos referrentur ad eos. Sit adhuc novum necessitatibus in, id per debet nusquam, hinc mutat saepe vel ne. Has ea nusquam nominati, ubique causae honestatis pro ut.
+
+Quo falli sanctus ne, ut eum suavitate maluisset omittantur. Usu in enim timeam repudiare, bonorum incorrupte instructior pri ad, ius ne invidunt indoctum philosophia. Nam veniam molestiae ea, quis indoctum has ad. Cum quas nulla aperiri no, vim at omnesque elaboraret. Mea an oratio constituam, tempor constituam reformidans ut quo.
+                                        </p>
+                                    </div>
+                                </div>
+
+
+                                <!-- info modal -->
+                                <div id="wl-info-modal" class="modal fade">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                <h4 class="modal-title">Create New Information</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>One fine body…</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary">Submit</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -303,10 +421,6 @@
     <!-- jQuery -->
     <script src="<?=asset_url('js/jquery-2.1.4.min.js')?>"></script>
     <script src="<?=asset_url('js/jquery-ui.min.js')?>"></script>
-    <script src="<?=asset_url('js/jQuery.scrollSpeed.js')?>"></script>
-    <script>
-        //$.scrollSpeed(100, 800);
-    </script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="<?=asset_url('js/bootstrap.min.js')?>"></script>
@@ -319,6 +433,11 @@
         $.material.init();
         $.material.ripples(".sidebar-nav li:not(.sidebar-brand), .wl-btn-post");
     </script>
+
+    <!-- Other Plugins -->
+    <script src="<?=asset_url('js/moment.min.js')?>"></script>
+    <script src="<?=asset_url('js/livestamp.min.js')?>"></script>
+    <script src="<?=asset_url('js/jquery.mCustomScrollbar.concat.min.js')?>"></script>
 
     <!-- Dropdown.js
     <script src="https://cdn.rawgit.com/FezVrasta/dropdown.js/master/jquery.dropdown.js"></script>
@@ -369,7 +488,7 @@
                 });
         });
         $(".wl-rectangle-add").click(function(){
-            if(!$("#wl-btn-side-submit").is('visible')) {
+            if(!$("#wl-btn-side-submit").is(':visible')) {
                 $("#wl-btn-side-submit").show('fade',400);
                 $("#wl-btn-side-repost").hide();
             }
@@ -393,9 +512,37 @@
                     $(ths).addClass('wl-active');
                 });
         });
+
+        $(".wl-info-mainlist").on('click','.wl-info-li',function(){
+            $('.wl-info-li').removeClass('active');
+            $(this).addClass('active');
+        });
+
+        $('[data-toggle="tooltip"]').tooltip({container:'body'});
+
+        $(".scroll-on").mCustomScrollbar({
+            theme:"minimal-dark",
+            live:"true",
+            mouseWheel:{ deltaFactor: 50},
+            callbacks:{
+                whileScrolling:function(){
+                    if($(".wl-info-full").is(':visible')){
+                        var desc_e = $(".wl-info-full .wl-info-description");
+                        var scrollTop = parseInt($(".wl-info-full .mCSB_container").css('top'),10);
+                        var calc_h = parseInt(desc_e.css('margin-top'),10) + parseInt(desc_e.css('height'),10);
+                        if(scrollTop < -calc_h){
+                            desc_e.children('.wl-info-fixed').addClass('wl-fixed');
+                        }
+                        else{
+                            desc_e.children('.wl-info-fixed').removeClass('wl-fixed');
+                        }
+                    }
+                }
+            }
+        });
+
     });
     </script>
-
 </body>
 
 </html>
