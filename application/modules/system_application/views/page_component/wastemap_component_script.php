@@ -113,7 +113,12 @@
                 map.locate({watch: true}) /* This will return map so you can do chaining */
                     .on('locationfound', function(e){
                     L.marker([e.latlng.lat, e.latlng.lng], {icon: pinkIcon, title:"yes!", alt: "yes!", riseOnHover: true}).addTo(map);
+                    var latlong = {
+                            lat     : e.latlng.lat,
+                            lng     : e.latlng.lng
+                    }
                     map.stopLocate();
+                    console.log(latlong);
                 })
                     .on('locationerror', function(e){
                     console.log(e);
@@ -130,5 +135,4 @@
             }
         }
     };
-    
 </script>
