@@ -24,6 +24,7 @@ class Portal extends FE_Controller{
         $this->load->view("system_application/system");
         $this->load->view("system_application/system_script");
         $this->load->view("system_application/page_header_script");
+        $this->load->view("system_application/waste_post_script");
         
     }
     function login(){
