@@ -13,7 +13,7 @@
  */
 class API_Model extends CI_Model{
     public $TABLE = false;
-    public $TABLECOLUMN = false;
+    public $DATABASETABLE = array();
     public function createTableEntry($newData){
         $this->db->start_cache();
         $this->db->flush_cache();
@@ -36,6 +36,7 @@ class API_Model extends CI_Model{
      * @param array $selectedColumn Specify the columns to retrieve. All columns in default table is selected and prioritized
      */
     public function retrieveTableEntry($retrieveType = 0, $limit = NULL, $offset = 0, $sort = array(), $ID = NULL, $condition = array(), $selectedColumn = array(), $joinedTable = array()){
+        $this->initializeTableColumn($joinedTable);
         $this->db->start_cache();
         $this->db->flush_cache();
         //Select column
@@ -97,7 +98,7 @@ class API_Model extends CI_Model{
      * @return int
      */
     public function updateTableEntry($ID = NULL, $condition = array(), $newData = array(), $joinedTable = array()){
-        $this->initializeTableColumn();
+        $this->initializeTableColumn($joinedTable);
         $this->db->start_cache();
         $this->db->flush_cache();
         $this->addCondition($condition);
@@ -114,9 +115,9 @@ class API_Model extends CI_Model{
         if((count($condition) > 0) || ($ID !== NULL)){
             if(count($newData) > 0){
                 $updatedData = array();
-                foreach($this->TABLECOLUMN as $value){
-                    if(isset($newData[$value])){
-                        $updatedData[$value] = $newData[$value];
+                foreach($newData as $newDataKey => $newDataValue){
+                    if(isset($this->DATABASETABLE[$this->TABLE][$newDataKey] )){
+                        $updatedData[$newDataKey] = $newDataValue;
                     }
                 }
                 $result = $this->db->update($this->TABLE, $updatedData);
@@ -127,62 +128,49 @@ class API_Model extends CI_Model{
         return $result;
     }
     public function addCondition($condition = array()){
+        
         if(is_array($condition)){
-            $this->initializeTableColumn();
-            foreach($this->TABLECOLUMN as $key => $tableColumnValue){
-                if(isset($condition[$tableColumnValue])
-                        || isset($condition["like__$this->TABLE"."__$tableColumnValue"])
-                        || isset($condition["not__$this->TABLE"."__$tableColumnValue"])
-                        || isset($condition["or__$this->TABLE"."__$tableColumnValue"])
-                        || isset($condition["lesser__$this->TABLE"."__$tableColumnValue"])
-                        || isset($condition["lesser_equal__$this->TABLE"."__$tableColumnValue"])
-                        || isset($condition["greater_equal__$this->TABLE"."__$tableColumnValue"])
-                        || isset($condition["greater__$this->TABLE"."__$tableColumnValue"])
-                        || isset($condition["$this->TABLE"."__$tableColumnValue"])
-                        ){
-                    $segment = explode("__", $tableColumnValue);
+            foreach($condition as $tableColumn => $tableColumnValue){
+                    $segment = explode("__", $tableColumn);
                     $tableColumn = $segment[count($segment)-1];
-                    switch($segment[0]){
-                        case "like":
-                            $tableName = (count($segment) === 3) ? $segment[1] : $this->TABLE;
-                            $this->db->like("$tableName.$tableColumn", $condition[$tableColumnValue]);
-                            break;
-                        case "not" :
-                            $tableName = (count($segment) === 3) ? $segment[1] : $this->TABLE;
-                            $this->db->where("$tableName.$tableColumn!=", $condition[$tableColumnValue]);
-                            break;
-                        case "or" :
-                            $tableName = (count($segment) === 3) ? $segment[1] : $this->TABLE;
-                            $this->db->or_where("$tableName.$tableColumn", $condition[$tableColumnValue]);
-                            break;
-                        case "lesser":
-                            $tableName = (count($segment) === 3) ? $segment[1] : $this->TABLE;
-                            $this->db->where("$tableName.$tableColumn<", $condition[$tableColumnValue]);
-                            break;
-                        case "lesser_equal":
-                            $tableName = (count($segment) === 3) ? $segment[1] : $this->TABLE;
-                            $this->db->where("$tableName.$tableColumn<=", $condition[$tableColumnValue]);
-                            break;
-                        case "greater_equal":
-                            $tableName = (count($segment) === 3) ? $segment[1] : $this->TABLE;
-                            $this->db->where("$tableName.$tableColumn>=", $condition[$tableColumnValue]);
-                            break;
-                        case "greater":
-                            $tableName = (count($segment) === 3) ? $segment[1] : $this->TABLE;
-                            $this->db->where("$tableName.$tableColumn>", $condition[$tableColumnValue]);
-                            break;
-                        default :
-                            $tableName = (count($segment) === 2) ? $segment[0] : $this->TABLE;
-                            if(is_array($condition[$tableColumnValue])){
-                                $this->db->where_in("$tableName.$tableColumn", $condition[$tableColumnValue]);
-                            }else{
-                                $this->db->where("$tableName.$tableColumn", $condition[$tableColumnValue]);
-                            }
-                            break;
+                    $tableName = (count($segment) === 3) ? $segment[1] : (count($segment) === 2) ? $segment[0] : $this->TABLE;
+                    if(isset($this->DATABASETABLE[$tableName][$tableColumn])){
+                        switch($segment[0]){
+                            case "like":
+                                $this->db->like("$tableName.$tableColumn", $tableColumnValue);
+                                break;
+                            case "not" :
+                                $this->db->where("$tableName.$tableColumn!=", $tableColumnValue);
+                                break;
+                            case "or" :
+                                $this->db->or_where("$tableName.$tableColumn", $tableColumnValue);
+                                break;
+                            case "lesser":
+                                $this->db->where("$tableName.$tableColumn<", $tableColumnValue);
+                                break;
+                            case "lesser_equal":
+                                $this->db->where("$tableName.$tableColumn<=", $tableColumnValue);
+                                break;
+                            case "greater_equal":
+                                $this->db->where("$tableName.$tableColumn>=", $tableColumnValue);
+                                break;
+                            case "greater":
+                                $this->db->where("$tableName.$tableColumn>", $tableColumnValue);
+                                break;
+                            default :
+                                if(is_array($tableColumnValue)){
+                                    $this->db->where_in("$tableName.$tableColumn", $tableColumnValue);
+                                }else{
+                                    $this->db->where("$tableName.$tableColumn", $tableColumnValue);
+                                }
+                                break;
+                        }
                     }
-                }
             }
         }
+    }
+    public function isValidCondition(){
+        
     }
     public function deleteTableEntry($ID = NULL, $condition = array()){
         $this->db->start_cache();
@@ -230,11 +218,16 @@ class API_Model extends CI_Model{
         $this->db->stop_cache();
         return $result;
     }
-    public function initializeTableColumn(){
-        $this->db->start_cache();
-        $this->db->flush_cache();
-        $this->TABLECOLUMN = $this->db->list_fields($this->TABLE);
-        $this->db->flush_cache();
-        $this->db->stop_cache();
+    public function initializeTableColumn($joinedTable = array()){
+        foreach($joinedTable as $joinedTableKey => $joinedTableValue){
+            $tableName = explode(" AS ", $joinedTableKey); 
+            $this->db->start_cache();
+            $this->db->flush_cache();
+            $this->DATABASETABLE[$tableName[(count($tableName) > 1) ? 1 : 0]] = array_flip($this->db->list_fields($tableName[0]));
+            $this->db->flush_cache();
+            $this->db->stop_cache();
+        }
+        $this->DATABASETABLE[$this->TABLE] = array_flip($this->db->list_fields($this->TABLE));
+        return true;
     }
 }

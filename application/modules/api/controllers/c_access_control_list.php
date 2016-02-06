@@ -22,8 +22,9 @@ class C_access_control_list extends API_Controller{
     }
     public function retrieveAccessControlList(){
         $condition = array();
-        $condition["group_ID"] = user_type();
-        $condition["account_ID"] = user_id();
+        $condition["group_ID"] = user_type()*1;
+        $condition["account_ID"] = user_id()*1;
+        $this->responseDebug($condition);
         $ACL = $this->m_access_control_list->retrieveAccessControlList(false, false, false, NULL, NULL, $condition);
         $groupACL = $this->m_access_control_list->retrieveGroupAccessControlList(false, false, false, NULL, NULL, $condition);
         $data = array();

@@ -13,6 +13,7 @@
                     $("#registrationForm").find("input[name='confirm_password']").trigger("change");
                     return false;
                 }
+                $("#registrationForm").find(".submitButton").button("loading");
             },
             success : function(data){
                 var response = JSON.parse(data);
@@ -27,6 +28,7 @@
                 }else{
                     show_form_error($("#registrationForm"), response["error"]);
                 }
+                $("#registrationForm").find(".submitButton").button("reset");
             }
         });
     });

@@ -44,6 +44,7 @@
     function retrieve_access_control(){
         $.post(api_url("C_access_control_list/retrieveAccessControlList"), {}, function(data){
             var response = JSON.parse(data);
+            console.log(response);
             if(!response["error"].length){
                 if(response["data"]["access_control_list"]){
                     for(var x = 0; x < response["data"]["access_control_list"].length; x++){

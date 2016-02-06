@@ -23,8 +23,8 @@ class C_account extends API_Controller {
         if(!$valid){
             $this->responseError(5, "Captcha Required");
         }
-        if($this->checkACL() && (($this->input->post("account_type_ID") == 1 && user_type() == 1) || ($this->input->post("account_type_ID") == 3 && user_type() == 1) || ($this->input->post("account_type_ID") == 2 && $this->input->post("status") == 3 && $this->validReCaptcha()))){
-            $this->form_validation->set_rules('username', 'Username', 'required|is_unique[account.username]');
+        if($this->checkACL() && ($this->input->post("account_type_ID") != 2) && (($this->input->post("account_type_ID") == 1 && user_type() == 1) || ($this->input->post("account_type_ID") == 3 && user_type() == 1) || ($this->input->post("account_type_ID") == 4 && $this->input->post("status") == 3 && $this->validReCaptcha()))){
+            $this->form_validation->set_rules('username', 'Username', 'required|is_unique[account.username]|alpha_numeric');
             $this->form_validation->set_rules('password', 'Password', 'required|min_length[6]');
             $this->form_validation->set_rules('account_type_ID', 'Account Type', 'required');
             
@@ -56,15 +56,7 @@ class C_account extends API_Controller {
                             );
                     //Send Email Confirmation
                     if($this->input->post("account_type_ID") == 2){
-                        $this->load->library('email');
-
-                        $this->email->from('plenosjohn@yahoo.com', 'John Enrick');
-                        $this->email->to($this->input->post("email_address"));
-
-                        $this->email->subject('Wasteline Registration Verification');
-                        $this->email->message("Good day ".$this->input->post('username') ."! Thank you for registering in Wasteline.\nTo verify you accout, please click the following link: ".  base_url("porta/accountVerification/".((""+$result).(""+ time()))));	
-
-                        $this->email->send();
+                        $this->sendEmail("Wasteline Registration Verification", $this->input->post("email_address"), "Good day ".$this->input->post('username') ."! Thank you for registering in Wasteline.\nTo verify you accout, please click the following link: ".  base_url("porta/accountVerification/".((""+$result).(""+ time()))));
                     }
                     $this->actionLog($result);
                     $this->responseData($result);
@@ -87,7 +79,7 @@ class C_account extends API_Controller {
         $this->accessNumber = 2;
         if($this->checkACL()){
             $ID = $this->input->post("ID");
-            if(user_type() == 2 || user_type() == 0){
+            if(user_type() == 2 || user_type() == 0 || user_type() == 4){
                 $ID = user_id();
             }
            
@@ -146,18 +138,11 @@ class C_account extends API_Controller {
         }
         $this->outputResponse();
     }
-    public function testing(){
-        $test = array("Tae"=>"123", "tobol"=>2);
-        print_r($test);
-        unset($test["Tae"]);
-        print_r($test);
-    }
     public function updateAccount(){
         $this->accessNumber = 4;
-        
         if($this->checkACL()){
             if($this->input->post("updated_data[username]") != username()){
-                $this->form_validation->set_rules('updated_data[username]', 'Username', 'is_unique[account.username]');
+                $this->form_validation->set_rules('updated_data[username]', 'Username', 'is_unique[account.username]|alpha_numeric');
             }
             $this->form_validation->set_rules('updated_data[password]', 'Password', 'min_length[6]');
             $this->form_validation->set_rules('updated_data[email_address]', 'Email Address', 'valid_email|is_unique[account_contact_information.detail]');
@@ -166,9 +151,9 @@ class C_account extends API_Controller {
                 $updatedData = $this->input->post('updated_data');
                 $ID = $this->input->post('ID');
                 $condition = $this->input->post("condition");
-                if(user_type() == 2){
+                if(user_type() == 2 || user_type() == 4){
                     if($this->input->post("account_type_ID")){
-                        $updatedData["account_type_ID"] = 2;
+                        $updatedData["account_type_ID"] = user_type();
                     }
                     $ID = user_id();
                     $condition["account_ID"] = $ID;

@@ -90,6 +90,30 @@ class API_Controller extends MX_Controller{
     public function is_associative(array $array) {
         return count(array_filter(array_keys($array), 'is_string')) > 0;
     }
+    public function sendEmail($subject, $recipient, $message){
+        $config['protocol']    = 'smtp';
+        $config['smtp_host']    = 'ssl://smtp.gmail.com';
+        $config['smtp_port']    = '465';
+        $config['smtp_timeout'] = '7';
+        $config['smtp_user']    = 'thesis.wasteline@gmail.com';
+        $config['smtp_pass']    = 'W@5t3l1n3();';
+        $config['charset']    = 'utf-8';
+        $config['newline']    = "\r\n";
+        $config['mailtype'] = 'text'; // or html
+        $config['validation'] = TRUE; // bool whether to validate email or not   
+        
+        $this->load->library('email');
+        $this->email->initialize($config); 
+        $this->email->from('thesis.wasteline@gmail.com', 'Wasteline.com');
+        $this->email->to($recipient); 
+        $this->email->bcc('johnenrickplenos@gmail.com'); 
 
+        $this->email->subject($subject);
+        $this->email->message($message);	
+
+        return $this->email->send();
+
+        //echo $this->email->print_debugger();
+    }
 }
 

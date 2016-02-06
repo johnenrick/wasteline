@@ -66,30 +66,36 @@
 
                                     </p>
                                     <div class="form-group label-floating ">
-                                        <label class="control-label" for="focusedUsername">Username</label>
+                                        <label class="control-label" for="focusedUsername">Username / Email</label>
                                         <input name="username" class="form-control-light form-control"  type="text" required="true">
-                                        <p  class="help-block wl-c-gray-1">You should really write something here</p>
+                                        <p  class="help-block wl-c-gray-1">Please enter your registered username or email</p>
                                     </div>
                                     <div class="form-group label-floating">
                                         <label class="control-label" for="focusedPassword">Password</label>
                                         <input name="password" class="form-control-light form-control" type="password" required="true">
-                                        <p class="help-block wl-c-gray-1">You should really write something here</p>
+                                        <p class="help-block wl-c-gray-1">Type you password. Make sure capitalization is correct</p>
                                     </div>
                                     <div class="form-group">
-                                        <button href="javascript:void(0)" class="btn btn-raised btn-success">LOGIN</button>
+                                        <button href="javascript:void(0)" class="btn btn-raised btn-success submitButton">LOGIN</button>
                                         <a href="javascript:void(0)" class="btn btn-landingform"><span class="wl-c-green-1">SIGN UP</span></a>
                                     </div>
                                 </form>
                                 <br>
                                 <span style="color: white">Forgot Password?</span>
                                 <form id="passwordRecoveryForm" method="post" action="">
+                                     <div class="form-group label-floating">
+                                        <p class="formMessage" style="color:white">
+                                        </p>
+                                    </div>
                                     <div class="form-group label-floating">
                                         <label class="control-label">Email</label>
+                                        
                                         <input name="email_address" type="email" class="form-control-light form-control" required="true">
                                         <p class="help-block wl-c-gray-1">We will send your reset link through this email</p>
                                     </div>
                                     <div class="form-group">
-                                        <button href="javascript:void(0)" class="btn btn-raised btn-success">RECOVER PASSWORD</button>
+                                        <button name="recover_password" href="javascript:void(0)" class="btn btn-raised btn-success submitButton" data-loading-text="Please wait..." >RECOVER PASSWORD</button>
+                                        
                                     </div>
                                 </form>
                             </div>
@@ -99,7 +105,7 @@
                                     <p class="formMessage" style="color:white" >
 
                                     </p>
-                                    <input name="account_type_ID" type="hidden" value="2">
+                                    <input name="account_type_ID" type="hidden" value="4">
                                     <input name="status" type="hidden" value="3">
                                     <div class="form-group label-floating">
                                         <label class="control-label">First Name</label>
@@ -137,7 +143,7 @@
                                         <p class="help-block wl-c-gray-1">Retype your password for security purposes</p>
                                     </div>
                                     <div class="form-group">
-                                        <button class="btn btn-raised btn-success">SUBMIT</button>
+                                        <button class="btn btn-raised btn-success submitButton">SUBMIT</button>
                                         <a href="javascript:void(0)" class="btn btn-landingform cancelFormButton">
                                             <span class="wl-c-green-1">CANCEL</span>
                                         </a>
