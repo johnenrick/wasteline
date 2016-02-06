@@ -175,6 +175,15 @@
                                 </div>
                                 <div class="col-sm-12 wl-info-mainlist scroll-on no-padding">
                                     <ul>
+                                        <li class="wl-info-li wl-list-dummy">
+                                            <div class="col-sm-2">
+                                                <img class="wl-info-box">
+                                            </div>
+                                            <div class="col-sm-10">
+                                                <p class="wl-list-title"></p>
+                                                <p class="wl-list-sub"><span></span></p>
+                                            </div>
+                                        </li>
                                         <li class="wl-info-li active">
                                             <div class="col-sm-2">
                                                 <img data-name="Proper Garbage Disposal" class="wl-info-box">
@@ -311,11 +320,24 @@
                                                 <h4 class="modal-title">Create New Information</h4>
                                             </div>
                                             <div class="modal-body">
-                                                <p>One fine body…</p>
+                                                <div class="form-group">
+                                                    <label for="inputTitle" class="col-md-12 control-label">Title</label>
+                                                    <div class="col-md-12">
+                                                        <input type="text" class="form-control" id="inputTitle" placeholder="You should really write something here">
+                                                        <p class="help-block wl-c-gray-1">You should really write something here</p>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="inputAuthor" class="col-md-12 control-label">Author</label>
+                                                    <div class="col-md-12">
+                                                        <input type="text" class="form-control" id="inputAuthor" placeholder="You should really write something here">
+                                                        <p class="help-block wl-c-gray-1">You should really write something here</p>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary">Submit</button>
+                                                <button type="button" id="wl-info-modal-submit" class="btn btn-primary">Submit</button>
                                             </div>
                                         </div>
                                     </div>
