@@ -532,7 +532,7 @@ ul.sidebar-nav li a {
     position: fixed;
     margin: 0;
     padding: 0;
-    height: 80px;
+    height: 60px;
     z-index: 3;
     color: #fff;
 }
@@ -547,8 +547,8 @@ ul.sidebar-nav li a {
 .wl-info-full .wl-info-description .wl-info-fixed.wl-fixed .wl-info-box,
 .wl-info-full .wl-info-description .wl-info-fixed.wl-fixed .wl-info-box .wl-box,
 .wl-info-full .wl-info-description .wl-info-fixed.wl-fixed .wl-info-box .wl-box img {
-    height: 80px;
-    width: 80px;
+    height: 60px;
+    width: 60px;
 }
 
 .wl-info-full .wl-info-description .wl-info-title {
@@ -563,14 +563,16 @@ ul.sidebar-nav li a {
 }
 
 .wl-info-full .wl-info-description .wl-info-fixed.wl-fixed .wl-info-title h2 {
-    font-size: 18px;
+    font-size: 16px;
+    margin-top: 10px;
+    margin-bottom: 5px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
 .wl-info-full .wl-info-description .wl-info-fixed.wl-fixed .wl-info-title h4 {
-    font-size: 15px;
+    font-size: 13px;
 }
 
 .wl-info-full .wl-info-description .wl-info-fixed .wl-info-author {
@@ -583,7 +585,7 @@ ul.sidebar-nav li a {
 
 .wl-info-full .wl-info-description .wl-info-fixed .wl-info-stamp {
     color: #797979;
-    font-size: 16px
+    font-size: 12px
 }
 
 .wl-info-full .wl-info-description .wl-info-fixed.wl-fixed .wl-info-stamp {
