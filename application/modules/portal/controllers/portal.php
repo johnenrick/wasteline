@@ -19,7 +19,7 @@ class Portal extends FE_Controller{
     public function visitPage($pageLink = "portal", $pageLink2 = false, $extraData = false){
         $data = array(
             "defaultPage" => $pageLink2 ? $pageLink."/".$pageLink2 : $pageLink, //if index or function in controller
-            "extra_data" => $extraData
+            "extra_data" => ($extraData) ? base64_decode($extraData) : false
         );
         $this->load->view("system_application/system_frame", $data);
         $this->load->view("system_application/system");
@@ -39,14 +39,7 @@ class Portal extends FE_Controller{
             $condition[(filter_var($this->input->post("username"), FILTER_VALIDATE_EMAIL)) ? "email__detail" : "username"] = $this->input->post("username");
             $result = $this->M_account->retrieveAccount(NULL, NULL, NULL, NULL, NULL,$condition);
             if($result){
-                $this->session->set_userdata(array(
-                    "first_name" => $result[0]["first_name"],
-                    "last_name" => $result[0]["last_name"],
-                    "middle_name" => $result[0]["middle_name"],
-                    "user_type" => $result[0]["account_type_ID"],
-                    "user_ID" => $result[0]["ID"],
-                    "username" => $result[0]["username"]
-                ));
+                $this->createSession($result[0]["first_name"], $result[0]["last_name"], $result[0]["middle_name"], $result[0]["account_type_ID"], $result[0]["ID"], $result[0]["username"]);
                 $this->responseData(true);
             }else{
                 $this->responseError(5, "Username/Email and Password Mismatch");
@@ -61,13 +54,7 @@ class Portal extends FE_Controller{
         $this->outputResponse();
     }
     function logout(){
-        $this->session->set_userdata(array(
-            "first_name" => false,
-            "last_name" => false,
-            "middle_name" => false,
-            "user_type" => false,
-            "user_ID" => false
-        ));
+        $this->createSession(false, false, false, false, false);
         header("Location: ".base_url());
         //$this->loadPage("portal", array("portal_script", "registration_script", "login_script"), array("message" => false));
     }
@@ -116,46 +103,88 @@ class Portal extends FE_Controller{
                 print_r($recoveryDetail);
                 $this->load->model("api/M_account");
                 $accountDetail = $this->M_account->retrieveAccount(0, NULL, 0, array(), $accountID);
-                $this->session->set_userdata(array(
-                    "first_name" => $accountDetail["first_name"],
-                    "last_name" => $accountDetail["last_name"],
-                    "middle_name" => $accountDetail["middle_name"],
-                    "user_type" => $accountDetail["account_type_ID"],
-                    "user_ID" => $accountDetail["ID"],
-                    "username" => $accountDetail["username"]
-                ));
+                $this->createSession($accountDetail["first_name"], $accountDetail["last_name"], $accountDetail["middle_name"], $accountDetail["account_type_ID"], $accountDetail["ID"], $accountDetail["username"]);
                 $this->M_password_recovery->updatePasswordRecovery($recoveryID, array(), array("status" => 1));
                 header("Location: ".base_url("portal/visitPage/profile_management"));
             }else if($recoveryDetail != false && $recoveryDetail["status"] == 1){
                 print_r($recoveryDetail);
-                $message["1"] = "Your recovery link has already expired or invalid. Please make another request";
+                $message[0] = array(
+                    "status"=> 1,
+                    "type" => 2,
+                    "message" => "Your recovery link has already expired or invalid. Please make another request"
+                    );
             }else{
-                
-                $message["1"] = "Invalid recovery link";
+                $message[0] = array(
+                    "status"=> 2,
+                    "type" => 2,
+                    "message" => "Invalid recovery link"
+                    );
             }
-            header("Location: "+base_url("portal/visitPage/portal/false/".json_encode($message)));
+            $extraData = base64_encode (json_encode(array("message" => $message)));
+            header("Location: "+base_url("portal/visitPage/portal/false/".$extraData));
         }else{
             "Nice Try";
         }
     }
+    function requestVerificationCode(){
+        if(user_id()){
+            $this->load->model("api/M_account");
+            $accountDetail = $this->M_account->retrieveAccount(NULL, NULL, NULL, NULL, user_id());
+            if($accountDetail && $accountDetail["account_type_ID"] == 4){
+                $datetime = time();
+                $this->responseDebug(base_url("portal/accountVerification/".(sprintf("%d%d", $accountDetail["ID"], $datetime))));
+                $this->sendEmail("Wasteline Registration Verification", $this->input->post("email_address"), "Good day ".$this->input->post('username') ."! Thank you for registering in Wasteline.\nTo verify you accout, please click the following link: ".  base_url("portal/accountVerification/".(sprintf("%d%d", $accountDetail["ID"], $datetime))));
+                $this->responseData($accountDetail["email_detail"]);
+                
+            }else{
+                $this->responseError(1, "Account already verified");
+            }
+        }else{
+            $this->responseError(1001);//Not logged ins
+        }
+        $this->outputResponse();
+    }
     function accountVerification($verificationCode){
         $this->load->model("api/M_account");
         $accountID = substr($verificationCode, 0, strlen($verificationCode)-10);
-        $result = $this->M_account->retrieveAccount(NULL, NULL, NULL, NULL, NULL,
-                    array(
-                        "ID" => $accountID
-                    ));
-        $message = "";
-        if($result){
-            if($result["status"] === 3){
-                $this->M_account->updateAccount($accountID, NULL, array("status" => 2));
-                $message = "Congratulation".$result["username"]."! Your account has been verified. ";
+        $accountDetail = $this->M_account->retrieveAccount(NULL, NULL, NULL, NULL, $accountID);
+        $message = array();
+        print_r($accountDetail);
+        if($accountDetail){
+            
+            if($accountDetail["account_type_ID"] == 4){
+                $this->M_account->updateAccount($accountID, NULL, array("account_type_ID" => 2));
+                if(user_id()){
+                    $this->createSession($accountDetail["first_name"], $accountDetail["last_name"], $accountDetail["middle_name"], 2, $accountDetail["ID"], $accountDetail["username"]);
+                }
+                header("Location: ".base_url("portal/visitPage"));
+                
             }else{
-                $message = "Your account has already been verified";
+                $message[0] = array(
+                    "status" => 12,
+                    "type" => 4,
+                    "message" => "Your account has already been verified"
+                    );
             }
+            
         }else{
-            $message = "Verification Code is invalid. Contact us if you feel there's something wrong.";
+            $message[0] = array(
+                    "status" => 13,
+                    "type" => 2,
+                    "message" => "Verification Code is invalid. Contact us if you feel there's something wrong."
+                    );
         }
-        $this->loadPage("portal", array("portal_script", "registration_script"), array("message"=> $message), false);
+        $extraData = base64_encode (json_encode(array("message" => $message)));
+        header("Location: ".base_url("portal/visitPage/portal/false/". $extraData));
+    }
+    function createSession($firstName, $lastName, $middleName, $userType, $userID, $username){
+        $this->session->set_userdata(array(
+            "first_name" => $firstName,
+            "last_name" => $lastName,
+            "middle_name" => $middleName,
+            "user_type" => $userType,
+            "user_ID" => $userID,
+            "username" => $username
+        ));
     }
 }

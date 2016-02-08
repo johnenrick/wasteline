@@ -1,7 +1,5 @@
 <div class="col-sm-3 no-padding wl-pro-full-info">
-    <a height="32" width="32" class="circle">
-        <img src="<?=  asset_url("images/profile_picture/simpleswag.jpg")?>" alt="Oh! It's you.">
-    </a>
+    <img id="profileManagementProfilePicture" class="wl-profile-img" data-char-count="2">
     <p id="profileManagementFullName" class="wl-full-name">
         John Michael Doe
     </p>
@@ -104,7 +102,7 @@
         </div>
 
         <div class="form-group wl-update-info">
-            <button class="btn btn-raised btn-success" style="float:right;">Update Information</button>
+            <button class="btn btn-raised btn-success submitButton" data-loading-text="Please wait..." style="float:right;">Update Information</button>
         </div>
     </form>
 </div>

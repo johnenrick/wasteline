@@ -24,8 +24,9 @@
                 $("#profileManagementUsername").text(response["data"]["username"]);
                 $("#profileManagementEmailAddress").text(response["data"]["email_detail"]);
                 $("#profileManagementContactNumber").text(response["data"]["contact_number_detail"]);
-                $("#profileManagementCompleteAddress").text(response["data"]["account_address_description"])
-                
+                $("#profileManagementCompleteAddress").text(response["data"]["account_address_description"]);
+                $('#profileManagementProfilePicture').attr("src","");
+                $('#profileManagementProfilePicture').initial({name:(response["data"]["first_name"]+"").charAt(0)+(response["data"]["last_name"]+"").charAt(0)});
             }
         });
     };
@@ -34,7 +35,6 @@
         $("#profileManagementForm").attr("action", api_url("c_account/updateAccount"));
         $("#profileManagementForm").ajaxForm({
             beforeSubmit : function(data, $form, options){
-                console.log(data);
                 //password confirmation 8 and 9
                 if(data[8]["value"] === ""){
                     data.splice(9,1);
@@ -54,10 +54,10 @@
                     data.splice(4,1);
                     data.splice(3,1);
                 }
+                $("#profileManagementForm").find(".submitButton").button("loading");
             },
             success : function(data){
                 var response = JSON.parse(data);
-                console.log(response);
                 clear_form_error($("#profileManagementForm"));
                 if(!response["error"].length){
                     $("#profileManagementForm").find("input[name='password']").val("");
@@ -66,6 +66,7 @@
                 }else{
                     show_form_error($("#profileManagementForm"), response["error"]);
                 }
+                $("#profileManagementForm").find(".submitButton").button("reset");
             }
         });
         profileManagement.viewProfile();

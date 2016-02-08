@@ -58,6 +58,7 @@ class API_Model extends CI_Model{
         if($ID === NULL){
             $this->addCondition($condition);
         }else{
+            
             $this->db->where("$this->TABLE.ID", $ID);
         }
         //Sorting entry

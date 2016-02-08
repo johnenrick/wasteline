@@ -29,25 +29,11 @@
         <!-- Custom CSS -->
         <link href="<?= asset_url('css/nav.css') ?>" rel="stylesheet">
         <link href="<?= asset_url('css/simple-sidebar.css') ?>" rel="stylesheet">
+        <link href="<?=asset_url('css/linearicons.css')?>" rel="stylesheet">
+        <link href="<?=asset_url('css/jquery.mCustomScrollbar.min.css')?>" rel="stylesheet">
+        <link href="<?=asset_url('css/wl-custom.css')?>" rel="stylesheet">
 
-        <link href="<?= asset_url('css/linearicons.css') ?>" rel="stylesheet">
-        <link href="<?= asset_url('css/wl-custom.css') ?>" rel="stylesheet">
-
-        <!-- jQuery -->
-        <script src="<?= asset_url('js/jquery-2.1.4.min.js') ?>"></script>
-        <script src="<?= asset_url('js/jquery-ui.min.js') ?>"></script>
-        <script src="<?= asset_url('js/validator.js') ?>"></script>
-        <script src="<?= asset_url('js/jQuery.scrollSpeed.js') ?>"></script>
-
-        <!-- Bootstrap Core JavaScript -->
-        <script src="<?= asset_url('js/bootstrap.min.js') ?>"></script>
-
-
-        <!-- Material Design for Bootstrap -->
-        <script src="<?= asset_url('js/material.js') ?>"></script>
-        <script src="<?= asset_url('js/ripples.min.js') ?>"></script>
-
-        <script src="<?= asset_url("js/jquery.form.min.js"); ?>"></script>
+        
 
     </head>
     <body>
@@ -57,17 +43,17 @@
                     <li class="sidebar-brand">
                         <a><span class="lnr lnr-trash"></span></a>
                     </li>
-                    <li  class="" module_id="1" module_link="portal" module_name="home">
+                    <li  class="" module_id="1" module_link="portal" module_name="home" style="display:none">
                         <a data-page-link="home" ><span class="lnr lnr-home"></span></a>
                     </li>
-                    <li module_id="2" module_link="wastemap" module_name="home">
+                    <li module_id="2" module_link="wastemap" module_name="home" style="display:none">
                         <a data-page-link="map"><span class="lnr lnr-map"></span></a>
                     </li>
-                    <li module_id="3" module_link="report_management" module_name="home">
+                    <li module_id="3" module_link="report_management" module_name="home" style="display:none">
                         <a data-page-link="information"><span class="lnr lnr-book"></span></a>
                     </li>
                     
-                    <li id="tae" module_id="4" module_link="profile_management" module_name="profile_management">
+                    <li id="tae" module_id="4" module_link="profile_management" module_name="profile_management" style="display:none">
                         <a data-page-link="profile" ><span class="lnr lnr-user"></span></a>
                     </li>
                     <li >
@@ -135,7 +121,9 @@
                         <!-- main content -->
                         <div id="moduleContainer" class="wl-main-content col-sm-12">
                             <!-- Home -->
-                            
+                            <div id="systemMessageContainer" class="alert-container" >
+                                    
+                            </div>
                             <div id="wl-side-content">
                                 <div id="wl-side-header" class="col-sm-12">
                                     <div class="col-sm-3 no-padding">
@@ -205,4 +193,25 @@
         </div>
         <!-- /#wrapper -->
     </body>
+    <footer>
+        <!-- jQuery -->
+        <script src="<?= asset_url('js/jquery-2.1.4.min.js') ?>"></script>
+        <script src="<?= asset_url('js/jquery-ui.min.js') ?>"></script>
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="<?= asset_url('js/bootstrap.min.js') ?>"></script>
+
+
+        <!-- Material Design for Bootstrap -->
+        <script src="<?= asset_url('js/material.js') ?>"></script>
+        <script src="<?= asset_url('js/ripples.min.js') ?>"></script>
+
+        <script src="<?= asset_url("js/jquery.form.min.js"); ?>"></script>
+        <script src="<?= asset_url('js/validator.js') ?>"></script>
+        
+        
+        <script src="<?=asset_url('js/initial.min.js')?>"></script>
+        <script src="<?=asset_url('js/jquery.mCustomScrollbar.concat.min.js')?>"></script>
+        <script src="<?=asset_url('js/wl-global.js')?>"></script>
+    </footer>
 </html>

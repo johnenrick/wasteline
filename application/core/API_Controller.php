@@ -25,19 +25,28 @@ class API_Controller extends MX_Controller{
         parent::__construct();
         $this->load->model("api/m_access_control_list");
         $this->load->model("api/m_action_log");
+        //sleep(2);//Simulate slow internet connection
     }
     /**
      * Add an error data in the response of the API request
+     * Error Codes: 
+     *  CI Form Validattion Error: 100-999
+     *  System Error : 1000-9999
      * @param int $status The status number of the error
      * @param string $message The message of the error
      */
-    public function responseError($status, $message){
+    public function responseError($status, $message = false){
         /*
          * Status
          * 1-99 : Normal Error
          * 100-199 : Form Validation Error
          * 200-299 : System and Security Error
          */
+        if($message == false){
+            switch($status){
+                case 1001 : $message = "Not Logged in";
+            }
+        }
         $this->response["error"][] = array("status" => $status, "message" => $message);
     }
     /**

@@ -5,7 +5,8 @@
             first_name : "<?=user_first_name()?>",
             middle_name : "<?=user_middle_name()?>",
             last_name : "<?=user_last_name()?>",
-            username : "<?=username()?>"
+            username : "<?=username()?>",
+            user_type : "<?=user_type()?>"*1
         },
         url : {
             base_url : "<?=base_url()?>",
@@ -13,15 +14,19 @@
             asset_url : "<?=asset_url()?>"
         },
         data : {
-            default_page : "<?=$defaultPage?>"
+            default_page : "<?=$defaultPage?>",
+            extra_data : ('<?=$extra_data?>' !== "") ? JSON.parse('<?=$extra_data?>') : false
         },
         access_control_list :{},
         refresh_call : {
             
         }
-    }
+    };
     function user_id(){
         return system_data.account_information.user_ID;
+    }
+    function user_type(){
+        return system_data.account_information.user_type;
     }
     function user_first_name(){
         return system_data.account_information.first_name;
@@ -137,11 +142,13 @@
         elementSelected.find(".formMessage").empty();
         elementSelected.find(".has-error").removeClass(".has-error");
         errorList.forEach(function(errorValue){
-            if(errorValue["status"] > 100){
+            if(errorValue["status"] > 100 && errorValue["status"] < 1000){//Form Validation Error
                 for(var index in errorValue["message"]){
                     elementSelected.find(".formMessage").append("* "+errorValue["message"][index]+"<br>");
                     elementSelected.find("input[name='"+index+"']").parent().addClass("has-error");
                 }
+            }else if(errorValue["status"] > 1000 && errorValue["status"] < 10000){//System Error
+                
             }else{
                 elementSelected.find(".formMessage").append("* "+errorValue["message"]+"<br>");
             }
@@ -150,6 +157,53 @@
     function clear_form_error(elementSelected){
         elementSelected.find(".formMessage").empty();
         elementSelected.find(".has-error").removeClass(".has-error");
+    }
+    /**
+     * Show a system message at the bottom of the interface
+     * 
+     * @param {int} status status of the message to avoid conflict
+     * @param {int} messageType warning|danger|success|info
+     * @param {object} messageDetail the message to be displayed
+     * @param {object} link object containing the text and href of the link
+     * @returns {undefined}
+     */
+    function show_system_message(status, messageType, messageDetail, link){
+        var messagePrototype = $("#systemComponent").find(".systemMessage").clone();
+        messagePrototype.find(".alert-message").text(messageDetail);
+        messagePrototype.attr("message_status", status);
+        if(typeof link !== "undefined"){
+            messagePrototype.find(".alert-link").text(link["text"]);
+            if(typeof link["href"] !== "undefined"){
+                messagePrototype.find(".alert-link").attr("href", link["href"]);
+            }else if(typeof link["callback"] !== "undefined"){
+                messagePrototype.find(".alert-link").click(link["callback"]);
+            }
+            
+        }
+        switch(messageType){
+            case 1: //warning
+                messagePrototype.addClass("alert-warning");
+                messagePrototype.find(".alert-title").text("Warning!");
+                break;
+            case 2: //danger
+                messagePrototype.addClass("alert-danger");
+                messagePrototype.find(".alert-title").text("Alert!");
+                break;
+            case 3: //success
+                messagePrototype.addClass("alert-success");
+                messagePrototype.find(".alert-title").text("Success!");
+                break;
+            case 4: //info
+                messagePrototype.addClass("alert-info");
+                messagePrototype.find(".alert-title").text("Information!");
+                break;
+        }
+        
+        $("#systemMessageContainer").prepend(messagePrototype);
+        messagePrototype.fadeIn();
+    }
+    function remove_system_message(status){
+        $("#systemMessageContainer").find(".systemMessage[message_status='"+status+"']").remove();
     }
 </script>
 <!--Component-->
@@ -172,6 +226,31 @@
         
     }
 </script>
+<!--Other Functions-->
+<script>
+/*Account Verification*/
+var requestVerificationCode = function(){
+    $("#systemMessageContainer").find(".systemMessage[message_status='"+51+"']").find(".alert-link").attr("data-loading-text", "Sending Verification Code...");
+    $("#systemMessageContainer").find(".systemMessage[message_status='"+51+"']").find(".alert-link").button("loading");
+    $.post(base_url("portal/requestVerificationCode"), {}, function(data){
+        var response = JSON.parse(data);
+        remove_system_message(51);
+        if(!response["error"].length){
+            show_system_message(52, 4, 
+                "Your verification link has been sent to your email: "+response["data"]+".",
+                {text: "Please refresh this page after you verify your account", callback : function(){
+                        location.reload(true);
+                }});
+        }else{
+            if(response["error"][0]["status"]*1 === 1){
+                show_system_message(53, 1, "Your account has already been verified.", {text: "Refresh this page", callback : function(){
+                        location.reload(true);
+                }});
+            }
+        }
+    });
+}
+</script>
 <!--Document Ready-->
 <script>
     $(document).ready(function(){
@@ -182,5 +261,19 @@
         }else{
             $("#headerUserFullName").text("Sign Up");
         }
+        if(user_type() === 4){
+            console.log(user_type());
+            setTimeout(function(){
+                show_system_message(51, 1, "Please verify your account by clicking the link sent to your account.", {text : "Send Verification Code", callback: requestVerificationCode});
+            }, 1300);
+            
+        }
+        //show messages
+        if(typeof( system_data.data.extra_data["message"]) !== "undefined"){
+           for(var x= 0; x < system_data.data.extra_data["message"].length; x++){
+               show_system_message(system_data.data.extra_data["message"][x]["status"], system_data.data.extra_data["message"][x]["type"], system_data.data.extra_data["message"][x]["message"]);
+           }
+        }   
+        
     });
 </script>

@@ -56,7 +56,9 @@ class C_account extends API_Controller {
                             );
                     //Send Email Confirmation
                     if($this->input->post("account_type_ID") == 2){
-                        $this->sendEmail("Wasteline Registration Verification", $this->input->post("email_address"), "Good day ".$this->input->post('username') ."! Thank you for registering in Wasteline.\nTo verify you accout, please click the following link: ".  base_url("porta/accountVerification/".((""+$result).(""+ time()))));
+                        $datetime = time();
+                        $this->sendEmail("Wasteline Registration Verification", $this->input->post("email_address"), "Good day ".$this->input->post('username') ."! Thank you for registering in Wasteline.\nTo verify you accout, please click the following link: ".  base_url("portal/accountVerification/".(sprintf("%d%d", result, $datetime))));
+                        $this->responseDebug(base_url("porta/accountVerification/".(sprintf("%d%d", result, $datetime))));
                     }
                     $this->actionLog($result);
                     $this->responseData($result);

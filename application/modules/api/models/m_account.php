@@ -45,7 +45,6 @@ class M_account extends API_Model{
             "account_address.ID AS acount_address_ID, account_address.description AS account_address_description",
             "account_address_map_marker.ID AS account_address_map_marker_ID, account_address_map_marker.longitude AS account_address_longitude, account_address_map_marker.latitude AS account_address_latitude"
         );
-        
         return $this->retrieveTableEntry($retrieveType, $limit, $offset, $sort, $ID, $condition, $selectedColumn, $joinedTable);
     }
     public function updateAccount($ID = NULL, $condition = array(), $newData = array()) {
