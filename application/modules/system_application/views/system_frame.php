@@ -149,7 +149,7 @@
                                 </div>
                                 <hr class="col-sm-12 no-padding"></hr>
                                 <div id="wl-side-list" class="col-sm-12 no-padding scroll-shadow scroll-on">
-                                    <ul>
+                                    <ul id="post-container-list">
                                         <li id="wl-rectangle-dummy" class="wl-rectangle-list col-sm-12">
                                             <div class="col-sm-2">
                                                 <div class="circle"></div>

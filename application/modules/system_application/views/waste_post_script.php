@@ -8,6 +8,33 @@
 		$("#wl-btn-side-repost").click(function(){
 			alert("nope!");
 		});
+
+		$("#post-container-list").on("focus", ".wl-list-desciption", function(){
+			var temp = "Click to add Description";
+			if($(this).text() == temp) $(this).text("");
+		});
+		$("#post-container-list").on("blur", ".wl-list-desciption", function(){
+			var temp = "Click to add Description";
+			if($(this).text() == "") $(this).text(temp);
+		});
+
+		$("#post-container-list").on("focus", ".wl-list-quantity", function(){
+			var temp = "Quantity";
+			if($(this).text() == temp) $(this).text("");
+		});
+		$("#post-container-list").on("blur", ".wl-list-quantity", function(){
+			var temp = "Quantity";
+			if($(this).text() == "") $(this).text(temp);
+		});
+
+		$("#post-container-list").on("focus", ".wl-list-price", function(){
+			var temp = "Price";
+			if($(this).text() == temp) $(this).text("");
+		});
+		$("#post-container-list").on("blur", ".wl-list-price", function(){
+			var temp = "Price";
+			if($(this).text() == "") $(this).text(temp);
+		});
 	});
 
 	wastePostContainer.createWastePost = function(){
@@ -19,10 +46,9 @@
 				price		: $(this).find(".wl-list-price").text(),
 				category	: $(this).find(".wl-list-category").text(),
 			}
-			
 			waste_post_input.push(container);
 		});
 
-		console.log(waste_post_input);
+		waste_post_input.splice(0, 1);
 	}
 </script>
