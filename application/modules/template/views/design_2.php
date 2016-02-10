@@ -510,8 +510,8 @@
     <script src="<?=asset_url('js/initial.min.js')?>"></script>
     <script src="<?=asset_url('js/jquery.mCustomScrollbar.concat.min.js')?>"></script>
     <script src="<?=asset_url('js/wl-global.js')?>"></script>
-    
-    
+
+
     <script src="<?=asset_url('js/moment.min.js')?>"></script>
     <script src="<?=asset_url('js/livestamp.min.js')?>"></script>
     <script src="<?=asset_url('js/wysiwyg.min.js')?>"></script>
@@ -519,7 +519,7 @@
     <script src="<?=asset_url('js/jquery.wysiwyg.js')?>"></script>
 
     <!-- WL plugins -->
-    
+
     <script src="<?=asset_url('js/wl-info.js')?>"></script>
     <script src="<?=asset_url('js/wl-profile.js')?>"></script>
 

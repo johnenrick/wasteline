@@ -11,6 +11,16 @@
                 $("#register-form").hide();
             }
         });
+        $(".btn-fp").click(function(){
+            if($("#login-form").is(":visible")){
+                $("#login-form").hide();
+                $("#fp-form").fadeIn(400);
+            }
+            else{
+                $("#login-form").fadeIn(400);
+                $("#fp-form").hide();
+            }
+        });
         $("#contentCarousel").owlCarousel({
             singleItem : true,
             stopOnHover : true,
@@ -18,7 +28,7 @@
             paginationNumbers : true,
             autoHeight : true
         });
-        //check if logged in    
+        //check if logged in
         if(user_id()){
             $("#portalLoginPanel").hide();
             $("#portalInformationPanel").removeClass("col-sm-7");

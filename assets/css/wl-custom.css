@@ -26,6 +26,25 @@ h5 {
 a {
     cursor: pointer !important;
 }
+/* disable elements */
+#wrapper.disabled {
+    padding-left: 0 !important;
+}
+#wrapper.disabled #sidebar-wrapper {
+    width: 0 !important;
+}
+#wrapper.disabled .wl-header-content {
+    display: none !important;
+}
+#wrapper.disabled #moduleContainer {
+    margin-top: 0 !important;
+    height: 100%;
+}
+#wrapper.disabled #portalInformationPanel {
+    background:#2f323a;
+    color:white;
+}
+/* end disable */
 
 .wl-logo-1 {
     color: #50c14e;
@@ -152,6 +171,10 @@ ul.sidebar-nav li a {
   background-color: rgba(0,0,0,0.7);
 }
 */
+
+#portalLoginPanel {
+    height:100%;background: url('../../assets/images/lp-img4.jpg') no-repeat center center;background-size:cover;
+}
 
 #wl-side-content {
     width: 30%;
@@ -804,7 +827,6 @@ ul.sidebar-nav li a {
     display: none;
 }
 
-.mCustomScrollBox,
 .scroll-shadow {
     background: linear-gradient(white 30%, hsla(0, 0%, 100%, 0)), linear-gradient(hsla(0, 0%, 100%, 0) 10px, white 70%) bottom, radial-gradient(at top, rgba(0, 0, 0, 0.3), transparent 70%), radial-gradient(at bottom, rgba(0, 0, 0, 0.3), transparent 70%) bottom;
     background-repeat: no-repeat;

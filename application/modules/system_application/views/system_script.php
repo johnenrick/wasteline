@@ -19,7 +19,7 @@
         },
         access_control_list :{},
         refresh_call : {
-            
+
         }
     };
     function user_id(){
@@ -44,7 +44,7 @@
        return system_data.url.api_url+link;
     }
     function asset_url(link){
-       return system_data.url.asset_url+link; 
+       return system_data.url.asset_url+link;
     }
     function retrieve_access_control(){
         $.post(api_url("C_access_control_list/retrieveAccessControlList"), {}, function(data){
@@ -80,9 +80,9 @@
         if($("#moduleContainer").find(".moduleHolder[module_link='"+moduleLink+"']").length === 0){
             $.post(base_url(moduleLink), {}, function(data){
                 //CHECK IF JSON OR HTML FOR AUTHORIZATION
-                
+
                 var moduleHolder = $("#systemComponent").find(".moduleHolder").clone();
-                
+
                 moduleHolder.attr("module_link", moduleLink);
                 moduleHolder.attr("id",moduleName.replace(/_([a-z])/g, function (g) { return g[1].toUpperCase(); }));
                 moduleHolder.append(data);
@@ -95,18 +95,18 @@
                     $(".wl-page-title").text(moduleLink.replace('-', ' '));
                     refresh_call(moduleName);
                 }
-                
+
             });
         }else{
             //show page
             $('.wl-page-content:not(.moduleHolder[module_link="'+moduleLink+'"])').hide();
             if($('.moduleHolder[module_link="'+moduleLink+'"]').is(":visible") === false){
                 $('.moduleHolder[module_link="'+moduleLink+'"]').fadeIn(500);
-                
+
                 $(".wl-page-title").text(moduleLink.replace('-', ' '));
                 refresh_call(moduleName);
             }
-            
+
         }
     }
     function refresh_call(moduleName){
@@ -147,7 +147,7 @@
                     elementSelected.find("input[name='"+index+"']").parent().addClass("has-error");
                 }
             }else if(errorValue["status"] > 1000 && errorValue["status"] < 10000){//System Error
-                
+
             }else{
                 elementSelected.find(".formMessage").append("* "+errorValue["message"]+"<br>");
             }
@@ -159,7 +159,7 @@
     }
     /**
      * Show a system message at the bottom of the interface
-     * 
+     *
      * @param {int} status status of the message to avoid conflict
      * @param {int} messageType warning|danger|success|info
      * @param {object} messageDetail the message to be displayed
@@ -177,7 +177,7 @@
             }else if(typeof link["callback"] !== "undefined"){
                 messagePrototype.find(".alert-link").click(link["callback"]);
             }
-            
+
         }
         switch(messageType){
             case 1: //warning
@@ -197,7 +197,7 @@
                 messagePrototype.find(".alert-title").text("Information!");
                 break;
         }
-        
+
         $("#systemMessageContainer").prepend(messagePrototype);
         messagePrototype.fadeIn();
     }
@@ -222,7 +222,7 @@
         }else{
             callBack();
         }
-        
+
     }
 </script>
 <!--Other Functions-->
@@ -235,7 +235,7 @@ var requestVerificationCode = function(){
         var response = JSON.parse(data);
         remove_system_message(51);
         if(!response["error"].length){
-            show_system_message(52, 4, 
+            show_system_message(52, 4,
                 "Your verification link has been sent to your email: "+response["data"]+".",
                 {text: "Please refresh this page after you verify your account", callback : function(){
                         location.reload(true);
@@ -256,7 +256,7 @@ var requestVerificationCode = function(){
         //load_module(system_data.data.default_page);
         retrieve_access_control();
         if(user_id()){
-            $("#headerUserFullName").text(user_first_name()+" "+user_last_name());
+            $("#headerUserFullName").text(user_first_name());
         }else{
             $("#headerUserFullName").text("Sign Up");
         }
@@ -264,14 +264,14 @@ var requestVerificationCode = function(){
             setTimeout(function(){
                 show_system_message(51, 1, "Please verify your account by clicking the link sent to your account.", {text : "Send Verification Code", callback: requestVerificationCode});
             }, 1300);
-            
+
         }
         //show messages
         if(typeof( system_data.data.extra_data["message"]) !== "undefined"){
            for(var x= 0; x < system_data.data.extra_data["message"].length; x++){
                show_system_message(system_data.data.extra_data["message"][x]["status"], system_data.data.extra_data["message"][x]["type"], system_data.data.extra_data["message"][x]["message"]);
            }
-        }   
-        
+        }
+
     });
 </script>
