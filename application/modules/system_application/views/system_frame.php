@@ -53,10 +53,10 @@
                         <a data-page-link="information"><span class="lnr lnr-book"></span></a>
                     </li>
                     
-                    <li id="tae" module_id="4" module_link="profile_management" module_name="profile_management" style="display:none">
+                    <li  module_id="4" module_link="profile_management" module_name="profile_management" style="display:none">
                         <a data-page-link="profile" ><span class="lnr lnr-user"></span></a>
                     </li>
-                    <li >
+                    <li module_id="5" module_link="lgu_management" module_name="LGU_management">
                         <a data-page-link="manage-users"><span class="lnr lnr-users"></span></a>
                     </li>
                     <li class="wl-btn-logout" module_name="home">

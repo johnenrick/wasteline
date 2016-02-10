@@ -3,6 +3,7 @@
     profileManagement.viewProfile = function(){
         $.post(api_url("c_account/retrieveAccount"), {}, function(data){
             var response = JSON.parse(data);
+            
             if(!response["error"].length){
                 $("#profileManagementForm").find("[name='updated_data[first_name]']").val(response["data"]["first_name"]).attr("initial_value", response["data"]["first_name"]);
                 $("#profileManagementForm").find("[name='updated_data[middle_name]']").val(response["data"]["middle_name"]).attr("initial_value", response["data"]["middle_name"]);

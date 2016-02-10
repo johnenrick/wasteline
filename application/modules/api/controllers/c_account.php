@@ -93,6 +93,7 @@ class C_account extends API_Controller {
                     $ID, 
                     $this->input->post("condition")
                     );
+            $this->responseDebug($this->input->post("condition"));
             if($this->input->post("limit")){
                 $this->responseResultCount($this->m_account->retrieveAccount(
                     1,

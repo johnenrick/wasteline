@@ -1,9 +1,9 @@
 <script>
-    var reportManagement = {};
-    reportManagement.retrieveAccount = function(data){
+    var LGUManagement = {};
+    LGUManagement.retrieveAccount = function(data){
         //loop result
-    }
-    reportManagement.initializeReportManagementTable = function(){
+    };
+    LGUManagement.initializeReportManagementTable = function(){
         var config = {
             api_link : api_url("C_account/retrieveAccount"),
             filter : [{
@@ -26,15 +26,15 @@
                 column_name: "ID",
                 sort : 1
             },{
-                column_name: "First Column"
+                column_name: "Full Name"
             }],
-            result_callback : reportManagement.retrieveAccount
+            result_callback : LGUManagement.retrieveAccount
         };
-        var reportManagementTable = new TableComponent("#reportTableContainer", config);
+        var LGUManagementTable = new TableComponent("#LGUManagementTableContainer", config);
         
     };
     $(document).ready(function(){
-        load_page_component("table_component", reportManagement.initializeReportManagementTable);
+        load_page_component("table_component", LGUManagement.initializeReportManagementTable);
     });
 
     

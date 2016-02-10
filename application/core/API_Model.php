@@ -55,8 +55,11 @@ class API_Model extends CI_Model{
         }
         
         //Filtering entry
+        
+        
         if($ID === NULL){
             $this->addCondition($condition);
+           
         }else{
             
             $this->db->where("$this->TABLE.ID", $ID);
@@ -71,7 +74,7 @@ class API_Model extends CI_Model{
         if($limit !== NULL){
             $this->db->limit($limit, $offset);
         }
-        //($limit)?$this->db->limit($limit, $offset):0;
+        $this->db->group_by("$this->TABLE.ID"); 
         if(!($retrieveType)){
             $result = $this->db->get($this->TABLE);
             $this->db->flush_cache();
@@ -83,7 +86,7 @@ class API_Model extends CI_Model{
             }
             
         }else{
-            $result = $this->db->count_all_results($this->TABLE);
+            $result = count($this->db->get($this->TABLE)->result_array());
             $this->db->flush_cache();
             $this->db->stop_cache();
             return $result;
@@ -131,11 +134,13 @@ class API_Model extends CI_Model{
     public function addCondition($condition = array()){
         
         if(is_array($condition)){
+            
             foreach($condition as $tableColumn => $tableColumnValue){
                     $segment = explode("__", $tableColumn);
                     $tableColumn = $segment[count($segment)-1];
-                    $tableName = (count($segment) === 3) ? $segment[1] : (count($segment) === 2) ? $segment[0] : $this->TABLE;
+                    $tableName = (count($segment) === 3) ? $segment[1] : ((count($segment) === 2) ? $segment[0] : $this->TABLE);
                     if(isset($this->DATABASETABLE[$tableName][$tableColumn])){
+                        
                         switch($segment[0]){
                             case "like":
                                 $this->db->like("$tableName.$tableColumn", $tableColumnValue);

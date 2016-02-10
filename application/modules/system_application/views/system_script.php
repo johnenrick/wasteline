@@ -49,7 +49,6 @@
     function retrieve_access_control(){
         $.post(api_url("C_access_control_list/retrieveAccessControlList"), {}, function(data){
             var response = JSON.parse(data);
-            console.log(response);
             if(!response["error"].length){
                 if(response["data"]["access_control_list"]){
                     for(var x = 0; x < response["data"]["access_control_list"].length; x++){
@@ -85,7 +84,7 @@
                 var moduleHolder = $("#systemComponent").find(".moduleHolder").clone();
                 
                 moduleHolder.attr("module_link", moduleLink);
-                moduleHolder.attr("id",moduleName);
+                moduleHolder.attr("id",moduleName.replace(/_([a-z])/g, function (g) { return g[1].toUpperCase(); }));
                 moduleHolder.append(data);
                 $("#moduleContainer").append(moduleHolder);
                 //show page
@@ -262,7 +261,6 @@ var requestVerificationCode = function(){
             $("#headerUserFullName").text("Sign Up");
         }
         if(user_type() === 4){
-            console.log(user_type());
             setTimeout(function(){
                 show_system_message(51, 1, "Please verify your account by clicking the link sent to your account.", {text : "Send Verification Code", callback: requestVerificationCode});
             }, 1300);

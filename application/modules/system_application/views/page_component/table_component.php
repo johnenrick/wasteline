@@ -1,31 +1,8 @@
 <div class="table_component">
     <div class="row">
         <div class="col-sm-12">
-            <form class="form-inline pull-right">
-                <div class="form-group">
-                    <label for="exampleInputName2">Report Type </label>
-                    <select class="form-control">
-                        <option>All</option>
-                        <option>Illegal Dumping</option>
-                        <option>Inappropriate Content</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputName2">Reported by </label>
-                    <input type="text" class="form-control" id="exampleInputName2" placeholder="Name of the reporter">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputName2">Date </label>
-                    <input type="text" class="form-control" id="exampleInputName2" placeholder="mm/dd/yy">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputName2">Status </label>
-                    <select class="form-control">
-                        <option>All</option>
-                        <option>Resolved</option>
-                        <option>Pending</option>
-                    </select>
-                </div>
+            <form action="" class="tableComponentFilterForm form-inline pull-right" method="post">
+                <input name="limit" value="20" type="hidden">
                 <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-filter" aria-hidden="true"></span> Filter</button>
             </form>
         </div>
@@ -35,23 +12,10 @@
             <table class="table table-hover ">
                 <thead>
                     <tr>
-                        <th>ID <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span></th>
-                        <th>Type <span class="glyphicon glyphicon-triangle-up" aria-hidden="true"></span></th>
-                        <th>Detail</th>
-                        <th>Reported by</th>
-                        <th>Date & Time</th>
-                        <th>Status</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Illegal dumping</td>
-                        <td>tae</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
                 </tbody>
             </table>
 
@@ -72,10 +36,24 @@
             <form class="form-inline pull-right">
                 <div class="form-group">
                     <label>Page</label> 
-                    <input type="text" class="form-control input-sm" placeholder="" size="2" style="text-align:right">
+                    <input type="text" class="form-control input-sm tableComponentCurrentPage" placeholder="" size="2" style="text-align:right">
                     <label>/ 3</label>
                 </div>
             </form>
+        </div>
+    </div>
+    <div class="prototype" style="display:none">
+        <table>
+            <th sort><span class="tableComponentColumnName"></span> <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span></th>
+        </table>
+        <div class="tableComponentFilterOptionSelect form-group">
+            <label></label>
+            <select class="form-control">
+            </select>
+        </div>
+        <div class="tableComponentFilterOption form-group">
+            <label ></label>
+            <input class="form-control">
         </div>
     </div>
 </div>
