@@ -33,11 +33,11 @@
         <link href="<?=asset_url('css/jquery.mCustomScrollbar.min.css')?>" rel="stylesheet">
         <link href="<?=asset_url('css/wl-custom.css')?>" rel="stylesheet">
 
-        
+
 
     </head>
     <body>
-        <div id="wrapper">
+        <div id="wrapper" class="<?=((user_id())?'':'disabled')?>">
             <div id="sidebar-wrapper">
                 <ul class="sidebar-nav">
                     <li class="sidebar-brand">
@@ -52,7 +52,7 @@
                     <li module_id="3" module_link="report_management" module_name="home" style="display:none">
                         <a data-page-link="information"><span class="lnr lnr-book"></span></a>
                     </li>
-                    
+
                     <li id="tae" module_id="4" module_link="profile_management" module_name="profile_management" style="display:none">
                         <a data-page-link="profile" ><span class="lnr lnr-user"></span></a>
                     </li>
@@ -86,12 +86,17 @@
                                 <span class="wl-c-green-2 wl-date">--/--/--</span>
                                 <span class="wl-c-green-3">&nbsp;|&nbsp;</span>
                                 <span class="wl-c-green-1 wl-time">--:--</span>
+                                <div class="col-sm-12" style="padding: 10px 0 0">
+                                    <a href="http://google.com" style="color:#413f4c;text-decoration:none"><h4>Brgy. Banilad, Mandaue City</h4></a>
+                                </div>
                             </div>
                             <div class="wl-top-grp col-sm-4 no-padding">
                                 <div class="col-sm-10 padding-top-15">
                                     <div class="col-sm-12 no-padding">
-                                        <span class="wl-c-green-4">Hi, <span id="headerUserFullName" class="wl-c-green-5">John Doe</span></span>
+                                        <img id="headerUserImg" data-char-count="2" class="wl-header-img">
+                                        <span id="headerUserFullName" class="wl-c-green-5">John Doe</span>
                                     </div>
+<!--
                                     <div class="col-sm-12" style="padding: 5px 0 0">
                                         <div class="form-group">
                                             <div class="btn-group">
@@ -108,6 +113,7 @@
                                             </div>
                                         </div>
                                     </div>
+-->
                                 </div>
 
                                 <div class="col-sm-2 no-padding">
@@ -122,7 +128,7 @@
                         <div id="moduleContainer" class="wl-main-content col-sm-12">
                             <!-- Home -->
                             <div id="systemMessageContainer" class="alert-container" >
-                                    
+
                             </div>
                             <div id="wl-side-content">
                                 <div id="wl-side-header" class="col-sm-12">
@@ -208,8 +214,8 @@
 
         <script src="<?= asset_url("js/jquery.form.min.js"); ?>"></script>
         <script src="<?= asset_url('js/validator.js') ?>"></script>
-        
-        
+
+
         <script src="<?=asset_url('js/initial.min.js')?>"></script>
         <script src="<?=asset_url('js/jquery.mCustomScrollbar.concat.min.js')?>"></script>
         <script src="<?=asset_url('js/wl-global.js')?>"></script>
