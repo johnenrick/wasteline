@@ -463,8 +463,19 @@
                                             <p class="wl-list-desciption wl-c-green-1" contenteditable="true">Click to add Description</p>
                                             <p class="wl-list-quantity-price">
                                                 <span class="wl-list-quantity" contenteditable="true">Quantity</span> &nbsp;|&nbsp;Php.
-                                                <span class="wl-list-price" contenteditable="true">Price</span></p>
-                                            <p class="wl-list-category" contenteditable="true">Category</p>
+                                                <span class="wl-list-price" contenteditable="true">Price</span>
+                                            </p>
+
+                                            <div class="form-group form-group-sm">
+                                                <select class="form-control wl-list-category">
+                                                    <option hidden >Category</option>
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                    <option>4</option>
+                                                    <option>5</option>
+                                                </select>
+                                            </div>
                                         </div>
                                     </li>
                                     <li class="wl-rectangle-add col-sm-12 unselectable">
