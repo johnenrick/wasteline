@@ -1,18 +1,15 @@
 <div class="col-sm-3 no-padding wl-pro-full-info">
     <img id="profileManagementProfilePicture" class="wl-profile-img" data-char-count="2">
     <p id="profileManagementFullName" class="wl-full-name">
-        John Michael Doe
     </p>
     <p id="profileManagementUsername" class="wl-username">
-        john.doe
     </p>
     <p id="profileManagementCompleteAddress" class="wl-complete-address">
-        A. S. Fortuna St, Banilad, Mandaue City, Cebu
     </p>
     <hr>
-    <p id="profileManagementEmailAddress" class="wl-slogan">plenosjohn@yahoo.com</p>
+    <p id="profileManagementEmailAddress" class="wl-slogan"></p>
     <p class="wl-slogan-edit">Email</p>
-    <p id="profileManagementContactNumber" class="wl-slogan">09275835504</p>
+    <p id="profileManagementContactNumber" class="wl-slogan"></p>
     <p class="wl-slogan-edit">Contact Number</p>
 </div>
 

@@ -14,6 +14,10 @@
 class API_Model extends CI_Model{
     public $TABLE = false;
     public $DATABASETABLE = array();
+    public $HASCONDITION = false;
+    public function __construct() {
+        parent::__construct();
+    }
     public function createTableEntry($newData){
         $this->db->start_cache();
         $this->db->flush_cache();
@@ -55,13 +59,10 @@ class API_Model extends CI_Model{
         }
         
         //Filtering entry
-        
-        
         if($ID === NULL){
             $this->addCondition($condition);
            
         }else{
-            
             $this->db->where("$this->TABLE.ID", $ID);
         }
         //Sorting entry
@@ -79,6 +80,7 @@ class API_Model extends CI_Model{
             $result = $this->db->get($this->TABLE);
             $this->db->flush_cache();
             $this->db->stop_cache();
+            //echo $this->db->last_query();
             if($result->num_rows()){
                 return ($ID !== NULL) ? $result->row_array() : $result->result_array();
             }else{
@@ -89,8 +91,10 @@ class API_Model extends CI_Model{
             $result = count($this->db->get($this->TABLE)->result_array());
             $this->db->flush_cache();
             $this->db->stop_cache();
+            $this->db->flush_cache();
             return $result;
         }
+        
     }
     /**
      * 
@@ -105,73 +109,114 @@ class API_Model extends CI_Model{
         $this->initializeTableColumn($joinedTable);
         $this->db->start_cache();
         $this->db->flush_cache();
-        $this->addCondition($condition);
         if($ID !== NULL){
             $this->db->where("$this->TABLE.ID", $ID);
+        }else{
+            $this->addCondition($condition);
         }
-        $result = false;
-        if(isset($newData["ID"])){
+        
+        if(isset($newData["ID"])){ // avoid changing the primary key
             unset($newData["ID"]);
         }
         foreach($joinedTable as $key => $value){
             $this->db->join($key, $value, "left");
         }
-        if((count($condition) > 0) || ($ID !== NULL)){
-            if(count($newData) > 0){
-                $updatedData = array();
-                foreach($newData as $newDataKey => $newDataValue){
-                    if(isset($this->DATABASETABLE[$this->TABLE][$newDataKey] )){
-                        $updatedData[$newDataKey] = $newDataValue;
-                    }
+        $result = false;
+        if(count($newData) > 0 && (($ID !== NULL) || $this->HASCONDITION)){
+            $updatedData = array();
+            foreach($newData as $newDataKey => $newDataValue){
+                if(isset($this->DATABASETABLE[$this->TABLE][$newDataKey] )){
+                    $updatedData[$newDataKey] = $newDataValue;
                 }
+            }
+            if(count($updatedData)){
                 $result = $this->db->update($this->TABLE, $updatedData);
             }
         }
-        $this->db->flush_cache();
         $this->db->stop_cache();
+        $this->db->flush_cache();
+       
         return $result;
     }
     public function addCondition($condition = array()){
         
         if(is_array($condition)){
-            
-            foreach($condition as $tableColumn => $tableColumnValue){
-                    $segment = explode("__", $tableColumn);
-                    $tableColumn = $segment[count($segment)-1];
-                    $tableName = (count($segment) === 3) ? $segment[1] : ((count($segment) === 2) ? $segment[0] : $this->TABLE);
-                    if(isset($this->DATABASETABLE[$tableName][$tableColumn])){
-                        
-                        switch($segment[0]){
-                            case "like":
-                                $this->db->like("$tableName.$tableColumn", $tableColumnValue);
-                                break;
-                            case "not" :
-                                $this->db->where("$tableName.$tableColumn!=", $tableColumnValue);
-                                break;
-                            case "or" :
-                                $this->db->or_where("$tableName.$tableColumn", $tableColumnValue);
-                                break;
-                            case "lesser":
-                                $this->db->where("$tableName.$tableColumn<", $tableColumnValue);
-                                break;
-                            case "lesser_equal":
-                                $this->db->where("$tableName.$tableColumn<=", $tableColumnValue);
-                                break;
-                            case "greater_equal":
-                                $this->db->where("$tableName.$tableColumn>=", $tableColumnValue);
-                                break;
-                            case "greater":
-                                $this->db->where("$tableName.$tableColumn>", $tableColumnValue);
-                                break;
-                            default :
-                                if(is_array($tableColumnValue)){
-                                    $this->db->where_in("$tableName.$tableColumn", $tableColumnValue);
-                                }else{
-                                    $this->db->where("$tableName.$tableColumn", $tableColumnValue);
-                                }
-                                break;
+            if($this->TABLE == "account_contact_information"){
+            }
+            foreach($condition as $tableColumnKey => $tableColumnValue){
+                $segment = explode("__", $tableColumnKey);
+                $tableColumn = $segment[count($segment)-1];
+                $tableName = (count($segment) === 3) ? $segment[1] : ((count($segment) === 2) ? $segment[0] : $this->TABLE);
+                $passArithmetic = false;
+                /*Arithmetic Operations*/
+                /*Concat*/
+                $plusColumns = explode("__CONCAT__", $tableColumnKey);
+                if(count($plusColumns) > 1){
+
+                    $passArithmetic = true;
+                    $tableColumnTemp ="";
+                    foreach($plusColumns as $plusColumnsValue){
+                        $plusColumn = explode("__", $plusColumnsValue);
+                        $tableName = "";
+                        $tableColumn = "";
+                        if(count($plusColumn) == 3){
+                            $tableName = $plusColumn[1];
+                            $tableColumn = $plusColumn[2];
+                        }else if(count($plusColumn) == 2){
+                            $tableName = $plusColumn[0];
+                            $tableColumn = $plusColumn[1];
+                        }else{
+                            $tableName = $this->TABLE;
+                            $tableColumn = $plusColumn[0];
+                        }
+                        if(!isset($this->DATABASETABLE[$tableName][$tableColumn])){
+                            $passArithmetic = false;
+                        }else{
+                            $tableColumnTemp .= ($tableColumnTemp == "" ? "" : " , ")."`$tableName`.`$tableColumn`";
                         }
                     }
+                    $tableColumn = "CONCAT($tableColumnTemp)";
+                }
+                if(isset($this->DATABASETABLE[$tableName][$tableColumn]) || $passArithmetic){
+                    $leftValue = ($passArithmetic) ? $tableColumn: "$tableName.$tableColumn";
+                    $this->HASCONDITION = true;
+                    switch($segment[0]){
+                        case "like":
+                            if(is_array($tableColumnValue)){
+                                foreach($tableColumnValue as $tableColumnValueValue){
+                                    $this->db->like($leftValue, $tableColumnValueValue);
+                                }
+                            }else{
+                                $this->db->like($leftValue, $tableColumnValue);
+                            }
+                            break;
+                        case "not" :
+                            $this->db->where("$leftValue!=", $tableColumnValue);
+                            break;
+                        case "or" :
+                            $this->db->or_where("$leftValue", $tableColumnValue);
+                            break;
+                        case "lesser":
+                            $this->db->where("$leftValue<", $tableColumnValue);
+                            break;
+                        case "lesser_equal":
+                            $this->db->where("$leftValue<=", $tableColumnValue);
+                            break;
+                        case "greater_equal":
+                            $this->db->where("$leftValue>=", $tableColumnValue);
+                            break;
+                        case "greater":
+                            $this->db->where("$leftValue>", $tableColumnValue);
+                            break;
+                        default :
+                            if(is_array($tableColumnValue)){
+                                $this->db->where_in("$leftValue", $tableColumnValue);
+                            }else{
+                                $this->db->where("$leftValue", $tableColumnValue);
+                            }
+                            break;
+                    }
+                }
             }
         }
     }

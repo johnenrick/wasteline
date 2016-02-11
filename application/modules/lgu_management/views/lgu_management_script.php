@@ -17,14 +17,16 @@
                     },
                     default_value : 1
             }, {
-                    name : "like__account_basic_information__first_name",
-                    label : "First Name",
-                    placeholder : "First Name",
+                    name : "condition[like__account_basic_information__first_name__CONCAT__account_basic_information__middle_name__CONCAT__account_basic_information__last_name]",
+                    label : "User Full Name",
+                    placeholder : "Full Name",
                     type : "text"
             }],
             header : [{
                 column_name: "ID",
                 sort : 1
+            },{
+                column_name: "Username"
             },{
                 column_name: "Full Name"
             }],

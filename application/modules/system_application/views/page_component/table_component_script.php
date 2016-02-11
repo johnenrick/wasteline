@@ -59,8 +59,7 @@
                     type : "text",
                     required : false,
                     value : tableConfig["result_limit"]*tableComponent.tableContainer.find(".tableComponentCurrentPage").val()
-                })
-                console.log(data);
+                });
             },
             success : function(data){
                 var response = JSON.parse(data);

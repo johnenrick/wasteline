@@ -1,9 +1,8 @@
 <script>
     var profileManagement = {};
     profileManagement.viewProfile = function(){
-        $.post(api_url("c_account/retrieveAccount"), {}, function(data){
+        $.post(api_url("c_account/retrieveAccount"), {ID : user_id()}, function(data){
             var response = JSON.parse(data);
-            
             if(!response["error"].length){
                 $("#profileManagementForm").find("[name='updated_data[first_name]']").val(response["data"]["first_name"]).attr("initial_value", response["data"]["first_name"]);
                 $("#profileManagementForm").find("[name='updated_data[middle_name]']").val(response["data"]["middle_name"]).attr("initial_value", response["data"]["middle_name"]);
@@ -55,6 +54,18 @@
                     data.splice(4,1);
                     data.splice(3,1);
                 }
+                data.push({
+                   name : "ID",
+                   value : user_id(),
+                   required : true,
+                   type : "hidden"
+                });
+                data.push({
+                   name : "condition[account_ID]",
+                   value : user_id(),
+                   required : true,
+                   type : "hidden"
+                });
                 $("#profileManagementForm").find(".submitButton").button("loading");
             },
             success : function(data){

@@ -43,7 +43,7 @@
                     <li class="sidebar-brand">
                         <a><span class="lnr lnr-trash"></span></a>
                     </li>
-                    <li  class="" module_id="1" module_link="portal" module_name="home" style="display:none">
+                    <li module_id="1" module_link="portal" module_name="home" style="display:none">
                         <a data-page-link="home" ><span class="lnr lnr-home"></span></a>
                     </li>
                     <li module_id="2" module_link="wastemap" module_name="home" style="display:none">
@@ -52,13 +52,10 @@
                     <li module_id="3" module_link="report_management" module_name="home" style="display:none">
                         <a data-page-link="information"><span class="lnr lnr-book"></span></a>
                     </li>
-<<<<<<< HEAD
                     
                     <li  module_id="4" module_link="profile_management" module_name="profile_management" style="display:none">
-=======
 
                     <li id="tae" module_id="4" module_link="profile_management" module_name="profile_management" style="display:none">
->>>>>>> origin/master
                         <a data-page-link="profile" ><span class="lnr lnr-user"></span></a>
                     </li>
                     <li module_id="5" module_link="lgu_management" module_name="LGU_management">

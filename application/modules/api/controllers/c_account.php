@@ -84,7 +84,7 @@ class C_account extends API_Controller {
             if(user_type() == 2 || user_type() == 0 || user_type() == 4){
                 $ID = user_id();
             }
-           
+            
             $result = $this->m_account->retrieveAccount(
                     $this->input->post("retrieve_type"),
                     $this->input->post("limit"),
@@ -148,7 +148,7 @@ class C_account extends API_Controller {
                 $this->form_validation->set_rules('updated_data[username]', 'Username', 'is_unique[account.username]|alpha_numeric');
             }
             $this->form_validation->set_rules('updated_data[password]', 'Password', 'min_length[6]');
-            $this->form_validation->set_rules('updated_data[email_address]', 'Email Address', 'valid_email|is_unique[account_contact_information.detail]');
+            $this->form_validation->set_rules('updated_data[email_detail]', 'Email Address', 'valid_email|is_unique[account_contact_information.detail]');
             
             if($this->form_validation->run()){
                 $updatedData = $this->input->post('updated_data');
@@ -159,14 +159,14 @@ class C_account extends API_Controller {
                         $updatedData["account_type_ID"] = user_type();
                     }
                     $ID = user_id();
-                    $condition["account_ID"] = $ID;
-                    
                 }
+                
                 $result = $this->m_account->updateAccount(
                         $ID,
                         $condition,
                         $updatedData
                         );
+                $condition["account_ID"] = $ID;
                 $result1 = $this->M_account_basic_information->updateAccountBasicInformation(
                         NULL,
                         $condition,
@@ -182,7 +182,8 @@ class C_account extends API_Controller {
                                 NULL, 
                                 array(
                                     "account_ID" => user_id(), 
-                                    "ID" => $updatedData["email_ID"]
+                                    "ID" => $updatedData["email_ID"],
+                                    "type" => 1
                                 ), 
                                 array(
                                     "detail" => $updatedData["email_detail"]
@@ -196,7 +197,8 @@ class C_account extends API_Controller {
                                 NULL, 
                                 array(
                                     "account_ID" => user_id(), 
-                                    "ID" => $updatedData["contact_number_ID"]
+                                    "ID" => $updatedData["contact_number_ID"],
+                                    "type" => 3
                                 ), 
                                 array(
                                     "detail" => $updatedData["contact_number_detail"]
@@ -207,7 +209,6 @@ class C_account extends API_Controller {
                     /**Updating Address Information**/
                     $this->load->model("M_account_address");
                     $this->load->model("M_map_marker");
-                    $this->responseDebug(isset($updatedData["account_address_ID"]) && $updatedData["account_address_ID"]);
                     if(isset($updatedData["account_address_ID"]) && $updatedData["account_address_ID"] && $updatedData["account_address_description"]){//update account_address
                         /*Account Address*/
                         $this->M_account_address->updateAccountAddress( NULL, 
@@ -234,7 +235,7 @@ class C_account extends API_Controller {
                         $this->M_map_marker->createMapMarker($accountAddressID, 1, $updatedData["account_address_longitude"], $updatedData["account_address_latitude"]);
                     }
                     $this->actionLog(json_encode($this->input->post()));
-                    $this->responseData($result);
+                    $this->responseData($result || $result1);
                 }else{
                     $this->responseError(3, "Failed to Update");
                 }
