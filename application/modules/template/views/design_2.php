@@ -84,6 +84,16 @@
                             <span class="wl-c-green-1">Wasteline</span>
                             <span class="wl-c-gray-1">&nbsp;|&nbsp;</span>
                             <span class="wl-c-black-1 wl-page-title">Home</span>
+                            <div id="wl-header-menu" class="col-sm-12 wl-information-content wl-page-content wl-hide">
+                                <ul class="unselectable">
+                                    <li>
+                                        <a class="wl-active">Articles</a>
+                                    </li>
+                                    <li>
+                                        <a>Guidelines</a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                         <div class="wl-top-grp col-sm-4 unselectable">
                             <span class="lnr lnr-calendar-full wl-c-green-1"></span>
