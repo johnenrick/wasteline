@@ -24,11 +24,19 @@
             }],
             header : [{
                 column_name: "ID",
+                column_label : "ID",
                 sort : 1
             },{
-                column_name: "Username"
+                column_name: "username",
+                column_label : "Username"
             },{
-                column_name: "Full Name"
+                column_name: "",
+                coumn_label : "Name",
+                sort : [
+                    "account_basic_information__last_name",
+                    "account_basic_information__first_name",
+                    "account_basic_information__last_name"
+                ]
             }],
             result_callback : LGUManagement.retrieveAccount
         };

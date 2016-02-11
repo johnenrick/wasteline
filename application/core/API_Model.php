@@ -80,7 +80,6 @@ class API_Model extends CI_Model{
             $result = $this->db->get($this->TABLE);
             $this->db->flush_cache();
             $this->db->stop_cache();
-            //echo $this->db->last_query();
             if($result->num_rows()){
                 return ($ID !== NULL) ? $result->row_array() : $result->result_array();
             }else{
@@ -111,7 +110,8 @@ class API_Model extends CI_Model{
         $this->db->flush_cache();
         if($ID !== NULL){
             $this->db->where("$this->TABLE.ID", $ID);
-        }else{
+        }
+        if(count($condition)){
             $this->addCondition($condition);
         }
         
@@ -131,6 +131,7 @@ class API_Model extends CI_Model{
             }
             if(count($updatedData)){
                 $result = $this->db->update($this->TABLE, $updatedData);
+               
             }
         }
         $this->db->stop_cache();
@@ -152,7 +153,7 @@ class API_Model extends CI_Model{
                 /*Concat*/
                 $plusColumns = explode("__CONCAT__", $tableColumnKey);
                 if(count($plusColumns) > 1){
-
+                    
                     $passArithmetic = true;
                     $tableColumnTemp ="";
                     foreach($plusColumns as $plusColumnsValue){
@@ -180,6 +181,7 @@ class API_Model extends CI_Model{
                 if(isset($this->DATABASETABLE[$tableName][$tableColumn]) || $passArithmetic){
                     $leftValue = ($passArithmetic) ? $tableColumn: "$tableName.$tableColumn";
                     $this->HASCONDITION = true;
+                   
                     switch($segment[0]){
                         case "like":
                             if(is_array($tableColumnValue)){
@@ -212,7 +214,7 @@ class API_Model extends CI_Model{
                             if(is_array($tableColumnValue)){
                                 $this->db->where_in("$leftValue", $tableColumnValue);
                             }else{
-                                $this->db->where("$leftValue", $tableColumnValue);
+                                $this->db->where("$leftValue=", $tableColumnValue);
                             }
                             break;
                     }
