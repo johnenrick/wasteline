@@ -9,7 +9,7 @@
     </div>
     <div class="row table-responsive">
         <div class="col-sm-12">
-            <table class="table table-hover ">
+            <table class="tableComponentTable table table-hover ">
                 <thead>
                     <tr>
                         
@@ -24,27 +24,37 @@
 
     </div>
     <div class="row">
-        <div class="col-sm-4 col-sm-offset-4">
+        <div class="col-sm-4">
+            <form class="form-inline ">
+                <div class="form-group">
+                    <label class="tableComponentTotalResult"></label> 
+                    <label>Result(s)</label>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-4 ">
             <nav>
                 <ul class="pager">
-                    <li><a href="#" class="inactive-link"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Previous</a></li>
-                    <li><a href="#">Next <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></a></li>
+                    <li class="tableComponentPreviousPage"><a href="#" class="inactive-link"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Previous</a></li>
+                    <li class="tableComponentLoading"><a href="#" class="inactive-link"> Retrieving Data</a></li>
+                    <li class="tableComponentNextPage" ><a href="#">Next <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></a></li>
                 </ul>
             </nav>
         </div>
         <div class="col-sm-4">
             <form class="form-inline pull-right">
                 <div class="form-group">
-                    <label>Page</label> 
-                    <input type="text" class="form-control input-sm tableComponentCurrentPage" placeholder="" size="2" style="text-align:right">
-                    <label>/ 3</label>
+                    <label>Page</label>
+                    <input type="text" class="form-control input-sm tableComponentCurrentPage" placeholder="" size="2" value="0" style="text-align:right">
+                    <label>/ <span class="tableComponentTotalPage">3</span></label>
                 </div>
             </form>
         </div>
     </div>
     <div class="prototype" style="display:none">
+        <input name="sort" value="0" type="hidden">
         <table>
-            <th sort><span class="tableComponentColumnName"></span> <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span></th>
+            <th class="tableComponentColumnHead" ><span class="tableComponentColumnName"></span> <span class="tableComponentColumnSortIndicator glyphicon glyphicon-triangle-bottom" ></span></th>
         </table>
         <div class="tableComponentFilterOptionSelect form-group">
             <label></label>

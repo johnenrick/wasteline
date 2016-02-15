@@ -7,35 +7,37 @@
  */
 
 /**
- * Description of m_waste_post_type
+ * Description of m_dumping_location
  *
  * @author johnenrick
  */
-class M_waste_post_type extends API_Model{
+class M_dumping_location extends API_Model{
     public function __construct() {
         parent::__construct();
-        $this->TABLE = "waste_post_type";
+        $this->TABLE = "dumping_location";
     }
-    public function createWastePostType($description){
+    public function createDumpingLocation($description, $detail){
         $newData = array(
-            "description" => $description
+            "description" => $description,
+            "detail" => $detail
         );
         return $this->createTableEntry($newData);
     }
-    public function retrieveWastePostType($retrieveType = false, $limit = NULL, $offset = 0, $sort = array(), $ID = NULL, $condition = NULL) {
+    public function retrieveDumpingLocation($retrieveType = false, $limit = NULL, $offset = 0, $sort = array(), $ID = NULL, $condition = NULL) {
         $joinedTable = array(
-            
+            "map_marker" => "map_marker.associated_ID=dumping_location.ID AND map_marker.map_marker_type_ID=2"
         );
         $selectedColumn = array(
-            "waste_post_type.*"
+            "dumping_location.*",
+            "map_marker.*"
         );
         
         return $this->retrieveTableEntry($retrieveType, $limit, $offset, $sort, $ID, $condition, $selectedColumn, $joinedTable);
     }
-    public function updateWastePostType($ID = NULL, $condition = array(), $newData = array()) {
+    public function updateDumpingLocation($ID = NULL, $condition = array(), $newData = array()) {
         return $this->updateTableEntry($ID, $condition, $newData);
     }
-    public function deleteWastePostType($ID = NULL, $condition = array()){
+    public function deleteDumpingLocation($ID = NULL, $condition = array()){
         return $this->deleteTableEntry($ID, $condition);
     }
 }

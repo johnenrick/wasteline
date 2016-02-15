@@ -14,7 +14,7 @@ class C_account extends API_Controller {
         parent::__construct();
         $this->load->model("m_account");
         $this->load->model("M_account_basic_information");
-        $this->APICONTROLLERID = 1;
+        $this->APICONTROLLERID = 9;
     }
     public function createAccount(){
         $this->accessNumber = 1;
@@ -81,16 +81,15 @@ class C_account extends API_Controller {
         $this->accessNumber = 2;
         if($this->checkACL()){
             $ID = $this->input->post("ID");
-            if(user_type() == 2 || user_type() == 0 || user_type() == 4){
+            if(user_type() == 2 || user_type() == 0 || user_type() == 4){// 16 - if not admin or lgu
                 $ID = user_id();
             }
-            
             $result = $this->m_account->retrieveAccount(
                     $this->input->post("retrieve_type"),
                     $this->input->post("limit"),
-                    $this->input->post("offset"), 
+                    $this->input->post("offset"),
                     $this->input->post("sort"),
-                    $ID, 
+                    $ID,
                     $this->input->post("condition")
                     );
             $this->responseDebug($this->input->post("condition"));
@@ -154,13 +153,12 @@ class C_account extends API_Controller {
                 $updatedData = $this->input->post('updated_data');
                 $ID = $this->input->post('ID');
                 $condition = $this->input->post("condition");
-                if(user_type() == 2 || user_type() == 4){
+                if(user_type() == 2 || user_type() == 4){// 32 - Dont allow to change account type if not admin or LGU
                     if($this->input->post("account_type_ID")){
                         $updatedData["account_type_ID"] = user_type();
                     }
                     $ID = user_id();
                 }
-                
                 $result = $this->m_account->updateAccount(
                         $ID,
                         $condition,

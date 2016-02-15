@@ -1,28 +1,31 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class C_waste_post_type extends API_Controller {
+class C_map_marker extends API_Controller {
     /*
      * Access Control List
-     * 1    - createWastePostType
-     * 2    - retrieveWastePostType
-     * 4    - updateWastePostType
-     * 8    - deleteWastePostType
-     * 16   - batchCreateWastePostType
+     * 1    - createMapMarker
+     * 2    - retrieveMapMarker
+     * 4    - updateMapMarker
+     * 8    - deleteMapMarker
+     * 16   - batchCreateMapMarker
      */
     public function __construct() {
         parent::__construct();
-        $this->load->model("m_waste_post_type");
-        $this->APICONTROLLERID = 1;
+        $this->load->model("m_map_marker");
+        $this->APICONTROLLERID = 10;
     }
-    public function createWastePostType(){
+    public function createMapMarker(){
         $this->accessNumber = 1;
         if($this->checkACL()){
-            $this->form_validation->set_rules('description', 'Description', 'required');
+            $this->form_validation->set_rules('associated_ID', 'Associated ID', 'required');
+            $this->form_validation->set_rules('map_marker_type_ID', 'Associated ID', 'required');
+            $this->form_validation->set_rules('longitude', 'Longitude', 'required');
+            $this->form_validation->set_rules('latitude', 'Latitude', 'required');
             
             if($this->form_validation->run()){
-                $result = $this->m_waste_post_type->createWastePostType(
-                        $this->input->post("description")
+                $result = $this->m_map_marker->createMapMarker(
+                        $this->input->post("first_parameter")
                         );
                 if($result){
                     $this->actionLog($result);
@@ -42,10 +45,10 @@ class C_waste_post_type extends API_Controller {
         }
         $this->outputResponse();
     }
-    public function retrieveWastePostType(){
+    public function retrieveMapMarker(){
         $this->accessNumber = 2;
         if($this->checkACL()){
-            $result = $this->m_waste_post_type->retrieveWastePostType(
+            $result = $this->m_map_marker->retrieveMapMarker(
                     $this->input->post("retrieve_type"),
                     $this->input->post("limit"),
                     $this->input->post("offset"), 
@@ -54,7 +57,7 @@ class C_waste_post_type extends API_Controller {
                     $this->input->post("condition")
                     );
             if($this->input->post("limit")){
-                $this->responseResultCount($this->m_waste_post_type->retrieveWastePostType(
+                $this->responseResultCount($this->m_map_marker->retrieveMapMarker(
                     1,
                     NULL,
                     NULL,
@@ -74,11 +77,11 @@ class C_waste_post_type extends API_Controller {
         }
         $this->outputResponse();
     }
-    public function updateWastePostType(){
+    public function updateMapMarker(){
         $this->accessNumber = 4;
         if($this->checkACL()){
             
-            $result = $this->m_waste_post_type->updateWastePostType(
+            $result = $this->m_map_marker->updateMapMarker(
                     $this->input->post("ID"),
                     $this->input->post("condition"),
                     $this->input->post("updated_data")
@@ -94,10 +97,10 @@ class C_waste_post_type extends API_Controller {
         }
         $this->outputResponse();
     }
-    public function deleteWastePostType(){
+    public function deleteMapMarker(){
         $this->accessNumber = 8;
         if($this->checkACL()){
-            $result = $this->m_waste_post_type->deleteWastePostType(
+            $result = $this->m_map_marker->deleteMapMarker(
                     $this->input->post("ID"), 
                     $this->input->post("condition")
                     );

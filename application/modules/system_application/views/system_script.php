@@ -92,7 +92,7 @@
                 if($('.moduleHolder[module_link="'+moduleLink+'"]').is(":visible") === false){
                     $('.moduleHolder[module_link="'+moduleLink+'"]').fadeIn(500);
 
-                    $(".wl-page-title").text(moduleLink.replace('-', ' '));
+                    //$(".wl-page-title").text(moduleLink.replace('-', ' '));
                     refresh_call(moduleName);
                 }
 
@@ -103,7 +103,7 @@
             if($('.moduleHolder[module_link="'+moduleLink+'"]').is(":visible") === false){
                 $('.moduleHolder[module_link="'+moduleLink+'"]').fadeIn(500);
 
-                $(".wl-page-title").text(moduleLink.replace('-', ' '));
+                //$(".wl-page-title").text(moduleLink.replace('-', ' '));
                 refresh_call(moduleName);
             }
 
@@ -255,11 +255,7 @@ var requestVerificationCode = function(){
     $(document).ready(function(){
         //load_module(system_data.data.default_page);
         retrieve_access_control();
-        if(user_id()){
-            $("#headerUserFullName").text(user_first_name());
-        }else{
-            $("#headerUserFullName").text("Sign Up");
-        }
+        
         if(user_type() === 4){
             setTimeout(function(){
                 show_system_message(51, 1, "Please verify your account by clicking the link sent to your account.", {text : "Send Verification Code", callback: requestVerificationCode});

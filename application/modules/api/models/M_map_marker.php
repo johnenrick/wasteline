@@ -28,7 +28,6 @@ class M_map_marker extends API_Model{
         }else{
             return false;
         }
-        
     }
     public function retrieveMapMarker($retrieveType = false, $limit = NULL, $offset = 0, $sort = array(), $ID = NULL, $condition = NULL) {
         $joinedTable = array(

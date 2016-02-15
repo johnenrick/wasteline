@@ -1,8 +1,17 @@
 <script>
     var LGUManagement = {};
-    LGUManagement.retrieveAccount = function(data){
-        //loop result
+    LGUManagement.retrieveLGUAccount = function(data){
+        for(var x = 0; x < data.length; x++){
+            
+            var tableRow = $(".prototype").find(".LGUManagementTableRow").clone();
+            tableRow.find(".LGUManagementID").text(data[x]["ID"]);
+            tableRow.find(".LGUManagementUsername").text(data[x]["username"]);
+            tableRow.find(".LGUManagementFullName").text(data[x]["last_name"]+", "+data[x]["first_name"]+" "+data[x]["middle_name"]);
+            LGUManagement.LGUManagementTable.addRow(tableRow);
+            
+        }
     };
+    
     LGUManagement.initializeReportManagementTable = function(){
         var config = {
             api_link : api_url("C_account/retrieveAccount"),
@@ -17,7 +26,7 @@
                     },
                     default_value : 1
             }, {
-                    name : "condition[like__account_basic_information__first_name__CONCAT__account_basic_information__middle_name__CONCAT__account_basic_information__last_name]",
+                    name : "like__account_basic_information__first_name__CONCAT__account_basic_information__middle_name__CONCAT__account_basic_information__last_name",
                     label : "User Full Name",
                     placeholder : "Full Name",
                     type : "text"
@@ -25,22 +34,25 @@
             header : [{
                 column_name: "ID",
                 column_label : "ID",
-                sort : 1
+                sort : -1
             },{
                 column_name: "username",
                 column_label : "Username"
             },{
                 column_name: "",
-                coumn_label : "Name",
-                sort : [
+                column_label : "Name",
+                sort : 0,
+                sort_column : [
                     "account_basic_information__last_name",
                     "account_basic_information__first_name",
                     "account_basic_information__last_name"
                 ]
             }],
-            result_callback : LGUManagement.retrieveAccount
+            result_limit : 3,
+            result_callback : LGUManagement.retrieveLGUAccount
         };
-        var LGUManagementTable = new TableComponent("#LGUManagementTableContainer", config);
+        LGUManagement.LGUManagementTable = new TableComponent("#LGUManagementTableContainer", config);
+        LGUManagement.LGUManagementTable.refreshResult();
         
     };
     $(document).ready(function(){

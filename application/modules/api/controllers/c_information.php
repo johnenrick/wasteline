@@ -13,7 +13,7 @@ class C_information extends API_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model("m_information");
-        $this->APICONTROLLERID = 1;
+        $this->APICONTROLLERID = 4;
     }
     public function createInformation(){
         $this->accessNumber = 1;

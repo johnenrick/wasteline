@@ -13,7 +13,7 @@ class C_waste_category extends API_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model("m_waste_category");
-        $this->APICONTROLLERID = 1;
+        $this->APICONTROLLERID = 6;
     }
     public function createWasteCategory(){
         $this->accessNumber = 1;

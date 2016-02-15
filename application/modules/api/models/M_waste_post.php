@@ -42,13 +42,16 @@ class M_waste_post extends API_Model{
             "unit.ID AS unit_ID, unit.notation AS unit_notation, unit.description AS unit_description",
             "waste_category.ID AS waste_category_ID, waste_category.description AS waste_category_description",
             "waste_post_type.ID AS waste_post_type_ID, waste_post_type.description AS waste_post_type_description"
-            
         );
-        
         return $this->retrieveTableEntry($retrieveType, $limit, $offset, $sort, $ID, $condition, $selectedColumn, $joinedTable);
     }
+    public function batchCreateWastePost($newData){
+        return $this->batchCreateTableEntry($newData);
+    }
+    public function batchUpdateWastePost($conditionColumn, $newData){
+        return $this->batchUpdateTableEntry($conditionColumn, $newData);
+    }
     public function updateWastePost($ID = NULL, $condition = array(), $newData = array()) {
-       
         return $this->updateTableEntry($ID, $condition, $newData);
     }
     public function deleteWastePost($ID = NULL, $condition = array()){

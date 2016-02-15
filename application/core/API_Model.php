@@ -68,7 +68,8 @@ class API_Model extends CI_Model{
         //Sorting entry
         if(is_array($sort)){
             foreach($sort as $key => $value){
-                $this->db->order_by(str_replace("__", ".",$key), ($value == "asc") ? "asc" : "desc");
+                $keySegment = explode("__", $key);
+                $this->db->order_by(((count($keySegment) > 1 )? $keySegment[0] : $this->TABLE).".".$keySegment[count($keySegment)-1], ($value == "asc") ? "asc" : "desc");
             }
         }
         //limits and offset
@@ -238,12 +239,12 @@ class API_Model extends CI_Model{
         $this->db->stop_cache();
         return $result;
     }
-    public function batchCreateTableEntry($sampleTemplate){
+    public function batchCreateTableEntry($batchEntry){
         $this->db->start_cache();
         $this->db->flush_cache();
         $result = false;
-        if(count($sampleTemplate) > 0){
-            $this->db->insert_batch("$this->TABLE", $sampleTemplate);
+        if(count($batchEntry) > 0){
+            $this->db->insert_batch("$this->TABLE", $batchEntry);
             $result = $this->db->insert_id();
         }
         $this->db->flush_cache();

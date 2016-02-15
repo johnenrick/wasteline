@@ -124,5 +124,20 @@ class API_Controller extends MX_Controller{
 
         //echo $this->email->print_debugger();
     }
+    public function batchValidation($batchEntry, $requiredField){
+        $errorList = array();
+        foreach($batchEntry as $batchEntryValue){
+            $error = array();
+            foreach($requiredField as $requiredFieldKey => $requiredFieldValue){
+                if(!isset($batchEntryValue[$requiredFieldValue])){
+                    $error[] = $requiredFieldValue;
+                }
+            }
+            if(count($error) > 0){
+                $errorList[] = $error;
+            }
+        }
+        return (count($errorList) > 0) ? $errorList : true;
+    }
 }
 

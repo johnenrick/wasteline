@@ -1,51 +1,37 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class C_report extends API_Controller {
+class C_dumping_location extends API_Controller {
     /*
      * Access Control List
-     * 1    - createReport
-     * 2    - retrieveReport
-     * 4    - updateReport
-     * 8    - deleteReport
-     * 16   - batchCreateReport
+     * 1    - createDumpingLocation
+     * 2    - retrieveDumpingLocation
+     * 4    - updateDumpingLocation
+     * 8    - deleteDumpingLocation
+     * 16   - batchCreateDumpingLocation
      */
     public function __construct() {
         parent::__construct();
-        $this->load->model("m_report");
-        $this->APICONTROLLERID = 5;
+        $this->load->model("m_dumping_location");
+        $this->APICONTROLLERID = 3;
     }
-    public function createReport(){
+    public function createDumpingLocation(){
         $this->accessNumber = 1;
-        if($this->checkACL() && user_id()){
-            $this->form_validation->set_rules('associated_ID', 'Associated ID', 'required');
-            $this->form_validation->set_rules('report_type_ID', 'Report Type', 'required');
+        if($this->checkACL()){
+            $this->form_validation->set_rules('description', 'Description', 'required');
             $this->form_validation->set_rules('detail', 'Detail', 'required');
+            $this->form_validation->set_rules('longitude', 'Longitude', 'required');
+            $this->form_validation->set_rules('latitude', 'Latitude', 'required');
+            
             
             if($this->form_validation->run()){
-                $result = $this->m_report->createReport(
-                        $this->input->post("associated_ID"),
-                        $this->input->post("report_type_ID"),
-                        user_id(),
+                $result = $this->m_dumping_location->createDumpingLocation(
+                        $this->input->post("description"),
                         $this->input->post("detail")
                         );
-                if($this->input->post("report_type_ID") == 3){
-                    $this->load->model("M_map_marker");
-                    $mapMarker = $this->M_map_marker->createMapMarker(
-                            $result,
-                            3,
-                            $this->input->post("longitude"),
-                            $this->input->post("latitude")
-                            );
-                    if(!$mapMarker){
-                        $this->m_report->deleteReport(
-                            $result
-                        );
-                        $this->responseError(5, "Coordinates required");
-                        $result = false;
-                    }
-                }
                 if($result){
+                    $this->load->model("M_map_marker");
+                    $this->M_map_marker->createMapMarker($result, 2 , $this->input->post("longitude"), $this->input->post("latitude"));
                     $this->actionLog($result);
                     $this->responseData($result);
                 }else{
@@ -63,30 +49,25 @@ class C_report extends API_Controller {
         }
         $this->outputResponse();
     }
-    public function retrieveReport(){
+    public function retrieveDumpingLocation(){
         $this->accessNumber = 2;
-        $condition = ($this->input->post("condition")) ? $this->input->post("condition") : array();
-        if(user_type() != 3){
-            $condition["reporter_account_ID"] = user_id();
-        }
         if($this->checkACL()){
-            
-            $result = $this->m_report->retrieveReport(
+            $result = $this->m_dumping_location->retrieveDumpingLocation(
                     $this->input->post("retrieve_type"),
                     $this->input->post("limit"),
                     $this->input->post("offset"), 
                     $this->input->post("sort"),
                     $this->input->post("ID"), 
-                    $condition
+                    $this->input->post("condition")
                     );
             if($this->input->post("limit")){
-                $this->responseResultCount($this->m_report->retrieveReport(
+                $this->responseResultCount($this->m_dumping_location->retrieveDumpingLocation(
                     1,
                     NULL,
                     NULL,
                     NULL,
                     $this->input->post("ID"), 
-                    $condition
+                    $this->input->post("condition")
                     ));
             }
             if($result){
@@ -100,19 +81,27 @@ class C_report extends API_Controller {
         }
         $this->outputResponse();
     }
-    public function updateReport(){
+    public function updateDumpingLocation(){
         $this->accessNumber = 4;
-        $condition = ($this->input->post("condition")) ? $this->input->post("condition") : array();
-        if(user_type() != 3){
-            $condition["reporter_account_ID"] = user_id();
-        }
         if($this->checkACL()){
-            $result = $this->m_report->updateReport(
+            $updatedData = $this->input->post("updated_data");
+            $result = $this->m_dumping_location->updateDumpingLocation(
                     $this->input->post("ID"),
-                    $condition,
-                    $this->input->post("updated_data")
+                    $this->input->post("condition"),
+                    $updatedData
                     );
             if($result){
+                if($this->input->post("ID") && isset($updatedData["longitude"]) && isset($updatedData["latitude"])){
+                    $this->load->model("M_map_marker");
+                    $this->M_map_marker->updateMapMarker(
+                            NULL, 
+                            array(
+                                "associated_ID" => $this->input->post("ID"),
+                                "map_marker_type_ID" => 2
+                            ), 
+                            $updatedData
+                            );
+                }
                 $this->actionLog(json_encode($this->input->post()));
                 $this->responseData($result);
             }else{
@@ -123,10 +112,10 @@ class C_report extends API_Controller {
         }
         $this->outputResponse();
     }
-    public function deleteReport(){
+    public function deleteDumpingLocation(){
         $this->accessNumber = 8;
         if($this->checkACL()){
-            $result = $this->m_report->deleteReport(
+            $result = $this->m_dumping_location->deleteDumpingLocation(
                     $this->input->post("ID"), 
                     $this->input->post("condition")
                     );

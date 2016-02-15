@@ -13,7 +13,7 @@ class C_waste_post extends API_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model("m_waste_post");
-        $this->APICONTROLLERID = 1;
+        $this->APICONTROLLERID = 7;
     }
     public function createWastePost(){
         $this->accessNumber = 1;
@@ -48,6 +48,70 @@ class C_waste_post extends API_Controller {
                 }else{
                     $this->responseError(100, "Required Fields are empty");
                 }
+            }
+        }else{
+            $this->responseError(1, "Not Authorized");
+        }
+        $this->outputResponse();
+    }
+    public function batchCreateWastePost(){
+        $this->accessNumber = 16;
+        if($this->checkACL()){
+            $requiredField = array("waste_post_type_ID", "waste_category_ID", "description");
+            $wastePost = $this->input->post("waste_post");
+            $currentTime = time();
+            foreach($wastePost as $wastePostKey => $wastePostValue){
+                $wastePost[$wastePostKey]["account_ID"] = user_id();
+                $wastePost[$wastePostKey]["datetime"] = $currentTime;
+                $wastePost[$wastePostKey]["status"] = 1;
+                if(isset($wastePostValue["quantity"])){/////Check if a value already exist
+                    $requiredField[] = "quantity_unit_ID";
+                }
+            }
+            $isValid = $this->batchValidation($wastePost, $requiredField);
+            if($isValid === true){
+                $result = $this->m_waste_post->batchCreateWastePost($wastePost);
+                if($result){
+                    $this->actionLog($result);
+                    $this->responseData($result);
+                }else{
+                    $this->responseError(3, "Failed to create");
+                }
+            }else{
+                $this->responseError(4, $isValid);
+            }
+        }else{
+            $this->responseError(1, "Not Authorized");
+        }
+        $this->outputResponse();
+    }
+    public function batchUpdateWastePost(){
+        $this->accessNumber = 16;
+        if($this->checkACL()){
+            $requiredField = array("waste_post_type_ID", "waste_category_ID", "description");
+            $conditionColumn = array("condition_ID", "condition_account_ID")
+;            $wastePost = $this->input->post("waste_post");
+            $currentTime = time();
+            foreach($wastePost as $wastePostKey => $wastePostValue){
+                $wastePost[$wastePostKey]["condition_ID"] = user_id();
+                $wastePost[$wastePostKey]["condition_account_ID"] = user_id();
+                $wastePost[$wastePostKey]["datetime"] = $currentTime;
+                $wastePost[$wastePostKey]["status"] = 1;
+                if(isset($wastePostValue["quantity"])){/////Check if a value already exist
+                    $requiredField[] = "quantity_unit_ID";
+                }
+            }
+            $isValid = $this->batchValidation($wastePost, $requiredField);
+            if($isValid === true){
+                $result = $this->m_waste_post->batchUpdateWastePost($conditionColumn, $wastePost);
+                if($result){
+                    $this->actionLog($result);
+                    $this->responseData($result);
+                }else{
+                    $this->responseError(3, "Failed to create");
+                }
+            }else{
+                $this->responseError(4, $isValid);
             }
         }else{
             $this->responseError(1, "Not Authorized");
