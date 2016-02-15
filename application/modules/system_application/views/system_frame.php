@@ -11,10 +11,6 @@
 
         <title>WasteLine</title>
 
-        <!-- Material Design fonts -->
-        <!--<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
-
         <!-- Bootstrap CSS -->
         <link href="<?= asset_url('css/bootstrap.min.css') ?>" rel="stylesheet">
         <link href="<?= asset_url('css/jquery-ui.min.css') ?>" rel="stylesheet">
@@ -53,7 +49,6 @@
                         <a data-page-link="information"><span class="lnr lnr-book"></span></a>
                     </li>
                     
-                    <li  module_id="4" module_link="profile_management" module_name="profile_management" style="display:none">
 
                     <li id="tae" module_id="4" module_link="profile_management" module_name="profile_management" style="display:none">
                         <a data-page-link="profile" ><span class="lnr lnr-user"></span></a>

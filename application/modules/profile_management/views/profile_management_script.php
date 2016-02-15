@@ -30,7 +30,12 @@
             }
         });
     };
+    profileManagement.initializeWebMap = function(){
+        profileManagement.webMap = new WastemapComponent("#profileManagementWebMap");
+        console.log(profileManagement.webMap.getUserLocation());
+    };
     $(document).ready(function(){
+        load_page_component("wastemap_component", profileManagement.initializeWebMap);
         $("#profileManagementForm").validator();
         $("#profileManagementForm").attr("action", api_url("c_account/updateAccount"));
         $("#profileManagementForm").ajaxForm({

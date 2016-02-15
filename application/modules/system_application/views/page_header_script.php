@@ -5,13 +5,10 @@
     $(document).ready(function(){
 
         /***Navigation***/
-
         $(".sidebar-nav li:not(.sidebar-brand)").click(function(){
             var ths = $(this);
             var page = ths.children('a').data('pageLink')+""   ;
-            
             window.history.pushState("object or string", "Title", base_url("portal/visitPage/"+ths.attr("module_link")));
-            //$.when( $('.wl-page-content:not(.wl-'+page+'-content)').hide())
             $.when($('.moduleHolder[module_link="'+ths.attr("module_link")+'"]'))
                 .done(function(){
                     load_module(ths.attr("module_link"), ths.attr("module_name"));

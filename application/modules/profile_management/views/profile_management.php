@@ -104,6 +104,6 @@
     </form>
 </div>
 
-<div class="col-sm-5 wl-pro-map" style="height:100%;">
+<div id="profileManagementWebMap" class="col-sm-5 wl-pro-map" >
 
 </div>

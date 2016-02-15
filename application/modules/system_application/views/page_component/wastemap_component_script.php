@@ -1,6 +1,8 @@
 <link href="<?=asset_url('css/leaflet.css')?>" rel="stylesheet">
 <script src="<?=asset_url('js/leaflet.js')?>"></script>
+<script src="<?=asset_url("js/leaflet-gps.js")?>"></script>
 <script>
+    /*global wastemapComponent, L */
     var waste_post = [
                         {lat : 10.342615, lng : 123.916554},
                         {lat : 10.343206, lng : 123.914559},
@@ -28,111 +30,114 @@
                         [10.351753, 123.916018]
     ];
     var WastemapComponent = function(containerSelector){
-        var wastemapComponentObject = this;
-        this.wastemapContainer = $(containerSelector);
+        var wastemapComponent = this;
+        /*Set up Webmap container*/
+        wastemapComponent.wastemapContainer = $(containerSelector);
         var mapNumber = 'map-'+(new Date()).getTime();
-        this.wastemapContainer.append($("#pageComponentContainer .wastemap_component").clone().find(".mapHolder").attr("id", mapNumber));
-
-
-        window.onload = new function(){ // "new function" instead of "function" for the map to be loaded
-            // We’ll add a OSM tile layer to our map
-            var osmUrl = 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
-            osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> Banilad Waste Map',
-            osm = L.tileLayer(osmUrl, {
-                maxZoom: 20,
-                attribution: osmAttrib
-            });
-
-            // initialize the map on the "map" div with a given center and zoom
-            var map = L.map(mapNumber).setView([10.343, 123.919], 16).addLayer(osm);
-
-            // attaching function on map click
-            map.on('click', this.onMapClick);
-
-            // Script for adding marker on map click
-            var pointers = L.Icon.extend({
-                options:{
-                    shadowUrl:'/wasteline/assets/images/marker-shadow.png',
-                    iconSize:     [25, 42], // size of the icon
-                    shadowSize:   [25, 30], // size of the shadow
-                    iconAnchor:   [25, 44], // point of the icon which will correspond to marker's location
-                    shadowAnchor: [18, 32],  // the same for the shadow
-                    popupAnchor:  [-12, -45] // point from which the popup should open relative to the iconAnchor
-                }
-            });
-
-            var violetIcon  = new pointers({iconUrl:'/wasteline/assets/images/lgu.png'}),
-                greenIcon   = new pointers({iconUrl:'/wasteline/assets/images/garbage.png'}),
-                yellowIcon  = new pointers({iconUrl:'/wasteline/assets/images/dumpingarea.png'}),
-                pinkIcon    = new pointers({iconUrl:'/wasteline/assets/images/report.png'}),
-                blueIcon    = new pointers({iconUrl:'/wasteline/assets/images/services.png'});
-
-            L.marker([10.339634, 123.922587], {icon: violetIcon, title:"Brgy. Banilad Hall", alt: "Brgy. Banilad Hall", riseOnHover: true}).addTo(map);
-            L.polyline(boundaries, {smoothFactor: 1, opacity: 1, weight: 2, fill: true, fillOpacity: 0.1, clickable: false}).addTo(map);
-            getUserLocation();
-            retrieveMarker(waste_post);
-
-            this.onMapClick = function(e) {
-                var geojsonFeature = {
-                    "type": "Feature",
-                    "properties": {},
-                    "geometry": {
-                        "type": "Point",
-                        "coordinates": [e.latlng.lat, e.latlng.lng]
-                    }
-                }
-
-                var marker;
-                L.geoJson(geojsonFeature, {
-                    pointToLayer: function(feature, latlng){  
-                        marker = L.marker(e.latlng, {
-                            title: "Dumping Site",
-                            alt: "Dumping Site",
-                            riseOnHover: true,
-                            draggable: true,
-                            icon: yellowIcon
-                        }).bindPopup("<input type='button' value='Delete Marker' class='marker-delete-button'/>");
-                        marker.on("popupopen", this.onPopupOpen);
-                        return marker;
-                    }
-                }).addTo(map);    
+        wastemapComponent.webMap =$("#pageComponentContainer .wastemap_component").clone().find(".mapHolder").attr("id", mapNumber);
+        wastemapComponent.wastemapContainer.append(wastemapComponent.webMap);
+        
+        /*Initialize Webmap*/
+        var osmUrl = 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
+        osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> Banilad Waste Map',
+        osm = L.tileLayer(osmUrl, {
+            maxZoom: 20,
+            attribution: osmAttrib
+        });
+        wastemapComponent.map = L.map(mapNumber).setView([10.343, 123.919], 16).addLayer(osm);// initialize the map on the "map" div with a given center and zoom
+        wastemapComponent.map.addControl( new L.Control.Gps({autoActive:true}) );//inizialize control
+        /*Icons*/
+        // Icon Properties
+        var pointers = L.Icon.extend({
+            options:{
+                shadowUrl:'/wasteline/assets/images/marker-shadow.png',
+                iconSize:     [25, 42], // size of the icon
+                shadowSize:   [25, 30], // size of the shadow
+                iconAnchor:   [25, 44], // point of the icon which will correspond to marker's location
+                shadowAnchor: [18, 32],  // the same for the shadow
+                popupAnchor:  [-12, -45] // point from which the popup should open relative to the iconAnchor
             }
-            // Function to handle delete as well as other events on marker popup open
-            this.onPopupOpen = function(){
-                var tempMarker = this;
-                //var tempMarkerGeoJSON = this.toGeoJSON();
-                //var lID = tempMarker._leaflet_id; // Getting Leaflet ID of this marker
-                // To remove marker on click of delete
-                $(".marker-delete-button:visible").click(function (){
-                    map.removeLayer(tempMarker);
-                });
-            }
-
-            // function for getting the user's latlong
-            function getUserLocation(){
-                map.locate({watch: true}) /* This will return map so you can do chaining */
-                    .on('locationfound', function(e){
-                    L.marker([e.latlng.lat, e.latlng.lng], {icon: pinkIcon, title:"yes!", alt: "yes!", riseOnHover: true}).addTo(map);
-                    var latlong = {
-                            lat     : e.latlng.lat,
-                            lng     : e.latlng.lng
-                    }
-                    map.stopLocate();
-                    console.log(latlong);
-                })
-                    .on('locationerror', function(e){
-                    console.log(e);
-                    map.stopLocate();
-                });
-            }
-
-            // function for displaying multiple markers on map
-            function retrieveMarker(locations){
-                // api code
-                for(var x in locations){
-                    L.marker([locations[x].lat, locations[x].lng], {title:"Garbage ni", alt: "Garbage ni", riseOnHover: true, icon: greenIcon}).addTo(map); 
-                }
-            }
+        });
+        /*Icon image*/
+        wastemapComponent.icon = {
+            LGU : new pointers({iconUrl:'/wasteline/assets/images/lgu.png'}),
+            garbage : new pointers({iconUrl:'/wasteline/assets/images/garbage.png'}),
+            dumping_area : new pointers({iconUrl:'/wasteline/assets/images/dumpingarea.png'}),
+            report : new pointers({iconUrl:'/wasteline/assets/images/report.png'}),
+            service : new pointers({iconUrl:'/wasteline/assets/images/services.png'})
         }
+        /*Banilad*/
+        L.marker([10.339634, 123.922587], {icon: wastemapComponent.icon.LGU, title:"Brgy. Banilad Hall", alt: "Brgy. Banilad Hall", riseOnHover: true}).addTo(wastemapComponent.map);
+        L.polyline(boundaries, {smoothFactor: 1, opacity: 1, weight: 2, fill: true, fillOpacity: 0.1, clickable: false}).addTo(wastemapComponent.map);
+
+        /*Events*/
+        // attaching function on map click
+        wastemapComponent.map.on('click', function(e){
+            wastemapComponent.onMapClick(e);
+        });
+        /*GPS*/
+        
+        
+        wastemapComponent.onMapClick = function(e) {
+            var geojsonFeature = {
+                type: "Feature",
+                properties: {},
+                geometry: {
+                    type: "Point",
+                    coordinates: [e.latlng.lat, e.latlng.lng]
+                }
+            };
+
+            var marker;
+            L.geoJson(geojsonFeature, {
+                pointToLayer: function(feature, latlng){  
+                    marker = L.marker(e.latlng, {
+                        title: "Dumping Site",
+                        alt: "Dumping Site",
+                        riseOnHover: true,
+                        draggable: true,
+                        icon: wastemapComponent.icon.dumping_area
+                    }).bindPopup("<input type='button' value='Delete Marker' class='marker-delete-button'/>");
+                    marker.on("popupopen", wastemapComponent.onPopupOpen);
+                    return marker;
+                }
+            }).addTo(wastemapComponent.map);    
+        };
+        // Function to handle delete as well as other events on marker popup open
+        wastemapComponent.onPopupOpen = function(){
+            var tempMarker = this;
+            //var tempMarkerGeoJSON = this.toGeoJSON();
+            //var lID = tempMarker._leaflet_id; // Getting Leaflet ID of this marker
+//            // To remove marker on click of delete
+            $(".marker-delete-button:visible").click(function (){
+                wastemapComponent.map.removeLayer(tempMarker);
+            });
+        };
+
+        wastemapComponent.getUserLocation = function(){
+            wastemapComponent.map.locate({watch: true}).on('locationfound', function(e){
+                L.marker([e.latlng.lat, e.latlng.lng], {icon: wastemapComponent.icon.report, title:"yes!", alt: "yes!", riseOnHover: true}).addTo(wastemapComponent.map);
+                var latlong = {
+                        lat     : e.latlng.lat,
+                        lng     : e.latlng.lng
+                };
+                wastemapComponent.map.stopLocate();
+            }).on('locationerror', function(e){
+                wastemapComponent.map.stopLocate();
+            });
+        };
+
+        // function for displaying multiple markers on map
+        wastemapComponent.addMarker = function(ID, mapMarkerType, associatedID, description, longitude, latitude){
+            L.marker(
+                [latitude, longitude], 
+                {
+                    title: description,
+                    alt: description, 
+                    riseOnHover: true, 
+                    icon: wastemapComponent.icon.garbage
+                }).addTo(wastemapComponent.map);
+        }
+        wastemapComponent.getUserLocation();
     };
 </script>
