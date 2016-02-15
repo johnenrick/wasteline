@@ -139,6 +139,7 @@ ul.sidebar-nav li a {
     padding: .2em .6em .8em;
     color: #959f96;
     text-align: left;
+    font-size: 16px;
     box-sizing: border-box;
 }
 
@@ -148,7 +149,7 @@ ul.sidebar-nav li a {
 
 #wl-header-menu ul li a.wl-active {
     color: #555953;
-    border-bottom: solid 2px #50c14e;
+    border-bottom: solid 4px #50c14e;
 }
 
 .wl-page-title {
@@ -554,8 +555,6 @@ ul.sidebar-nav li a {
     height: 100%;
 }
 
-.wl-info-li div:first-child {}
-
 .wl-info-li .wl-info-box {
     margin: 0 auto;
     margin-top: 4px;
@@ -573,10 +572,12 @@ ul.sidebar-nav li a {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-size: 14px;
 }
 
 .wl-info-li .wl-list-sub {
     font-size: 12px;
+    color: #959f96;
 }
 
 .wl-info-full {
