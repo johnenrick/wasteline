@@ -86,15 +86,13 @@ class C_waste_post extends API_Controller {
         $this->outputResponse();
     }
     public function batchUpdateWastePost(){
-        $this->accessNumber = 16;
+        $this->accessNumber = 32;
         if($this->checkACL()){
-            $requiredField = array("waste_post_type_ID", "waste_category_ID", "description");
-            $conditionColumn = array("condition_ID", "condition_account_ID")
+            $requiredField = array("ID", "waste_post_type_ID", "waste_category_ID", "description");
 ;            $wastePost = $this->input->post("waste_post");
             $currentTime = time();
             foreach($wastePost as $wastePostKey => $wastePostValue){
-                $wastePost[$wastePostKey]["condition_ID"] = user_id();
-                $wastePost[$wastePostKey]["condition_account_ID"] = user_id();
+                $wastePost[$wastePostKey]["account_ID"] = user_id();
                 $wastePost[$wastePostKey]["datetime"] = $currentTime;
                 $wastePost[$wastePostKey]["status"] = 1;
                 if(isset($wastePostValue["quantity"])){/////Check if a value already exist
@@ -103,15 +101,34 @@ class C_waste_post extends API_Controller {
             }
             $isValid = $this->batchValidation($wastePost, $requiredField);
             if($isValid === true){
-                $result = $this->m_waste_post->batchUpdateWastePost($conditionColumn, $wastePost);
+                $result = $this->m_waste_post->batchUpdateWastePost("ID", $wastePost, array("account_ID" => user_id()));
                 if($result){
                     $this->actionLog($result);
                     $this->responseData($result);
                 }else{
-                    $this->responseError(3, "Failed to create");
+                    $this->responseError(3, "Failed to Update");
                 }
             }else{
                 $this->responseError(4, $isValid);
+            }
+        }else{
+            $this->responseError(1, "Not Authorized");
+        }
+        $this->outputResponse();
+    }
+    public function batchDeleteWastePost(){
+        $this->accessNumber = 64;
+        if($this->checkACL()){
+            if($this->input->post("ID")){
+                $result = $this->m_waste_post->batchDeleteWastePost($this->input->post("ID"), array("account_ID" => user_id()));
+                if($result){
+                    $this->actionLog($result);
+                    $this->responseData($result);
+                }else{
+                    $this->responseError(3, "Failed to Delete");
+                }
+            }else{
+                $this->responseError(2, "ID is Required");
             }
         }else{
             $this->responseError(1, "Not Authorized");

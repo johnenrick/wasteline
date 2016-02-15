@@ -251,11 +251,12 @@ class API_Model extends CI_Model{
         $this->db->stop_cache();
         return $result;
     }
-    public function batchUpdateTableEntry($conditionColumn, $newData){
+    public function batchUpdateTableEntry($conditionColumn, $newData, $condition){
         $this->db->start_cache();
         $this->db->flush_cache();
         $result = false;
         if(count($newData) > 0){
+            $this->db->where($condition);
             $this->db->update_batch("$this->TABLE", $newData, $conditionColumn);
             $result = true;
         }
@@ -263,10 +264,11 @@ class API_Model extends CI_Model{
         $this->db->stop_cache();
         return $result;
     }
-    public function batchDeleteTableEntry($sampleTemplateID){
+    public function batchDeleteTableEntry($IDList, $condition){
         $this->db->start_cache();
         $this->db->flush_cache();
-        $this->db->where_in("ID", $sampleTemplateID);
+        $this->db->where($condition);
+        $this->db->where_in("ID", $IDList);
         $result = $this->db->delete("$this->TABLE");
         $this->db->flush_cache();
         $this->db->stop_cache();

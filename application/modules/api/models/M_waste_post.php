@@ -48,8 +48,11 @@ class M_waste_post extends API_Model{
     public function batchCreateWastePost($newData){
         return $this->batchCreateTableEntry($newData);
     }
-    public function batchUpdateWastePost($conditionColumn, $newData){
-        return $this->batchUpdateTableEntry($conditionColumn, $newData);
+    public function batchUpdateWastePost($conditionColumn, $newData, $condition){
+        return $this->batchUpdateTableEntry($conditionColumn, $newData, $condition);
+    }
+    public function batchDeleteWastePost($IDList, $condition){
+        return $this->batchDeleteTableEntry($IDList, $condition);
     }
     public function updateWastePost($ID = NULL, $condition = array(), $newData = array()) {
         return $this->updateTableEntry($ID, $condition, $newData);
