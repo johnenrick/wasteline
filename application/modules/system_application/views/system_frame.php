@@ -143,15 +143,15 @@
                                     </div>
                                 </div>
                                 <div id="wl-side-menu" class="col-sm-12">
-                                    <ul class="unselectable">
+                                    <ul class="unselectable wastePostTypeList">
                                         <li>
-                                            <a class="wl-active">Own Waste</a>
+                                            <a class="wl-active" typeID="1">Own Waste</a>
                                         </li>
                                         <li>
-                                            <a>Waste Accepted</a>
+                                            <a typeID="2">Waste Accepted</a>
                                         </li>
                                         <li>
-                                            <a>Services</a>
+                                            <a typeID="3">Services</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -168,7 +168,11 @@
                                                     <span class="wl-list-quantity" contenteditable="true">Quantity</span>
                                                     &nbsp;|&nbsp;Php.
                                                     <span class="wl-list-price" contenteditable="true">Price</span></p>
-                                                <p class="wl-list-category" contenteditable="true">Category</p>
+                                                <div class="form-group form-group-sm">
+                                                    <select class="form-control wl-list-category" id="wastePostCategoryList">
+                                                        <option hidden >Category</option>
+                                                    </select>
+                                                </div>
                                             </div>
                                         </li>
                                         <li class="wl-rectangle-add col-sm-12 unselectable">
