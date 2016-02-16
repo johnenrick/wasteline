@@ -40,24 +40,24 @@
                         <a><span class="lnr lnr-trash"></span></a>
                     </li>
                     <li module_id="1" module_link="portal" module_name="home" style="display:none">
-                        <a data-page-link="home" ><span class="lnr lnr-home"></span></a>
+                        <a data-page-link="home" data-toggle="tooltip" data-placement="right" title="" data-original-title="Home"><span class="lnr lnr-home"></span></a>
                     </li>
                     <li module_id="2" module_link="wastemap" module_name="home" style="display:none">
-                        <a data-page-link="map"><span class="lnr lnr-map"></span></a>
+                        <a data-page-link="map" data-toggle="tooltip" data-placement="right" title="" data-original-title="Waste Map"><span class="lnr lnr-map"></span></a>
                     </li>
                     <li module_id="3" module_link="report_management" module_name="home" style="display:none">
-                        <a data-page-link="information"><span class="lnr lnr-book"></span></a>
+                        <a data-page-link="information" data-toggle="tooltip" data-placement="right" title="" data-original-title="Information"><span class="lnr lnr-book"></span></a>
                     </li>
-                    
+
 
                     <li id="tae" module_id="4" module_link="profile_management" module_name="profile_management" style="display:none">
-                        <a data-page-link="profile" ><span class="lnr lnr-user"></span></a>
+                        <a data-page-link="profile" data-toggle="tooltip" data-placement="right" title="" data-original-title="Profile"><span class="lnr lnr-user"></span></a>
                     </li>
                     <li module_id="5" module_link="lgu_management" module_name="LGU_management">
-                        <a data-page-link="manage-LGU"><span class="lnr lnr-users"></span></a>
+                        <a data-page-link="manage-LGU" data-toggle="tooltip" data-placement="right" title="" data-original-title="LGU Management"><span class="lnr lnr-users"></span></a>
                     </li>
                     <li class="wl-btn-logout" module_name="home">
-                        <a data-page-link="logout" ><span class="lnr lnr-power-switch"></span></a>
+                        <a data-page-link="logout" data-toggle="tooltip" data-placement="right" title="" data-original-title="Log Out"><span class="lnr lnr-power-switch"></span></a>
                     </li>
                 </ul>
             </div>
@@ -114,7 +114,9 @@
                                 </div>
 
                                 <div class="col-sm-2 no-padding">
-                                    <div class="wl-btn-post unselectable">+</div>
+                                    <a data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Post to Waste Map">
+                                        <div class="wl-btn-post unselectable">+</div>
+                                    </a>
                                 </div>
                             </div>
 

@@ -813,6 +813,10 @@ ul.sidebar-nav li a {
     background-color: #f6f7fa;
 }
 
+.table_component .tableComponentTable thead th {
+    cursor: pointer;
+}
+
 .table_component .tableComponentTable thead th:hover,
 .table_component .tableComponentTable tbody tr:hover {
     background-color: #edf5ed;
