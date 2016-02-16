@@ -163,7 +163,7 @@
                                                     <span class="wl-list-quantity" contenteditable="true">Quantity</span>
                                                     &nbsp;|&nbsp;Php.
                                                     <span class="wl-list-price" contenteditable="true">Price</span></p>
-                                                <div class="form-group form-group-sm">
+                                                <div class="form-group form-group-sm wl-list-category-div">
                                                     <select class="form-control wl-list-category" id="wastePostCategoryList">
                                                         <option hidden >Category</option>
                                                     </select>

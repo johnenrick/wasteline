@@ -37,30 +37,49 @@
 			var temp = "Price";
 			if($(this).text() == "") $(this).text(temp);
 		});
+
+		$("ul.wastePostTypeList a").click(function(){
+			if(($(this).attr("typeID"))*1 == 3){
+				$(".wl-list-quantity-price").css("display", "none");
+				$(".wl-list-category-div").css("display", "none");
+			}else{
+				$(".wl-list-quantity-price").css("display", "block");
+				$(".wl-list-category-div").css("display", "block");
+			}
+		});
 	});
 
 	wastePostContainer.createWastePost = function(){
-		var waste_post_input = [];
-		$(".wl-rectangle-list").each(function(){
-			var container = {
-				waste_post_type_ID 	: wastePostContainer.findWastePostType(),
-				waste_category_ID 	: ($(this).find("#wastePostCategoryList").val())*1,
-				description			: $(this).find(".wl-list-desciption").text(),
-				quantity			: $(this).find(".wl-list-quantity").text(),
-				price				: $(this).find(".wl-list-price").text(),
-				quantity_unit_ID	: 1
-			}
-			waste_post_input.push(container);
-		});
-		waste_post_input.splice(0, 1);
+		if(wastePostContainer.findWastePostType() != 3){
+			var waste_post_input = [];
+			$(".wl-rectangle-list").each(function(){
+				var container = {
+					waste_post_type_ID 	: wastePostContainer.findWastePostType(),
+					waste_category_ID 	: ($(this).find("#wastePostCategoryList").val())*1,
+					description			: $(this).find(".wl-list-desciption").text(),
+					quantity			: $(this).find(".wl-list-quantity").text(),
+					price				: $(this).find(".wl-list-price").text(),
+					quantity_unit_ID	: 1
+				}
+				waste_post_input.push(container);
+			});
+			waste_post_input.splice(0, 1);
 
-		$.post(api_url("c_waste_post/createWastePost"), waste_post_input[0], function(data){
-			var response = JSON.parse(data);
-			if(!response["error"].length){
-				alert("done");
-				console.log(response);
-			}
-		});
+			$.post(api_url("c_waste_post/createWastePost"), waste_post_input[0], function(data){
+				var response = JSON.parse(data);
+				if(!response["error"].length){
+					alert("done");
+				}
+			});
+		}else{
+			/*$.post(api_url("c_waste_post/createWastePost"), {description: $(this).find(".wl-list-desciption").text()}, function(data){
+				var response = JSON.parse(data);
+				if(!response["error"].length){
+					alert("done");
+				}
+			});*/
+		}
+		
 	}
 
 	wastePostContainer.retrieveWastePostCategory = function(){
