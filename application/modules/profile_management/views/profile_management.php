@@ -1,6 +1,6 @@
 <div class="col-sm-3 no-padding wl-pro-full-info">
     <img id="profileManagementProfilePicture" class="wl-profile-img" data-char-count="2">
-    <p id="profileManagementFullName" class="wl-full-name">
+    <p id="profileManagementFullName" class="wl-full-name capitalize">
     </p>
     <p id="profileManagementUsername" class="wl-username">
     </p>
@@ -16,39 +16,39 @@
 <div class="col-sm-4 wl-pro-edit scroll-on" style="height:100%;">
     <form id="profileManagementForm" method="post">
         <h5>Edit Your Personal Settings</h5>
-        
+
         <hr>
-        
+
         <div class="form-group">
             <div class="col-md-12">
                 <p class="formMessage" ></p>
             </div>
         </div>
-        
+
         <div class="form-group">
-            
+
             <label for="inputFirstName" class="col-md-12 control-label">First Name</label>
             <div class="col-md-12">
-                
-                <input name="updated_data[first_name]" type="text" class="form-control" placeholder="First Name">
+
+                <input name="updated_data[first_name]" type="text" class="form-control capitalize" placeholder="First Name">
                 <p class="help-block wl-c-gray-1">Use your real name so that your LGU can recognize you</p>
             </div>
         </div>
         <div class="form-group">
             <label for="inputMiddleName" class="col-md-12 control-label">Middle Name</label>
             <div class="col-md-12">
-                <input name="updated_data[middle_name]" type="text" class="form-control" placeholder="Middle Name" >
+                <input name="updated_data[middle_name]" type="text" class="form-control capitalize" placeholder="Middle Name" >
                 <p class="help-block wl-c-gray-1">Its okay if you don't remember</p>
             </div>
         </div>
         <div class="form-group">
             <label for="inputLastName" class="col-md-12 control-label">Last Name</label>
             <div class="col-md-12">
-                <input name="updated_data[last_name]" type="text" class="form-control" placeholder="Last Name" >
+                <input name="updated_data[last_name]" type="text" class="form-control capitalize" placeholder="Last Name" >
                 <p class="help-block wl-c-gray-1">Use your real name so that your LGU can recognize you</p>
             </div>
         </div>
-        
+
         <div class="form-group">
             <label for="inputLastName" class="col-md-12 control-label">Email</label>
             <div class="col-md-12">
@@ -93,7 +93,7 @@
                 <input name="updated_data[account_address_longitude]" type="hidden">
                 <input name="updated_data[account_address_latitude]" type="hidden">
                 <input name="updated_data[account_address_map_marker_ID]" type="hidden">
-                <textarea name="updated_data[account_address_description]" class="form-control" rows="2" placeholder="Complete Address"></textarea>
+                <textarea name="updated_data[account_address_description]" class="form-control capitalize" rows="2" placeholder="Complete Address"></textarea>
                 <span class="help-block">Click the map on the right to indicate your address. Or use GPS location on the bottom left in the map</span>
             </div>
         </div>

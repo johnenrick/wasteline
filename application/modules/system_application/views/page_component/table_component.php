@@ -1,9 +1,9 @@
-<div class="table_component">
+<div class="table_component col-md-8 col-md-offset-2">
     <div class="row">
         <div class="col-sm-12">
             <form action="" class="tableComponentFilterForm form-inline pull-right" method="post">
                 <input name="limit" value="20" type="hidden">
-                <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-filter" aria-hidden="true"></span> Filter</button>
+                <button type="submit" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-filter" aria-hidden="true"></span> Filter</button>
             </form>
         </div>
     </div>
@@ -12,7 +12,7 @@
             <table class="tableComponentTable table table-hover ">
                 <thead>
                     <tr>
-                        
+
                     </tr>
                 </thead>
                 <tbody>
@@ -27,7 +27,7 @@
         <div class="col-sm-4">
             <form class="form-inline ">
                 <div class="form-group">
-                    <label class="tableComponentTotalResult"></label> 
+                    <label class="tableComponentTotalResult"></label>
                     <label>Result(s)</label>
                 </div>
             </form>

@@ -26,24 +26,33 @@ h5 {
 a {
     cursor: pointer !important;
 }
+
+
 /* disable elements */
+
 #wrapper.disabled {
     padding-left: 0 !important;
 }
+
 #wrapper.disabled #sidebar-wrapper {
     width: 0 !important;
 }
+
 #wrapper.disabled .wl-header-content {
     display: none !important;
 }
+
 #wrapper.disabled #moduleContainer {
     margin-top: 0 !important;
     height: 100%;
 }
+
 #wrapper.disabled #portalInformationPanel {
-    background:#2f323a;
-    color:white;
+    background: #2f323a;
+    color: white;
 }
+
+
 /* end disable */
 
 .wl-logo-1 {
@@ -116,7 +125,6 @@ ul.sidebar-nav li a {
     border-radius: 50%;
     margin-top: -5px;
 }
-
 
 #wl-header-menu {
     padding-top: 20px;
@@ -208,7 +216,9 @@ ul.sidebar-nav li a {
 */
 
 #portalLoginPanel {
-    height:100%;background: url('../../assets/images/lp-img4.jpg') no-repeat center center;background-size:cover;
+    height: 100%;
+    background: url('../../assets/images/lp-img4.jpg') no-repeat center center;
+    background-size: cover;
 }
 
 #wl-side-content {
@@ -300,14 +310,14 @@ ul.sidebar-nav li a {
     padding: 0.2em 0.5em;
 }
 
-#wl-side-list li .form-group.form-group-sm{
+#wl-side-list li .form-group.form-group-sm {
     padding: 0;
     margin: 0;
     margin-top: -5px;
     height: auto;
 }
 
-#wl-side-list li .form-group.form-group-sm select{
+#wl-side-list li .form-group.form-group-sm select {
     margin: 0;
     line-height: 20px;
     background-image: none;
@@ -447,6 +457,7 @@ ul.sidebar-nav li a {
 .wl-info-list {
     border-right: 1px solid #eee;
 }
+
 .wl-info-display {
     position: relative;
 }
@@ -472,10 +483,12 @@ ul.sidebar-nav li a {
     z-index: 5;
     background-color: rgba(0, 0, 0, 0.5);
 }
-.wl-info-display .modal .modal-body{
+
+.wl-info-display .modal .modal-body {
     height: 200px;
     padding: 0 15%;
 }
+
 .modal-backdrop {
     display: none !important;
 }
@@ -527,7 +540,7 @@ ul.sidebar-nav li a {
     list-style-type: none;
 }
 
-.wl-info-mainlist .wl-list-dummy{
+.wl-info-mainlist .wl-list-dummy {
     display: none;
 }
 
@@ -772,8 +785,59 @@ ul.sidebar-nav li a {
     height: 100%;
     /*background: url('../../assets/images/lp-img1.jpg') no-repeat center center;*/
     background-size: cover;
+    padding: 0;
 }
 
+
+/* LGU Management*/
+
+#LGUManagement {
+    background-color: white;
+    border-top: 2px #eee solid;
+}
+
+
+/* table */
+
+.table_component .tableComponentTable {
+    border-spacing: 0 6px;
+    border-collapse: separate;
+}
+
+.table_component .tableComponentTable th,
+.table_component .tableComponentTable td {
+    border: none;
+}
+
+.table_component .tableComponentTable tbody tr {
+    background-color: #f6f7fa;
+}
+
+.table_component .tableComponentTable thead th:hover,
+.table_component .tableComponentTable tbody tr:hover {
+    background-color: #edf5ed;
+}
+
+.table_component .tableComponentTable td:first-child { border-top-left-radius: 4px; }
+.table_component .tableComponentTable td:last-child { border-top-right-radius: 4px; }
+.table_component .tableComponentTable td:first-child { border-bottom-left-radius: 4px; }
+.table_component .tableComponentTable td:last-child { border-bottom-right-radius: 4px; }
+
+.table_component .tableComponentTable span.glyphicon {
+    color: #50c14e;
+}
+
+.table_component .form-group {
+    margin: 10px 20px;
+}
+
+.table_component .form-group label {
+    margin-right: 10px;
+}
+
+.table_component .pager {
+    margin-top: 10px;
+}
 
 /* tools */
 
@@ -784,6 +848,10 @@ ul.sidebar-nav li a {
     /* Firefox */
     -ms-user-select: none;
     /* IE10+ */
+}
+
+.capitalize {
+    text-transform: capitalize;
 }
 
 .no-margin {
