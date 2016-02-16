@@ -2,10 +2,10 @@
     var wastemapManagement = {};
     
     wastemapManagement.initializeWastemapManagement = function(){
-        var wastemapManagement = new WastemapComponent("#wastemapContainer");
+        var wastemapManagement = new WebMapComponent("#wastemapContainer");
     };
     $(document).ready(function(){
-        load_page_component("wastemap_component", wastemapManagement.initializeWastemapManagement);
+        load_page_component("web_map_component", wastemapManagement.initializeWastemapManagement);
     });
 
     
