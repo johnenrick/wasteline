@@ -121,10 +121,10 @@
                         lat     : e.latlng.lat,
                         lng     : e.latlng.lng
                 };
-                wastemapComponent.map.stopLocate();
             }).on('locationerror', function(e){
-                wastemapComponent.map.stopLocate();
+               
             });
+            wastemapComponent.map.stopLocate();
         };
 
         // function for displaying multiple markers on map
