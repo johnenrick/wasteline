@@ -93,7 +93,7 @@
                 <input name="updated_data[account_address_longitude]" type="hidden">
                 <input name="updated_data[account_address_latitude]" type="hidden">
                 <input name="updated_data[account_address_map_marker_ID]" type="hidden">
-                <textarea name="updated_data[account_address_description]" class="form-control" rows="2" placeholder="Complete Address"></textarea>
+                <textarea name="updated_data[account_address_description]" class="form-control" rows="2" placeholder="e.g. House/Building Number, Street"></textarea>
                 <span class="help-block">Click the map on the right to indicate your address. Or use GPS location on the bottom left in the map</span>
             </div>
         </div>

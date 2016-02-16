@@ -31,11 +31,12 @@
         });
     };
     profileManagement.initializeWebMap = function(){
-        profileManagement.webMap = new WastemapComponent("#profileManagementWebMap");
-        console.log(profileManagement.webMap.getUserLocation());
+        profileManagement.webMap = new WebMapComponent("#profileManagementWebMap");
+        profileManagement.webMap.selectLocation(function(latlong){console.log(latlong)});
+        profileManagement.webMap.addMarker(1, 2, 3, "TestDesc", 123.916554, 10.342615);
     };
     $(document).ready(function(){
-        load_page_component("wastemap_component", profileManagement.initializeWebMap);
+        load_page_component("web_map_component", profileManagement.initializeWebMap);
         $("#profileManagementForm").validator();
         $("#profileManagementForm").attr("action", api_url("c_account/updateAccount"));
         $("#profileManagementForm").ajaxForm({
