@@ -19,8 +19,10 @@
                 $("#profileManagementForm").find("[name='updated_data[account_address_longitude]']").val(response["data"]["account_address_longitude"]);
                 $("#profileManagementForm").find("[name='updated_data[account_address_latitude]']").val(response["data"]["account_address_latitude"]);
                 profileManagement.webMap.removeMarkerList(response["data"]["account_address_map_marker_ID"]);
-                profileManagement.webMap.addMarker(response["data"]["account_address_map_marker_ID"], 5, response["data"]["account_ID"], "You Location", response["data"]["account_address_longitude"], response["data"]["account_address_latitude"]);
-                profileManagement.webMap.setView(response["data"]["account_address_latitude"], response["data"]["account_address_longitude"]);
+                if(response["data"]["account_address_longitude"]*1 &&  response["data"]["account_address_latitude"]*1){
+                    profileManagement.webMap.addMarker(response["data"]["account_address_map_marker_ID"], 5, response["data"]["account_ID"], "You Location", response["data"]["account_address_longitude"]*1, response["data"]["account_address_latitude"]*1);
+                    profileManagement.webMap.setView(response["data"]["account_address_latitude"], response["data"]["account_address_longitude"]);
+                }
                 
                 /*profile summary*/
                 $("#profileManagementFullName").text(response["data"]["first_name"]+" "+response["data"]["middle_name"]+" "+response["data"]["last_name"]);

@@ -3,8 +3,19 @@
 <script src="<?=asset_url("js/leaflet-gps.js")?>"></script>
 <script src="<?=asset_url("js/leaflet.label.js")?>"></script>
 <script src="<?=asset_url("js/easy-button.js")?>"></script>
+<script src="<?=asset_url("js/leaflet-heat.js")?>"></script>
 <script>
     /*global webMapComponent, L */
+    var waste_post = [
+                        [ 10.342615, 123.916554],
+                        [ 10.343206, 123.914559],
+                        [ 10.342995, 123.915331],
+                        [ 10.342721, 123.916898],
+                        [ 10.342003, 123.917842],
+                        [ 10.342489, 123.920331],
+                        [ 10.340061, 123.919258],
+                        [ 10.337359, 123.920631]
+    ];
     var boundaries = [  [10.351753, 123.916018],
                         [10.350694, 123.915531],
                         [10.340333, 123.912693],
@@ -252,5 +263,6 @@
             
             webMapComponent.indicateCurrentLocation(webMapComponent.getCurrentLocationCallBack);
         }).addTo( webMapComponent.map );
+        L.heatLayer(waste_post).addTo(webMapComponent.map);
     };
 </script>

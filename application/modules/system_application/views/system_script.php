@@ -268,6 +268,9 @@ var requestVerificationCode = function(){
                show_system_message(system_data.data.extra_data["message"][x]["status"], system_data.data.extra_data["message"][x]["type"], system_data.data.extra_data["message"][x]["message"]);
            }
         }
+        if(user_id()){
+            
+        }
 
     });
 </script>
