@@ -94,7 +94,7 @@
                 <input name="updated_data[account_address_latitude]" type="hidden">
                 <input name="updated_data[account_address_map_marker_ID]" type="hidden">
                 <textarea name="updated_data[account_address_description]" class="form-control capitalize" rows="2" placeholder="Complete Address"></textarea>
-                <span class="help-block">Click the map on the right to indicate your address. Or use GPS location on the bottom left in the map</span>
+                <span class="help-block">Click the map on the right to indicate your address. Or use GPS <i class="fa fa-map-marker"></i> location on the bottom left in the map</span>
             </div>
         </div>
 

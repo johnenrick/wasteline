@@ -2,20 +2,9 @@
 <script src="<?=asset_url('js/leaflet.js')?>"></script>
 <script src="<?=asset_url("js/leaflet-gps.js")?>"></script>
 <script src="<?=asset_url("js/leaflet.label.js")?>"></script>
+<script src="<?=asset_url("js/easy-button.js")?>"></script>
 <script>
     /*global webMapComponent, L */
-    var waste_post = [
-                        {lat : 10.342615, lng : 123.916554},
-                        {lat : 10.343206, lng : 123.914559},
-                        {lat : 10.342995, lng : 123.915331},
-                        {lat : 10.342721, lng : 123.916898},
-                        {lat : 10.342003, lng : 123.917842},
-                        {lat : 10.342489, lng : 123.920331},
-                        {lat : 10.340061, lng : 123.919258},
-                        {lat : 10.340082, lng : 123.923399},
-                        {lat : 10.338668, lng : 123.920073},
-                        {lat : 10.337359, lng : 123.920631}
-    ];
     var boundaries = [  [10.351753, 123.916018],
                         [10.350694, 123.915531],
                         [10.340333, 123.912693],
@@ -68,7 +57,6 @@
             service : new pointers({iconUrl:'/wasteline/assets/images/services.png'})
         }
         
-        L.polyline(boundaries, {smoothFactor: 1, opacity: 1, weight: 2, fill: true, fillOpacity: 0.1, clickable: false}).addTo(webMapComponent.map);
 
         /*Events*/
         // attaching function on map click
@@ -156,17 +144,24 @@
         };
         /**
         * Indicate the current location of the user in the map
+        * @param {function} callback called after getting the location
         * @returns {undefined}         
         */
-        webMapComponent.indicateCurrentLocation = function(){
+        webMapComponent.indicateCurrentLocation = function(callback){
             webMapComponent.map.locate({watch: true}).on('locationfound', function(e){
                 L.marker([e.latlng.lat, e.latlng.lng], {icon: webMapComponent.icon.report, title:"yes!", alt: "yes!", riseOnHover: true}).addTo(webMapComponent.map);
                 webMapComponent.map.stopLocate();
+                webMapComponent.map.panTo(new L.LatLng(e.latlng.lat, e.latlng.lng));
+                if(typeof callback !== "undefined"){
+                    callback(e.latlng);
+                }
             }).on('locationerror', function(e){
                 webMapComponent.map.stopLocate();
             });
         };
-        
+        webMapComponent.setView = function(lat, lng){
+            webMapComponent.map.panTo(new L.LatLng(lat, lng))
+        }
         /**
          * Add marker to map
          * 
@@ -182,8 +177,8 @@
         webMapComponent.addMarker = function(ID, mapMarkerType, associatedID, description, longitude, latitude, draggable){
             
             var markerOption = {
-                title: description,
-                alt: description, 
+//                title: description,
+//                alt: description, 
                 map_marker_type_ID : mapMarkerType,
                 associated_ID : associatedID,
                 riseOnHover: true,
@@ -204,7 +199,6 @@
                 case 1: //user address
                     markerOption.icon = webMapComponent.icon.garbage;
                     labelOption.className = "markerLabel";
-                    
                     break;
                 case 2: //Dumping Location
                     markerOption.icon = webMapComponent.icon.dumping_area;
@@ -227,11 +221,36 @@
             webMapComponent.markerList[ID] = new L.Marker([latitude, longitude], markerOption);
             webMapComponent.markerList[ID].bindLabel(description, labelOption);
             webMapComponent.map.addLayer(webMapComponent.markerList[ID]);
+            if(mapMarkerType*1 === 5){
+                console.log("set");
+                webMapComponent.selectedLocation = webMapComponent.markerList[ID];
+            }
             return webMapComponent.markerList[ID];
         };
-        
+        webMapComponent.removeMarkerList = function(ID){
+          if(typeof webMapComponent.markerList[ID] !== "undefined"){
+              webMapComponent.map.removeLayer(webMapComponent.markerList[ID]);
+              return true;
+              
+          }else{
+              return false;
+          }
+        };
         /*Banilad*/
         //L.marker([10.339634, 123.922587], {icon: webMapComponent.icon.LGU, title:"Brgy. Banilad Hall", alt: "Brgy. Banilad Hall", riseOnHover: true}).addTo(webMapComponent.map);
         webMapComponent.addMarker(0, 6, 0, "Brgy. Banilad Hall", 123.922587, 10.339634, false);
+        /*Initialize plug in*/
+        L.polyline(boundaries, {smoothFactor: 1, opacity: 1, weight: 2, fill: true, fillOpacity: 0.1, clickable: false}).addTo(webMapComponent.map);
+        /**
+         * A function to be called after clicking the marker button
+         * @type Arguments
+         */
+        webMapComponent.getCurrentLocationCallBack = function(latlng){
+            
+        };
+        L.easyButton('<span class="fa fa-map-marker" style="font-size:20px;color:green"></span>', function(){
+            
+            webMapComponent.indicateCurrentLocation(webMapComponent.getCurrentLocationCallBack);
+        }).addTo( webMapComponent.map );
     };
 </script>

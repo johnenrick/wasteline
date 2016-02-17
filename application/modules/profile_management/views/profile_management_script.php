@@ -18,6 +18,9 @@
                 $("#profileManagementForm").find("[name='updated_data[account_address_map_marker_ID]']").val(response["data"]["account_address_map_marker_ID"]*1);
                 $("#profileManagementForm").find("[name='updated_data[account_address_longitude]']").val(response["data"]["account_address_longitude"]);
                 $("#profileManagementForm").find("[name='updated_data[account_address_latitude]']").val(response["data"]["account_address_latitude"]);
+                profileManagement.webMap.removeMarkerList(response["data"]["account_address_map_marker_ID"]);
+                profileManagement.webMap.addMarker(response["data"]["account_address_map_marker_ID"], 5, response["data"]["account_ID"], "You Location", response["data"]["account_address_longitude"], response["data"]["account_address_latitude"]);
+                profileManagement.webMap.setView(response["data"]["account_address_latitude"], response["data"]["account_address_longitude"]);
                 
                 /*profile summary*/
                 $("#profileManagementFullName").text(response["data"]["first_name"]+" "+response["data"]["middle_name"]+" "+response["data"]["last_name"]);
@@ -30,11 +33,18 @@
             }
         });
     };
+    profileManagement.changeAddress = function(latlng){
+        $("#profileManagementForm").find("[name='updated_data[account_address_longitude]']").val(latlng.lng);
+        $("#profileManagementForm").find("[name='updated_data[account_address_latitude]']").val(latlng.lat);
+        $("#profileManagementForm").find("[name='updated_data[account_address_description]']").trigger("focus");
+    };
     profileManagement.initializeWebMap = function(){
-        profileManagement.webMap = new WebMapComponent("#profileManagementWebMap");
-        profileManagement.webMap.selectLocation(function(latlng){
-            console.log(latlng);
-        });
+        if(typeof profileManagement.webMap === "undefined"){
+            profileManagement.webMap = new WebMapComponent("#profileManagementWebMap");
+            profileManagement.webMap.selectLocation(profileManagement.changeAddress);
+            profileManagement.webMap.getCurrentLocationCallBack = profileManagement.changeAddress;
+            profileManagement.viewProfile();
+        }
     };
     $(document).ready(function(){
         load_page_component("web_map_component", profileManagement.initializeWebMap);
@@ -88,7 +98,7 @@
                 $("#profileManagementForm").find(".submitButton").button("reset");
             }
         });
-        profileManagement.viewProfile();
+        
         add_refresh_call("profile_management", profileManagement.viewProfile);
     });
     

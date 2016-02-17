@@ -17,6 +17,8 @@
         <link href="<?= asset_url('css/jquery-ui.structure.min.css') ?>" rel="stylesheet">
         <link href="<?= asset_url('css/jquery-ui.theme.min.css') ?>" rel="stylesheet">
 
+        <link href="<?= asset_url('css/font-awesome.min.css') ?>" rel="stylesheet">
+        
         <!-- Material Design for Bootstrap -->
         <link href="<?= asset_url('css/roboto.min.css') ?>" rel="stylesheet">
         <link href="<?= asset_url('/css/material-fullpalette.css') ?>" rel="stylesheet">

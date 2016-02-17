@@ -207,7 +207,7 @@ class C_account extends API_Controller {
                     /**Updating Address Information**/
                     $this->load->model("M_account_address");
                     $this->load->model("M_map_marker");
-                    if(isset($updatedData["account_address_ID"]) && $updatedData["account_address_ID"] && $updatedData["account_address_description"]){//update account_address
+                    if(isset($updatedData["account_address_ID"]) && ($updatedData["account_address_ID"] !== 0) && $updatedData["account_address_description"]){//update account_address
                         /*Account Address*/
                         $this->M_account_address->updateAccountAddress( NULL, 
                                 array(
