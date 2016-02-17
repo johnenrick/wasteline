@@ -1,0 +1,37 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 02 16, 16, 11:24:15 PM
+    Author     : johnenrick
+*/
+.markerStaticLabel{
+    border:none;
+    background: white;
+    font-weight: normal;
+    color:black;
+}
+
+.markerStaticLabel:before,
+.markerStaticLabel:after {
+	border:none;
+	content: none;
+	position: absolute;
+}
+
+.markerStaticLabel:before {
+	border : none;
+}
+
+.markerStaticLabel:after {
+	border:none
+}
+
+.markerStaticLabel:before,
+.markerStaticLabel:after {
+	content: "";
+}
+
+

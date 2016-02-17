@@ -1,6 +1,7 @@
-<link href="<?=asset_url('css/leaflet.css')?>" rel="stylesheet">
+
 <script src="<?=asset_url('js/leaflet.js')?>"></script>
 <script src="<?=asset_url("js/leaflet-gps.js")?>"></script>
+<script src="<?=asset_url("js/leaflet.label.js")?>"></script>
 <script>
     /*global webMapComponent, L */
     var waste_post = [
@@ -45,7 +46,7 @@
             attribution: osmAttrib
         });
         webMapComponent.map = L.map(mapNumber).setView([10.343, 123.919], 16).addLayer(osm);
-        webMapComponent.map.addControl( new L.Control.Gps({autoActive:true}) );
+        webMapComponent.map.addControl( new L.Control.Gps({autoActive:false}) );
         /*Icons*/
         // Icon Properties
         var pointers = L.Icon.extend({
@@ -66,8 +67,7 @@
             report : new pointers({iconUrl:'/wasteline/assets/images/report.png'}),
             service : new pointers({iconUrl:'/wasteline/assets/images/services.png'})
         }
-        /*Banilad*/
-        L.marker([10.339634, 123.922587], {icon: webMapComponent.icon.LGU, title:"Brgy. Banilad Hall", alt: "Brgy. Banilad Hall", riseOnHover: true}).addTo(webMapComponent.map);
+        
         L.polyline(boundaries, {smoothFactor: 1, opacity: 1, weight: 2, fill: true, fillOpacity: 0.1, clickable: false}).addTo(webMapComponent.map);
 
         /*Events*/
@@ -170,12 +170,13 @@
         /**
          * Add marker to map
          * 
-         * @param {type} ID Map Marker ID from database
-         * @param {type} mapMarkerType Type of the marker, 1 - user address, 2 - dumping location, 3 - report
-         * @param {type} associatedID Foreign key
-         * @param {type} description description of the marker
-         * @param {type} longitude
-         * @param {type} latitude
+         * @param {int} ID Map Marker ID from database
+         * @param {int} mapMarkerType Type of the marker, 1 - user address, 2 - dumping location, 3 - report
+         * @param {int} associatedID Foreign key
+         * @param {string} description description of the marker
+         * @param {double} longitude
+         * @param {double} latitude
+         * @param {boolean} draggable makes the markers draggable
          * @returns {undefined}         
          */
         webMapComponent.addMarker = function(ID, mapMarkerType, associatedID, description, longitude, latitude, draggable){
@@ -188,6 +189,12 @@
                 riseOnHover: true,
                 draggable : (typeof draggable === "undefined") ? false : draggable
             };
+            var labelOption = {
+                noHide : false,
+                opacity:1, 
+                offset: [10, -35], 
+                direction : "right"
+            };
 //            LGU : new pointers({iconUrl:'/wasteline/assets/images/lgu.png'}),
 //            garbage : new pointers({iconUrl:'/wasteline/assets/images/garbage.png'}),
 //            dumping_area : new pointers({iconUrl:'/wasteline/assets/images/dumpingarea.png'}),
@@ -196,6 +203,8 @@
             switch(mapMarkerType){
                 case 1: //user address
                     markerOption.icon = webMapComponent.icon.garbage;
+                    labelOption.className = "markerLabel";
+                    
                     break;
                 case 2: //Dumping Location
                     markerOption.icon = webMapComponent.icon.dumping_area;
@@ -209,10 +218,20 @@
                 case 5: //Select Location
                     markerOption.icon = webMapComponent.icon.garbage;
                     break;
+                case 6: //LGU
+                    markerOption.icon = webMapComponent.icon.LGU;
+                    labelOption.className = "markerStaticLabel";
+                    labelOption.noHide = true;
+                    break;
             }
             webMapComponent.markerList[ID] = new L.Marker([latitude, longitude], markerOption);
+            webMapComponent.markerList[ID].bindLabel(description, labelOption);
             webMapComponent.map.addLayer(webMapComponent.markerList[ID]);
             return webMapComponent.markerList[ID];
-        }
+        };
+        
+        /*Banilad*/
+        //L.marker([10.339634, 123.922587], {icon: webMapComponent.icon.LGU, title:"Brgy. Banilad Hall", alt: "Brgy. Banilad Hall", riseOnHover: true}).addTo(webMapComponent.map);
+        webMapComponent.addMarker(0, 6, 0, "Brgy. Banilad Hall", 123.922587, 10.339634, false);
     };
 </script>
