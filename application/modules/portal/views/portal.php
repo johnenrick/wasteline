@@ -17,31 +17,31 @@
                         </div>
                         <div class="col-md-12 no-padding wl-full-height">
                             <div id="contentCarousel" class="owl-carousel wl-full-height">
-                                <div class="wl-carousel-item" style="background-image:url('<?= asset_url("images/sample/1.jpg") ?>')">
+                                <div class="wl-carousel-item wl-carousel-item1" style="background-image:url('<?= asset_url("images/sample/1.jpg") ?>')">
                                     <div class="row">
                                     </div>
                                 </div>
-                                <div class="wl-carousel-item" style="background-image:url('<?= asset_url("images/sample/2.jpg") ?>')">
-                                    <div class="row">
-
-                                    </div>
-                                </div>
-                                <div class="wl-carousel-item" style="background-image:url('<?= asset_url("images/sample/3.jpg") ?>')">
+                                <div class="wl-carousel-item wl-carousel-item2" style="background-image:url('<?= asset_url("images/sample/2.jpg") ?>')">
                                     <div class="row">
 
                                     </div>
                                 </div>
-                                <div class="wl-carousel-item" style="background-image:url('<?= asset_url("images/sample/4.jpg") ?>')">
+                                <div class="wl-carousel-item wl-carousel-item3" style="background-image:url('<?= asset_url("images/sample/3.jpg") ?>')">
                                     <div class="row">
 
                                     </div>
                                 </div>
-                                <div class="wl-carousel-item" style="background-image:url('<?= asset_url("images/sample/5.jpg") ?>')">
+                                <div class="wl-carousel-item wl-carousel-item4" style="background-image:url('<?= asset_url("images/sample/4.jpg") ?>')">
                                     <div class="row">
 
                                     </div>
                                 </div>
-                                <div class="wl-carousel-item" style="background-image:url('<?= asset_url("images/sample/6.jpg") ?>')">
+                                <div class="wl-carousel-item wl-carousel-item5" style="background-image:url('<?= asset_url("images/sample/5.jpg") ?>')">
+                                    <div class="row">
+
+                                    </div>
+                                </div>
+                                <div class="wl-carousel-item wl-carousel-item6" style="background-image:url('<?= asset_url("images/sample/6.jpg") ?>')">
                                     <div class="row">
 
                                     </div>

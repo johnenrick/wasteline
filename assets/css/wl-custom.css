@@ -61,6 +61,20 @@ a {
 #wrapper.disabled .owl-item .wl-carousel-item {
     background-size: auto 100%;
 }
+
+#wrapper.disabled .wl-carousel-item {
+    background-position: 0 0;
+}
+#wrapper.disabled .wl-carousel-item.wl-carousel-item1,
+#wrapper.disabled .wl-carousel-item.wl-carousel-item3 {
+    background-position: center 0;
+}
+
+#wrapper.disabled .wl-carousel-item.wl-carousel-item4,
+#wrapper.disabled .wl-carousel-item.wl-carousel-item5 {
+    background-position: right 0;
+}
+
 /* end disable */
 
 /* portal */
@@ -68,6 +82,13 @@ a {
     display: none;
     background-color: rgba(47, 50, 58, 0.6);
 }
+.wl-carousel-item1, .wl-carousel-item2, .wl-carousel-item3, .wl-carousel-item6 {
+    background-position: 0 -100px;
+}
+.wl-carousel-item4, .wl-carousel-item5 {
+    background-position: 0 -250px;
+}
+
 
 
 .wl-logo-1 {
@@ -949,7 +970,7 @@ ul.sidebar-nav li a {
 }
 
 .scroll-on {
-    overflow: auto;
+    overflow: hidden;
     position: relative;
     height: 100%;
 }
@@ -1043,7 +1064,6 @@ ul.sidebar-nav li a {
     height: 100% !important;
     background-repeat:  no-repeat;
     background-size: 100% auto;
-    background-position: 0 0;
 }
 
 /* modal */
