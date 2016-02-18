@@ -4,7 +4,10 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/xampp/htdocs/wasteline/application/modules/system_application/views/page_component/web_map_component_script.php</file>
+            <file>file:/C:/xampp/htdocs/wasteline/application/modules/template/controllers/template.php</file>
             <file>file:/C:/xampp/htdocs/wasteline/application/modules/profile_management/views/profile_management_script.php</file>
+            <file>file:/C:/xampp/htdocs/wasteline/application/modules/profile_management/views/profile_management.php</file>
+            <file>file:/C:/xampp/htdocs/wasteline/application/modules/system_application/views/page_component/web_map_component.php</file>
         </group>
     </open-files>
 </project-private>

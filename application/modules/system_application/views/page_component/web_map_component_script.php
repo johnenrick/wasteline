@@ -4,6 +4,7 @@
 <script src="<?=asset_url("js/leaflet.label.js")?>"></script>
 <script src="<?=asset_url("js/easy-button.js")?>"></script>
 <script src="<?=asset_url("js/leaflet-heat.js")?>"></script>
+<script src="<?=asset_url("js/leaflet.markercluster.js")?>"></script>
 <script>
     /*global webMapComponent, L */
     var waste_post = [
@@ -66,7 +67,7 @@
             dumping_area : new pointers({iconUrl:'/wasteline/assets/images/dumpingarea.png'}),
             report : new pointers({iconUrl:'/wasteline/assets/images/report.png'}),
             service : new pointers({iconUrl:'/wasteline/assets/images/services.png'})
-        }
+        };
         
 
         /*Events*/
@@ -105,22 +106,14 @@
 //            }).addTo(webMapComponent.map);    
         };
         webMapComponent.onPopupOpen = function(){
-            var tempMarker = this;
-            var tempMarkerGeoJSON = webMapComponent.toGeoJSON();
-            //var lID = tempMarker._leaflet_id; // Getting Leaflet ID of this marker
-            // To remove marker on click of delete
-            $(".marker-delete-button:visible").click(function (){
-                webMapComponent.map.removeLayer(tempMarker);
-            });
         };
         webMapComponent.selectedLocation = false;
         webMapComponent.selectLocation = function(callBack){
             webMapComponent.onMapClick = function(e){
                 if(webMapComponent.selectedLocation !== false){
-                    webMapComponent.map.removeLayer(webMapComponent.selectedLocation);
+                    webMapComponent.markerCluster.removeLayer(webMapComponent.selectedLocation);
                 }
                 webMapComponent.selectedLocation = webMapComponent.addMarker(0, 5, 0, "Your Location", e.latlng.lng, e.latlng.lat, true);
-                webMapComponent.map.addLayer(webMapComponent.selectedLocation);
                 callBack({
                     lat : e.latlng.lat,
                     lng : e.latlng.lng
@@ -160,7 +153,7 @@
         */
         webMapComponent.indicateCurrentLocation = function(callback){
             webMapComponent.map.locate({watch: true}).on('locationfound', function(e){
-                L.marker([e.latlng.lat, e.latlng.lng], {icon: webMapComponent.icon.report, title:"yes!", alt: "yes!", riseOnHover: true}).addTo(webMapComponent.map);
+                webMapComponent.addMarker(0, 5, 0, "Your Location in GPS", e.latlng.lng, e.latlng.lat);
                 webMapComponent.map.stopLocate();
                 webMapComponent.map.panTo(new L.LatLng(e.latlng.lat, e.latlng.lng));
                 if(typeof callback !== "undefined"){
@@ -172,7 +165,11 @@
         };
         webMapComponent.setView = function(lat, lng){
             webMapComponent.map.panTo(new L.LatLng(lat, lng))
-        }
+        };
+        webMapComponent.markerCluster = L.markerClusterGroup({
+            maxClusterRadius : 40
+        });
+        webMapComponent.map.addLayer(webMapComponent.markerCluster );
         /**
          * Add marker to map
          * 
@@ -188,8 +185,6 @@
         webMapComponent.addMarker = function(ID, mapMarkerType, associatedID, description, longitude, latitude, draggable){
             
             var markerOption = {
-//                title: description,
-//                alt: description, 
                 map_marker_type_ID : mapMarkerType,
                 associated_ID : associatedID,
                 riseOnHover: true,
@@ -201,11 +196,6 @@
                 offset: [10, -35], 
                 direction : "right"
             };
-//            LGU : new pointers({iconUrl:'/wasteline/assets/images/lgu.png'}),
-//            garbage : new pointers({iconUrl:'/wasteline/assets/images/garbage.png'}),
-//            dumping_area : new pointers({iconUrl:'/wasteline/assets/images/dumpingarea.png'}),
-//            report : new pointers({iconUrl:'/wasteline/assets/images/report.png'}),
-//            service : new pointers({iconUrl:'/wasteline/assets/images/services.png'})
             switch(mapMarkerType){
                 case 1: //user address
                     markerOption.icon = webMapComponent.icon.garbage;
@@ -231,11 +221,12 @@
             }
             webMapComponent.markerList[ID] = new L.Marker([latitude, longitude], markerOption);
             webMapComponent.markerList[ID].bindLabel(description, labelOption);
-            webMapComponent.map.addLayer(webMapComponent.markerList[ID]);
+            webMapComponent.markerCluster.addLayer(webMapComponent.markerList[ID]);
             if(mapMarkerType*1 === 5){
-                console.log("set");
                 webMapComponent.selectedLocation = webMapComponent.markerList[ID];
             }
+            webMapComponent.markerCluster.refreshClusters();
+
             return webMapComponent.markerList[ID];
         };
         webMapComponent.removeMarkerList = function(ID){
@@ -248,7 +239,6 @@
           }
         };
         /*Banilad*/
-        //L.marker([10.339634, 123.922587], {icon: webMapComponent.icon.LGU, title:"Brgy. Banilad Hall", alt: "Brgy. Banilad Hall", riseOnHover: true}).addTo(webMapComponent.map);
         webMapComponent.addMarker(0, 6, 0, "Brgy. Banilad Hall", 123.922587, 10.339634, false);
         /*Initialize plug in*/
         L.polyline(boundaries, {smoothFactor: 1, opacity: 1, weight: 2, fill: true, fillOpacity: 0.1, clickable: false}).addTo(webMapComponent.map);
@@ -260,7 +250,6 @@
             
         };
         L.easyButton('<span class="fa fa-map-marker" style="font-size:20px;color:green"></span>', function(){
-            
             webMapComponent.indicateCurrentLocation(webMapComponent.getCurrentLocationCallBack);
         }).addTo( webMapComponent.map );
         L.heatLayer(waste_post).addTo(webMapComponent.map);
