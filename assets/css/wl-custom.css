@@ -479,36 +479,11 @@ ul.sidebar-nav li a {
     position: relative;
 }
 
-.wl-info-display .modal {
-    position: absolute;
-    height: 100%;
-    z-index: 5;
-}
-
-.wl-info-display .modal .modal-dialog {
-    z-index: 6;
-}
-
-.wl-info-display .modal:after {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    z-index: 5;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
 .wl-info-display .modal .modal-body {
     height: 200px;
     padding: 0 15%;
 }
 
-.modal-backdrop {
-    display: none !important;
-}
 
 .wl-info-header {
     height: 60px;
@@ -1071,3 +1046,37 @@ ul.sidebar-nav li a {
     background-position: 0 0;
 }
 
+/* modal */
+
+
+.modal {
+    position: absolute;
+    height: 100%;
+    z-index: 5;
+}
+
+.modal .modal-dialog {
+    z-index: 6;
+    margin-bottom: 0;
+}
+
+.modal:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 5;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-backdrop {
+    display: none !important;
+}
+
+#wl-table-modal.modal .modal-body {
+    height: 400px;
+    padding: 0 15%;
+}

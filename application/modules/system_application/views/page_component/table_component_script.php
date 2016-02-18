@@ -5,14 +5,14 @@
         tableComponent.tableContainer.append($("#pageComponentContainer .table_component").clone());
         /*Defaul Values*/
         tableConfig["result_limit"] = (typeof tableConfig['result_limit'] === "undefined") ? 20: tableConfig["result_limit"];
-        
+
         /**Creation of Table**/
         /*Header*/
         if(typeof tableConfig["header"] !== "undefined" && tableConfig["header"]){
             for(var x = 0; x < tableConfig["header"].length; x++){
                 var column = tableComponent.tableContainer.find(".prototype").find("th").clone();
                 column.find(".tableComponentColumnName").text(tableConfig["header"][x]["column_label"]);
-                
+
                 //Sort
                 if(typeof tableConfig["header"][x]["sort_column"] !== "undefined"){
                     if(tableConfig["header"][x]["sort_column"].constructor === Array){
@@ -43,7 +43,7 @@
                         }
                         break;
                     case "textarea":
-                        
+
                         break;
                     default :
                         filter = tableComponent.tableContainer.find(".prototype").find(".tableComponentFilterOption").clone();
@@ -56,11 +56,11 @@
                 tableComponent.tableContainer.find(".tableComponentFilterForm").prepend(filter);
             }
         }
-        
-        
+
+
         /*Sorting*/
-        
-        
+
+
         /**Functions**/
         /*Request Result*/
         tableComponent.tableContainer.find(".tableComponentFilterForm").find("input[name=limit]").val(tableConfig["result_limit"]);
@@ -96,14 +96,14 @@
                 tableComponent.tableContainer.find("table tbody").empty();
                 tableComponent.tableContainer.find(".tableComponentTotalPage").text(Math.ceil(response["result_count"]/tableConfig.result_limit));
                 tableComponent.tableContainer.find(".tableComponentTotalResult").text(response["result_count"]);
-                
+
                 if(!response["error"].length){
-                    
+
                     tableComponent.tableContainer.find(".tableComponentCurrentPage").val((tableComponent.tableContainer.find(".tableComponentCurrentPage").val()*1 <= 0) ? 1 :  tableComponent.tableContainer.find(".tableComponentCurrentPage").val());
                     tableConfig.result_callback(response["data"]);
                 }else{
                     if(response["error"][0]["status"]*1 === 2){//No Result
-                        
+
                         if((tableComponent.tableContainer.find(".tableComponentCurrentPage").val()*1  > tableComponent.tableContainer.find(".tableComponentTotalPage").text()*1) && response["result_count"]*1){
                             tableComponent.tableContainer.find(".tableComponentPreviousPage").trigger("click");
                         }else{
@@ -143,7 +143,7 @@
         });
         tableComponent.sortIndicator = function(){
             tableComponent.tableContainer.find(".tableComponentTable thead th").each(function(){
-                
+
                 switch($(this).attr("sort")*1){
                     case 1:
                         $(this).find(".tableComponentColumnSortIndicator").removeClass("glyphicon-triangle-bottom");
@@ -173,7 +173,7 @@
         });
         /**
          * Appending Row
-         * 
+         *
          * @param {DOM} newRow Row element to be appended
          * @returns {boolean}
          */
@@ -181,7 +181,15 @@
             tableComponent.tableContainer.find(".tableComponentTable tbody").append(newRow);
             return true;
         };
-       
+
         tableComponent.sortIndicator();
     };
+
+    $(document).ready(function () {
+
+        $("#wl-info-modal-submit").click(function () {
+            $(this).closest('div.modal').modal('hide');
+        });
+    });
+
 </script>
