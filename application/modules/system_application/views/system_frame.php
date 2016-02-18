@@ -165,6 +165,16 @@
                                                 <p class="wl-list-desciption wl-c-green-1" contenteditable="true">Click to add Description</p>
                                                 <p class="wl-list-quantity-price">
                                                     <span class="wl-list-quantity" contenteditable="true">Quantity</span>
+                                                    <!-- QUANTITY UNIT
+                                                    <div class="form-group form-group-sm wl-list-category-div" style="">
+                                                        <select class="form-control wl-list-quantity">
+                                                            <option hidden >Qty. Unit</option>
+                                                            <option>1</option>
+                                                            <option>2</option>
+                                                            <option>3</option>
+                                                        </select>
+                                                    </div>
+                                                    -->
                                                     &nbsp;|&nbsp;Php.
                                                     <span class="wl-list-price" contenteditable="true">Price</span></p>
                                                 <div class="form-group form-group-sm wl-list-category-div">
