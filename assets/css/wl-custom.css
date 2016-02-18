@@ -52,8 +52,23 @@ a {
     color: white;
 }
 
+#wrapper.disabled #portalInformationPanel .wl-carousel-header{
+    display: block !important;
+    position: absolute;
+    z-index: 2;
+}
 
+#wrapper.disabled .owl-item .wl-carousel-item {
+    background-size: auto 100%;
+}
 /* end disable */
+
+/* portal */
+#portalInformationPanel .wl-carousel-header{
+    display: none;
+    background-color: rgba(47, 50, 58, 0.6);
+}
+
 
 .wl-logo-1 {
     color: #50c14e;
@@ -217,8 +232,10 @@ ul.sidebar-nav li a {
 
 #portalLoginPanel {
     height: 100%;
+/*
     background: url('../../assets/images/lp-img4.jpg') no-repeat center center;
     background-size: cover;
+*/
 }
 
 #wl-side-content {
@@ -1039,3 +1056,18 @@ ul.sidebar-nav li a {
     border-color: #99baca !important;
     background: #f5fbfe !important;
 }
+
+
+/* carousel */
+
+.owl-wrapper-outer, .owl-wrapper, .owl-item {
+    height: 100% !important;
+}
+
+.owl-item .wl-carousel-item {
+    height: 100% !important;
+    background-repeat:  no-repeat;
+    background-size: 100% auto;
+    background-position: 0 0;
+}
+

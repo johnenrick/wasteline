@@ -12,42 +12,38 @@
                 <!-- main content -->
                 <div  class="wl-full-height col-sm-12 no-padding">
                     <div id="portalInformationPanel" class="wl-full-height col-sm-7 no-padding">
-                        <div class="col-md-12">
+                        <div class="col-md-12 wl-carousel-header">
                             <h4 style="padding:20px"><span class="lnr lnr-trash"></span>&nbsp;WasteLine</h4>
                         </div>
-                        <div class="col-md-12">
-                            <div id="contentCarousel" class="owl-carousel">
-                                <div>
+                        <div class="col-md-12 no-padding wl-full-height">
+                            <div id="contentCarousel" class="owl-carousel wl-full-height">
+                                <div class="wl-carousel-item" style="background-image:url('<?= asset_url("images/sample/1.jpg") ?>')">
                                     <div class="row">
-                                        <div class="col-xs-6">
-                                            <a href="#" class="">
-                                                <img src="<?= asset_url("images/portal/trashbin1.png") ?>" alt="...">
-                                            </a>
-
-                                        </div>
-                                        <div class="col-xs-6">
-                                            <h1>WasteLine</h1>
-                                            <p>Lots of waste are being disposed every day. In order to minimize this dilemma, the sources of waste such as households and Micro, Small, Medium Enterprises (SMEs) should practice proper waste management. Developing a web portal could help the households and SMEs in locating people who can make use of their recyclable waste. The Local Government Unit (LGU) could also easily disseminate information regarding proper waste management and waste management guidelines to their respective community. Thus, preventing recyclable waste being disposed, save resources and promote a greener environment</p>
-                                        </div>
                                     </div>
                                 </div>
-                                <div>
+                                <div class="wl-carousel-item" style="background-image:url('<?= asset_url("images/sample/2.jpg") ?>')">
                                     <div class="row">
-                                        <div class="col-xs-6">
-                                            <a href="#" class="">
-                                                <img src="<?= asset_url("images/portal/garbage.png") ?>" alt="...">
-                                            </a>
-                                        </div>
-                                        <div class="col-xs-6">
-                                            <h1>Give your Garbage!</h1>
-                                            <p>
-                                                Help mother nature by giving you garbage to the people who can make use of it.
-                                            </p>
-                                            <h1>Collect their Garbage!</h1>
-                                            <p>
-                                                Wasteline helps people find a particular waste or junks near their place.
-                                            </p>
-                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="wl-carousel-item" style="background-image:url('<?= asset_url("images/sample/3.jpg") ?>')">
+                                    <div class="row">
+
+                                    </div>
+                                </div>
+                                <div class="wl-carousel-item" style="background-image:url('<?= asset_url("images/sample/4.jpg") ?>')">
+                                    <div class="row">
+
+                                    </div>
+                                </div>
+                                <div class="wl-carousel-item" style="background-image:url('<?= asset_url("images/sample/5.jpg") ?>')">
+                                    <div class="row">
+
+                                    </div>
+                                </div>
+                                <div class="wl-carousel-item" style="background-image:url('<?= asset_url("images/sample/6.jpg") ?>')">
+                                    <div class="row">
+
                                     </div>
                                 </div>
 
@@ -55,7 +51,7 @@
                         </div>
                     </div>
                     <div id='portalLoginPanel' class="col-sm-5 no-padding">
-                        <div class="col-md-12 no-padding" style="height:100%; background:rgba(47,50,58,0.9);">
+                        <div class="col-md-12 no-padding" style="height:100%; background:rgba(47,50,58,1);">
                             <div class="wl-form-container scroll-on">
                                 <div id="login-form" class="col-md-7 col-md-offset-1 col-sm-8 col-sm-offset-1" style="padding-top:15%; ">
                                     <form id="loginForm" method="post" action="">
