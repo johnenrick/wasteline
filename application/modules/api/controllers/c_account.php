@@ -207,7 +207,7 @@ class C_account extends API_Controller {
                     /**Updating Address Information**/
                     $this->load->model("M_account_address");
                     $this->load->model("M_map_marker");
-                    if(isset($updatedData["account_address_ID"]) && ($updatedData["account_address_ID"] !== 0) && $updatedData["account_address_description"]){//update account_address
+                    if(isset($updatedData["account_address_ID"]) && ($updatedData["account_address_ID"]*1 !== 0) && $updatedData["account_address_description"]){//update account_address
                         /*Account Address*/
                         $this->M_account_address->updateAccountAddress( NULL, 
                                 array(
@@ -228,7 +228,7 @@ class C_account extends API_Controller {
                                     "longitude" => $updatedData["account_address_longitude"],
                                     "latitude" => $updatedData["account_address_latitude"],
                                 ));
-                    }else if(isset($updatedData["account_address_ID"]) && $updatedData["account_address_ID"] == 0 && $updatedData["account_address_description"]){//create account_address
+                    }else if(isset($updatedData["account_address_ID"]) && $updatedData["account_address_ID"]*1 == 0 && $updatedData["account_address_description"]){//create account_address
                         $accountAddressID = $this->M_account_address->createAccountAddress(user_id(), 2, $updatedData["account_address_description"]);
                         $this->M_map_marker->createMapMarker($accountAddressID, 1, $updatedData["account_address_longitude"], $updatedData["account_address_latitude"]);
                     }

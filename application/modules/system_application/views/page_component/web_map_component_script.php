@@ -80,7 +80,7 @@
         /*Variable*/
         webMapComponent.markerList = {}; //list of markers in the map
         
-        webMapComponent.onMapClick = function(e) {console.log("Test");
+        webMapComponent.onMapClick = function(e) {
 //            var geojsonFeature = {
 //                type: "Feature",
 //                properties: {},
@@ -113,6 +113,7 @@
                 if(webMapComponent.selectedLocation !== false){
                     webMapComponent.markerCluster.removeLayer(webMapComponent.selectedLocation);
                 }
+                console.log("hey");
                 webMapComponent.selectedLocation = webMapComponent.addMarker(0, 5, 0, "Your Location", e.latlng.lng, e.latlng.lat, true);
                 callBack({
                     lat : e.latlng.lat,
@@ -184,6 +185,12 @@
          */
         webMapComponent.addMarker = function(ID, mapMarkerType, associatedID, description, longitude, latitude, draggable){
             
+            if(typeof webMapComponent.markerList[ID] !== "undefined"){
+                webMapComponent.markerCluster.removeLayer(webMapComponent.markerList[ID]);
+            }
+            if(webMapComponent.selectedLocation !== false && mapMarkerType*1 ===5){
+                webMapComponent.markerCluster.removeLayer(webMapComponent.selectedLocation);
+            }
             var markerOption = {
                 map_marker_type_ID : mapMarkerType,
                 associated_ID : associatedID,
@@ -221,6 +228,7 @@
             }
             webMapComponent.markerList[ID] = new L.Marker([latitude, longitude], markerOption);
             webMapComponent.markerList[ID].bindLabel(description, labelOption);
+            
             webMapComponent.markerCluster.addLayer(webMapComponent.markerList[ID]);
             if(mapMarkerType*1 === 5){
                 webMapComponent.selectedLocation = webMapComponent.markerList[ID];
