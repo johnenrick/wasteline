@@ -18,7 +18,7 @@
         <link href="<?= asset_url('css/jquery-ui.theme.min.css') ?>" rel="stylesheet">
 
         <link href="<?= asset_url('css/font-awesome.min.css') ?>" rel="stylesheet">
-        
+
         <!-- Material Design for Bootstrap -->
         <link href="<?= asset_url('css/roboto.min.css') ?>" rel="stylesheet">
         <link href="<?= asset_url('/css/material-fullpalette.css') ?>" rel="stylesheet">
@@ -163,20 +163,25 @@
                                             </div>
                                             <div class="col-sm-10">
                                                 <p class="wl-list-desciption wl-c-green-1" contenteditable="true">Click to add Description</p>
-                                                <p class="wl-list-quantity-price">
+                                                <p class="wl-list-quantity-price" style="display:inline-block;height:auto">
                                                     <span class="wl-list-quantity" contenteditable="true">Quantity</span>
-                                                    <!-- QUANTITY UNIT
-                                                    <div class="form-group form-group-sm wl-list-category-div" style="">
-                                                        <select class="form-control wl-list-quantity">
-                                                            <option hidden >Qty. Unit</option>
-                                                            <option>1</option>
-                                                            <option>2</option>
-                                                            <option>3</option>
-                                                        </select>
-                                                    </div>
-                                                    -->
-                                                    &nbsp;|&nbsp;Php.
-                                                    <span class="wl-list-price" contenteditable="true">Price</span></p>
+                                                </p>
+
+                                                <div class="form-group form-group-sm wl-list-category-div" style="display:inline-block;height:auto">
+                                                    <select class="form-control wl-list-category">
+                                                        <option hidden >Qty.</option>
+                                                        <option>kg</option>
+                                                        <option>mg</option>
+                                                        <option>pc</option>
+                                                        <option>sack</option>
+                                                    </select>
+                                                </div>
+
+                                                 <p class="wl-list-quantity-price" style="display:inline-block;height:auto">
+                                                    <span class="wl-list-price" contenteditable="true">Price</span>
+                                                </p>
+
+
                                                 <div class="form-group form-group-sm wl-list-category-div">
                                                     <select class="form-control wl-list-category" id="wastePostCategoryList">
                                                         <option hidden >Category</option>
