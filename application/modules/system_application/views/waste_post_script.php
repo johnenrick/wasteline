@@ -6,7 +6,21 @@
 		wastePostContainer.retrieveMapMarker();
 		
 		$("#wl-btn-side-submit").click(function(){
-			wastePostContainer.createWastePost();
+			var waste_post_input = [];
+			$(".wl-rectangle-list").each(function(){
+				var container = {
+					waste_post_type_ID 	: wastePostContainer.findWastePostType(),
+					waste_category_ID 	: ($(this).find("#wastePostCategoryList").val())*1,
+					description			: $(this).find(".wl-list-desciption").text(),
+					quantity			: $(this).find(".wl-list-quantity").text(),
+					price				: $(this).find(".wl-list-price").text(),
+					quantity_unit_ID	: ($(this).find("#wastePostQuantityUnitList").val())*1
+				}
+				
+			});
+			waste_post_input.splice(0, 1);
+
+			wastePostContainer.createWastePost(waste_post_input);
 		});
 		$("#wl-btn-side-repost").click(function(){
 			alert("nope!");
@@ -40,27 +54,16 @@
 		});
 	});
 
-	wastePostContainer.createWastePost = function(){
-		var waste_post_input = [];
+	wastePostContainer.createWastePost = function(container){
 		var apiUrl = "";
-		$(".wl-rectangle-list").each(function(){
-			var container = {
-				waste_post_type_ID 	: wastePostContainer.findWastePostType(),
-				waste_category_ID 	: ($(this).find("#wastePostCategoryList").val())*1,
-				description			: $(this).find(".wl-list-desciption").text(),
-				quantity			: $(this).find(".wl-list-quantity").text(),
-				price				: $(this).find(".wl-list-price").text(),
-				quantity_unit_ID	: 1
-			}
-			waste_post_input.push(container);
-		});
-		waste_post_input.splice(0, 1);
+		var temp = {};
 
-		apiUrl = (waste_post_input.length > 0)? api_url("c_waste_post/batchCreateWastePost") : api_url("c_waste_post/createWastePost");
-		$.post(apiUrl, (waste_post_input.length > 0)? waste_post_input : waste_post_input[0], function(data){
+		apiUrl = (container.length > 0)? api_url("c_waste_post/batchCreateWastePost") : api_url("c_waste_post/createWastePost");
+		temp = {"waste_post" : container};
+		$.post(apiUrl, (container.length > 0)? temp : container[0], function(data){
 			var response = JSON.parse(data);
 			if(!response["error"].length){
-				alert("done");
+				$("ul#post-container-list li.wl-show").remove();
 			}
 		});
 	}

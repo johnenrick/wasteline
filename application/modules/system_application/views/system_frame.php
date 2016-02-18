@@ -167,13 +167,12 @@
                                                     <span class="wl-list-quantity" contenteditable="true">Quantity</span>
                                                 </p>
 
-                                                <div class="form-group form-group-sm wl-list-category-div" style="display:inline-block;height:auto">
+                                                <div class="form-group form-group-sm wl-list-category-div" id="wastePostQuantityUnitList" style="display:inline-block;height:auto">
                                                     <select class="form-control wl-list-category">
-                                                        <option hidden >Qty.</option>
-                                                        <option>kg</option>
-                                                        <option>mg</option>
-                                                        <option>pc</option>
-                                                        <option>sack</option>
+                                                        <option val="0"hidden >Unit</option>
+                                                        <option val="1">Kg</option>
+                                                        <option val="2">Pc</option>
+                                                        <option val="3">Sck</option>
                                                     </select>
                                                 </div>
 
@@ -184,7 +183,7 @@
 
                                                 <div class="form-group form-group-sm wl-list-category-div">
                                                     <select class="form-control wl-list-category" id="wastePostCategoryList">
-                                                        <option hidden >Category</option>
+                                                        <option val="0" hidden >Category</option>
                                                     </select>
                                                 </div>
                                             </div>
