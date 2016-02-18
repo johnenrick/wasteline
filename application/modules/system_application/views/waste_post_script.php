@@ -42,6 +42,7 @@
 
 	wastePostContainer.createWastePost = function(){
 		var waste_post_input = [];
+		var apiUrl = "";
 		$(".wl-rectangle-list").each(function(){
 			var container = {
 				waste_post_type_ID 	: wastePostContainer.findWastePostType(),
@@ -55,7 +56,8 @@
 		});
 		waste_post_input.splice(0, 1);
 
-		$.post(api_url("c_waste_post/createWastePost"), waste_post_input[0], function(data){
+		apiUrl = (waste_post_input.length > 0)? api_url("c_waste_post/batchCreateWastePost") : api_url("c_waste_post/createWastePost");
+		$.post(apiUrl, (waste_post_input.length > 0)? waste_post_input : waste_post_input[0], function(data){
 			var response = JSON.parse(data);
 			if(!response["error"].length){
 				alert("done");
