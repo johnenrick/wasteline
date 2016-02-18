@@ -1,4 +1,4 @@
-<div class="table_component col-md-8 col-md-offset-2">
+<div class="table_component">
     <div class="row">
         <div class="col-sm-12">
             <form action="" class="tableComponentFilterForm form-inline pull-right" method="post">

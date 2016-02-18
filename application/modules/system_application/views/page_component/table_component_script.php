@@ -30,6 +30,7 @@
             }
         }
         /*Filter*/
+        tableComponent.filterModification = {};
         if(typeof tableConfig["filter"] !== "undefined" && tableConfig["filter"]){
             for(var x=0; x < tableConfig["filter"].length; x++){
                 var filter;
@@ -48,6 +49,9 @@
                     default :
                         filter = tableComponent.tableContainer.find(".prototype").find(".tableComponentFilterOption").clone();
                         break;
+                }
+                if(typeof tableConfig["filter"][x]["value_modification"] !== "undefined"){
+                    tableComponent.filterModification[tableConfig["filter"][x]["name"]] = tableConfig["filter"][x]["value_modification"];
                 }
                 filter.find(".form-control").attr("name", "condition[" +tableConfig["filter"][x]["name"] +"]");
                 filter.find(".form-control").attr("type", tableConfig["filter"][x]["type"]);
@@ -86,6 +90,14 @@
                         });
                     }
                 });
+                //Value modification
+                console.log(tableComponent.filterModification);
+                for(var x = 0; x < data.length; x++){
+                    if(typeof tableComponent.filterModification[data[x]["name"]] !== "undefined"){
+                        data[x]["value"] = tableComponent.filterModification[data[x]["name"]](data[x]["value"]);
+                    }
+                }
+                console.log(data);
                 //pagination
                 tableComponent.tableContainer.find(".tableComponentPreviousPage").hide();
                 tableComponent.tableContainer.find(".tableComponentNextPage").hide();
