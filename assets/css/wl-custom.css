@@ -493,6 +493,14 @@ ul.sidebar-nav li a {
 .wl-footer-map .wl-map-filter {
     padding: 8px 10px;
     margin: 12px 0;
+    transition: all 0.3s ease-out;
+}
+.wl-footer-map .wl-map-filter.wl-active {
+    background-color: rgba(47, 50, 58, 1);
+    color: #fff;
+}
+.wl-footer-map .wl-map-filter.wl-active:hover {
+    color: rgba(0, 0, 0, 0.84);
 }
 .wl-footer-map .wl-map-filter:nth-child(1) .circle {
     background-color: #50c14e;
@@ -517,12 +525,6 @@ ul.sidebar-nav li a {
     -webkit-border-radius: 5px;
     border-radius: 5px;
     margin-right: 6px;
-}
-.wl-footer-map .wl-map-search-inpt {
-    margin-top: 10px;
-}
-.wl-footer-map .wl-map-search-btn {
-    padding: 12px;
 }
 
 /* Information */

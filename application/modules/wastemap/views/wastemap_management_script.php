@@ -12,6 +12,15 @@
         });
 
         $.material.ripples(".wl-map-filter, .wl-btn-map-search");
+        $('.wl-map-filter').click(function(){
+            var ths = $(this);
+            var add = !ths.hasClass('wl-active');
+            $.when($('.wl-map-filter').removeClass('wl-active'))
+                .done(function () {
+                    if(add)
+                        ths.addClass('wl-active');
+                });
+        });
     });
 
 
