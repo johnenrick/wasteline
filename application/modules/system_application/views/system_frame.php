@@ -23,6 +23,7 @@
         <link href="<?= asset_url('css/roboto.min.css') ?>" rel="stylesheet">
         <link href="<?= asset_url('/css/material-fullpalette.css') ?>" rel="stylesheet">
         <link href="<?= asset_url('/css/ripples.min.css') ?>" rel="stylesheet">
+        <link href="<?=asset_url('css/bootstrap-material-datetimepicker.css')?>" rel="stylesheet">
 
         <!-- Custom CSS -->
         <link href="<?= asset_url('css/nav.css') ?>" rel="stylesheet">
@@ -230,6 +231,8 @@
         <!-- Material Design for Bootstrap -->
         <script src="<?= asset_url('js/material.js') ?>"></script>
         <script src="<?= asset_url('js/ripples.min.js') ?>"></script>
+        <script src="<?= asset_url('js/moment.min.js')?> "></script>
+        <script src="<?= asset_url('js/bootstrap-material-datetimepicker.js') ?>"></script>
 
         <script src="<?= asset_url("js/jquery.form.min.js"); ?>"></script>
         <script src="<?= asset_url('js/validator.js') ?>"></script>

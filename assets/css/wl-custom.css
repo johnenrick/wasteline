@@ -526,6 +526,9 @@ ul.sidebar-nav li a {
     border-radius: 5px;
     margin-right: 6px;
 }
+.wl-footer-map .wl-map-date {
+    margin-top: 12px;
+}
 
 /* Information */
 
@@ -1143,4 +1146,11 @@ ul.sidebar-nav li a {
 #wl-table-modal.modal .modal-body {
     height: 400px;
     padding: 0 15%;
+}
+
+/* date time picker */
+
+.dtp {
+    z-index: 5 !important;
+    margin-top: 100px;
 }

@@ -21,6 +21,11 @@
                         ths.addClass('wl-active');
                 });
         });
+        $('.wl-datetimepicker').bootstrapMaterialDatePicker
+        ({
+            time: false,
+            clearButton: true
+        });
     });
 
 
