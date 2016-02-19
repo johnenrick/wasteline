@@ -30,7 +30,7 @@
             }
         }
         /*Filter*/
-        tableComponent.filterModification = [];
+        tableComponent.filterModification = {};
         if(typeof tableConfig["filter"] !== "undefined" && tableConfig["filter"]){
             for(var x=0; x < tableConfig["filter"].length; x++){
                 var filter;
@@ -51,16 +51,12 @@
                         break;
                 }
                 if(typeof tableConfig["filter"][x]["value_modification"] !== "undefined"){
-                    tableComponent.filterModification.push(tableConfig["filter"][x]["value_modification"]);
+                    tableComponent.filterModification[tableConfig["filter"][x]["name"]] = tableConfig["filter"][x]["value_modification"];
                 }
-                
                 filter.find(".form-control").attr("name", "condition[" +tableConfig["filter"][x]["name"] +"]");
                 filter.find(".form-control").attr("type", tableConfig["filter"][x]["type"]);
                 filter.find(".form-control").attr("placeholder", tableConfig["filter"][x]["placeholder"]);
                 filter.find("label").text(tableConfig["filter"][x]["label"]);
-                if(typeof tableConfig["filter"][x]["value"] !== "undefined"){
-                    filter.find(".form-control").val(tableConfig["filter"][x]["value"]);
-                }
                 tableComponent.tableContainer.find(".tableComponentFilterForm").prepend(filter);
             }
         }
@@ -95,14 +91,13 @@
                     }
                 });
                 //Value modification
-                for(var x = 0; x < tableComponent.filterModification.length; x++){
-                    tableComponent.filterModification[x](data);
-                }
-                for(var x = data.length-1; x >= 0; x--){
-                    if(data[x]["value"] === "NULL" ){
-                        delete data[x];
+                console.log(tableComponent.filterModification);
+                for(var x = 0; x < data.length; x++){
+                    if(typeof tableComponent.filterModification[data[x]["name"]] !== "undefined"){
+                        data[x]["value"] = tableComponent.filterModification[data[x]["name"]](data[x]["value"]);
                     }
                 }
+                console.log(data);
                 //pagination
                 tableComponent.tableContainer.find(".tableComponentPreviousPage").hide();
                 tableComponent.tableContainer.find(".tableComponentNextPage").hide();
@@ -110,7 +105,6 @@
             },
             success : function(data){
                 var response = JSON.parse(data);
-                console.log(response);
                 tableComponent.tableContainer.find("table tbody").empty();
                 tableComponent.tableContainer.find(".tableComponentTotalPage").text(Math.ceil(response["result_count"]/tableConfig.result_limit));
                 tableComponent.tableContainer.find(".tableComponentTotalResult").text(response["result_count"]);
@@ -136,6 +130,7 @@
                 tableComponent.tableContainer.find(".tableComponentLoading").hide();
             }
         });
+        var test= tableComponent.tableContainer.find(".tableComponentFilterForm").ajaxSubmit();
         //get result
         tableComponent.refreshResult = function(){
             tableComponent.tableContainer.find(".tableComponentFilterForm").trigger("submit");
@@ -202,5 +197,11 @@
         tableComponent.sortIndicator();
     };
 
+    $(document).ready(function () {
+
+        $("#wl-info-modal-submit").click(function () {
+            $(this).closest('div.modal').modal('hide');
+        });
+    });
 
 </script>

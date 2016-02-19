@@ -53,7 +53,7 @@ class C_map_marker extends API_Controller {
                     $this->input->post("limit"),
                     $this->input->post("offset"), 
                     $this->input->post("sort"),
-                    $this->input->post("ID"),
+                    $this->input->post("ID"), 
                     $this->input->post("condition")
                     );
             if($this->input->post("limit")){

@@ -19,7 +19,7 @@ class M_account_contact_information extends API_Model{
     public function createAccountContactInformation($accountID, $type, $detail){
         $newData = array(
             "account_ID" => $accountID,
-            "account_contact_information_type_ID" => $type,
+            "type" => $type,
             "detail" => $detail
         );
         return $this->createTableEntry($newData);

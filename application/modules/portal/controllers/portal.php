@@ -59,27 +59,27 @@ class Portal extends FE_Controller{
         //$this->loadPage("portal", array("portal_script", "registration_script", "login_script"), array("message" => false));
     }
     function testing(){
-        $this->form_validation->set_rules('email_detail', 'Email Address', 'alpha_numeric');
+        $this->form_validation->set_rules('email_address', 'Email Address', 'alpha_numeric');
         if($this->form_validation->run()){
             
         }
     }
     function passwordRecoveryRequest(){
-        $this->form_validation->set_rules('email_detail', 'Email Address', 'required|valid_email');
+        $this->form_validation->set_rules('email_address', 'Email Address', 'required|valid_email');
         if($this->form_validation->run()){
             $this->load->model("api/M_account");
-            $accountDetail = $this->M_account->retrieveAccount(0, NULL, 0, NULL, NULL, array("email__detail" => $this->input->post("email_detail")));
+            $accountDetail = $this->M_account->retrieveAccount(0, NULL, 0, NULL, NULL, array("email__detail" => $this->input->post("email_address")));
             if($accountDetail){
                 $this->load->model("api/M_password_recovery");
                 $datetime = time();
                 $passwordRecoveryID = $this->M_password_recovery->createPasswordRecovery($accountDetail[0]["ID"], $datetime);
                 $recoveryCode = sprintf("%d%04d%04d",$datetime, $passwordRecoveryID, $accountDetail[0]["ID"]);
-                $this->sendEmail("Wasteline Password Recovery", $this->input->post("email_detail"), "Good day, ".$accountDetail[0]['username'] ."! Please click the link to change your password :".  base_url("portal/recoverPassword/".$recoveryCode));
+                $this->sendEmail("Wasteline Password Recovery", $this->input->post("email_address"), "Good day, ".$accountDetail[0]['username'] ."! Please click the link to change your password :".  base_url("portal/recoverPassword/".$recoveryCode));
                 $this->responseDebug($recoveryCode);
             }else{
                 $this->responseError(1, "That email is not use");
             }
-            $this->responseDebug($this->input->post("email_detail"));
+            $this->responseDebug($this->input->post("email_address"));
         }else{
             if(count($this->form_validation->error_array())){
                 $this->responseError(102, $this->form_validation->error_array());
@@ -133,7 +133,7 @@ class Portal extends FE_Controller{
             if($accountDetail && $accountDetail["account_type_ID"] == 4){
                 $datetime = time();
                 $this->responseDebug(base_url("portal/accountVerification/".(sprintf("%d%d", $accountDetail["ID"], $datetime))));
-                $this->sendEmail("Wasteline Registration Verification", $this->input->post("email_detail"), "Good day ".$this->input->post('username') ."! Thank you for registering in Wasteline.\nTo verify you accout, please click the following link: ".  base_url("portal/accountVerification/".(sprintf("%d%d", $accountDetail["ID"], $datetime))));
+                $this->sendEmail("Wasteline Registration Verification", $this->input->post("email_address"), "Good day ".$this->input->post('username') ."! Thank you for registering in Wasteline.\nTo verify you accout, please click the following link: ".  base_url("portal/accountVerification/".(sprintf("%d%d", $accountDetail["ID"], $datetime))));
                 $this->responseData($accountDetail["email_detail"]);
                 
             }else{

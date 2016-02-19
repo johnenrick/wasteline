@@ -26,13 +26,12 @@ class C_account extends API_Controller {
         if($this->checkACL() && ($this->input->post("account_type_ID") != 2) && (($this->input->post("account_type_ID") == 1 && user_type() == 1) || ($this->input->post("account_type_ID") == 3 && user_type() == 1) || ($this->input->post("account_type_ID") == 4 && $this->input->post("status") == 3 && $this->validReCaptcha()))){
             $this->form_validation->set_rules('username', 'Username', 'required|is_unique[account.username]|alpha_numeric');
             $this->form_validation->set_rules('password', 'Password', 'required|min_length[6]');
-            $this->form_validation->set_rules('status', 'Status', 'required');
             $this->form_validation->set_rules('account_type_ID', 'Account Type', 'required');
             
             $this->form_validation->set_rules('first_name', 'First Name', 'required');
             $this->form_validation->set_rules('middle_name', 'Middle Name', 'required');
             $this->form_validation->set_rules('last_name', 'Last Name', 'required');
-            $this->form_validation->set_rules('email_detail', 'Email Detail', 'required|valid_email|is_unique[account_contact_information.detail]');
+            $this->form_validation->set_rules('email_address', 'Email Address', 'required|valid_email|is_unique[account_contact_information.detail]');
             
             if($this->form_validation->run()){
                 $result = $this->m_account->createAccount(
@@ -49,26 +48,17 @@ class C_account extends API_Controller {
                             $this->input->post("middle_name"),
                             $this->input->post("last_name") 
                             );
-                    /*Create Email*/
                     $this->load->model("M_account_contact_information");
                     $this->M_account_contact_information->createAccountContactInformation(
                             $result,
                             1,
-                            $this->input->post("email_detail")
+                            $this->input->post("email_address")
                             );
                     //Send Email Confirmation
                     if($this->input->post("account_type_ID") == 2){
                         $datetime = time();
-                        $this->sendEmail("Wasteline Registration Verification", $this->input->post("email_detail"), "Good day ".$this->input->post('username') ."! Thank you for registering in Wasteline.\nTo verify you accout, please click the following link: ".  base_url("portal/accountVerification/".(sprintf("%d%d", result, $datetime))));
+                        $this->sendEmail("Wasteline Registration Verification", $this->input->post("email_address"), "Good day ".$this->input->post('username') ."! Thank you for registering in Wasteline.\nTo verify you accout, please click the following link: ".  base_url("portal/accountVerification/".(sprintf("%d%d", result, $datetime))));
                         $this->responseDebug(base_url("porta/accountVerification/".(sprintf("%d%d", result, $datetime))));
-                    }
-                    /*Create Contact Number*/
-                    if($this->input->post("contact_number_detail")){
-                        $this->M_account_contact_information->createAccountContactInformation(
-                            $result,
-                            3,
-                            $this->input->post("contact_number_detail")
-                            );
                     }
                     $this->actionLog($result);
                     $this->responseData($result);
@@ -102,6 +92,7 @@ class C_account extends API_Controller {
                     $ID,
                     $this->input->post("condition")
                     );
+            $this->responseDebug($this->input->post("condition"));
             if($this->input->post("limit")){
                 $this->responseResultCount($this->m_account->retrieveAccount(
                     1,
@@ -112,7 +103,6 @@ class C_account extends API_Controller {
                     $this->input->post("condition")
                     ));
             }
-            $this->responseDebug($this->input->post("condition"));
             if($result){
                 if($this->input->post("with_contact_information") || $this->input->post("all_information")){
                     $this->load->model("m_account_contact_information");
@@ -167,10 +157,6 @@ class C_account extends API_Controller {
                     if($this->input->post("account_type_ID")){
                         $updatedData["account_type_ID"] = user_type();
                     }
-                    if(isset($updatedData["status"])){ // Dont allow to change status
-                        unset($updatedData["status"]);
-                        $this->responseDebug("deleted");
-                    }
                     $ID = user_id();
                 }
                 $result = $this->m_account->updateAccount(
@@ -181,7 +167,7 @@ class C_account extends API_Controller {
                 $condition["account_ID"] = $ID;
                 $result1 = $this->M_account_basic_information->updateAccountBasicInformation(
                         NULL,
-                        array("account_ID" => $ID),
+                        $condition,
                         $updatedData
                         );
                 if($result || $result1){
@@ -195,12 +181,12 @@ class C_account extends API_Controller {
                                 array(
                                     "account_ID" => user_id(), 
                                     "ID" => $updatedData["email_ID"],
-                                    "account_contact_information_type_ID" => 1
+                                    "type" => 1
                                 ), 
                                 array(
                                     "detail" => $updatedData["email_detail"]
                                 ));
-                    }else if(isset($updatedData["email_ID"]) && isset($updatedData["email_detail"]) && $updatedData["email_ID"] == 0 && $updatedData["email_detail"]){//create email
+                    }else if(isset($updatedData["email_ID"]) && $updatedData["email_ID"] == 0 && $updatedData["email_detail"]){//create email
                         $this->M_account_contact_information->createAccountContactInformation(user_id(), 1, $updatedData["email_detail"]);
                     }
                     /*Contact Number*/
@@ -210,7 +196,7 @@ class C_account extends API_Controller {
                                 array(
                                     "account_ID" => user_id(), 
                                     "ID" => $updatedData["contact_number_ID"],
-                                    "account_contact_information_type_ID" => 3
+                                    "type" => 3
                                 ), 
                                 array(
                                     "detail" => $updatedData["contact_number_detail"]

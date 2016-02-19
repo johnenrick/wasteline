@@ -17,8 +17,6 @@ class API_Model extends CI_Model{
     public $HASCONDITION = false;
     public function __construct() {
         parent::__construct();
-        $this->db->start_cache();
-        $this->db->flush_cache();
     }
     public function createTableEntry($newData){
         $this->db->start_cache();
@@ -117,6 +115,7 @@ class API_Model extends CI_Model{
         if(count($condition)){
             $this->addCondition($condition);
         }
+        
         if(isset($newData["ID"])){ // avoid changing the primary key
             unset($newData["ID"]);
         }
@@ -134,11 +133,8 @@ class API_Model extends CI_Model{
             if(count($updatedData)){
                 $result = $this->db->update($this->TABLE, $updatedData);
                
-            }else{
-                $this->db->get($this->TABLE);
             }
         }
-        $this->db->flush_cache();
         $this->db->stop_cache();
         $this->db->flush_cache();
        
@@ -186,6 +182,7 @@ class API_Model extends CI_Model{
                 if(isset($this->DATABASETABLE[$tableName][$tableColumn]) || $passArithmetic){
                     $leftValue = ($passArithmetic) ? $tableColumn: "$tableName.$tableColumn";
                     $this->HASCONDITION = true;
+                   
                     switch($segment[0]){
                         case "like":
                             if(is_array($tableColumnValue)){

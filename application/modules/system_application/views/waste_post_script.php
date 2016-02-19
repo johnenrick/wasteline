@@ -1,9 +1,7 @@
 <script>
 	var wastePostContainer = {};
-
 	$(document).ready(function(){
 		wastePostContainer.retrieveWastePostCategory();
-		wastePostContainer.retrieveMapMarker();
 		
 		$("#wl-btn-side-submit").click(function(){
 			var waste_post_input = [];
@@ -16,14 +14,14 @@
 					price				: $(this).find(".wl-list-price").text(),
 					quantity_unit_ID	: ($(this).find("#wastePostQuantityUnitList").val())*1
 				}
-				
+				waste_post_input.push(container);
 			});
 			waste_post_input.splice(0, 1);
 
 			wastePostContainer.createWastePost(waste_post_input);
 		});
 		$("#wl-btn-side-repost").click(function(){
-			alert("nope!");
+			alert();
 		});
 
 		$("#post-container-list").on("focus", ".wl-list-desciption", function(){
@@ -81,12 +79,5 @@
 
 	wastePostContainer.findWastePostType = function(){
 		return ($(".wastePostTypeList").find(".wl-active").attr("typeID"))*1;
-	}
-
-	wastePostContainer.retrieveMapMarker = function(){
-		$.post(api_url("c_map_marker/retrieveMapMarker"), {}, function(data){
-			var response = JSON.parse(data);
-			console.log(response);
-		});
 	}
 </script>
