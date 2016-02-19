@@ -1,45 +1,44 @@
 <?php
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
- * Description of m_account_basic_information
+ * Description of m_account_contact_information
  *
  * @author johnenrick
  */
-class M_account_basic_information extends API_Model{
+class M_account_contact_information extends API_Model{
     public function __construct() {
         parent::__construct();
-        $this->TABLE = "account_basic_information";
+        $this->TABLE = "account_contact_information";
     }
-    public function createAccountBasicInformation($accountID, $firstName, $middleName, $lastName){
+    public function createAccountContactInformation($accountID, $type, $detail){
         $newData = array(
             "account_ID" => $accountID,
-            "first_name" => $firstName,
-            "middle_name" => $middleName,
-            "last_name" => $lastName
+            "account_contact_information_type_ID" => $type,
+            "detail" => $detail
         );
         return $this->createTableEntry($newData);
     }
-    public function retrieveAccountBasicInformation($retrieveType = false, $limit = NULL, $offset = 0, $sort = array(), $ID = NULL, $condition = NULL) {
+    public function retrieveAccountContactInformation($retrieveType = false, $limit = NULL, $offset = 0, $sort = array(), $ID = NULL, $condition = NULL) {
         $joinedTable = array(
-            "account" => "account.ID=account_basic_information.account_ID"
+            
         );
         $selectedColumn = array(
-            "account.username",
-            "account.account_type_ID"
+            "account_contact_information.*"
         );
         
         return $this->retrieveTableEntry($retrieveType, $limit, $offset, $sort, $ID, $condition, $selectedColumn, $joinedTable);
     }
-    public function updateAccountBasicInformation($ID = NULL, $condition = array(), $newData = array()) {
+    public function updateAccountContactInformation($ID = NULL, $condition = array(), $newData = array()) {
         return $this->updateTableEntry($ID, $condition, $newData);
     }
-    public function deleteAccountBasicInformation($ID = NULL, $condition = array()){
+    public function deleteAccountContactInformation($ID = NULL, $condition = array()){
         return $this->deleteTableEntry($ID, $condition);
+    }
+    public function batchUpdateAccountContactInformation($condition, $newData) {
+        return $this->batchUpdateTableEntry($condition, $newData);
     }
 }
