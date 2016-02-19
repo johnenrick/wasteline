@@ -638,7 +638,7 @@ abstract class CI_DB_query_builder extends CI_DB_driver {
 	 * @return	CI_DB_query_builder
 	 */
 	protected function _wh($qb_key, $key, $value = NULL, $type = 'AND ', $escape = NULL)
-	{
+	{ 
 		$qb_cache_key = ($qb_key === 'qb_having') ? 'qb_cache_having' : 'qb_cache_where';
 
 		if ( ! is_array($key))
