@@ -21,7 +21,7 @@
 			wastePostContainer.createWastePost(waste_post_input);
 		});
 		$("#wl-btn-side-repost").click(function(){
-			
+			alert();
 		});
 
 		$("#post-container-list").on("focus", ".wl-list-desciption", function(){
