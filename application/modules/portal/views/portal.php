@@ -93,7 +93,7 @@
                                         <div class="form-group label-floating">
                                             <label class="control-label">Email</label>
 
-                                            <input name="email_address" type="email" class="form-control-light form-control" required="true">
+                                            <input name="email_detail" type="email" class="form-control-light form-control" required="true">
                                             <p class="help-block wl-c-gray-1">We will send your reset link through this email</p>
                                         </div>
                                         <div class="form-group">
@@ -128,7 +128,7 @@
                                         </div>
                                         <div class="form-group label-floating">
                                             <label class="control-label">Email</label>
-                                            <input name="email_address" type="email" class="form-control-light form-control" required="true">
+                                            <input name="email_detail" type="email" class="form-control-light form-control" required="true">
                                             <p class="help-block wl-c-gray-1">A valid email is necessary</p>
                                         </div>
                                         <div class="form-group label-floating">
