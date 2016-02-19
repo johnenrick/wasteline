@@ -115,6 +115,8 @@
     $(document).ready(function(){
         load_page_component("table_component", LGUManagement.initializeReportManagementTable);
         $("#LGUManagementCreateUser").click(function(){
+            $(".LGUManagementUserDetailChangeAccountStatus").hide();
+            $("#LGUManagementUserDetailDeactiveNotice").hide();
             $("#LGUManagementUserDetailForm")[0].reset();
             $("#LGUManagementUserDetailForm").find("[name=ID]").val(0);
             $("#LGUManagementUserDetailForm").attr("action", api_url("C_account/createAccount"));
@@ -126,9 +128,8 @@
         $(".LGUManagementUserDetailChangeAccountStatus").click(function(){
             $(".LGUManagementUserDetailChangeAccountStatus").button("loading");
             $.post(api_url("C_account/updateAccount"), {ID : $("#LGUManagementUserDetailForm").find("[name=ID]").val(),updated_data : {status : $(this).attr("status")}}, function(data){
-                console.log(data);
+            
                 var response = JSON.parse(data);
-                console.log(response)
                 if(!response["data"].length){
                     LGUManagement.viewUserDetail($("#LGUManagementUserDetailForm").find("[name=ID]").val());
                 }else{

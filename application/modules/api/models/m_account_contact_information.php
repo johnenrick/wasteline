@@ -1,11 +1,9 @@
 <?php
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  * Description of m_account_contact_information
  *
@@ -19,7 +17,7 @@ class M_account_contact_information extends API_Model{
     public function createAccountContactInformation($accountID, $type, $detail){
         $newData = array(
             "account_ID" => $accountID,
-            "type" => $type,
+            "account_contact_information_type_ID" => $type,
             "detail" => $detail
         );
         return $this->createTableEntry($newData);
