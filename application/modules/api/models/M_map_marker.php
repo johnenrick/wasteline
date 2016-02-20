@@ -32,13 +32,16 @@ class M_map_marker extends API_Model{
     public function retrieveMapMarker($retrieveType = false, $limit = NULL, $offset = 0, $sort = array(), $ID = NULL, $condition = NULL) {
         $joinedTable = array(
             "report" => "report.ID=map_marker.associated_ID AND map_marker.map_marker_type_ID=3",
-            "account_address" => "account_address.account_ID=map_marker.associated_ID AND map_marker.map_marker_type_ID=1",
-            "dumping_location" => "dumping_location.ID=map_marker.associated_ID AND map_marker.map_marker_type_ID=2"
+            "account_address" => "account_address.ID=map_marker.associated_ID AND map_marker.map_marker_type_ID=1",
+            "dumping_location" => "dumping_location.ID=map_marker.associated_ID AND map_marker.map_marker_type_ID=2",
+            "report AS illegal_dumping" => "illegal_dumping.ID=map_marker.associated_ID AND illegal_dumping.report_type_ID=3 AND map_marker.map_marker_type_ID=3"
+            
         );
         $selectedColumn = array(
             "map_marker.*",
             "account_address.description AS account_address_description",
-            "dumping_location.description AS dumping_location_description"
+            "dumping_location.description AS dumping_location_description",
+            "dumping_location.detail AS dumping_location_description"
         );
         return $this->retrieveTableEntry($retrieveType, $limit, $offset, $sort, $ID, $condition, $selectedColumn, $joinedTable);
     }

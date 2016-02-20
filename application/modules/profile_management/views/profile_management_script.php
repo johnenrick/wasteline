@@ -20,7 +20,7 @@
                 $("#profileManagementForm").find("[name='updated_data[account_address_latitude]']").val(response["data"]["account_address_latitude"]);
                 profileManagement.webMap.removeMarkerList(response["data"]["account_address_map_marker_ID"]);
                 if(response["data"]["account_address_longitude"]*1 &&  response["data"]["account_address_latitude"]*1){
-                    profileManagement.webMap.addMarker(response["data"]["account_address_map_marker_ID"], 5, response["data"]["account_ID"], "Your saved current location", response["data"]["account_address_longitude"]*1, response["data"]["account_address_latitude"]*1);
+                    profileManagement.webMap.addMarker(response["data"]["account_address_map_marker_ID"], 5, response["data"]["account_address_ID"], "Your saved current location", response["data"]["account_address_longitude"]*1, response["data"]["account_address_latitude"]*1);
                         profileManagement.webMap.setView(response["data"]["account_address_latitude"], response["data"]["account_address_longitude"]);
                 }
                 
@@ -39,6 +39,8 @@
         $("#profileManagementForm").find("[name='updated_data[account_address_longitude]']").val(latlng.lng);
         $("#profileManagementForm").find("[name='updated_data[account_address_latitude]']").val(latlng.lat);
         $("#profileManagementForm").find("[name='updated_data[account_address_description]']").trigger("focus");
+        profileManagement.webMap.removeMarkerList($("#profileManagementForm").find("[name='updated_data[account_address_map_marker_ID]']"));
+        profileManagement.webMap.selectedLocation = profileManagement.webMap.addMarker($("#profileManagementForm").find("[name='updated_data[account_address_map_marker_ID]']").val(), 5, $("#profileManagementForm").find("[name='updated_data[account_address_ID]']").val(), "Your saved current location", latlng.lng*1, latlng.lat*1);
     };
     profileManagement.initializeWebMap = function(){
         if(typeof profileManagement.webMap === "undefined"){

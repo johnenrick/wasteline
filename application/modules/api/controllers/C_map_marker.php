@@ -24,7 +24,10 @@ class C_map_marker extends API_Controller {
             
             if($this->form_validation->run()){
                 $result = $this->m_map_marker->createMapMarker(
-                        $this->input->post("first_parameter")
+                        $this->input->post("associated_ID"),
+                        $this->input->post("map_marker_type_ID"),
+                        $this->input->post("longitude"),
+                        $this->input->post("latitude")
                         );
                 if($result){
                     $this->actionLog($result);

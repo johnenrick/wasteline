@@ -51,7 +51,7 @@
         // Icon Properties
         var pointers = L.Icon.extend({
             options:{
-                shadowUrl:'/wasteline/assets/images/marker-shadow.png',
+                shadowUrl:asset_url('images/marker-shadow.png'),
                 iconSize:     [25, 42], // size of the icon
                 shadowSize:   [25, 30], // size of the shadow
                 iconAnchor:   [25, 44], // point of the icon which will correspond to marker's location
@@ -61,11 +61,11 @@
         });
         /*Icon image*/
         webMapComponent.icon = {
-            LGU : new pointers({iconUrl:'/wasteline/assets/images/lgu.png'}),
-            garbage : new pointers({iconUrl:'/wasteline/assets/images/garbage.png'}),
-            dumping_area : new pointers({iconUrl:'/wasteline/assets/images/dumpingarea.png'}),
-            report : new pointers({iconUrl:'/wasteline/assets/images/report.png'}),
-            service : new pointers({iconUrl:'/wasteline/assets/images/services.png'})
+            LGU : new pointers({iconUrl:asset_url('images/lgu.png')}),
+            garbage : new pointers({iconUrl:asset_url('images/garbage.png')}),
+            dumping_area : new pointers({iconUrl:asset_url('images/dumpingarea.png')}),
+            report : new pointers({iconUrl:asset_url('images/report.png')}),
+            service : new pointers({iconUrl:asset_url('images/services.png')})
         };
         
         /*Events*/
@@ -107,12 +107,6 @@
         webMapComponent.selectedLocation = false;
         webMapComponent.selectLocation = function(callBack){
             webMapComponent.onMapClick = function(e){
-                if(webMapComponent.selectedLocation !== false){
-//                    console.log(webMapComponent.markerCluster.hasLayer(webMapComponent.markerList[webMapComponent.selectedLocation.options.map_marker_ID]));
-                    webMapComponent.markerCluster.removeLayer(webMapComponent.selectedLocation);
-                    webMapComponent.selectedLocation = false;
-                }
-                webMapComponent.selectedLocation = webMapComponent.addMarker(100, 5, 0, "Your Location", e.latlng.lng, e.latlng.lat, true);
                 callBack({
                     lat : e.latlng.lat,
                     lng : e.latlng.lng
@@ -156,7 +150,6 @@
                 webMapComponent.isGettingGPS = true;
                 webMapComponent.map.locate({watch: true}).on('locationfound', function(e){
                     webMapComponent.isGettingGPS = false;
-                    webMapComponent.addMarker(0, 5, 0, "Your Location in GPS", e.latlng.lng, e.latlng.lat, true);
                     webMapComponent.map.stopLocate();
                     webMapComponent.map.panTo(new L.LatLng(e.latlng.lat, e.latlng.lng));
                     if(typeof callback !== "undefined"){
@@ -187,7 +180,7 @@
          * @param {boolean} draggable makes the markers draggable
          * @returns {undefined}         
          */
-        webMapComponent.addMarker = function(ID, mapMarkerType, associatedID, description, longitude, latitude, draggable){
+        webMapComponent.addMarker = function(ID, mapMarkerType, associatedID, description, longitude, latitude, draggable, popUpContent){
             if(typeof webMapComponent.markerList[ID] !== "undefined" && mapMarkerType*1 !== 6){
                 webMapComponent.markerCluster.removeLayer(webMapComponent.markerList[ID]);
                 delete webMapComponent.markerList[ID];
@@ -205,7 +198,7 @@
                 offset: [10, -35], 
                 direction : "right"
             };
-            switch(mapMarkerType){
+            switch(mapMarkerType*1){
                 case 1: //user address
                     markerOption.icon = webMapComponent.icon.garbage;
                     labelOption.className = "markerLabel";
@@ -228,16 +221,17 @@
                     labelOption.noHide = true;
                     break;
             }
+            console.log(description);
             webMapComponent.markerList[ID] = new L.Marker([latitude, longitude], markerOption);
             webMapComponent.markerList[ID].bindLabel(description, labelOption);
-            
             webMapComponent.markerCluster.addLayer(webMapComponent.markerList[ID]);
             if(mapMarkerType*1 === 5){
                 webMapComponent.selectedLocation = webMapComponent.markerList[ID];
             }
-            webMapComponent.markerCluster.refreshClusters();
             //popup
-            webMapComponent.markerList[ID].bindPopup("Hello World").openPopup();
+            if(typeof popUpContent !== "undefined"){
+                webMapComponent.markerList[ID].bindPopup(popUpContent);
+            }
             return webMapComponent.markerList[ID];
         };
         webMapComponent.removeMarkerList = function(ID){
