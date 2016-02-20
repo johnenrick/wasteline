@@ -236,6 +236,8 @@
                 webMapComponent.selectedLocation = webMapComponent.markerList[ID];
             }
             webMapComponent.markerCluster.refreshClusters();
+            //popup
+            webMapComponent.markerList[ID].bindPopup("Hello World").openPopup();
             return webMapComponent.markerList[ID];
         };
         webMapComponent.removeMarkerList = function(ID){
