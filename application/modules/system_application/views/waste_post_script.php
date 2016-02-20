@@ -1,3 +1,4 @@
+
 <script>
 	var wastePostContainer = {};
 	$(document).ready(function(){
@@ -29,53 +30,43 @@
 					waste_post_type_ID 	: wastePostContainer.findWastePostType(),
 					waste_category_ID 	: (last_li.find("#wastePostCategoryList").val())*1,
 					description			: last_li.find(".wl-list-desciption").text(),
-					quantity			: last_li.find(".wl-list-quantity").text(),
-					price				: last_li.find(".wl-list-price").text(),
+					quantity			: (last_li.find(".wl-list-quantity").text())*1,
+					price				: (last_li.find(".wl-list-price").text())*1,
 					quantity_unit_ID	: (last_li.find("#wastePostQuantityUnitList").val())*1
 				}
+				//if(container.waste_post_type_ID != 0 && container.waste_category_ID != 0 && container.description != "Click to add Description" && container.quantity != "Quantity" && container.price != "Price" ) 
 				wastePostContainer.createWastePost(container, last_li);
+				
 			}
 		});
 		$("#wl-btn-side-repost").click(function(){
 			alert();
 		});
 
-		$("#post-container-list").on("focus", ".wl-list-desciption", function(){
-			var temp = "Click to add Description";
-			if($(this).text() == temp) $(this).text("");
-		});
-		$("#post-container-list").on("blur", ".wl-list-desciption", function(){
-			var temp = "Click to add Description";
-			if($(this).text() == "") $(this).text(temp);
-		});
-
-		$("#post-container-list").on("focus", ".wl-list-quantity", function(){
-			var temp = "Quantity";
-			if($(this).text() == temp) $(this).text("");
-		});
-		$("#post-container-list").on("blur", ".wl-list-quantity", function(){
-			var temp = "Quantity";
-			if($(this).text() == "") $(this).text(temp);
-		});
-
-		$("#post-container-list").on("focus", ".wl-list-price", function(){
-			var temp = "Price";
-			if($(this).text() == temp) $(this).text("");
-		});
-		$("#post-container-list").on("blur", ".wl-list-price", function(){
-			var temp = "Price";
-			if($(this).text() == "") $(this).text(temp);
+		$("#post-container-list").on("blur", ".wl-list-desciption, .wl-list-quantity, .wl-list-price", function(){
+			if($(this).parent().parent().attr("wastepostid") || $(this).parent().parent().parent().attr("wastepostid")){
+				var id = $(this).parent().parent().attr("wastepostid") | $(this).parent().parent().parent().attr("wastepostid");
+				var table_column = $(this).attr("holder");
+				var container = {
+									ID 				: id,
+									condition		: {
+										waste_post__account_ID 	: user_id()
+									},
+									updated_data 	: {}
+				}
+				container.updated_data[table_column] = $(this).text();
+			}
 		});
 	});
 
 	wastePostContainer.createWastePost = function(container, row){
 		var apiUrl = "";
-		var temp = {};
+		//var temp = {};
 
-		apiUrl = (container.length > 0)? api_url("c_waste_post/batchCreateWastePost") : api_url("c_waste_post/createWastePost");
-		temp = {"waste_post" : container};
-		
-		$.post(apiUrl, (container.length > 0)? temp : container, function(data){
+		apiUrl = api_url("c_waste_post/createWastePost");
+		//temp = {"waste_post" : container};
+		console.log(container);
+		$.post(apiUrl, container, function(data){
 			var response = JSON.parse(data);
 			if(!response["error"].length){
 				//$("ul#post-container-list li.wl-show").remove();
@@ -124,6 +115,22 @@
 					dummy.removeAttr('id').show();
 			        $(dummy).insertBefore($("ul#post-container-list li").last()).addClass('wl-show');
 				}
+			}
+		});
+	}
+
+	wastePostContainer.isNumberInput = function(num){
+		var charCode = (num.which) ? num.which : num.keyCode;
+          if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57)) return false;
+
+          return true;
+	}
+
+	wastePostContainer.updateWastePost = function(container){
+		$.post(api_url("C_waste_post/updateWastePost"), container, function(data){
+			var response = JSON.parse(data);
+			if(!response["data"].length){
+				console.log(response);
 			}
 		});
 	}
