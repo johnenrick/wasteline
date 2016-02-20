@@ -105,15 +105,16 @@
 							"waste_post__account_ID"				: user_id(),
 							"waste_post__waste_post_type_ID"		: wastePostTypeID,
 							"greater_equal__waste_post__datetime" 	: ((new Date((d.getMonth() + 1) +" "+ d.getDate() + ", " + d.getFullYear() + " 00:00:00")).getTime())/1000,
-							"lesser_equal__waste_post__datetime" 	: ((new Date((d.getMonth() + 1) +" "+ d.getDate() + ", " + d.getFullYear() + " 23:59:59")).getTime())/1000
+							"lesser_equal__waste_post__datetime" 	: ((new Date((d.getMonth() + 1) +" "+ d.getDate() + ", " + d.getFullYear() + " 23:59:59")).getTime())/1000,
+							"waste_post__status"					: 1
 						}
 
 		$.post(api_url("C_waste_post/retrieveWastePost"), {condition: container}, function(data){
 			var response = JSON.parse(data);
 			if(!response["error"].length){
 				for(var x in response["data"]){
-					console.log(response["data"][x]);
 					var dummy = $("#wl-rectangle-dummy").clone();
+
 					dummy.attr("wastepostid", response["data"][x]["ID"]);
 					dummy.find("#wastePostCategoryList").val(response["data"][x]["waste_category_ID"]);
 					dummy.find(".wl-list-desciption").text(response["data"][x]["description"]);
@@ -122,9 +123,6 @@
 					dummy.find("#wastePostQuantityUnitList").val(response["data"][x]["unit_ID"]);
 					dummy.removeAttr('id').show();
 			        $(dummy).insertBefore($("ul#post-container-list li").last()).addClass('wl-show');
-			        /*setTimeout(function () {
-			            dummy
-			        }, 10);*/
 				}
 			}
 		});
