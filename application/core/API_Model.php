@@ -181,9 +181,11 @@ class API_Model extends CI_Model{
                     }
                     $tableColumn = "CONCAT($tableColumnTemp)";
                 }
+                
                 if(isset($this->DATABASETABLE[$tableName][$tableColumn]) || $passArithmetic){
                     $leftValue = ($passArithmetic) ? $tableColumn: "$tableName.$tableColumn";
                     $this->HASCONDITION = true;
+                    
                     switch($segment[0]){
                         case "like":
                             if(is_array($tableColumnValue)){

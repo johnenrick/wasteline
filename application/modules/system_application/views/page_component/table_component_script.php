@@ -103,7 +103,6 @@
             },
             success : function(data){
                 var response = JSON.parse(data);
-                console.log(response);
                 tableComponent.tableContainer.find("table tbody").empty();
                 tableComponent.tableContainer.find(".tableComponentTotalPage").text(Math.ceil(response["result_count"]/tableConfig.result_limit));
                 tableComponent.tableContainer.find(".tableComponentTotalResult").text(response["result_count"]);

@@ -1,7 +1,6 @@
 <script>
     var LGUManagement = {};
     LGUManagement.retrieveLGUAccount = function(data){
-        console.log(data);
         for(var x = 0; x < data.length; x++){
             var tableRow = $(".prototype").find(".LGUManagementTableRow").clone();
             tableRow.attr("account_ID", data[x]["ID"]);

@@ -108,9 +108,11 @@
         webMapComponent.selectLocation = function(callBack){
             webMapComponent.onMapClick = function(e){
                 if(webMapComponent.selectedLocation !== false){
+//                    console.log(webMapComponent.markerCluster.hasLayer(webMapComponent.markerList[webMapComponent.selectedLocation.options.map_marker_ID]));
                     webMapComponent.markerCluster.removeLayer(webMapComponent.selectedLocation);
+                    webMapComponent.selectedLocation = false;
                 }
-                webMapComponent.selectedLocation = webMapComponent.addMarker(-1, 5, 0, "Your Location", e.latlng.lng, e.latlng.lat, true);
+                webMapComponent.selectedLocation = webMapComponent.addMarker(100, 5, 0, "Your Location", e.latlng.lng, e.latlng.lat, true);
                 callBack({
                     lat : e.latlng.lat,
                     lng : e.latlng.lng
@@ -148,20 +150,26 @@
         * @param {function} callback called after getting the location
         * @returns {undefined}         
         */
+        webMapComponent.isGettingGPS = false;
         webMapComponent.indicateCurrentLocation = function(callback){
-            webMapComponent.map.locate({watch: true}).on('locationfound', function(e){
-                webMapComponent.addMarker(0, 5, 0, "Your Location in GPS", e.latlng.lng, e.latlng.lat);
-                webMapComponent.map.stopLocate();
-                webMapComponent.map.panTo(new L.LatLng(e.latlng.lat, e.latlng.lng));
-                if(typeof callback !== "undefined"){
-                    callback(e.latlng);
-                }
-            }).on('locationerror', function(e){
-                webMapComponent.map.stopLocate();
-            });
+            if(webMapComponent.isGettingGPS === false){
+                webMapComponent.isGettingGPS = true;
+                webMapComponent.map.locate({watch: true}).on('locationfound', function(e){
+                    webMapComponent.isGettingGPS = false;
+                    webMapComponent.addMarker(0, 5, 0, "Your Location in GPS", e.latlng.lng, e.latlng.lat, true);
+                    webMapComponent.map.stopLocate();
+                    webMapComponent.map.panTo(new L.LatLng(e.latlng.lat, e.latlng.lng));
+                    if(typeof callback !== "undefined"){
+                        callback(e.latlng);
+                    }
+                }).on('locationerror', function(e){
+                    webMapComponent.isGettingGPS = false;
+                    webMapComponent.map.stopLocate();
+                });
+            }
         };
         webMapComponent.setView = function(lat, lng){
-            webMapComponent.map.panTo(new L.LatLng(lat, lng))
+            webMapComponent.map.setView([lat, lng],17);
         };
         webMapComponent.markerCluster = L.markerClusterGroup({
             maxClusterRadius : 40
@@ -180,15 +188,12 @@
          * @returns {undefined}         
          */
         webMapComponent.addMarker = function(ID, mapMarkerType, associatedID, description, longitude, latitude, draggable){
-            
             if(typeof webMapComponent.markerList[ID] !== "undefined" && mapMarkerType*1 !== 6){
                 webMapComponent.markerCluster.removeLayer(webMapComponent.markerList[ID]);
                 delete webMapComponent.markerList[ID];
             }
-            if(webMapComponent.selectedLocation !== false && mapMarkerType*1 ===5){
-                webMapComponent.markerCluster.removeLayer(webMapComponent.selectedLocation);
-            }
             var markerOption = {
+                map_marker_ID : ID,
                 map_marker_type_ID : mapMarkerType,
                 associated_ID : associatedID,
                 riseOnHover: true,
@@ -236,6 +241,7 @@
         webMapComponent.removeMarkerList = function(ID){
           if(typeof webMapComponent.markerList[ID] !== "undefined"){
               webMapComponent.map.removeLayer(webMapComponent.markerList[ID]);
+              webMapComponent.markerCluster.refreshClusters();
               return true;
               
           }else{
@@ -258,7 +264,7 @@
         L.easyButton('<span class="fa fa-map-marker" style="font-size:20px;color:green"></span>', function(){
             webMapComponent.indicateCurrentLocation(webMapComponent.getCurrentLocationCallBack);
         }).addTo( webMapComponent.map );
-        
-        L.heatLayer(waste_post).addTo(webMapComponent.map);
+        webMapComponent.map._onResize(); 
+        //L.heatLayer(waste_post).addTo(webMapComponent.map);
     };
 </script>
