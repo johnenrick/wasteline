@@ -3,9 +3,12 @@
 	$(document).ready(function(){
 		wastePostContainer.retrieveWastePostCategory();
 		
-		$("#wl-btn-side-submit").click(function(){
+		$(".wl-btn-post, ul.wastePostTypeList li").click(function(){
+	        wastePostContainer.retrieveWastePost(wastePostContainer.findWastePostType());
+	    });
+		/*$("#wl-btn-side-submit").click(function(){
 			var waste_post_input = [];
-			$(".wl-rectangle-list").each(function(){
+			$("ul#post-container-list li.wl-show").each(function(){
 				var container = {
 					waste_post_type_ID 	: wastePostContainer.findWastePostType(),
 					waste_category_ID 	: ($(this).find("#wastePostCategoryList").val())*1,
@@ -16,9 +19,22 @@
 				}
 				waste_post_input.push(container);
 			});
-			waste_post_input.splice(0, 1);
 
 			wastePostContainer.createWastePost(waste_post_input);
+		});*/
+		$(".wl-rectangle-add, #wl-btn-side-submit").click(function(){
+			var last_li = $("ul#post-container-list li.wl-show").last();
+			if(last_li.hasClass("wl-show") && !(last_li.attr("wastepostid"))){
+				var container = {
+					waste_post_type_ID 	: wastePostContainer.findWastePostType(),
+					waste_category_ID 	: (last_li.find("#wastePostCategoryList").val())*1,
+					description			: last_li.find(".wl-list-desciption").text(),
+					quantity			: last_li.find(".wl-list-quantity").text(),
+					price				: last_li.find(".wl-list-price").text(),
+					quantity_unit_ID	: (last_li.find("#wastePostQuantityUnitList").val())*1
+				}
+				wastePostContainer.createWastePost(container, last_li);
+			}
 		});
 		$("#wl-btn-side-repost").click(function(){
 			alert();
@@ -52,16 +68,18 @@
 		});
 	});
 
-	wastePostContainer.createWastePost = function(container){
+	wastePostContainer.createWastePost = function(container, row){
 		var apiUrl = "";
 		var temp = {};
 
 		apiUrl = (container.length > 0)? api_url("c_waste_post/batchCreateWastePost") : api_url("c_waste_post/createWastePost");
 		temp = {"waste_post" : container};
-		$.post(apiUrl, (container.length > 0)? temp : container[0], function(data){
+		
+		$.post(apiUrl, (container.length > 0)? temp : container, function(data){
 			var response = JSON.parse(data);
 			if(!response["error"].length){
-				$("ul#post-container-list li.wl-show").remove();
+				//$("ul#post-container-list li.wl-show").remove();
+				if(row) row.attr("wastepostid", response["data"]);
 			}
 		});
 	}
@@ -79,5 +97,36 @@
 
 	wastePostContainer.findWastePostType = function(){
 		return ($(".wastePostTypeList").find(".wl-active").attr("typeID"))*1;
+	}
+
+	wastePostContainer.retrieveWastePost = function(wastePostTypeID){
+		var d = new Date();
+		var container = {
+							"waste_post__account_ID"				: user_id(),
+							"waste_post__waste_post_type_ID"		: wastePostTypeID,
+							"greater_equal__waste_post__datetime" 	: ((new Date((d.getMonth() + 1) +" "+ d.getDate() + ", " + d.getFullYear() + " 00:00:00")).getTime())/1000,
+							"lesser_equal__waste_post__datetime" 	: ((new Date((d.getMonth() + 1) +" "+ d.getDate() + ", " + d.getFullYear() + " 23:59:59")).getTime())/1000
+						}
+
+		$.post(api_url("C_waste_post/retrieveWastePost"), {condition: container}, function(data){
+			var response = JSON.parse(data);
+			if(!response["error"].length){
+				for(var x in response["data"]){
+					console.log(response["data"][x]);
+					var dummy = $("#wl-rectangle-dummy").clone();
+					dummy.attr("wastepostid", response["data"][x]["ID"]);
+					dummy.find("#wastePostCategoryList").val(response["data"][x]["waste_category_ID"]);
+					dummy.find(".wl-list-desciption").text(response["data"][x]["description"]);
+					dummy.find(".wl-list-quantity").text(response["data"][x]["quantity"]);
+					dummy.find(".wl-list-price").text(response["data"][x]["price"]);
+					dummy.find("#wastePostQuantityUnitList").val(response["data"][x]["unit_ID"]);
+					dummy.removeAttr('id').show();
+			        $(dummy).insertBefore($("ul#post-container-list li").last()).addClass('wl-show');
+			        /*setTimeout(function () {
+			            dummy
+			        }, 10);*/
+				}
+			}
+		});
 	}
 </script>

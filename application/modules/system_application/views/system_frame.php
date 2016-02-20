@@ -168,12 +168,12 @@
                                                     <span class="wl-list-quantity" contenteditable="true">Quantity</span>
                                                 </p>
 
-                                                <div class="form-group form-group-sm wl-list-category-div" id="wastePostQuantityUnitList" style="display:inline-block;height:auto">
-                                                    <select class="form-control wl-list-category">
-                                                        <option val="0"hidden >Unit</option>
-                                                        <option val="1">Kg</option>
-                                                        <option val="2">Pc</option>
-                                                        <option val="3">Sck</option>
+                                                <div class="form-group form-group-sm wl-list-category-div" style="display:inline-block;height:auto">
+                                                    <select class="form-control wl-list-category" id="wastePostQuantityUnitList">
+                                                        <option value="0"hidden >Unit</option>
+                                                        <option value="1">Kg</option>
+                                                        <option value="2">Pc</option>
+                                                        <option value="3">Sck</option>
                                                     </select>
                                                 </div>
 
