@@ -32,7 +32,12 @@
         <link href="<?=asset_url('css/jquery.mCustomScrollbar.min.css')?>" rel="stylesheet">
         <link href="<?=asset_url('css/wl-custom.css')?>" rel="stylesheet">
 
-
+        <style>
+            [contenteditable=true]:empty:before{
+              content: attr(placeholder);
+              display: block; 
+            }
+        </style>
 
     </head>
     <body>
@@ -163,9 +168,9 @@
                                                 <div class="circle"></div>
                                             </div>
                                             <div class="col-sm-10">
-                                                <p class="wl-list-desciption wl-c-green-1" contenteditable="true">Click to add Description</p>
+                                                <p class="wl-list-desciption wl-c-green-1" contenteditable="true" placeholder="Click to add Description" holder="description"></p>
                                                 <p class="wl-list-quantity-price" style="display:inline-block;height:auto">
-                                                    <span class="wl-list-quantity" contenteditable="true">Quantity</span>
+                                                    <span class="wl-list-quantity" contenteditable="true" onkeypress="return wastePostContainer.isNumberInput(event)" placeholder="Quantity" holder="quantity"></span>
                                                 </p>
 
                                                 <div class="form-group form-group-sm wl-list-category-div" style="display:inline-block;height:auto">
@@ -178,7 +183,7 @@
                                                 </div>
 
                                                  <p class="wl-list-quantity-price" style="display:inline-block;height:auto">
-                                                    <span class="wl-list-price" contenteditable="true">Price</span>
+                                                    <span class="wl-list-price" contenteditable="true" onkeypress="return wastePostContainer.isNumberInput(event)" placeholder="Price" holder="price"></span>
                                                 </p>
 
 
