@@ -5,6 +5,7 @@
 		wastePostContainer.retrieveWastePostCategory();
 		
 		$(".wl-btn-post, ul.wastePostTypeList li").click(function(){
+			$("ul#post-container-list li.wl-show").remove();
 	        wastePostContainer.retrieveWastePost(wastePostContainer.findWastePostType());
 	    });
 		/*$("#wl-btn-side-submit").click(function(){
