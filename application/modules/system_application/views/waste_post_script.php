@@ -1,12 +1,14 @@
-
 <script>
 	var wastePostContainer = {};
 	$(document).ready(function(){
 		wastePostContainer.retrieveWastePostCategory();
 		
 		$(".wl-btn-post, ul.wastePostTypeList li").click(function(){
-			$("ul#post-container-list li.wl-show").remove();
-	        wastePostContainer.retrieveWastePost(wastePostContainer.findWastePostType());
+			if ($("#wl-side-content").is(':visible') && $("ul#post-container-list li.wl-show").length == 0){
+				$("#wl-btn-side-repost").button("loading");
+				wastePostContainer.retrieveWastePost(wastePostContainer.findWastePostType());
+		        //else $("ul#post-container-list li.wl-show").remove();
+			}
 	    });
 		/*$("#wl-btn-side-submit").click(function(){
 			var waste_post_input = [];
@@ -36,8 +38,8 @@
 					quantity_unit_ID	: (last_li.find("#wastePostQuantityUnitList").val())*1
 				}
 				//if(container.waste_post_type_ID != 0 && container.waste_category_ID != 0 && container.description != "Click to add Description" && container.quantity != "Quantity" && container.price != "Price" ) 
+				$("#wl-btn-side-submit").button("loading");
 				wastePostContainer.createWastePost(container, last_li);
-				
 			}
 		});
 		$("#wl-btn-side-repost").click(function(){
@@ -56,6 +58,7 @@
 									updated_data 	: {}
 				}
 				container.updated_data[table_column] = $(this).text();
+				wastePostContainer.updateWastePost(container);
 			}
 		});
 	});
@@ -63,17 +66,18 @@
 	wastePostContainer.createWastePost = function(container, row){
 		var apiUrl = "";
 		//var temp = {};
-
+		
 		apiUrl = api_url("c_waste_post/createWastePost");
 		//temp = {"waste_post" : container};
-		console.log(container);
+		
 		$.post(apiUrl, container, function(data){
 			var response = JSON.parse(data);
-                        console.log(response);
 			if(!response["error"].length){
 				//$("ul#post-container-list li.wl-show").remove();
 				if(row) row.attr("wastepostid", response["data"]);
 			}
+		}).done(function(){
+			$("#wl-btn-side-submit").button("reset");
 		});
 	}
 
@@ -118,6 +122,8 @@
 			        $(dummy).insertBefore($("ul#post-container-list li").last()).addClass('wl-show');
 				}
 			}
+		}).done(function(){
+			$("#wl-btn-side-repost").button("reset");
 		});
 	}
 
