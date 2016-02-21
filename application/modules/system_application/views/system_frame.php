@@ -52,13 +52,13 @@
                     <li class="sidebar-brand">
                         <a><span class="lnr lnr-trash"></span></a>
                     </li>
-                    <li module_id="1" module_link="portal" module_name="home" style="display:none">
+                    <li module_id="1" module_link="portal" module_name="portal" style="display:none">
                         <a data-page-link="home" data-toggle="tooltip" data-placement="right" title="" data-original-title="Home"><span class="lnr lnr-home"></span></a>
                     </li>
-                    <li module_id="2" module_link="waste_map" module_name="home" style="display:none">
+                    <li module_id="2" module_link="waste_map" module_name="waste_map" style="display:none">
                         <a data-page-link="waste-map" data-toggle="tooltip" data-placement="right" title="" data-original-title="Waste Map"><span class="lnr lnr-map"></span></a>
                     </li>
-                    <li module_id="3" module_link="report_management" module_name="home" style="display:none">
+                    <li module_id="3" module_link="report_management" module_name="report_management" style="display:none">
                         <a data-page-link="information" data-toggle="tooltip" data-placement="right" title="" data-original-title="Information"><span class="lnr lnr-book"></span></a>
                     </li>
 

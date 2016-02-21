@@ -14,6 +14,6 @@
 class Waste_map extends FE_Controller{
     //put your code here
     function index(){
-        $this->loadPage("waste_map", "waste_map_script", array());
+        $this->loadPage("waste_map", array("waste_map_script", "waste_map_normal_user_script"), array());
     }
 }

@@ -106,12 +106,14 @@
         };
         webMapComponent.selectedLocation = false;
         webMapComponent.selectLocation = function(callBack){
-            webMapComponent.onMapClick = function(e){
-                callBack({
-                    lat : e.latlng.lat,
-                    lng : e.latlng.lng
-                });
-            };
+            if(typeof callBack !== "undefined"){
+                webMapComponent.onMapClick = function(e){
+                    callBack({
+                        lat : e.latlng.lat,
+                        lng : e.latlng.lng
+                    });
+                };
+            }
         };
         /**
         * Get the current location of the user, then pass the result to the callback 
