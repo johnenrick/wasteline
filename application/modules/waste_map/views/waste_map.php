@@ -38,7 +38,7 @@
                         <div class="form-group" style="margin-top:0px">
                             <div class="col-md-12">
                                 <textarea input_name="detail" class="form-control capitalize" rows="4" placeholder="Write the details or leave a note" ></textarea>
-                                <p class="wasteMapIllegalDumpingDetail form-control capitalize" style="margin-top:0px">Taesdasd</p>
+                                <p class="wasteMapIllegalDumpingDetail form-control capitalize" style="margin-top:0px"></p>
                             </div>
                         </div>
                     </div>
@@ -47,6 +47,43 @@
                     <div class="col-md-12">
                         <button type="submit" button_action="1" class="wasteMapSubmitIllegalDumpingReport btn btn-warning">Submit Report</button>
                         <button type="button" button_action="2" class="wasteMapSubmitIllegalDumpingReport btn btn-danger">Remove Report</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="wasteMapDumpingLocation panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">Dumping Location</h3>
+        </div>
+        <div class="panel-body">
+            </form>
+            <form class="wasteMapDumpingLocationForm" method="POST" >
+                <input name="map_marker_ID" value="0" type="hidden">
+                <input name="associated_ID" value="0" type="hidden">
+                <input name="longitude" type="hidden">
+                <input name="latitude" type="hidden">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group label-floating  is-empty " style="margin-top:0px">
+                            <label class="control-label" for="focusedUsername">Dumping Description</label>
+                            <input input_name="description" class="form-control" type="text" required="true">
+                            <p class="help-block wl-c-gray-1">Just a label for this location</p>
+                            <span class="material-input"></span>
+                        </div>
+                        <div class="form-group label-floating  is-empty " style="margin-top:0px">
+                            <label class="control-label" for="focusedUsername">Instruction/Note</label>
+                            <textarea input_name="detail" class="form-control capitalize" rows="2" ></textarea>
+                            <p class="wasteMapDumpingLocationDetail form-control capitalize" style="margin-top:0px"></p>
+                            <p class="help-block wl-c-gray-1">Make things clear</p>
+                            <span class="material-input"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="submit" button_action="1" class="wasteMapSubmitDumpingLocationReport btn btn-info">Place Dumping Location</button>
+                        <button type="button" button_action="2" class="wasteMapSubmitDumpingLocationReport btn btn-danger">Remove Report</button>
                     </div>
                 </div>
             </form>

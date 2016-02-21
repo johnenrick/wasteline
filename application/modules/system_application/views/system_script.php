@@ -255,7 +255,6 @@ var requestVerificationCode = function(){
     $(document).ready(function(){
         //load_module(system_data.data.default_page);
         retrieve_access_control();
-        
         if(user_type() === 4){
             setTimeout(function(){
                 show_system_message(51, 1, "Please verify your account by clicking the link sent to your account.", {text : "Send Verification Code", callback: requestVerificationCode});

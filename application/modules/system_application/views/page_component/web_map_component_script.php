@@ -217,7 +217,11 @@
             }
             webMapComponent.markerList[ID] = new L.Marker([latitude, longitude], markerOption);
             webMapComponent.markerList[ID].bindLabel(description, labelOption);
-            webMapComponent.markerCluster.addLayer(webMapComponent.markerList[ID]);
+            if(ID*1 === -1 && (mapMarkerType*1 === 2)){
+                webMapComponent.map.addLayer(webMapComponent.markerList[ID]);
+            }else{
+                webMapComponent.markerCluster.addLayer(webMapComponent.markerList[ID]);
+            }
             if(mapMarkerType*1 === 5){
                 webMapComponent.selectedLocation = webMapComponent.markerList[ID];
             }
@@ -231,6 +235,16 @@
            
           if(typeof webMapComponent.markerList[ID] !== "undefined"){
               webMapComponent.markerCluster.removeLayer(webMapComponent.markerList[ID]);
+              return true;
+              
+          }else{
+              return false;
+          }
+        };
+        webMapComponent.mapRemoveMarkerList = function(ID){
+           
+          if(typeof webMapComponent.markerList[ID] !== "undefined"){
+              webMapComponent.map.removeLayer(webMapComponent.markerList[ID]);
               return true;
               
           }else{

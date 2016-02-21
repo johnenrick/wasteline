@@ -97,7 +97,7 @@
                 for(var x =0 ; x < response["data"].length;x++){
                     var datetime = new Date(response["data"][x]["datetime"]*1000);
                     var detail  = response["data"][x]["detail"]+"<br> <i>Reported on "+datetime.getDate()+"/"+datetime.getMonth()+"/"+datetime.getFullYear()+"</i>";
-                    wasteMap.webMap.addMarker(response["data"][x]["map_marker_ID"], response["data"][x]["map_marker_type_ID"], response["data"][x]["ID"], response["data"][x]["detail"], response["data"][x]["longitude"], response["data"][x]["latitude"], false, wasteMap.createIllegalDumpingForm(response["data"][x]["map_marker_ID"], detail));
+                    wasteMap.webMap.addMarker(response["data"][x]["map_marker_ID"], response["data"][x]["map_marker_type_ID"], response["data"][x]["ID"], response["data"][x]["detail"], response["data"][x]["longitude"]*1, response["data"][x]["latitude"]*1, false, wasteMap.createIllegalDumpingForm(response["data"][x]["map_marker_ID"], detail));
                     wasteMap.bindIllegalDumpingFormAction(response["data"][x]["map_marker_ID"]);
                 }
             }

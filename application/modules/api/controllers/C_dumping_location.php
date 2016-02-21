@@ -114,7 +114,7 @@ class C_dumping_location extends API_Controller {
     }
     public function deleteDumpingLocation(){
         $this->accessNumber = 8;
-        if($this->checkACL()){
+        if($this->checkACL() && user_type() == 3){
             $result = $this->m_dumping_location->deleteDumpingLocation(
                     $this->input->post("ID"), 
                     $this->input->post("condition")
