@@ -148,8 +148,12 @@
                                         <h3 class="wl-c-green-6">Post</h3>
                                     </div>
                                     <div class="form-group col-sm-9 no-margin no-padding">
+                                        <!--
                                         <a id="wl-btn-side-repost" class="btn btn-warning btn-raised" style="float:right"><span>Repost</span></a>
                                         <a id="wl-btn-side-submit" class="btn btn-success btn-raised" style="float:right;display:none"><span>Submit</span></a>
+                                        -->
+                                        <button id="wl-btn-side-repost" class="btn btn-warning btn-success" data-loading-text="Please wait..." style="float:right;">Repost</button>
+                                        <button id="wl-btn-side-submit" class="btn btn-raised btn-success" data-loading-text="Please wait..." style="float:right;display:none">Submit</button>
                                     </div>
                                 </div>
                                 <div id="wl-side-menu" class="col-sm-12">
