@@ -10,10 +10,14 @@
         <meta name="author" content="">
 
         <title>WasteLine</title>
-
+        <link rel="shortcut icon" type="image/x-icon" href="<?=asset_url('images/portal/garbage.png')?>" />
+        
+        
         <!-- Bootstrap CSS -->
-        <link href="<?= asset_url('css/bootstrap.min.css') ?>" rel="stylesheet">
-        <link href="<?= asset_url('css/jquery-ui.min.css') ?>" rel="stylesheet">
+        <!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous"><!--CDN-->
+        <link href="<?= asset_url('css/bootstrap.min.css') ?>" rel="stylesheet"><!--->
+	<!--<link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.css" rel="stylesheet"><!--CDN-->
+        <link href="<?= asset_url('css/jquery-ui.min.css') ?>" rel="stylesheet"><!---->
         <link href="<?= asset_url('css/jquery-ui.structure.min.css') ?>" rel="stylesheet">
         <link href="<?= asset_url('css/jquery-ui.theme.min.css') ?>" rel="stylesheet">
 
@@ -29,6 +33,7 @@
         <link href="<?= asset_url('css/nav.css') ?>" rel="stylesheet">
         <link href="<?= asset_url('css/simple-sidebar.css') ?>" rel="stylesheet">
         <link href="<?=asset_url('css/linearicons.css')?>" rel="stylesheet">
+        <!--<link href="https://cdn.jsdelivr.net/jquery.mcustomscrollbar/3.1.3/jquery.mCustomScrollbar.min.css" rel="stylesheet"><!--CDN-->
         <link href="<?=asset_url('css/jquery.mCustomScrollbar.min.css')?>" rel="stylesheet">
         <link href="<?=asset_url('css/wl-custom.css')?>" rel="stylesheet">
 
@@ -226,8 +231,10 @@
     </body>
     <footer>
         <!-- jQuery -->
-        <script src="<?= asset_url('js/jquery-2.1.4.min.js') ?>"></script>
-        <script src="<?= asset_url('js/jquery-ui.min.js') ?>"></script>
+        <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script><!--CDN-->
+        <script src="<?= asset_url('js/jquery-2.1.4.min.js') ?>"></script><!--->
+	<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script><!--CDN-->
+        <script src="<?= asset_url('js/jquery-ui.min.js') ?>"></script><!--->
 
         <!-- Bootstrap Core JavaScript -->
         <script src="<?= asset_url('js/bootstrap.min.js') ?>"></script>
@@ -244,7 +251,8 @@
 
 
         <script src="<?=asset_url('js/initial.min.js')?>"></script>
-        <script src="<?=asset_url('js/jquery.mCustomScrollbar.concat.min.js')?>"></script>
+        <!--<script src="https://cdn.jsdelivr.net/jquery.mcustomscrollbar/3.1.3/jquery.mCustomScrollbar.min.js"></script><!--CDN-->
+        <script src="<?=asset_url('js/jquery.mCustomScrollbar.concat.min.js')?>"></script><!--->
         <script src="<?=asset_url('js/wl-global.js')?>"></script>
     </footer>
 </html>

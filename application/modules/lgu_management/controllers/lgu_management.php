@@ -11,7 +11,7 @@
  *
  * @author johnenrick
  */
-class lgu_management extends FE_Controller{
+class Lgu_management extends FE_Controller{
     //put your code here
     function index(){
         $this->loadPage("lgu_management", "lgu_management_script", array());
