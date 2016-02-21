@@ -41,7 +41,7 @@ class M_map_marker extends API_Model{
             "map_marker.*",
             "account_address.description AS account_address_description",
             "dumping_location.description AS dumping_location_description",
-            "dumping_location.detail AS dumping_location_description"
+            "illegal_dumping.detail AS illegal_dumping_detail"
         );
         return $this->retrieveTableEntry($retrieveType, $limit, $offset, $sort, $ID, $condition, $selectedColumn, $joinedTable);
     }

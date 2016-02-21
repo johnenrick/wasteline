@@ -26,20 +26,30 @@
             <h3 class="panel-title">Report Illegal Dumping</h3>
         </div>
         <div class="panel-body">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="form-group" style="margin-top:0px">
-                        <div class="col-md-12">
-                            <textarea name="" class="form-control capitalize" rows="4" placeholder="Write the details or leave a note"></textarea>
+            <form class="illegalDumpingForm" method="POST" >
+                <input name="report_ID" value="0" type="hidden">
+                <input name="map_marker_ID" value="0" type="hidden">
+                <input name="associated_ID" value="0" type="hidden">
+                <input name="report_type_ID" value="3" type="hidden">
+                <input name="longitude" type="hidden">
+                <input name="latitude" type="hidden">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group" style="margin-top:0px">
+                            <div class="col-md-12">
+                                <textarea input_name="detail" class="form-control capitalize" rows="4" placeholder="Write the details or leave a note" ></textarea>
+                                <p class="wasteMapIllegalDumpingDetail form-control capitalize" style="margin-top:0px">Taesdasd</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <button class="wasteMapSubmitIllegalDumpingReport btn btn-warning">Submit Report</button>
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="submit" button_action="1" class="wasteMapSubmitIllegalDumpingReport btn btn-warning">Submit Report</button>
+                        <button type="button" button_action="2" class="wasteMapSubmitIllegalDumpingReport btn btn-danger">Remove Report</button>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </div>

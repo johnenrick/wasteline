@@ -18,12 +18,13 @@ class C_waste_post extends API_Controller {
     public function createWastePost(){
         $this->accessNumber = 1;
         if($this->checkACL()){
-            $this->form_validation->set_rules('waste_post_type_ID', 'Waste Post Type ID', 'required');
-            $this->form_validation->set_rules('waste_category_ID', 'Waste Post Type ID', 'required');
-            $this->form_validation->set_rules('description', 'Waste Post Type ID', 'required');
+            $this->form_validation->set_rules('waste_post_type_ID', 'Waste Post Type ID', '');
+            $this->form_validation->set_rules('waste_category_ID', 'Waste Post Category ID', 'required');
+            $this->form_validation->set_rules('description', 'description', 'required');
             if($this->input->post("quantity")){
                 $this->form_validation->set_rules('quantity_unit_ID', 'Quantity Unit ID', 'required');
             }
+            $this->responseDebug($this->input->post("waste_post_type_ID"));
             if($this->form_validation->run()){
                 $result = $this->m_waste_post->createWastePost(
                         user_id(),

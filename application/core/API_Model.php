@@ -229,14 +229,14 @@ class API_Model extends CI_Model{
     public function isValidCondition(){
         
     }
-    public function deleteTableEntry($ID = NULL, $condition = array()){
+    public function deleteTableEntry($ID = NULL, $condition = array(), $joinedTable = array()){
         $this->db->start_cache();
         $this->db->flush_cache();
-        if($ID === NULL){
-            $this->addCondition($condition);
-        }else{
-            $this->db->where("$this->TABLE.ID", $ID);
+        foreach($joinedTable as $key => $value){
+            $this->db->join($key, $value, "left");
         }
+        $this->addCondition($condition);
+        $this->db->where("$this->TABLE.ID", $ID);
         $result = $this->db->delete("$this->TABLE");
         $this->db->flush_cache();
         $this->db->stop_cache();

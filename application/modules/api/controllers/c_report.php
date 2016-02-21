@@ -20,8 +20,10 @@ class C_report extends API_Controller {
         if($this->checkACL() && user_id()){
             $this->form_validation->set_rules('associated_ID', 'Associated ID', 'required');
             $this->form_validation->set_rules('report_type_ID', 'Report Type', 'required');
-            $this->form_validation->set_rules('detail', 'Detail', 'required');
-            
+            if($this->input->post("report_type_ID") == 3){
+                $this->form_validation->set_rules('longitude', 'Longitude', 'required');
+                $this->form_validation->set_rules('latitude', 'Latitude', 'required');
+            }
             if($this->form_validation->run()){
                 $result = $this->m_report->createReport(
                         $this->input->post("associated_ID"),
@@ -126,9 +128,13 @@ class C_report extends API_Controller {
     public function deleteReport(){
         $this->accessNumber = 8;
         if($this->checkACL()){
+            $condition = $this->input->post("condition");
+            if(user_type() == 2 ||user_type() == 4){
+                $condition["reporter_account_ID"] = user_id();
+            }
             $result = $this->m_report->deleteReport(
-                    $this->input->post("ID"), 
-                    $this->input->post("condition")
+                    $this->input->post("ID"),
+                    $condition
                     );
             if($result){
                 $this->actionLog(json_encode($this->input->post()));

@@ -111,14 +111,6 @@
                     lat : e.latlng.lat,
                     lng : e.latlng.lng
                 });
-                webMapComponent.selectedLocation.on('dragend', function(event) {
-                    var marker = event.target;
-                    var result = marker.getLatLng();
-                    callBack({
-                        lat : result.lat,
-                        lng : result.lng
-                    });
-                });
             };
         };
         /**
@@ -221,7 +213,6 @@
                     labelOption.noHide = true;
                     break;
             }
-            console.log(description);
             webMapComponent.markerList[ID] = new L.Marker([latitude, longitude], markerOption);
             webMapComponent.markerList[ID].bindLabel(description, labelOption);
             webMapComponent.markerCluster.addLayer(webMapComponent.markerList[ID]);
@@ -229,15 +220,15 @@
                 webMapComponent.selectedLocation = webMapComponent.markerList[ID];
             }
             //popup
-            if(typeof popUpContent !== "undefined"){
-                webMapComponent.markerList[ID].bindPopup(popUpContent);
+            if(typeof popUpContent !== "undefined" && popUpContent){
+                webMapComponent.markerList[ID].bindPopup(popUpContent);    
             }
             return webMapComponent.markerList[ID];
         };
         webMapComponent.removeMarkerList = function(ID){
+           
           if(typeof webMapComponent.markerList[ID] !== "undefined"){
-              webMapComponent.map.removeLayer(webMapComponent.markerList[ID]);
-              webMapComponent.markerCluster.refreshClusters();
+              webMapComponent.markerCluster.removeLayer(webMapComponent.markerList[ID]);
               return true;
               
           }else{

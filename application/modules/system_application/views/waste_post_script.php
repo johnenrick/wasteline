@@ -69,6 +69,7 @@
 		console.log(container);
 		$.post(apiUrl, container, function(data){
 			var response = JSON.parse(data);
+                        console.log(response);
 			if(!response["error"].length){
 				//$("ul#post-container-list li.wl-show").remove();
 				if(row) row.attr("wastepostid", response["data"]);
