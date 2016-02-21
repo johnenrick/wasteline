@@ -56,6 +56,7 @@
 									updated_data 	: {}
 				}
 				container.updated_data[table_column] = $(this).text();
+				wastePostContainer.updateWastePost(container);
 			}
 		});
 	});
@@ -63,12 +64,13 @@
 	wastePostContainer.createWastePost = function(container, row){
 		var apiUrl = "";
 		//var temp = {};
-
+		
 		apiUrl = api_url("c_waste_post/createWastePost");
 		//temp = {"waste_post" : container};
 		console.log(container);
 		$.post(apiUrl, container, function(data){
 			var response = JSON.parse(data);
+
 			if(!response["error"].length){
 				//$("ul#post-container-list li.wl-show").remove();
 				if(row) row.attr("wastepostid", response["data"]);
