@@ -11,7 +11,7 @@
     wasteMap.initializeWastemapManagement = function(){
         wasteMap.webmap = new WebMapComponent("#wasteMapContainer");
         wasteMap.retrieveMapMarker();
-        wasteMap.webMap.selectLocation(wasteMap.openIllegalDumpingReport(latlng));
+        //wasteMap.webMap.selectLocation(wasteMap.openIllegalDumpingReport);
     };
     wasteMap.retrieveMapMarker = function(){
         var condition = {
