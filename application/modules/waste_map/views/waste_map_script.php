@@ -24,7 +24,7 @@
      * Bind events to the html in PopUp since it recreates the popup eveytime it is viewed so events will have to be rebinded
      * @param {type} markerListID
      * @returns {undefined}
-     *//
+     */
     wasteMap.bindIllegalDumpingFormAction = function(markerListID){
         wasteMap.webMap.markerList[markerListID].on("click",function(e){
             if(e.target._popup._isOpen){
@@ -76,7 +76,7 @@
         Adding a Prototype to the report popup
      * @param {int} mapMarkerID
      * @param {string} detail
-     * @returns {unresolved}     */*/
+     * @returns {unresolved}     */
     wasteMap.createIllegalDumpingForm = function(mapMarkerID, detail){
         var popupContent  = $(".prototype .illegalDumping").clone();
         popupContent.find("[name=map_marker_ID]").val(mapMarkerID);
