@@ -7,9 +7,12 @@
         2 : "dumping_location_description",
         3 : "illegal_dumping_detail"
     };
+    /**
+     * Create a Report form when map is clicked
+     * @param {type} latlng
+     * @returns {undefined}
+     */
     wasteMap.openIllegalDumpingReport = function(latlng){
-        
-        
         wasteMap.webMap.addMarker(-1, 3, 0, "Illegal Dumping", latlng.lng, latlng.lat, false, wasteMap.createIllegalDumpingForm(0));
         wasteMap.bindIllegalDumpingFormAction(-1);
         wasteMap.webMap.markerList[-1].on("popupclose",function(e){
@@ -17,13 +20,19 @@
         });
         wasteMap.webMap.markerList[-1].fireEvent("click");
     };
+    /**
+     * Bind events to the html in PopUp since it recreates the popup eveytime it is viewed so events will have to be rebinded
+     * @param {type} markerListID
+     * @returns {undefined}
+     *//
     wasteMap.bindIllegalDumpingFormAction = function(markerListID){
         wasteMap.webMap.markerList[markerListID].on("click",function(e){
             if(e.target._popup._isOpen){
                 $(e.target._popup._contentNode).find("[name=longitude]").val(e.target._latlng.lng);
                 $(e.target._popup._contentNode).find("[name=latitude]").val(e.target._latlng.lat);
                 $(e.target._popup._contentNode).find("[name=detail]").autoResize();//bind autoresize on detail field
-                $(e.target._popup._contentNode).find("button[button_action=2]").click(function(){//event for removing report
+                /*Removing a Report*/
+                $(e.target._popup._contentNode).find("button[button_action=2]").click(function(){
                     var mapMarkerID = $(this).parent().parent().parent().find("input[name=map_marker_ID]").val();
                     $.post(api_url("C_report/deleteReport"), {ID : wasteMap.webMap.markerList[mapMarkerID].options.associated_ID}, function(data){
                         var response = JSON.parse(data);
@@ -32,6 +41,7 @@
                         }
                     });
                 });
+                /*Submit the report form*/
                 $(e.target._popup._contentNode).find("form").ajaxForm({
                     beforeSubmit : function(data){
                         if(data[6]["value"] === ""){//default value for detail
@@ -45,8 +55,8 @@
                             $.post(api_url("C_report/retrieveReport"), {ID: response["data"]}, function(data){
                                 var response = JSON.parse(data);
                                 if(!response["error"].length){
-                                    console.log(wasteMap.webMap.removeMarkerList(-1));
-                                    console.log(wasteMap.webMap.markerList);
+                                    wasteMap.webMap.removeMarkerList(-1);//delete the report form
+                                    /*Add the report to the map*/
                                     var datetime = new Date(response["data"]["datetime"]*1000);
                                     var detail  = response["data"]["detail"]+"<br> <i>Reported on "+datetime.getDate()+"/"+datetime.getMonth()+"/"+datetime.getFullYear()+"</i>";
                                     wasteMap.webMap.addMarker(response["data"]["map_marker_ID"], response["data"]["map_marker_type_ID"], response["data"]["ID"], response["data"]["detail"], response["data"]["longitude"], response["data"]["latitude"], false, wasteMap.createIllegalDumpingForm(response["data"]["map_marker_ID"], detail));
@@ -61,14 +71,12 @@
                 })
             }
         });
-    } 
-    wasteMap.removeIllegalDumpingReport = function(ID){
-        if(ID){
-            $.post(api_url("C_report/deleteReport"), {ID : ID}, function(data){
-                var response = JSON.parse(data);
-            });
-        }
-    }
+    };
+    /*
+        Adding a Prototype to the report popup
+     * @param {int} mapMarkerID
+     * @param {string} detail
+     * @returns {unresolved}     */*/
     wasteMap.createIllegalDumpingForm = function(mapMarkerID, detail){
         var popupContent  = $(".prototype .illegalDumping").clone();
         popupContent.find("[name=map_marker_ID]").val(mapMarkerID);
@@ -82,18 +90,18 @@
             popupContent.find("button[button_action=2]").hide();
             popupContent.find(".illegalDumpingForm").attr("action",api_url("C_report/createReport"));
         }
-        
-        return popupContent.prop("outerHTML");
+        return popupContent.prop("outerHTML");//converts the html to string since popup only accept string
     };
     wasteMap.initializeWastemapManagement = function(){
         wasteMap.webMap = new WebMapComponent("#wasteMapContainer");
         wasteMap.retrieveMapMarker();
-        wasteMap.webMap.selectLocation(wasteMap.openIllegalDumpingReport);
+        wasteMap.webMap.selectLocation(wasteMap.openIllegalDumpingReport);//open a report if the map is clicked
     };
     wasteMap.retrieveMapMarker = function(){
         var condition = {
                 map_marker_type_ID : [1,2,4,6]
         };
+        /*Retrieve markers with types specified in condition.map_marker_type_ID */
         $.post(api_url("C_map_marker/retrieveMapMarker"), {condition: condition}, function(data){
             var response = JSON.parse(data);
             for(var x = 0;x<response["data"].length;x++){
