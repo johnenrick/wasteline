@@ -57,7 +57,9 @@
 				}
 				//waste_post_input.push(container);
 				wastePostContainer.updateWastePost(container);
+
 			}).promise().done(function(){
+				$(this).removeClass("wl-collected");
 				$("#wl-btn-side-repost").button("reset");
 			});
 		});
@@ -107,6 +109,21 @@
 			}
 		});
 	}
+	/*wastePostContainer.retrieveWastePostUnit = function(){
+		var container = {
+			condition 	: {
+				unit__
+			}
+		}
+		$.post(api_url("C_waste_category/retrieveWasteCategory"), {}, function(data){
+			var response = JSON.parse(data);
+			if(response["error"].length == 0){
+				for(var x in response["data"]){
+					$("#wastePostCategoryList").append("<option value='"+response["data"][x]["ID"]+"' >"+response["data"][x]["description"]+"</option>");
+				}
+			}
+		});
+	}*/
 
 	wastePostContainer.findWastePostType = function(){
 		return ($(".wastePostTypeList").find(".wl-active").attr("typeID"))*1;
@@ -115,10 +132,12 @@
 	wastePostContainer.retrieveWastePost = function(wastePostTypeID){
 		var d = new Date();
 		var container = {
-			"waste_post__account_ID"				: user_id(),
-			"waste_post__waste_post_type_ID"		: wastePostTypeID,
-			"greater_equal__waste_post__datetime" 	: ((new Date((d.getMonth() + 1) +" "+ d.getDate() + ", " + d.getFullYear() + " 00:00:00")).getTime())/1000,
-			"lesser_equal__waste_post__datetime" 	: ((new Date((d.getMonth() + 1) +" "+ d.getDate() + ", " + d.getFullYear() + " 23:59:59")).getTime())/1000
+			waste_post__account_ID				: user_id(),
+			waste_post__waste_post_type_ID		: wastePostTypeID,
+		}
+		if(wastePostTypeID != 3){
+			container.greater_equal__waste_post__datetime 	= ((new Date((d.getMonth() + 1) +" "+ d.getDate() + ", " + d.getFullYear() + " 00:00:00")).getTime())/1000,
+			container.lesser_equal__waste_post__datetime 	= ((new Date((d.getMonth() + 1) +" "+ d.getDate() + ", " + d.getFullYear() + " 23:59:59")).getTime())/1000
 		}
 
 		$.post(api_url("C_waste_post/retrieveWastePost"), {condition: container}, function(data){
@@ -128,6 +147,7 @@
 					var dummy = $("#wl-rectangle-dummy").clone();
 
 					dummy.attr("wastepostid", response["data"][x]["ID"]);
+					if(response["data"][x]["status"] == 2) dummy.addClass("wl-collected");
 					dummy.find("#wastePostCategoryList").val(response["data"][x]["waste_category_ID"]);
 					dummy.find(".wl-list-desciption").text(response["data"][x]["description"]);
 					dummy.find(".wl-list-quantity").text(response["data"][x]["quantity"]);
@@ -152,8 +172,8 @@
 	wastePostContainer.updateWastePost = function(container){
 		$.post(api_url("C_waste_post/updateWastePost"), container, function(data){
 			var response = JSON.parse(data);
-			if(!response["data"].length){
-				console.log(response);
+			if(!response["error"].length){
+				
 			}
 		});
 	}
