@@ -26,7 +26,7 @@ class C_information extends API_Controller {
             if($this->form_validation->run()){
                 $result = $this->m_information->createInformation(
                         $this->input->post("description"),
-                        user_id(),
+                        1,
                         $this->input->post("source"),
                         $this->input->post("type_ID"),
                         $this->input->post("detail")
