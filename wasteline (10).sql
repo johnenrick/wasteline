@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 22, 2016 at 07:53 PM
+-- Generation Time: Feb 22, 2016 at 08:00 PM
 -- Server version: 5.6.20
 -- PHP Version: 5.5.15
 
@@ -8448,11 +8448,12 @@ INSERT INTO `group_access_control_list` (`ID`, `module_ID`, `group_ID`) VALUES
 
 CREATE TABLE IF NOT EXISTS `information` (
 `ID` int(10) unsigned NOT NULL,
+  `description` varchar(50) NOT NULL,
   `barangay_ID` int(10) unsigned NOT NULL,
   `source` int(11) NOT NULL,
   `type_ID` int(10) unsigned NOT NULL,
   `detail` text,
-  `datetime` int(11) NOT NULL
+  `datetime` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------

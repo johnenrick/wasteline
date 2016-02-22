@@ -18,12 +18,14 @@ class C_information extends API_Controller {
     public function createInformation(){
         $this->accessNumber = 1;
         if($this->checkACL() && user_type() === 3){
+            $this->form_validation->set_rules('description', 'Description', 'required');
             $this->form_validation->set_rules('barangay_ID', 'Barangay', 'required');
             $this->form_validation->set_rules('source', 'Source', 'required');
             $this->form_validation->set_rules('type_ID', 'Type', 'required');
             
             if($this->form_validation->run()){
                 $result = $this->m_information->createInformation(
+                        $this->input->post("description"),
                         user_id(),
                         $this->input->post("source"),
                         $this->input->post("type_ID"),

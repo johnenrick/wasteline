@@ -16,10 +16,11 @@ class M_information extends API_Model{
         parent::__construct();
         $this->TABLE = "information";
     }
-    public function createInformation($barangayID, $source, $typeID, $detail){
+    public function createInformation($description, $barangayID, $source, $typeID, $detail){
         $newData = array(
+            "description" => $description,
             "barangay_ID" => $barangayID,
-            "barangay_ID" => $source,
+            "source" => $source,
             "type_ID" => $typeID,
             "detail" => $detail,
             "datetime" => time()
