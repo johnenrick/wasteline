@@ -160,15 +160,20 @@
         });
     };
     $(document).ready(function(){
-        wasteMap.filterFunction["5"] = function(){
-            $(".wasteMapDateFilter").trigger("change");
-        };
-        wasteMap.filterFunction["not_5"] = function(){
-            wasteMap.webMap.heatLayer.setLatLngs([]);
-        };
+        
         wasteMap.addInitFunction(function(){
             wasteMap.webMap.selectLocation(wasteMap.openDumpingLocationForm);//open a dumping location form if the map is clicked)
-            wasteMap.webMap.tileLayer.on("load", wasteMap.filterFunction["5"]);
+            wasteMap.webMap.tileLayer.on("load", function(){
+                wasteMap.filterFunction["5"] = function(){
+                    $(".wasteMapDateFilter").trigger("change");
+                };
+                wasteMap.filterFunction["not_5"] = function(){
+                    wasteMap.webMap.heatLayer.setLatLngs([]);
+                };
+                if($(".wl-map-filter[filter_type=5]").hasClass("wl-active")){
+                    wasteMap.filterFunction["5"]();
+                }
+            });
         });
         $(".wasteMapDateFilter").change(function(){
             var startDate = ($(".wasteMapDateFilter[filter_type=6]").val() !== "") ? (new Date($(".wasteMapDateFilter[filter_type=6]").val()+"T00:00:00")).setHours(0,0,0,0)/1000 : null;

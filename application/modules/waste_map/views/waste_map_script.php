@@ -15,7 +15,7 @@
         }else{
             func();
         }
-    }
+    };
     wasteMap.initializeWastemapManagement = function(){
         wasteMap.webMap = new WebMapComponent("#wasteMapContainer");
         wasteMap.doneInit = true;
@@ -29,7 +29,7 @@
         $.post(api_url("C_map_marker/retrieveMapMarker"), {condition: {map_marker_type_ID : mapMarkerTypeIDList}}, function(data){
             var response = JSON.parse(data);
             for(var x = 0;x<response["data"].length;x++){
-                wasteMap.webMap.addMarker(response["data"][x]["ID"], response["data"][x]["map_marker_type_ID"], response["data"][x]["associated_ID"], response["data"][x][wasteMap.mapMarkerDescriptionList[response["data"][x]["map_marker_type_ID"]]], response["data"][x]["longitude"], response["data"][x]["latitude"], false);
+                wasteMap.webMap.addMarker(response["data"][x]["ID"], response["data"][x]["map_marker_type_ID"], response["data"][x]["associated_ID"], response["data"][x][wasteMap.mapMarkerDescriptionList[response["data"][x]["map_marker_type_ID"]]], response["data"][x]["longitude"], response["data"][x]["latitude"], false, wasteMap.createOwnWasteForm(1));
             }
         });
     };
@@ -47,9 +47,7 @@
                 }
             }
         });
-    };
-    //prototype
-    
+    };    
     wasteMap.retrieveUserReportMapMarker = function(){
         var condition = {
             status : 1,
@@ -67,17 +65,30 @@
             }
         });
     };
+    wasteMap.createOwnWasteForm = function(mapMarkerID){
+        var popupContent  = $(".prototype .wasteMapOwnWaste").clone();
+        if(mapMarkerID){
+            
+        }
+        return popupContent.prop("outerHTML");//converts the html to string since popup only accept string
+    };
     $(document).ready(function(){
         load_page_component("web_map_component", wasteMap.initializeWastemapManagement);
-        
-        add_refresh_call("waste_map", function(){
+        wasteMap.addInitFunction(function(){
             wasteMap.filterFunction["1"]();
             wasteMap.filterFunction["2"]();
             wasteMap.filterFunction["3"]();
             wasteMap.filterFunction["4"]();
-            
-            wasteMap.retrieveDumpingLocationMapMarker();
-            wasteMap.retrieveUserReportMapMarker();
+        });
+        add_refresh_call("waste_map", function(){
+            wasteMap.addInitFunction(function(){
+                $(".wl-map-filter.wl-active").each(function(){
+                    $(this).addClass("wl-active");
+                    if(typeof wasteMap.filterFunction[$(this).attr("filter_type")] !== "undefined"){
+                        wasteMap.filterFunction[$(this).attr("filter_type")]();
+                    }
+                });
+            });
         });
         wasteMap.filterFunction["1"] = function(){//User with waste
             wasteMap.retrieveMapMarker([1]);
