@@ -58,8 +58,11 @@
                     <li module_id="2" module_link="waste_map" module_name="waste_map" style="display:none">
                         <a data-page-link="waste-map" data-toggle="tooltip" data-placement="right" title="" data-original-title="Waste Map"><span class="lnr lnr-map"></span></a>
                     </li>
-                    <li module_id="3" module_link="report_management" module_name="report_management" style="display:none">
-                        <a data-page-link="information" data-toggle="tooltip" data-placement="right" title="" data-original-title="Information"><span class="lnr lnr-book"></span></a>
+                    <li module_id="3" module_link="information_page" module_name="information_page" style="display:none">
+                        <a data-page-link="information_page" data-toggle="tooltip" data-placement="right" title="" data-original-title="Information"><span class="lnr lnr-book"></span></a>
+                    </li>
+                    <li module_id="7" module_link="report_management" module_name="report_management" style="display:none">
+                        <a data-page-link="report_management" data-toggle="tooltip" data-placement="right" title="" data-original-title="Report Management"><span class="lnr lnr-flag"></span></a>
                     </li>
 
 
