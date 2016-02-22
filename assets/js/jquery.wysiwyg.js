@@ -1,8 +1,8 @@
 $(document).ready(function() {
     // Featured editor
-    $('#wl-info-editor').each( function(index, element)
-    {
-        $(element).wysiwyg({
+    var element = $('#wl-info-editor');
+    var index = 0;
+        element.wysiwyg({
             'class': index == 0 ? 'fake-bootstrap' : (index == 1 ? 'fake-uikit' : 'some-more-classes'),
             // 'selection'|'top'|'top-selection'|'bottom'|'bottom-selection'
             toolbar: index == 0 ? 'top-selection' : (index == 1 ? 'bottom-focus' : 'selection'),
@@ -389,20 +389,11 @@ $(document).ready(function() {
 
                 // undefined -> create '<video/>' tag
             }
-        })
-        .change(function() {
-            if( typeof console != 'undefined' )
-                ;//console.log( 'change' );
-        })
-        .focus(function() {
-            if( typeof console != 'undefined' )
-                ;//console.log( 'focus' );
-        })
-        .blur(function() {
-            if( typeof console != 'undefined' )
-                ;//console.log( 'blur' );
         });
-    });
 
     //wysiwygeditor.setHTML( '<html>' );
+
+    var editor = $(element).wysiwyg('shell');
+    console.log(editor.getHTML());
+
 });
