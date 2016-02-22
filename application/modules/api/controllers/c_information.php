@@ -21,7 +21,7 @@ class C_information extends API_Controller {
             $this->form_validation->set_rules('barangay_ID', 'Barangay', 'required');
             $this->form_validation->set_rules('source', 'Source', 'required');
             $this->form_validation->set_rules('type_ID', 'Type', 'required');
-            $this->form_validation->set_rules('detail', 'Detail', 'required');
+            //$this->form_validation->set_rules('detail', 'Detail', 'required');
             
             if($this->form_validation->run()){
                 $result = $this->m_information->createInformation(
