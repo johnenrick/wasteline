@@ -29,7 +29,7 @@ class M_dumping_location extends API_Model{
         );
         $selectedColumn = array(
             "dumping_location.*",
-            "map_marker.*"
+            "map_marker.*, map_marker.ID AS map_marker_ID"
         );
         
         return $this->retrieveTableEntry($retrieveType, $limit, $offset, $sort, $ID, $condition, $selectedColumn, $joinedTable);

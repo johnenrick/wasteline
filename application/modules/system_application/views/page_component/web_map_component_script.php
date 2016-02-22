@@ -6,16 +6,6 @@
 <script src="<?=asset_url("js/leaflet.markercluster.js")?>"></script>
 <script>
     /*global webMapComponent, L */
-    var waste_post = [
-                        [ 10.342615, 123.916554],
-                        [ 10.343206, 123.914559],
-                        [ 10.342995, 123.915331],
-                        [ 10.342721, 123.916898],
-                        [ 10.342003, 123.917842],
-                        [ 10.342489, 123.920331],
-                        [ 10.340061, 123.919258],
-                        [ 10.337359, 123.920631]
-    ];
     var boundaries = [  [10.351753, 123.916018],
                         [10.350694, 123.915531],
                         [10.340333, 123.912693],
@@ -40,12 +30,17 @@
         
         /*Initialize Webmap*/
         var osmUrl = 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
-        osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> Banilad Waste Map',
-        osm = L.tileLayer(osmUrl, {
+        osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> Banilad Waste Map';
+        webMapComponent.tileLayer = L.tileLayer(osmUrl, {
             maxZoom: 20,
             attribution: osmAttrib
         });
-        webMapComponent.map = L.map(mapNumber).setView([10.343, 123.919], 16).addLayer(osm);
+        webMapComponent.heatLayer = false;
+        webMapComponent.tileLayer.on("load", function(){
+           webMapComponent.heatLayer = L.heatLayer([], {maxZoom : 20, max : 0.5, gradient : {0.3: 'yellow', 0.65: 'orange', 1: 'red'} }).addTo(webMapComponent.map);
+        });
+        
+        webMapComponent.map = L.map(mapNumber).setView([10.343, 123.919], 16).addLayer(webMapComponent.tileLayer);
         webMapComponent.map.addControl( new L.Control.Gps({autoActive:false}) );
         /*Icons*/
         // Icon Properties
@@ -78,30 +73,7 @@
         /*Variable*/
         webMapComponent.markerList = {}; //list of markers in the map
         
-        webMapComponent.onMapClick = function(e) {
-//            var geojsonFeature = {
-//                type: "Feature",
-//                properties: {},
-//                geometry: {
-//                    type: "Point",
-//                    coordinates: [e.latlng.lat, e.latlng.lng]
-//                }
-//            };
-//            var marker;
-//            L.geoJson(geojsonFeature, {
-//                pointToLayer: function(feature, latlng){  
-//                    marker = L.marker(e.latlng, {
-//                        title: "Dumping Site",
-//                        alt: "Dumping Site",
-//                        riseOnHover: true,
-//                        draggable: true,
-//                        icon: webMapComponent.icon.dumping_area
-//                    }).bindPopup("<input type='button' value='Delete Marker' class='marker-delete-button'/>");
-//                    marker.on("popupopen", webMapComponent.onPopupOpen);
-//                    return marker;
-//                }
-//            }).addTo(webMapComponent.map);    
-        };
+        
         webMapComponent.onPopupOpen = function(){
         };
         webMapComponent.selectedLocation = false;
@@ -231,12 +203,21 @@
             }
             return webMapComponent.markerList[ID];
         };
-        webMapComponent.removeMarkerList = function(ID){
+        webMapComponent.removeMarkerList = function(ID, markerTypeID){
            
-          if(typeof webMapComponent.markerList[ID] !== "undefined"){
+          if(typeof webMapComponent.markerList[ID] !== "undefined" && ID !== null){
               webMapComponent.markerCluster.removeLayer(webMapComponent.markerList[ID]);
+              delete webMapComponent.markerList[ID];
               return true;
               
+          }else if(typeof markerTypeID !== "undefined"){
+              for(var x in webMapComponent.markerList){
+                  console.log(webMapComponent.markerList[x].options.map_marker_type_ID*1 +"=="+markerTypeID)
+                  if(webMapComponent.markerList[x].options.map_marker_type_ID*1 === markerTypeID*1){
+                      webMapComponent.markerCluster.removeLayer(webMapComponent.markerList[x]);
+                        delete webMapComponent.markerList[x];
+                  }
+              }
           }else{
               return false;
           }
@@ -245,17 +226,22 @@
            
           if(typeof webMapComponent.markerList[ID] !== "undefined"){
               webMapComponent.map.removeLayer(webMapComponent.markerList[ID]);
+              delete webMapComponent.markerList[ID];
               return true;
               
           }else{
               return false;
           }
         };
+        webMapComponent.addHeat = function(latlng){
+            webMapComponent.heatLayer.addLatLng(latlng);
+            
+        };
         /*Banilad*/
         
         webMapComponent.addMarker(0, 6, 0, "Brgy. Banilad Hall", 123.922587, 10.339634, false);
         /*Initialize plug in*/
-        L.polyline(boundaries, {smoothFactor: 1, opacity: 1, weight: 2, fill: true, fillOpacity: 0.1, clickable: false}).addTo(webMapComponent.map);
+        L.polyline(boundaries, {smoothFactor: 1, opacity: 0.5, weight: 5, fill: true, fillOpacity: 0.0, clickable: false, color :"#50c14e"}).addTo(webMapComponent.map);
         /**
          * A function to be called after clicking the marker button
          * @type Arguments
@@ -268,6 +254,6 @@
             webMapComponent.indicateCurrentLocation(webMapComponent.getCurrentLocationCallBack);
         }).addTo( webMapComponent.map );
         webMapComponent.map._onResize(); 
-        //L.heatLayer(waste_post).addTo(webMapComponent.map);
+        
     };
 </script>

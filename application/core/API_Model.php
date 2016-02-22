@@ -185,7 +185,6 @@ class API_Model extends CI_Model{
                 if(isset($this->DATABASETABLE[$tableName][$tableColumn]) || $passArithmetic){
                     $leftValue = ($passArithmetic) ? $tableColumn: "$tableName.$tableColumn";
                     $this->HASCONDITION = true;
-                    
                     switch($segment[0]){
                         case "like":
                             if(is_array($tableColumnValue)){
@@ -206,12 +205,14 @@ class API_Model extends CI_Model{
                             $this->db->where("$leftValue<", $tableColumnValue);
                             break;
                         case "lesser_equal":
+                            
                             $this->db->where("$leftValue<=", $tableColumnValue);
                             break;
                         case "greater_equal":
                             $this->db->where("$leftValue>=", $tableColumnValue);
                             break;
                         case "greater":
+                            
                             $this->db->where("$leftValue>", $tableColumnValue);
                             break;
                         default :

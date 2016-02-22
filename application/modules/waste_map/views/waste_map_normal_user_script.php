@@ -85,30 +85,23 @@
         }
         return popupContent.prop("outerHTML");//converts the html to string since popup only accept string
     };
-    wasteMap.retrieveUserReportMapMarker = function(){
-        var condition = {
-            status : 1,
-            report_type_ID : 3
-        };
-        
-        $.post(api_url("C_report/retrieveReport"), {condition: condition}, function(data){
-            var response = JSON.parse(data);
-            if(!response["error"].length){
-                for(var x =0 ; x < response["data"].length;x++){
-                    var datetime = new Date(response["data"][x]["datetime"]*1000);
-                    var detail  = response["data"][x]["detail"]+"<br> <i>Reported on "+datetime.getDate()+"/"+datetime.getMonth()+"/"+datetime.getFullYear()+"</i>";
-                    wasteMap.webMap.addMarker(response["data"][x]["map_marker_ID"], response["data"][x]["map_marker_type_ID"], response["data"][x]["ID"], response["data"][x]["detail"], response["data"][x]["longitude"]*1, response["data"][x]["latitude"]*1, false, wasteMap.createIllegalDumpingForm(response["data"][x]["map_marker_ID"], detail));
-                    wasteMap.bindIllegalDumpingFormAction(response["data"][x]["map_marker_ID"]);
-                }
-            }
-        });
+    wasteMap.createDumpingLocationForm = function(mapMarkerID, description, detail){
+        var popupContent  = $(".prototype .wasteMapDumpingLocation").clone();
+        popupContent.find("[name=map_marker_ID]").val(mapMarkerID);
+        if(mapMarkerID){
+            popupContent.find("[input_name=detail]").parent().hide();
+            popupContent.find("[input_name=description]").parent().hide();
+            popupContent.find("button[button_action=1]").hide();
+            popupContent.find("button[button_action=2]").hide();
+            popupContent.find(".wasteMapDumpingLocationDetail").html("<strong>"+description+"</strong><br>"+detail);
+        }
+        return popupContent.prop("outerHTML");//converts the html to string since popup only accept string
     };
     wasteMap.changeUserSelectMap = function(){
-        
         wasteMap.webMap.selectLocation(wasteMap.openIllegalDumpingReport);//open a report if the map is clicked)
     }
     $(document).ready(function(){
-        add_refresh_call("waste_map", wasteMap.retrieveUserReportMapMarker);
+        
         wasteMap.initFunction.push(wasteMap.changeUserSelectMap);
     });
 
