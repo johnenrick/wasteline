@@ -43,7 +43,23 @@
 			}
 		});
 		$("#wl-btn-side-repost").click(function(){
-			alert();
+			$("#wl-btn-side-repost").button("loading");
+			//var waste_post_input = [];
+			$("ul#post-container-list li.wl-show").each(function(){
+				var container = {
+					ID 				: $(this).attr("wastepostid"),
+					condition		: {
+						waste_post__account_ID 	: user_id()
+					},
+					updated_data 	: {
+						status 		: 1
+					}
+				}
+				//waste_post_input.push(container);
+				wastePostContainer.updateWastePost(container);
+			}).promise().done(function(){
+				$("#wl-btn-side-repost").button("reset");
+			});
 		});
 
 		$("#post-container-list").on("blur", ".wl-list-desciption, .wl-list-quantity, .wl-list-price", function(){
@@ -51,11 +67,11 @@
 				var id = $(this).parent().parent().attr("wastepostid") | $(this).parent().parent().parent().attr("wastepostid");
 				var table_column = $(this).attr("holder");
 				var container = {
-									ID 				: id,
-									condition		: {
-										waste_post__account_ID 	: user_id()
-									},
-									updated_data 	: {}
+					ID 				: id,
+					condition		: {
+						waste_post__account_ID 	: user_id()
+					},
+					updated_data 	: {}
 				}
 				container.updated_data[table_column] = $(this).text();
 				wastePostContainer.updateWastePost(container);
@@ -64,13 +80,13 @@
 	});
 
 	wastePostContainer.createWastePost = function(container, row){
-		var apiUrl = "";
+		//var apiUrl = "";
 		//var temp = {};
 		
-		apiUrl = api_url("c_waste_post/createWastePost");
+		//apiUrl = (container.length > 1)? api_url("c_waste_post/batchCreateWastePost") : api_url("c_waste_post/createWastePost");
 		//temp = {"waste_post" : container};
 		
-		$.post(apiUrl, container, function(data){
+		$.post(api_url("c_waste_post/createWastePost"), container, function(data){
 			var response = JSON.parse(data);
 			if(!response["error"].length){
 				//$("ul#post-container-list li.wl-show").remove();
@@ -99,12 +115,11 @@
 	wastePostContainer.retrieveWastePost = function(wastePostTypeID){
 		var d = new Date();
 		var container = {
-							"waste_post__account_ID"				: user_id(),
-							"waste_post__waste_post_type_ID"		: wastePostTypeID,
-							"greater_equal__waste_post__datetime" 	: ((new Date((d.getMonth() + 1) +" "+ d.getDate() + ", " + d.getFullYear() + " 00:00:00")).getTime())/1000,
-							"lesser_equal__waste_post__datetime" 	: ((new Date((d.getMonth() + 1) +" "+ d.getDate() + ", " + d.getFullYear() + " 23:59:59")).getTime())/1000,
-							"waste_post__status"					: 1
-						}
+			"waste_post__account_ID"				: user_id(),
+			"waste_post__waste_post_type_ID"		: wastePostTypeID,
+			"greater_equal__waste_post__datetime" 	: ((new Date((d.getMonth() + 1) +" "+ d.getDate() + ", " + d.getFullYear() + " 00:00:00")).getTime())/1000,
+			"lesser_equal__waste_post__datetime" 	: ((new Date((d.getMonth() + 1) +" "+ d.getDate() + ", " + d.getFullYear() + " 23:59:59")).getTime())/1000
+		}
 
 		$.post(api_url("C_waste_post/retrieveWastePost"), {condition: container}, function(data){
 			var response = JSON.parse(data);
