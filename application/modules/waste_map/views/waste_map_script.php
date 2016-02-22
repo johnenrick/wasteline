@@ -7,14 +7,22 @@
         3 : "illegal_dumping_detail"
     };
     wasteMap.initFunction = [];
+    wasteMap.doneInit = false;
     wasteMap.filterFunction = {};
+    wasteMap.addInitFunction = function(func){
+        if(wasteMap.doneInit === false){
+            wasteMap.initFunction.push(func);
+        }else{
+            func();
+        }
+    }
     wasteMap.initializeWastemapManagement = function(){
         wasteMap.webMap = new WebMapComponent("#wasteMapContainer");
-        //wasteMap.webMap.initializeHeatMap();
-        
+        wasteMap.doneInit = true;
         for(var x = 0; x < wasteMap.initFunction.length;x++){
             wasteMap.initFunction[x]();
         }
+        
     };
     wasteMap.retrieveMapMarker = function(mapMarkerTypeIDList){
         /*Retrieve markers with types specified in condition.map_marker_type_ID */
@@ -31,7 +39,6 @@
             if(!response["error"].length){
                 for(var x =0 ; x < response["data"].length;x++){
                     var detail  = response["data"][x]["detail"];
-                    console.log(response["data"][x]["map_marker_type_ID"]);
                     wasteMap.webMap.addMarker(response["data"][x]["map_marker_ID"], response["data"][x]["map_marker_type_ID"], response["data"][x]["ID"], response["data"][x]["description"], response["data"][x]["longitude"]*1, response["data"][x]["latitude"]*1, false, wasteMap.createDumpingLocationForm(response["data"][x]["map_marker_ID"], response["data"][x]["description"], detail));
                     
                     if(typeof wasteMap.bindDumpingLocationFormAction !== "undefined"){
@@ -103,7 +110,6 @@
         $(".wl-map-filter").click(function(){
             if($(this).hasClass("wl-active")){//off filter
                 $(this).removeClass("wl-active");
-                console.log("not_"+$(this).attr("filter_type"));
                 wasteMap.filterFunction["not_"+$(this).attr("filter_type")]();
             }else{
                 $(this).addClass("wl-active");

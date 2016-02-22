@@ -55,6 +55,23 @@ class Portal extends FE_Controller{
         }
         $this->outputResponse();
     }
+    public function refreshSession(){
+        $this->responseDebug(user_id());
+        if(user_id()){
+            $this->load->model("api/M_account");
+            $result = $this->M_account->retrieveAccount(NULL, NULL, NULL, NULL, user_id(), array("status" => 1));
+            $this->responseDebug($result);
+            if($result){
+                $this->createSession($result["first_name"], $result["last_name"], $result["middle_name"], $result["account_type_ID"], user_id(), $result["username"]);
+                $this->responseData($result);
+            }else{
+                $this->responseError(2, "Account Not Found");
+            }
+        }else{
+            $this->responseError(1, "Log In Required");
+        }
+        $this->outputResponse();
+    }
     function logout(){
         $this->createSession(false, false, false, false, false);
         header("Location: ".base_url());

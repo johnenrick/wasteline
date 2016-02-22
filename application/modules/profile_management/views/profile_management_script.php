@@ -1,3 +1,4 @@
+<script src="<?=asset_url('js/autoresize.jquery.js')?>"></script>
 <script>
     var profileManagement = {};
     profileManagement.viewProfile = function(){
@@ -19,9 +20,10 @@
                 $("#profileManagementForm").find("[name='updated_data[account_address_longitude]']").val(response["data"]["account_address_longitude"]);
                 $("#profileManagementForm").find("[name='updated_data[account_address_latitude]']").val(response["data"]["account_address_latitude"]);
                 profileManagement.webMap.removeMarkerList(response["data"]["account_address_map_marker_ID"]);
+                profileManagement.webMap.removeMarkerList(0);
                 if(response["data"]["account_address_longitude"]*1 &&  response["data"]["account_address_latitude"]*1){
                     profileManagement.webMap.addMarker(response["data"]["account_address_map_marker_ID"], 5, response["data"]["account_address_ID"], "Your saved current location", response["data"]["account_address_longitude"]*1, response["data"]["account_address_latitude"]*1);
-                        profileManagement.webMap.setView(response["data"]["account_address_latitude"], response["data"]["account_address_longitude"]);
+                    profileManagement.webMap.setView(response["data"]["account_address_latitude"], response["data"]["account_address_longitude"]);
                 }
                 /*profile summary*/
                 $("#profileManagementFullName").text(response["data"]["first_name"]+" "+response["data"]["middle_name"]+" "+response["data"]["last_name"]);
@@ -31,6 +33,8 @@
                 $("#profileManagementCompleteAddress").text(response["data"]["account_address_description"]);
                 $('#profileManagementProfilePicture').attr("src","");
                 $('#profileManagementProfilePicture').initial({name:(response["data"]["first_name"]+"").charAt(0)+(response["data"]["last_name"]+"").charAt(0)});
+                $("#headerUserImg").initial({name:(response["data"]["first_name"]+"").charAt(0)+(response["data"]["last_name"]+"").charAt(0)});
+                refresh_session();
             }
         });
     };
@@ -38,7 +42,7 @@
         $("#profileManagementForm").find("[name='updated_data[account_address_longitude]']").val(latlng.lng);
         $("#profileManagementForm").find("[name='updated_data[account_address_latitude]']").val(latlng.lat);
         $("#profileManagementForm").find("[name='updated_data[account_address_description]']").trigger("focus");
-        profileManagement.webMap.removeMarkerList($("#profileManagementForm").find("[name='updated_data[account_address_map_marker_ID]']"));
+        profileManagement.webMap.removeMarkerList($("#profileManagementForm").find("[name='updated_data[account_address_map_marker_ID]']").val());
         profileManagement.webMap.selectedLocation = profileManagement.webMap.addMarker($("#profileManagementForm").find("[name='updated_data[account_address_map_marker_ID]']").val(), 5, $("#profileManagementForm").find("[name='updated_data[account_address_ID]']").val(), "Your saved current location", latlng.lng*1, latlng.lat*1);
     };
     profileManagement.initializeWebMap = function(){
@@ -47,6 +51,7 @@
             profileManagement.webMap.selectLocation(profileManagement.changeAddress);
             profileManagement.webMap.getCurrentLocationCallBack = profileManagement.changeAddress;
             profileManagement.viewProfile();
+            
         }
     };
     $(document).ready(function(){
@@ -90,11 +95,13 @@
             },
             success : function(data){
                 var response = JSON.parse(data);
+                console.log(response);
                 clear_form_error($("#profileManagementForm"));
                 if(!response["error"].length){
                     $("#profileManagementForm").find("input[name='password']").val("");
                     $("#profileManagementForm").find("input[name='confirm_password']").val("");
                     profileManagement.viewProfile();
+                    
                 }else{
                     show_form_error($("#profileManagementForm"), response["error"]);
                 }
@@ -103,6 +110,7 @@
         });
         
         add_refresh_call("profile_management", profileManagement.viewProfile);
+        $("#profileManagementForm").find("[name='updated_data[account_address_description]']").autoResize();
     });
     
 </script>

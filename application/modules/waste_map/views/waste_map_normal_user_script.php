@@ -97,12 +97,10 @@
         }
         return popupContent.prop("outerHTML");//converts the html to string since popup only accept string
     };
-    wasteMap.changeUserSelectMap = function(){
-        wasteMap.webMap.selectLocation(wasteMap.openIllegalDumpingReport);//open a report if the map is clicked)
-    }
     $(document).ready(function(){
-        
-        wasteMap.initFunction.push(wasteMap.changeUserSelectMap);
+        wasteMap.addInitFunction(function(){
+            wasteMap.webMap.selectLocation(wasteMap.openIllegalDumpingReport);//open a report if the map is clicked)
+        });
     });
 
 

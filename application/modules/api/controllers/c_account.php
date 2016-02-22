@@ -33,6 +33,7 @@ class C_account extends API_Controller {
             $this->form_validation->set_rules('last_name', 'Last Name', 'required');
             $this->form_validation->set_rules('email_detail', 'Email Detail', 'required|valid_email|is_unique[account_contact_information.detail]');
             
+            
             if($this->form_validation->run()){
                 $result = $this->m_account->createAccount(
                         $this->input->post("username"),
@@ -157,6 +158,10 @@ class C_account extends API_Controller {
             }
             $this->form_validation->set_rules('updated_data[password]', 'Password', 'min_length[6]');
             $this->form_validation->set_rules('updated_data[email_detail]', 'Email Address', 'valid_email|is_unique[account_contact_information.detail]');
+            if($this->input->post("updated_data[account_address_longitude]")){
+                $this->responseDebug($this->input->post("updated_data[account_address_longitude]"));
+                $this->form_validation->set_rules('updated_data[account_address_description]', 'Complete Address', 'required|min_length[2]');
+            }
             
             if($this->form_validation->run()){
                 $updatedData = $this->input->post('updated_data');
@@ -262,6 +267,7 @@ class C_account extends API_Controller {
         }
         $this->outputResponse();
     }
+    
     public function deleteAccount(){
         $this->accessNumber = 8;
         if($this->checkACL()){

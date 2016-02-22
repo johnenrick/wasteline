@@ -149,7 +149,6 @@
         if(typeof endDate !== "undefined" && endDate){
             condition.lesser_equal__report__datetime = endDate;
         }
-        console.log(condition);
         $.post(api_url("C_report/retrieveReport"), {condition: condition}, function(data){
             var response = JSON.parse(data);
             wasteMap.webMap.heatLayer.setLatLngs([]); //reset the heat map
@@ -167,7 +166,7 @@
         wasteMap.filterFunction["not_5"] = function(){
             wasteMap.webMap.heatLayer.setLatLngs([]);
         };
-        wasteMap.initFunction.push(function(){
+        wasteMap.addInitFunction(function(){
             wasteMap.webMap.selectLocation(wasteMap.openDumpingLocationForm);//open a dumping location form if the map is clicked)
             wasteMap.webMap.tileLayer.on("load", wasteMap.filterFunction["5"]);
         });

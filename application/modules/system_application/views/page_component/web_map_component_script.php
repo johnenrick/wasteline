@@ -212,7 +212,6 @@
               
           }else if(typeof markerTypeID !== "undefined"){
               for(var x in webMapComponent.markerList){
-                  console.log(webMapComponent.markerList[x].options.map_marker_type_ID*1 +"=="+markerTypeID)
                   if(webMapComponent.markerList[x].options.map_marker_type_ID*1 === markerTypeID*1){
                       webMapComponent.markerCluster.removeLayer(webMapComponent.markerList[x]);
                         delete webMapComponent.markerList[x];
@@ -239,7 +238,7 @@
         };
         /*Banilad*/
         
-        webMapComponent.addMarker(0, 6, 0, "Brgy. Banilad Hall", 123.922587, 10.339634, false);
+        webMapComponent.addMarker(-2, 6, 0, "Brgy. Banilad Hall", 123.922587, 10.339634, false);
         /*Initialize plug in*/
         L.polyline(boundaries, {smoothFactor: 1, opacity: 0.5, weight: 5, fill: true, fillOpacity: 0.0, clickable: false, color :"#50c14e"}).addTo(webMapComponent.map);
         /**

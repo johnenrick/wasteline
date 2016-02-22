@@ -64,6 +64,26 @@
             formSideBar();
         });
     }
+    function refresh_session(){
+        $.post(base_url("Portal/refreshSession"), {}, function(data){
+            var response = JSON.parse(data);
+            if(!response["error"].length){
+                system_data.account_information.user_ID = response["data"]["ID"];
+                system_data.account_information.first_name = response["data"]["first_name"];
+                system_data.account_information.middle_name = response["data"]["middle_name"];
+                system_data.account_information.last_name = response["data"]["last_name"];
+                system_data.account_information.username = response["data"]["username"];
+                system_data.account_information.user_type = response["data"]["user_type"];
+                
+                $("#headerUserFullName").text(user_first_name());
+                $("#headerUserImg").initial({name:(user_first_name()+"").charAt(0)+(user_last_name()+"").charAt(0)});
+                $("#headerUserImg").height("30px");
+                $("#headerUserImg").width("30px");
+            }else{
+                //window.location = base_url();
+            }
+        });
+    }
     function formSideBar(){
         $(".sidebar-nav").find("li:not(.sidebar-brand, .wl-btn-logout)").hide();
         $(".sidebar-nav").find("li").each(function(e){
@@ -72,6 +92,7 @@
             }
         });
     }
+    
 </script>
 <!--Modularization-->
 <script>
