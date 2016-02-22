@@ -8,8 +8,9 @@
     wasteMap.openIllegalDumpingReport = function(latlng){
         wasteMap.webMap.addMarker(-1, 3, 0, "Illegal Dumping", latlng.lng, latlng.lat, false, wasteMap.createIllegalDumpingForm(0));
         wasteMap.bindIllegalDumpingFormAction(-1);
-        wasteMap.webMap.markerList[-1].on("popupclose",function(e){
-            wasteMap.webMap.removeMarkerList(e.target.options.map_marker_ID);
+        wasteMap.webMap.markerList[-1].on("popupclose",function(e){ 
+            
+            wasteMap.webMap.mapRemoveMarkerList(e.target.options.map_marker_ID);
         });
         wasteMap.webMap.markerList[-1].fireEvent("click");
     };
@@ -19,6 +20,8 @@
      * @returns {undefined}
      */
     wasteMap.bindIllegalDumpingFormAction = function(markerListID){
+        console.log(markerListID);
+        console.log(wasteMap.webMap.markerList[markerListID]);
         wasteMap.webMap.markerList[markerListID].on("click",function(e){
             if(e.target._popup._isOpen){
                 $(e.target._popup._contentNode).find("[name=longitude]").val(e.target._latlng.lng);
@@ -48,7 +51,7 @@
                             $.post(api_url("C_report/retrieveReport"), {ID: response["data"]}, function(data){
                                 var response = JSON.parse(data);
                                 if(!response["error"].length){
-                                    wasteMap.webMap.removeMarkerList(-1);//delete the report form
+                                    wasteMap.webMap.markerList[-1].closePopup();
                                     /*Add the report to the map*/
                                     var datetime = new Date(response["data"]["datetime"]*1000);
                                     var detail  = response["data"]["detail"]+"<br> <i>Reported on "+datetime.getDate()+"/"+datetime.getMonth()+"/"+datetime.getFullYear()+"</i>";
@@ -83,6 +86,7 @@
             popupContent.find("button[button_action=2]").hide();
             popupContent.find(".illegalDumpingForm").attr("action",api_url("C_report/createReport"));
         }
+        
         return popupContent.prop("outerHTML");//converts the html to string since popup only accept string
     };
     wasteMap.createDumpingLocationForm = function(mapMarkerID, description, detail){

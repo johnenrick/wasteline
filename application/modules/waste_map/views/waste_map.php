@@ -128,7 +128,7 @@
                         </div>
                         <div class="form-group label-floating  is-empty " style="margin-top:0px">
                             <label class="control-label" for="focusedUsername">Instruction/Note</label>
-                            <textarea input_name="detail" class="form-control capitalize" rows="2" ></textarea>
+                            <textarea input_name="detail" class="form-control capitalize" rows="2" required="true" ></textarea>
                             
                             <p class="help-block wl-c-gray-1">Make things clear</p>
                             <span class="material-input"></span>

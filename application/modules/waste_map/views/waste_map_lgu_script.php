@@ -173,6 +173,7 @@
                 if($(".wl-map-filter[filter_type=5]").hasClass("wl-active")){
                     wasteMap.filterFunction["5"]();
                 }
+                $(".wasteMapLGUFilter").show();
             });
         });
         $(".wasteMapDateFilter").change(function(){
@@ -180,7 +181,7 @@
             var endDate = ($(".wasteMapDateFilter[filter_type=7]").val() !== "") ? (new Date($(".wasteMapDateFilter[filter_type=7]").val()+"T00:00:00")).setHours(0,0,0,0)/1000 : null;
             wasteMap.retrieveIllegalDumpingHeatMap(startDate, endDate);
         });
-        $(".wasteMapLGUFilter").show();
+        
         add_refresh_call("waste_map", function(){
             wasteMap.addInitFunction(function(){
                 $(".wl-map-filter.wl-active").each(function(){
