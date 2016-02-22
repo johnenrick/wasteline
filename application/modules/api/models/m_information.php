@@ -21,7 +21,8 @@ class M_information extends API_Model{
             "barangay_ID" => $barangayID,
             "barangay_ID" => $source,
             "type_ID" => $typeID,
-            "detail" => $detail
+            "detail" => $detail,
+            "datetime" => time()
         );
         return $this->createTableEntry($newData);
     }
