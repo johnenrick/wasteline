@@ -30,12 +30,12 @@ class M_information extends API_Model{
     public function retrieveInformation($retrieveType = false, $limit = NULL, $offset = 0, $sort = array(), $ID = NULL, $condition = NULL) {
         $joinedTable = array(
             "information_type" => "information_type.ID=information.type_ID",
-            "account_basic_information AS brangay" => "account_basic_information.ID=information_type.barangay_ID"
+            "barangay" => "barangay.ID=information_type.barangay_ID"
         );
         $selectedColumn = array(
             "information.*",
             "information_type.description AS information_description",
-            "brangay.first_name as barangay_first_name, brangay.middle_name as barangay_middle_name, brangay.last_name as barangay_last_name"
+            "barangay.name AS barangay_name"
         );
         
         return $this->retrieveTableEntry($retrieveType, $limit, $offset, $sort, $ID, $condition, $selectedColumn, $joinedTable);
