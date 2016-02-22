@@ -8,8 +8,8 @@
         </span>
     </div>
     <div class="col-sm-12 wl-info-mainlist scroll-on no-padding">
-        <ul>
-            <li class="wl-info-li wl-list-dummy">
+        <ul id="informationList">
+            <li class="wl-info-li wl-list-dummy wl-list-infos">
                 <div class="col-sm-2">
                     <img class="wl-info-box">
                 </div>
@@ -24,8 +24,8 @@
 </div>
 <div class="col-sm-8 col-md-9 wl-info-display no-padding">
     <div class="col-sm-12 wl-info-full scroll-on no-padding">
-        <!-- ################### DUMMY ############### -->
-        <div class="col-sm-12 wl-info-description wl-heaher-dummy">
+        <!-- ######################################## -->
+        <div class="col-sm-12 wl-info-description wl-heaher-dummy" style="display: none">
             <div class="col-sm-12 wl-info-fixed">
                 <div class="wl-info-box">
                     <img data-name="" class="wl-box">
@@ -41,9 +41,8 @@
             </div>
         </div>
         <!-- ############################################ -->
-        <div class="col-sm-12 wl-info-content">
-            <textarea id="wl-info-editor" name="editor" placeholder="Type your text here...">
-                SAMPLE HAHA
+        <div class="col-sm-12 wl-info-content" style="display: none">
+            <textarea id="wl-info-editor" name="editor" placeholder="Type your text here..." >
             </textarea>
         </div>
     </div>

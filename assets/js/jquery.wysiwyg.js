@@ -1,3 +1,4 @@
+var wysiwygEditor;
 $(document).ready(function() {
     // Featured editor
     var element = $('#wl-info-editor');
@@ -393,7 +394,7 @@ $(document).ready(function() {
 
     //wysiwygeditor.setHTML( '<html>' );
 
-    var editor = $(element).wysiwyg('shell');
-    console.log(editor.getHTML());
+    wysiwygEditor = $(element).wysiwyg('shell');
+    //console.log(editor.getHTML());
 
 });
