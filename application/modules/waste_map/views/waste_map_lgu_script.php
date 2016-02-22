@@ -181,6 +181,16 @@
             wasteMap.retrieveIllegalDumpingHeatMap(startDate, endDate);
         });
         $(".wasteMapLGUFilter").show();
+        add_refresh_call("waste_map", function(){
+            wasteMap.addInitFunction(function(){
+                $(".wl-map-filter.wl-active").each(function(){
+                    $(this).addClass("wl-active");
+                    if(typeof wasteMap.filterFunction[$(this).attr("filter_type")] !== "undefined"){
+                        wasteMap.filterFunction[$(this).attr("filter_type")]();
+                    }
+                });
+            });
+        });
         
     });
 
