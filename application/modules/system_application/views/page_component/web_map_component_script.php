@@ -4,6 +4,8 @@
 <script src="<?=asset_url("js/easy-button.js")?>"></script>
 <script src="<?=asset_url("js/leaflet-heat.js")?>"></script>
 <script src="<?=asset_url("js/leaflet.markercluster.js")?>"></script>
+<script src="<?=asset_url("js/leaflet-search.src.js")?>"></script>
+
 <script>
     /*global webMapComponent, L */
     var boundaries = [  [10.351753, 123.916018],
@@ -254,5 +256,7 @@
         }).addTo( webMapComponent.map );
         webMapComponent.map._onResize(); 
         
+        webMapComponent.controlSearch = new L.Control.Search({layer: webMapComponent.markersLayer, initial: false, position:'topright'});
+        webMapComponent.map.addControl( webMapComponent.controlSearch );
     };
 </script>
