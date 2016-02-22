@@ -6,5 +6,24 @@
 <script>
     var informationPage = {};
     $(document).ready(function(){
+    	$("#samplehaha").click(function(){
+    		wysiwygeditor.readOnly(false);
+    	});
     });
+
+    informationPage.createInformation = function(container){
+
+    }
+
+    informationPage.retrieveInformation = function(container){
+
+    }
+
+    informationPage.updateInformation = function(container){
+
+    }
+
+    informationPage.deleteInformation = function(container){
+
+    }
 </script>
