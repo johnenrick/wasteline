@@ -17,14 +17,16 @@ class C_information extends API_Controller {
     }
     public function createInformation(){
         $this->accessNumber = 1;
-        if($this->checkACL()){
+        if($this->checkACL() && user_type() === 3){
             $this->form_validation->set_rules('barangay_ID', 'Barangay', 'required');
+            $this->form_validation->set_rules('source', 'Source', 'required');
             $this->form_validation->set_rules('type_ID', 'Type', 'required');
             $this->form_validation->set_rules('detail', 'Detail', 'required');
             
             if($this->form_validation->run()){
                 $result = $this->m_information->createInformation(
-                        $this->input->post("barangay_ID"),
+                        user_id(),
+                        $this->input->post("source"),
                         $this->input->post("type_ID"),
                         $this->input->post("detail")
                         );
@@ -81,17 +83,26 @@ class C_information extends API_Controller {
     public function updateInformation(){
         $this->accessNumber = 4;
         if($this->checkACL()){
-            
-            $result = $this->m_information->updateInformation(
-                    $this->input->post("ID"),
-                    $this->input->post("condition"),
-                    $this->input->post("updated_data")
-                    );
-            if($result){
-                $this->actionLog(json_encode($this->input->post()));
-                $this->responseData($result);
+            $this->form_validation->set_rules('ID', 'ID', 'required');
+            if($this->form_validation->run()){
+                $condition = $this->input->post("condition");
+                $result = $this->m_information->updateInformation(
+                        $this->input->post("ID"),
+                        $condition,
+                        $this->input->post("updated_data")
+                        );
+                if($result){
+                    $this->actionLog(json_encode($this->input->post()));
+                    $this->responseData($result);
+                }else{
+                    $this->responseError(3, "Failed to Update");
+                }
             }else{
-                $this->responseError(3, "Failed to Update");
+                if(count($this->form_validation->error_array())){
+                    $this->responseError(102, $this->form_validation->error_array());
+                }else{
+                    $this->responseError(100, "Required Fields are empty");
+                }
             }
         }else{
             $this->responseError(1, "Not Authorized");
