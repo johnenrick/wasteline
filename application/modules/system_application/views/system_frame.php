@@ -11,12 +11,12 @@
 
         <title>WasteLine</title>
         <link rel="shortcut icon" type="image/x-icon" href="<?=asset_url('images/portal/garbage.png')?>" />
-        
-        
+
+
         <!-- Bootstrap CSS -->
         <!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous"><!--CDN-->
         <link href="<?= asset_url('css/bootstrap.min.css') ?>" rel="stylesheet"><!--->
-	<!--<link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.css" rel="stylesheet"><!--CDN-->
+    <!--<link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.css" rel="stylesheet"><!--CDN-->
         <link href="<?= asset_url('css/jquery-ui.min.css') ?>" rel="stylesheet"><!---->
         <link href="<?= asset_url('css/jquery-ui.structure.min.css') ?>" rel="stylesheet">
         <link href="<?= asset_url('css/jquery-ui.theme.min.css') ?>" rel="stylesheet">
@@ -40,7 +40,7 @@
         <style>
             [contenteditable=true]:empty:before{
               content: attr(placeholder);
-              display: block; 
+              display: block;
             }
         </style>
 
@@ -50,7 +50,7 @@
             <div id="sidebar-wrapper">
                 <ul class="sidebar-nav">
                     <li class="sidebar-brand">
-                        <a><span class="lnr lnr-trash"></span></a>
+                        <a class="wl-menu-toggle"><span class="lnr lnr-trash"></span></a>
                     </li>
                     <li module_id="1" module_link="portal" module_name="portal" style="display:none">
                         <a data-page-link="home" data-toggle="tooltip" data-placement="right" title="" data-original-title="Home"><span class="lnr lnr-home"></span></a>
@@ -90,6 +90,7 @@
                         <div class="wl-header-content col-xs-12 col-sm-12">
 
                             <div class="wl-top-grp col-sm-4">
+                                <span><a class="wl-menu-toggle"><span class="lnr lnr-trash"></span></a></span>
                                 <span class="wl-c-green-1">Wasteline</span>
                                 <span class="wl-c-gray-1">&nbsp;|&nbsp;</span>
                                 <span class="wl-c-black-1 wl-page-title">Home</span>
@@ -246,7 +247,7 @@
         <!-- jQuery -->
         <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script><!--CDN-->
         <script src="<?= asset_url('js/jquery-2.1.4.min.js') ?>"></script><!--->
-	<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script><!--CDN-->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script><!--CDN-->
         <script src="<?= asset_url('js/jquery-ui.min.js') ?>"></script><!--->
 
         <!-- Bootstrap Core JavaScript -->

@@ -12,10 +12,10 @@
                 <!-- main content -->
                 <div  class="wl-full-height col-sm-12 no-padding">
                     <div id="portalInformationPanel" class="wl-full-height col-sm-7 no-padding">
-                        <div class="col-md-12 wl-carousel-header">
+                        <div class="col-sm-12 wl-carousel-header">
                             <h4 style="padding:20px"><span class="lnr lnr-trash"></span>&nbsp;WasteLine</h4>
                         </div>
-                        <div class="col-md-12 no-padding wl-full-height">
+                        <div class="col-sm-12 no-padding wl-full-height">
                             <div id="contentCarousel" class="owl-carousel wl-full-height">
                                 <div class="wl-carousel-item wl-carousel-item1" style="background-image:url('<?= asset_url("images/sample/1.jpg") ?>')">
                                     <div class="row">
@@ -51,7 +51,7 @@
                         </div>
                     </div>
                     <div id='portalLoginPanel' class="col-sm-5 no-padding">
-                        <div class="col-md-12 no-padding" style="height:100%; background:rgba(47,50,58,1);">
+                        <div class="col-md-12 no-padding wl-login-wrapper">
                             <div class="wl-form-container scroll-on">
                                 <div id="login-form" class="col-md-7 col-md-offset-1 col-sm-8 col-sm-offset-1" style="padding-top:15%; ">
                                     <form id="loginForm" method="post" action="">

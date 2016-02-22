@@ -5,8 +5,12 @@ $(document).ready(function () {
         width: 30,
         fontSize: 16
     });
-    $("#menu-toggle").change(function (e) {
+    $(".wl-menu-toggle").click(function (e) {
         e.preventDefault();
+        var ths = $(".wl-menu-toggle");
+        if(ths.hasClass('wl-rotate-90'))
+            ths.removeClass('wl-rotate-90');
+        else ths.addClass('wl-rotate-90');
         $("#wrapper").toggleClass("toggled");
     });
 
