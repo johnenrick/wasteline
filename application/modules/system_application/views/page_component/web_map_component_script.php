@@ -136,6 +136,8 @@
             maxClusterRadius : 40
         });
         webMapComponent.map.addLayer(webMapComponent.markerCluster );
+        webMapComponent.markersLayer = new L.LayerGroup();  //layer contain searched elements
+        webMapComponent.map.addLayer(webMapComponent.markersLayer);
         /**
          * Add marker to map
          * 
