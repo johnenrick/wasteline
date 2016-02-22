@@ -74,16 +74,7 @@
     };
     $(document).ready(function(){
         load_page_component("web_map_component", wasteMap.initializeWastemapManagement);
-        add_refresh_call("waste_map", function(){
-            wasteMap.addInitFunction(function(){
-                $(".wl-map-filter.wl-active").each(function(){
-                    $(this).addClass("wl-active");
-                    if(typeof wasteMap.filterFunction[$(this).attr("filter_type")] !== "undefined"){
-                        wasteMap.filterFunction[$(this).attr("filter_type")]();
-                    }
-                });
-            });
-        });
+        
         wasteMap.filterFunction["1"] = function(){//User with waste
             wasteMap.retrieveMapMarker([1]);
         };

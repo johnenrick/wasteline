@@ -160,7 +160,8 @@
                 map_marker_type_ID : mapMarkerType,
                 associated_ID : associatedID,
                 riseOnHover: true,
-                draggable : (typeof draggable === "undefined") ? false : draggable
+                draggable : (typeof draggable === "undefined") ? false : draggable,
+                title : description,
             };
             var labelOption = {
                 noHide : false,
@@ -242,7 +243,7 @@
         };
         /*Banilad*/
         
-        webMapComponent.addMarker(-2, 6, 0, "Brgy. Banilad Hall", 123.922587, 10.339634, false);
+        webMapComponent.addMarker(-2, 6, 1, "Brgy. Banilad Hall", 123.922587, 10.339634, false);
         /*Initialize plug in*/
         L.polyline(boundaries, {smoothFactor: 1, opacity: 0.5, weight: 5, fill: true, fillOpacity: 0.0, clickable: false, color :"#50c14e"}).addTo(webMapComponent.map);
         /**

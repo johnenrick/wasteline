@@ -19,7 +19,6 @@ class C_information extends API_Controller {
         $this->accessNumber = 1;
         if($this->checkACL() && user_type() === 3){
             $this->form_validation->set_rules('description', 'Description', 'required');
-            $this->form_validation->set_rules('barangay_ID', 'Barangay', 'required');
             $this->form_validation->set_rules('source', 'Source', 'required');
             $this->form_validation->set_rules('type_ID', 'Type', 'required');
             
