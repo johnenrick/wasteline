@@ -23,10 +23,10 @@
     </div>
 </div>
 <div class="col-sm-8 col-md-9 wl-info-display no-padding">
-    <div class="col-sm-12 wl-info-full scroll-on no-padding">
+    <div class="col-xs-12 wl-info-full scroll-on no-padding">
         <!-- ######################################## -->
-        <div class="col-sm-12 wl-info-description wl-heaher-dummy" style="display: none">
-            <div class="col-sm-12 wl-info-fixed">
+        <div class="col-xs-12 wl-info-description wl-heaher-dummy" style="display: none">
+            <div class="col-xs-12 wl-info-fixed">
                 <div class="wl-info-box">
                     <img data-name="" class="wl-box" id="sampleid">
                 </div>
@@ -41,7 +41,7 @@
             </div>
         </div>
         <!-- ############################################ -->
-        <div class="col-sm-12 wl-info-content" style="display: none">
+        <div class="col-xs-12 wl-info-content" style="display: none">
             <form id="wl-content-form">
                 <textarea id="wl-info-editor" name="editor" placeholder="Type your text here..." >
                 </textarea>

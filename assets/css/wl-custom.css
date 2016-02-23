@@ -1303,7 +1303,7 @@ ul.sidebar-nav li a {
         text-decoration: none;
     }
     #wl-side-content {
-        width: 95%;
+        width: 100%;
          z-index: 12;
     }
     .wl-info-display .modal .modal-body {
