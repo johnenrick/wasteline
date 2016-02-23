@@ -211,7 +211,7 @@ ul.sidebar-nav li a {
     cursor: pointer;
 }
 
-#wl-post-floating-btn{
+.wl-floating-btn {
     display: none;
 }
 
@@ -1270,21 +1270,32 @@ ul.sidebar-nav li a {
     #wrapper.disabled #wl-post-floating-btn {
         display: none;
     }
-    #wl-post-floating-btn {
+    .wl-floating-btn {
         padding: 5px;
         font-size: 25px;
         position: absolute;
-        z-index: 12;
-        bottom: 10px;
-        right: 50px;
         display: block;
     }
-    #wl-post-floating-btn button{
+    .wl-floating-btn button {
         transition: all 0.3s ease-out;
     }
     #wl-post-floating-btn span {
         font-size: 25px;
         line-height: 15px;
+    }
+    #wl-return-floating-btn span {
+        font-size: 18px;
+        line-height: 15px;
+    }
+    #wl-post-floating-btn {
+        bottom: 10px;
+        right: 50px;
+        z-index: 12;
+    }
+    #wl-return-floating-btn {
+        top: 10px;
+        right: 50px;
+        z-index: 4;
     }
     .wl-header-btn a {
         position: relative;
@@ -1294,6 +1305,18 @@ ul.sidebar-nav li a {
     #wl-side-content {
         width: 95%;
          z-index: 12;
+    }
+    .wl-info-display .modal .modal-body {
+        height: 300px;
+        padding: 0 2%;
+    }
+    .wl-info-full .wl-info-content {
+        padding-left: 7%;
+    }
+    .wl-info-full .wl-info-description .wl-info-box,
+    .wl-info-full .wl-info-description .wl-info-box img {
+        width: 80px;
+        height: 80px;
     }
 }
 

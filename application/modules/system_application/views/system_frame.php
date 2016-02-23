@@ -238,7 +238,12 @@
 
                             </div>
 
-                            <span id="wl-post-floating-btn" class="input-group-btn wl-draggable">
+                            <span id="wl-return-floating-btn" class="input-group-btn wl-draggable wl-floating-btn button" style="display:none">
+                                <button type="button" class="btn btn-fab btn-warning btn-fab-mini">
+                                    <span class="lnr lnr-chevron-left"></span>
+                                <div class="ripple-container"></div></button>
+                            </span>
+                            <span id="wl-post-floating-btn" class="input-group-btn wl-draggable wl-floating-btn button">
                                 <button type="button" class="btn btn-fab btn-primary btn-fab-mini">
                                     <span>+</span>
                                 <div class="ripple-container"></div></button>
