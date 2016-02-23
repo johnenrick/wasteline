@@ -27,7 +27,7 @@
             var response = JSON.parse(data);
             if(!response["error"].length){
                 $(".wl-info-description").hide();
-                $(".wl-info-content").hide()
+                $(".wl-info-content").hide();
                 if(infoID == 0){
                     $(".information-count").text(response["data"].length);
                     for(var x in response["data"]){
@@ -50,10 +50,13 @@
                     if(user_type() == 2){
                         wysiwygEditor.readOnly(true);
                         $(".wysiwyg-toolbar-top").css("display", "none");
+                        $(".deleteHolder").hide();
                     }
 
                     $(".wl-info-description").show();
-                    $(".wl-info-content").show()
+                    $(".wl-info-content").show();
+                    $(".confimation-holder").hide();
+                    $(".deleteButton").show();
                 }
             }
         });
@@ -71,8 +74,15 @@
         });
     }
 
-    informationPage.deleteInformation = function(container){
-
+    informationPage.deleteInformation = function(id){
+        $.post(api_url("C_information/deleteInformation"), {ID: id}, function(data){
+            var response = JSON.parse(data);
+            if(!response["error"].length){
+                $(".wl-info-description").hide();
+                $(".wl-info-content").hide();
+                $("ul#informationList li.active").remove();
+            }
+        });
     }
 
     informationPage.findInformationType = function(){
@@ -137,6 +147,20 @@
         $("#wl-header-menu").click(function(){
             $("#informationList .wl-list-infos").remove();
             informationPage.retrieveInformation(0, informationPage.findInformationType());
+        });
+
+        $(".deleteButton").click(function(){
+            $(this).hide();
+            $(".confimation-holder").show();
+        });
+
+        $(".buttonCancel").click(function(){
+            $(".confimation-holder").hide();
+            $(".deleteButton").show();
+        });
+
+        $(".buttonConfirm").click(function(){
+            informationPage.deleteInformation(($("ul#informationList li.active").attr("informationid"))*1);
         });
     });
 </script>

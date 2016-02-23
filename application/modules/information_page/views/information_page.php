@@ -38,6 +38,13 @@
                         <span class="wl-info-stamp" data-livestamp=""></span>
                     </h4>
                 </div>
+                <div style="position: absolute; bottom: -50px; z-index: 2" class="deleteHolder">
+                    <button class="btn btn-info deleteButton" data-loading-text="Please wait..." style="">Delete</button>
+                    <span style="position: absolute; left: 55px; bottom: 56px; display: none" class="confimation-holder" >
+                        <i class="fa fa-check btn btn-success buttonConfirm" style="position: absolute; left: 0px; font-size: 2.5em; padding: 0px 12px"></i>
+                        <i class="fa fa-times btn btn-danger buttonCancel" style="position: absolute; right: 0px; font-size: 2.5em; padding: 0px 12px"></i>
+                    <span>
+                </div>
             </div>
         </div>
         <!-- ############################################ -->
