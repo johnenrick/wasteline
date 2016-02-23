@@ -203,7 +203,7 @@
                                                         <option value="0"hidden >Unit</option>
                                                     </select>
                                                 </div>
-
+                                                | &#8369;&nbsp;
                                                  <p class="wl-list-quantity-price" style="display:inline-block;height:auto">
                                                     <span class="wl-list-price" contenteditable="true" onkeypress="return wastePostContainer.isNumberInput(event)" placeholder="Price" holder="price"></span>
                                                 </p>
@@ -214,7 +214,7 @@
                                                         <option val="0" hidden >Category</option>
                                                     </select>
                                                 </div>
-                                                <i class="fa fa-times fa-3 deleteWastePost btn" style="position: absolute; top: 0px; right: 2px; font-size: 1.5em; color: #f55549"></i>
+                                                <i class="fa fa-times fa-3 deleteWastePost btn" style="position: absolute; top: 0px; right: 2px; font-size: 1.5em; color: #f55549; padding: 1px; margin: 0px"></i>
                                             </div>
                                         </li>
                                         <li class="wl-rectangle-add col-xs-12 unselectable">

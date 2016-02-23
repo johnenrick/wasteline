@@ -81,6 +81,7 @@
                 $(".wl-info-description").hide();
                 $(".wl-info-content").hide();
                 $("ul#informationList li.active").remove();
+                $(".information-count").text((($(".information-count").text())*1)-1);
             }
         });
     }
