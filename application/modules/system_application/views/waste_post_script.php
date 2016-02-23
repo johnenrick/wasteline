@@ -108,6 +108,8 @@
 				wastePostContainer.deleteWastePost((dummy.attr("wastepostid"))*1, dummy);
 			}else{
 				dummy.remove();
+				$("#wl-btn-side-repost").button("reset");
+				$("#wl-btn-side-submit").button("reset");
 			}
 		});
 	});
