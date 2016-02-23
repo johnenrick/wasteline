@@ -31,9 +31,9 @@
                     <img data-name="" class="wl-box" id="sampleid">
                 </div>
                 <div class="wl-info-title">
-                    <h2></h2>
+                    <h2 contenteditable="true" holder="description"></h2>
                     <h4>
-                        <span class="wl-info-author"></span>
+                        <span class="wl-info-author" contenteditable="true" holder="source"></span>
                         <!-- &nbsp;|&nbsp; -->
                         <span class="wl-info-stamp" data-livestamp=""></span>
                     </h4>
@@ -42,8 +42,10 @@
         </div>
         <!-- ############################################ -->
         <div class="col-sm-12 wl-info-content" style="display: none">
-            <textarea id="wl-info-editor" name="editor" placeholder="Type your text here..." >
-            </textarea>
+            <form id="wl-content-form">
+                <textarea id="wl-info-editor" name="editor" placeholder="Type your text here..." >
+                </textarea>
+            </form>
         </div>
     </div>
 
