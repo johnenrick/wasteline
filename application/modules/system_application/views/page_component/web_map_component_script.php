@@ -154,7 +154,6 @@
             
             if(typeof webMapComponent.markerList[ID] !== "undefined" && mapMarkerType*1 !== 6){
                 if(ID*1 === -1){
-                   
                     webMapComponent.map.removeLayer(webMapComponent.markerList[ID]);
                 }else{
                      

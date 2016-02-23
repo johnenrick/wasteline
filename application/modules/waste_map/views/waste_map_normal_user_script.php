@@ -20,8 +20,6 @@
      * @returns {undefined}
      */
     wasteMap.bindIllegalDumpingFormAction = function(markerListID){
-        console.log(markerListID);
-        console.log(wasteMap.webMap.markerList[markerListID]);
         wasteMap.webMap.markerList[markerListID].on("click",function(e){
             if(e.target._popup._isOpen){
                 $(e.target._popup._contentNode).find("[name=longitude]").val(e.target._latlng.lng);

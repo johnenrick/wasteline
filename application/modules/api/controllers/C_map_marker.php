@@ -56,7 +56,8 @@ class C_map_marker extends API_Controller {
                     $this->input->post("offset"), 
                     $this->input->post("sort"),
                     $this->input->post("ID"),
-                    $this->input->post("condition")
+                    $this->input->post("condition"),
+                    $this->input->post("waste_post")
                     );
             if($this->input->post("limit")){
                 $this->responseResultCount($this->m_map_marker->retrieveMapMarker(

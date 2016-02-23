@@ -4,7 +4,7 @@ function asset_url($path=false, $cdnPath = false){
     $online = false;
     $ci         =&  get_instance();
     if($online && $cdnPath){
-        $path = $cdnPath;
+        return $cdnPath;
     }
     $basePath   =   $ci->config->item('assetPath');
     if($path==false){

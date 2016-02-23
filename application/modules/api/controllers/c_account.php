@@ -89,61 +89,74 @@ class C_account extends API_Controller {
     }
     public function retrieveAccount(){
         $this->accessNumber = 2;
-        if($this->checkACL()){
-            $ID = $this->input->post("ID");
-            if(user_type() == 2 || user_type() == 0 || user_type() == 4){// 16 - if not admin or lgu
-                $ID = user_id();
+        if($this->checkACL() && user_id()){
+            if(user_type() == 2 || user_type() == 4){
+                $this->form_validation->set_rules('ID', 'ID', 'required');
             }
-            $result = $this->m_account->retrieveAccount(
-                    $this->input->post("retrieve_type"),
-                    $this->input->post("limit"),
-                    $this->input->post("offset"),
-                    $this->input->post("sort"),
-                    $ID,
-                    $this->input->post("condition")
-                    );
-            if($this->input->post("limit")){
-                $this->responseResultCount($this->m_account->retrieveAccount(
-                    1,
-                    NULL,
-                    NULL,
-                    NULL,
-                    $ID, 
-                    $this->input->post("condition")
-                    ));
-            }
-            $this->responseDebug($this->input->post("condition"));
-            if($result){
-                if($this->input->post("with_contact_information") || $this->input->post("all_information")){
-                    $this->load->model("m_account_contact_information");
-                    
-                    if($this->input->post("ID")){
-                        $condition = array("account_contact_information__account_ID" => $result["ID"]);
-                        $result["contact_information"] = $this->m_account_contact_information->retrieveAccountContactInformation(NULL, NULL, NULL, NULL, NULL, $condition);
-                    }else{
-                        foreach($result as $resulKey => $resultValue){
-                            $condition = array("account_contact_information__account_ID" => $resultValue["ID"]);
-                            $result[$resulKey]["contact_information"] = $this->m_account_contact_information->retrieveAccountContactInformation(NULL, NULL, NULL, NULL, NULL, $condition);
+            if($this->form_validation->run() || !(user_type() == 2 || user_type() == 4)){
+                $ID = $this->input->post("ID");
+                $result = $this->m_account->retrieveAccount(
+                        $this->input->post("retrieve_type"),
+                        $this->input->post("limit"),
+                        $this->input->post("offset"),
+                        $this->input->post("sort"),
+                        $ID,
+                        $this->input->post("condition")
+                        );
+                $this->responseDebug($ID);
+                if($this->input->post("limit")){
+                    $this->responseResultCount($this->m_account->retrieveAccount(
+                        1,
+                        NULL,
+                        NULL,
+                        NULL,
+                        $ID, 
+                        $this->input->post("condition")
+                        ));
+                }
+                if($result){
+                    if($this->input->post("with_contact_information") || $this->input->post("all_information")){
+                        $this->load->model("m_account_contact_information");
+
+                        if($this->input->post("ID")){
+                            $condition = array("account_contact_information__account_ID" => $result["ID"]);
+                            $result["contact_information"] = $this->m_account_contact_information->retrieveAccountContactInformation(NULL, NULL, NULL, NULL, NULL, $condition);
+                        }else{
+                            foreach($result as $resulKey => $resultValue){
+                                $condition = array("account_contact_information__account_ID" => $resultValue["ID"]);
+                                $result[$resulKey]["contact_information"] = $this->m_account_contact_information->retrieveAccountContactInformation(NULL, NULL, NULL, NULL, NULL, $condition);
+                            }
                         }
                     }
-                }
-                if($this->input->post("with_address") || $this->input->post("all_information")){
-                    $this->load->model("M_account_address");
-                    if($this->input->post("ID")){
-                        $condition = array("account_address__account_ID" => $result["ID"]);
-                        $result["address"] = $this->M_account_address->retrieveAccountAddress(NULL, NULL, NULL, NULL, NULL, $condition);
-                    }else{
-                        foreach($result as $resulKey => $resultValue){
-                            $condition = array("account_address__account_ID" => $resultValue["ID"]);
-                            $result[$resulKey]["address"] = $this->M_account_address->retrieveAccountAddress(NULL, NULL, NULL, NULL, NULL, $condition);
+                    if($this->input->post("with_address") || $this->input->post("all_information")){
+                        $this->load->model("M_account_address");
+                        if($this->input->post("ID")){
+                            $condition = array("account_address__account_ID" => $result["ID"]);
+                            $result["address"] = $this->M_account_address->retrieveAccountAddress(NULL, NULL, NULL, NULL, NULL, $condition);
+                        }else{
+                            foreach($result as $resulKey => $resultValue){
+                                $condition = array("account_address__account_ID" => $resultValue["ID"]);
+                                $result[$resulKey]["address"] = $this->M_account_address->retrieveAccountAddress(NULL, NULL, NULL, NULL, NULL, $condition);
+                            }
                         }
                     }
+                    if($this->input->post("with_waste_post")){
+                        $this->load->model("M_waste_post");
+                        $result["waste_post"] = $this->M_waste_post->retrieveWastePost(false, NULL, 0, array("waste_post_type_ID"=>"asc"), NULL, array(
+                            "account_ID" => $ID
+                        ));
+                    }
+                    $this->actionLog(json_encode($this->input->post()));
+                    $this->responseData($result);
+                }else{
+                    $this->responseError(2, "No Result");
                 }
-                
-                $this->actionLog(json_encode($this->input->post()));
-                $this->responseData($result);
             }else{
-                $this->responseError(2, "No Result");
+                if(count($this->form_validation->error_array())){
+                    $this->responseError(102, $this->form_validation->error_array());
+                }else{
+                    $this->responseError(100, "Required Fields are empty");
+                }
             }
         }else{
             $this->responseError(1, "Not Authorized");

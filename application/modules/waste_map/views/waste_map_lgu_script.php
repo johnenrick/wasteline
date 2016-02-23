@@ -160,7 +160,6 @@
         });
     };
     $(document).ready(function(){
-        
         wasteMap.addInitFunction(function(){
             wasteMap.webMap.selectLocation(wasteMap.openDumpingLocationForm);//open a dumping location form if the map is clicked)
             wasteMap.webMap.tileLayer.on("load", function(){
@@ -181,7 +180,6 @@
             var endDate = ($(".wasteMapDateFilter[filter_type=7]").val() !== "") ? (new Date($(".wasteMapDateFilter[filter_type=7]").val()+"T00:00:00")).setHours(0,0,0,0)/1000 : null;
             wasteMap.retrieveIllegalDumpingHeatMap(startDate, endDate);
         });
-        
         add_refresh_call("waste_map", function(){
             wasteMap.addInitFunction(function(){
                 $(".wl-map-filter.wl-active").each(function(){
@@ -192,6 +190,7 @@
                 });
             });
         });
+        $(".prototype").find(".wasteMapOwnWaste .wasteMapLGUOption").show();
         
     });
 

@@ -45,6 +45,13 @@
         text-align: center;
         
     }
+    .panel-own-waste .service-head{
+        background-color :#428BDF;
+        color:white;
+    }
+    .panel-own-waste .service-head th{
+        text-align: center;
+    }
     .panel-own-waste .panel-body{
         font-size: 16px!important;
     }
@@ -153,13 +160,15 @@
         </div>
         <div class="panel-body">
             <form class="wasteMapOwnWasteForm" method="POST" >
+                <input name="account_ID" type="hidden">
+                <input name="map_marker_type_ID" type="hidden">
                 <div class="row">
                     <div class="col-md-12" style="text-align: center">
-                        <p class="">plenosjohn@yahoo.com</p>
-                        <p class="wl-slogan-edit">09275835504/125478563</p>
+                        <p class="wasteMapOwnWasteEmailDetail">plenosjohn@yahoo.com</p>
+                        <p class="wasteMapOwnWasteContactDetail wl-slogan-edit">09275835504/125478563</p>
                     </div>
                 </div>
-                <table class="table table-striped table-hover">
+                <table waste_post_type="1" class="wasteMapPostList table table-striped table-hover" style="display:none">
                     <thead>
                         <tr class="primary-head">
                             <th colspan="2">Own Waste</th>
@@ -170,34 +179,37 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Tasdajsodjsaiodjoasjdasdjiojasd</td>
-                            <td>12</td>
-                        </tr>
-                        <tr>
-                            <td>Tasdajsodjsaiodjoasjdasdjiojasd</td>
-                            <td>12</td>
-                        </tr>
-                        <tr>
-                            <td>Tasdajsodjsaiodjoasjdasdjiojasd</td>
-                            <td>12</td>
-                        </tr>
                     </tbody>
                 </table>
-                <div class="panel panel-warning">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Waste Accepted</h3>
-                    </div>
-                    <div class="panel-body">
-                        asdasdsad
-                    </div>
-                </div>
-                <div class="panel panel-info">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Waste Service</h3>
-                    </div>
-                    <div class="panel-body">
-                        asdasdsad
+                <table waste_post_type="2" class="wasteMapPostList table table-striped table-hover" style="display:none">
+                    <thead>
+                        <tr class="primary-head">
+                            <th colspan="2">Accept Waste</th>
+                        </tr>
+                        <tr>
+                            <th>Description</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <table waste_post_type="3" class="wasteMapPostList table table-striped table-hover" style="display:none">
+                    <thead>
+                        <tr class="service-head">
+                            <th colspan="2">Services</th>
+                        </tr>
+                        <tr>
+                            <th>Description</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <div class="row wasteMapLGUOption" style="display:none">
+                    <div class="col-md-12" style="text-align: center">
+                        <button type="button" button_action="1" class="btn btn-primary">Collect Waste</button>
                     </div>
                 </div>
             </form>

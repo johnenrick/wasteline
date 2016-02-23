@@ -5,15 +5,16 @@
         <group>
             <file>file:/C:/xampp/htdocs/wasteline/application/modules/system_application/views/page_component/web_map_component_script.php</file>
             <file>file:/C:/xampp/htdocs/wasteline/application/modules/waste_map/views/waste_map_lgu_script.php</file>
-            <file>file:/C:/xampp/htdocs/wasteline/application/modules/api/controllers/C_dumping_location.php</file>
-            <file>file:/C:/xampp/htdocs/wasteline/application/modules/api/controllers/c_report.php</file>
-            <file>file:/C:/xampp/htdocs/wasteline/application/modules/system_application/views/page_header_script.php</file>
             <file>file:/C:/xampp/htdocs/wasteline/application/modules/waste_map/views/waste_map_script.php</file>
+            <file>file:/C:/xampp/htdocs/wasteline/application/modules/api/models/M_account.php</file>
+            <file>file:/C:/xampp/htdocs/wasteline/application/modules/api/controllers/C_map_marker.php</file>
+            <file>file:/C:/xampp/htdocs/wasteline/application/modules/profile_management/views/profile_management_script.php</file>
+            <file>file:/C:/xampp/htdocs/wasteline/application/modules/api/models/M_waste_post.php</file>
             <file>file:/C:/xampp/htdocs/wasteline/application/modules/waste_map/views/waste_map_normal_user_script.php</file>
-            <file>file:/C:/xampp/htdocs/wasteline/application/modules/system_application/views/system_script.php</file>
+            <file>file:/C:/xampp/htdocs/wasteline/application/modules/api/controllers/C_account.php</file>
             <file>file:/C:/xampp/htdocs/wasteline/application/modules/api/controllers/C_waste_post.php</file>
-            <file>file:/C:/xampp/htdocs/wasteline/application/modules/system_application/views/page_component/web_map_component.php</file>
             <file>file:/C:/xampp/htdocs/wasteline/application/modules/waste_map/views/waste_map.php</file>
+            <file>file:/C:/xampp/htdocs/wasteline/application/modules/api/models/M_map_marker.php</file>
         </group>
     </open-files>
 </project-private>
