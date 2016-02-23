@@ -69,6 +69,7 @@
 
     $(document).ready(function(){
     	informationPage.retrieveInformation(0);
+        if(user_type() == 2) $(".informationTick").hide();
 
         $(".submitButton-list").click(function(){
             wysiwygEditor.readOnly(true);
