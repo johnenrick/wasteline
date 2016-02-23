@@ -20,7 +20,7 @@
                 });
         });
         $(".sidebar-nav").find("li[module_link='"+system_data.data.default_page+"']").trigger("click");
-        $(".wl-btn-logout").click(function(){
+        $(".wl-btn-logout, #wl-btn-logout").click(function(){
             window.location = base_url("portal/logout");
         });
         if(user_id()){
@@ -34,13 +34,15 @@
                 window.location = base_url();
             }
         }
-        
+
         if(user_type()!== 2 && user_type()!== 4){//hide post button if not normal user
             $(".wl-btn-post").parent().parent().hide();
             $("#headerUserFullName").parent().parent().removeClass("no-padding")
             $("#headerUserFullName").parent().parent().removeClass("col-sm-10");
             $("#headerUserFullName").parent().parent().addClass("col-sm-12");
-            
+
+        }else{
+            console.log(user_type())
         }
     });
 

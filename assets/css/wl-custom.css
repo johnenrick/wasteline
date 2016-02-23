@@ -15,21 +15,11 @@ body {
     overflow: hidden;
 }
 
-body {
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
 .spinner {
   -webkit-animation: rotator 1.4s linear infinite;
           animation: rotator 1.4s linear infinite;
         margin: 20% 50%;
+    position: absolute;
 }
 
 @-webkit-keyframes rotator {
@@ -220,6 +210,7 @@ a {
 .wl-page-content {
     height: 100%;
     padding: 0;
+    overflow: hidden;
 }
 
 .sidebar-brand {
@@ -1395,7 +1386,7 @@ ul.sidebar-nav li a {
     }
     .wl-header-btn:last-child {
         float: right;
-        margin-right: 30px;
+        margin-right: 20px;
     }
     #wrapper.disabled #wl-post-floating-btn {
         display: none;
@@ -1435,7 +1426,7 @@ ul.sidebar-nav li a {
         text-decoration: none;
     }
     #wl-side-content {
-        width: 100%;
+        width: 97%;
          z-index: 12;
     }
     .wl-info-display .modal .modal-body {
@@ -1449,6 +1440,9 @@ ul.sidebar-nav li a {
     .wl-info-full .wl-info-description .wl-info-box img {
         width: 80px;
         height: 80px;
+    }
+    .wl-btn-logout {
+        display: none;
     }
 }
 

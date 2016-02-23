@@ -106,6 +106,9 @@
                                         </li>
                                     </ul>
                                 </div>
+                                <span id="wl-btn-logout" class="input-group-btn wl-header-btn">
+                                    <a class=""><span class="lnr lnr-power-switch"></span></a>
+                                </span>
                             </div>
                             <div class="wl-top-grp col-sm-4 unselectable">
                                 <span class="lnr lnr-calendar-full wl-c-green-1"></span>
