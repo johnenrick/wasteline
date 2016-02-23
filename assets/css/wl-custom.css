@@ -1278,9 +1278,11 @@ ul.sidebar-nav li a {
     }
     .wl-floating-btn button {
         transition: all 0.3s ease-out;
+        width: 50px;
+        height: 50px;
     }
     #wl-post-floating-btn span {
-        font-size: 25px;
+        font-size: 30px;
         line-height: 15px;
     }
     #wl-return-floating-btn span {
