@@ -93,6 +93,9 @@
 			}
 			wastePostContainer.updateWastePost(container);
 			wastePostContainer.triggerComplete(dummy);
+			setTimeout(function () {
+	            dummy.remove();
+	        }, 1000);
 		});
 	});
 
@@ -149,6 +152,7 @@
 		var container = {
 			waste_post__account_ID				: user_id(),
 			waste_post__waste_post_type_ID		: wastePostTypeID,
+			not__waste_post__status				: 3
 		}
 		if(wastePostTypeID != 3){
 			container.greater_equal__waste_post__datetime 	= ((new Date((d.getMonth() + 1) +" "+ d.getDate() + ", " + d.getFullYear() + " 00:00:00")).getTime())/1000,
@@ -169,9 +173,8 @@
 					dummy.find(".wl-list-price").text(response["data"][x]["price"]);
 					dummy.find("#wastePostQuantityUnitList").val(response["data"][x]["unit_ID"]);
 					dummy.removeAttr('id').show();
-					if(response["data"][x]["status"] == 3) wastePostContainer.triggerComplete(dummy); 
+					//if(response["data"][x]["status"] == 3) wastePostContainer.triggerComplete(dummy); 
 			        $(dummy).insertBefore($("ul#post-container-list li").last()).addClass('wl-show');
-
 				}
 			}
 		}).done(function(){

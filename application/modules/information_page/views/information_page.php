@@ -9,7 +9,7 @@
     </div>
     <div class="col-xs-12 wl-info-mainlist scroll-on no-padding">
         <ul id="informationList">
-            <li class="wl-info-li wl-list-dummy wl-list-infos">
+            <li class="wl-info-li wl-list-dummy">
                 <div class="col-xs-2">
                     <img class="wl-info-box">
                 </div>
