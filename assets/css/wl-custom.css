@@ -1267,7 +1267,10 @@ ul.sidebar-nav li a {
         float: right;
         margin-right: 30px;
     }
-    #wl-post-floating-btn{
+    #wrapper.disabled #wl-post-floating-btn {
+        display: none;
+    }
+    #wl-post-floating-btn {
         padding: 5px;
         font-size: 25px;
         position: fixed;
@@ -1291,12 +1294,6 @@ ul.sidebar-nav li a {
     #wl-side-content {
         width: 95%;
          z-index: 12;
-    }
-    #wl-side-content #wl-side-header .col-sm-3 {
-        float: left;
-    }
-    #wl-side-content #wl-side-header .col-sm-9 {
-        float: right;
     }
 }
 

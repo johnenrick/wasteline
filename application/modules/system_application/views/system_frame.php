@@ -153,26 +153,26 @@
                         <!-- end top -->
 
                         <!-- main content -->
-                        <div id="moduleContainer" class="wl-main-content col-sm-12">
+                        <div id="moduleContainer" class="wl-main-content col-xs-12">
                             <!-- Home -->
                             <div id="systemMessageContainer" class="alert-container" >
 
                             </div>
                             <div id="wl-side-content">
-                                <div id="wl-side-header" class="col-sm-12">
+                                <div id="wl-side-header" class="col-xs-12">
                                     <div class="row">
-                                    <div class="col-sm-3 no-padding">
+                                    <div class="col-xs-3 no-padding">
                                         <h3 class="wl-c-green-6">Post</h3>
                                     </div>
-                                    <div class="col-sm-9 no-margin no-padding">
-                                        <div class="form-group col-sm-12 no-margin no-padding">
+                                    <div class="col-xs-9 no-margin no-padding">
+                                        <div class="form-group col-xs-12 no-margin no-padding">
                                             <a id="wl-btn-side-repost" class="btn btn-warning btn-raised" style="float:right"><span>Repost</span></a>
                                             <a id="wl-btn-side-submit" class="btn btn-success btn-raised" style="float:right;display:none"><span>Submit</span></a>
                                         </div>
                                     </div>
                                     </div>
                                 </div>
-                                <div id="wl-side-menu" class="col-sm-12">
+                                <div id="wl-side-menu" class="col-xs-12">
                                     <ul class="unselectable wastePostTypeList">
                                         <li>
                                             <a class="wl-active" typeID="1">Own Waste</a>
@@ -185,14 +185,14 @@
                                         </li>
                                     </ul>
                                 </div>
-                                <hr class="col-sm-12 no-padding"></hr>
-                                <div id="wl-side-list" class="col-sm-12 no-padding scroll-shadow scroll-on">
+                                <hr class="col-xs-12 no-padding"></hr>
+                                <div id="wl-side-list" class="col-xs-12 no-padding scroll-shadow scroll-on">
                                     <ul id="post-container-list">
-                                        <li id="wl-rectangle-dummy" class="wl-rectangle-list col-sm-12">
-                                            <div class="col-sm-2">
+                                        <li id="wl-rectangle-dummy" class="wl-rectangle-list col-xs-12">
+                                            <div class="col-xs-2">
                                                 <div class="circle"></div>
                                             </div>
-                                            <div class="col-sm-10">
+                                            <div class="col-xs-10">
                                                 <p class="wl-list-desciption wl-c-green-1" contenteditable="true" placeholder="Click to add Description" holder="description"></p>
                                                 <p class="wl-list-quantity-price" style="display:inline-block;height:auto">
                                                     <span class="wl-list-quantity" contenteditable="true" onkeypress="return wastePostContainer.isNumberInput(event)" placeholder="Quantity" holder="quantity"></span>
@@ -219,11 +219,11 @@
                                                 </div>
                                             </div>
                                         </li>
-                                        <li class="wl-rectangle-add col-sm-12 unselectable">
-                                            <div class="col-sm-2">
+                                        <li class="wl-rectangle-add col-xs-12 unselectable">
+                                            <div class="col-xs-2">
                                                 <div class="circle wl-c-green-1">+</div>
                                             </div>
-                                            <div class="col-sm-10">
+                                            <div class="col-xs-10">
                                                 <span class="wl-c-green-1">Add item to post</span>
                                             </div>
                                         </li>
