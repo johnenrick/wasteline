@@ -19,6 +19,7 @@ $(document).ready(function () {
         $.post(api_url("C_information/createInformation"), container, function(data){
             var response = JSON.parse(data);
             if(!response["error"].length){
+                dummy.addClass("wl-list-infos");
                 dummy.attr("informationid", response["data"]);
                 dummy.find('img').attr('data-name', container.description);
                 dummy.find('.wl-list-title').text(container.description);
