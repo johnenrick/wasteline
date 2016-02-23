@@ -75,8 +75,9 @@
                 system_data.account_information.username = response["data"]["username"];
                 system_data.account_information.user_type = response["data"]["user_type"];
                 
-                $("#headerUserFullName").text(user_first_name());
+                $("#headerUserFullName").text(user_first_name()+" "+user_last_name());
                 $("#headerUserImg").initial({name:(user_first_name()+"").charAt(0)+(user_last_name()+"").charAt(0)});
+                
                 $("#headerUserImg").height("30px");
                 $("#headerUserImg").width("30px");
             }else{

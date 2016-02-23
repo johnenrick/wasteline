@@ -24,7 +24,7 @@
             window.location = base_url("portal/logout");
         });
         if(user_id()){
-            $("#headerUserFullName").text(user_first_name());
+            $("#headerUserFullName").text(user_first_name()+" "+user_last_name());
             $("#headerUserImg").initial({name:(user_first_name()+"").charAt(0)+(user_last_name()+"").charAt(0)});
             $("#headerUserImg").height("30px");
             $("#headerUserImg").width("30px");
@@ -33,6 +33,16 @@
             if($(".wl-active-page").attr("module_id")*1 !== 1){
                 window.location = base_url();
             }
+        }
+        
+        if(user_type()!== 2 && user_type()!== 4){//hide post button if not normal user
+            $(".wl-btn-post").parent().parent().hide();
+            $("#headerUserFullName").parent().parent().removeClass("no-padding")
+            $("#headerUserFullName").parent().parent().removeClass("col-sm-10");
+            $("#headerUserFullName").parent().parent().addClass("col-sm-12");
+            
+        }else{
+            console.log(user_type())
         }
     });
 

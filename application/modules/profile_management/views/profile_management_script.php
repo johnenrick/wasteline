@@ -33,7 +33,7 @@
                 $("#profileManagementCompleteAddress").text(response["data"]["account_address_description"]);
                 $('#profileManagementProfilePicture').attr("src","");
                 $('#profileManagementProfilePicture').initial({name:(response["data"]["first_name"]+"").charAt(0)+(response["data"]["last_name"]+"").charAt(0)});
-                $("#headerUserImg").initial({name:(response["data"]["first_name"]+"").charAt(0)+(response["data"]["last_name"]+"").charAt(0)});
+                
                 refresh_session();
             }
         });
