@@ -156,7 +156,7 @@
     </div>
     <div class="wasteMapOwnWaste panel panel-own-waste" >
         <div class="panel-heading" form="true">
-            <h3 class="panel-title"><i class="fa fa-user"></i><span>John Enrick Plenos</span></h3>
+            <h3 class="panel-title"><i class="fa fa-user"></i> <span>John Enrick Plenos</span></h3>
         </div>
         <div class="panel-body">
             <form class="wasteMapOwnWasteForm" method="POST" >

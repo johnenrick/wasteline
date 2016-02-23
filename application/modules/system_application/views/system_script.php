@@ -81,7 +81,7 @@
                 $("#headerUserImg").height("30px");
                 $("#headerUserImg").width("30px");
             }else{
-                //window.location = base_url();
+                window.location = base_url();
             }
         });
     }
@@ -97,11 +97,11 @@
 </script>
 <!--Modularization-->
 <script>
-    //Loading Modules
+    /*Loading Modules*/
     function load_module(moduleLink, moduleName){
         if($("#moduleContainer").find(".moduleHolder[module_link='"+moduleLink+"']").length === 0){
             $.post(base_url(moduleLink), {}, function(data){
-                //CHECK IF JSON OR HTML FOR AUTHORIZATION
+                /*CHECK IF JSON OR HTML FOR AUTHORIZATION*/
 
                 var moduleHolder = $("#systemComponent").find(".moduleHolder").clone();
 
@@ -109,23 +109,19 @@
                 moduleHolder.attr("id",moduleName.replace(/_([a-z])/g, function (g) { return g[1].toUpperCase(); }));
                 moduleHolder.append(data);
                 $("#moduleContainer").append(moduleHolder);
-                //show page
+                /*show page*/
                 $('.wl-page-content:not(.moduleHolder[module_link="'+moduleLink+'"])').hide();
                 if($('.moduleHolder[module_link="'+moduleLink+'"]').is(":visible") === false){
                     $('.moduleHolder[module_link="'+moduleLink+'"]').fadeIn(500);
-
-                    //$(".wl-page-title").text(moduleLink.replace('-', ' '));
                     refresh_call(moduleName);
                 }
 
             });
         }else{
-            //show page
+            /*show page*/
             $('.wl-page-content:not(.moduleHolder[module_link="'+moduleLink+'"])').hide();
             if($('.moduleHolder[module_link="'+moduleLink+'"]').is(":visible") === false){
                 $('.moduleHolder[module_link="'+moduleLink+'"]').fadeIn(500);
-
-                //$(".wl-page-title").text(moduleLink.replace('-', ' '));
                 refresh_call(moduleName);
             }
 
@@ -163,12 +159,12 @@
         elementSelected.find(".formMessage").empty();
         elementSelected.find(".has-error").removeClass(".has-error");
         errorList.forEach(function(errorValue){
-            if(errorValue["status"] > 100 && errorValue["status"] < 1000){//Form Validation Error
+            if(errorValue["status"] > 100 && errorValue["status"] < 1000){/*Form Validation Error*/
                 for(var index in errorValue["message"]){
                     elementSelected.find(".formMessage").append("* "+errorValue["message"][index]+"<br>");
                     elementSelected.find("input[name='"+index+"']").parent().addClass("has-error");
                 }
-            }else if(errorValue["status"] > 1000 && errorValue["status"] < 10000){//System Error
+            }else if(errorValue["status"] > 1000 && errorValue["status"] < 10000){/*System Error*/
 
             }else{
                 elementSelected.find(".formMessage").append("* "+errorValue["message"]+"<br>");
@@ -202,19 +198,19 @@
 
         }
         switch(messageType){
-            case 1: //warning
+            case 1: /*warning*/
                 messagePrototype.addClass("alert-warning");
                 messagePrototype.find(".alert-title").text("Warning!");
                 break;
-            case 2: //danger
+            case 2: /*danger*/
                 messagePrototype.addClass("alert-danger");
                 messagePrototype.find(".alert-title").text("Alert!");
                 break;
-            case 3: //success
+            case 3: /*success*/
                 messagePrototype.addClass("alert-success");
                 messagePrototype.find(".alert-title").text("Success!");
                 break;
-            case 4: //info
+            case 4: /*info*/
                 messagePrototype.addClass("alert-info");
                 messagePrototype.find(".alert-title").text("Information!");
                 break;
@@ -275,7 +271,6 @@ var requestVerificationCode = function(){
 <!--Document Ready-->
 <script>
     $(document).ready(function(){
-        //load_module(system_data.data.default_page);
         retrieve_access_control();
         if(user_type() === 4){
             setTimeout(function(){
@@ -283,15 +278,23 @@ var requestVerificationCode = function(){
             }, 1300);
 
         }
-        //show messages
+        /*show messages*/
         if(typeof( system_data.data.extra_data["message"]) !== "undefined"){
            for(var x= 0; x < system_data.data.extra_data["message"].length; x++){
                show_system_message(system_data.data.extra_data["message"][x]["status"], system_data.data.extra_data["message"][x]["type"], system_data.data.extra_data["message"][x]["message"]);
            }
         }
-        if(user_id()){
-            
-        }
+        $.post(api_url("C_account/retrieveAccount"), {ID:user_id()}, function(data){
+            var response = JSON.parse(data);
+            console.log(response);
+            if(!response.length){
+                if(response["data"]["account_address_map_marker_ID"] === null){
+                    $("[module_link='profile_management']").trigger("click");
+                }
+            }else{
+                
+            }
+        });
 
     });
 </script>
