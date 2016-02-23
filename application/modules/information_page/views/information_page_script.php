@@ -104,5 +104,23 @@
             }
             informationPage.updateInformation(container, 1);
         });
+        $('.wl-info-list').on('click','#wl-info-addbtn, .wl-info-li',function(){
+            var w = $(window).width();
+            if(w <= 720){
+                $('.wl-info-list').fadeOut('fast');
+                $('#wl-return-floating-btn').fadeIn();
+            }
+        });
+        $('#wl-return-floating-btn').click(function(){
+            $('#wl-return-floating-btn').fadeOut('fast');
+            $('.wl-info-list').fadeIn();
+        });
+        $('#wl-info-modal').on('hidden.bs.modal', function (e) {
+            var w = $(window).width();
+            if(w <= 720){
+                $('.wl-info-list').fadeIn();
+                $('#wl-return-floating-btn').fadeOut('fast');
+            }
+        })
     });
 </script>

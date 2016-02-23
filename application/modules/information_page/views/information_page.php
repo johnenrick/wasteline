@@ -7,18 +7,18 @@
             <a id="wl-info-addbtn" class="btn btn-default" data-toggle="tooltip" data-placement="right" title="" data-original-title="Create new information">+</a>
         </span>
     </div>
-    <div class="col-sm-12 wl-info-mainlist scroll-on no-padding">
+    <div class="col-xs-12 wl-info-mainlist scroll-on no-padding">
         <ul id="informationList">
             <li class="wl-info-li wl-list-dummy wl-list-infos">
-                <div class="col-sm-2">
+                <div class="col-xs-2">
                     <img class="wl-info-box">
                 </div>
-                <div class="col-sm-10">
+                <div class="col-xs-10">
                     <p class="wl-list-title"></p>
                     <p class="wl-list-sub"><span></span></p>
                 </div>
             </li>
-            
+
         </ul>
     </div>
 </div>
