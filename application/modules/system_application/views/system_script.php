@@ -286,7 +286,6 @@ var requestVerificationCode = function(){
         }
         $.post(api_url("C_account/retrieveAccount"), {ID:user_id()}, function(data){
             var response = JSON.parse(data);
-            console.log(response);
             if(!response.length){
                 if(response["data"]["account_address_map_marker_ID"] === null){
                     $("[module_link='profile_management']").trigger("click");

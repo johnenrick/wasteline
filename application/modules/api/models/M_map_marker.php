@@ -45,7 +45,7 @@ class M_map_marker extends API_Model{
         );
         if($wastePost !== NULL){
             $joinedTable["waste_post"] = "waste_post.account_ID=account_address.account_ID";
-            $selectedColumn[] = "waste_post.account_ID, waste_post.waste_post_type_ID";
+            $selectedColumn[] = "waste_post.account_ID, waste_post.waste_post_type_ID, waste_post.status AS waste_post_status";
         }
         return $this->retrieveTableEntry($retrieveType, $limit, $offset, $sort, $ID, $condition, $selectedColumn, $joinedTable);
     }
