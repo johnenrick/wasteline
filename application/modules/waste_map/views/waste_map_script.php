@@ -1,4 +1,5 @@
 <script src="<?=asset_url('js/autoresize.jquery.js')?>"></script>
+
 <script>
     var wasteMap = {};
     wasteMap.mapMarkerDescriptionList = {
@@ -37,7 +38,7 @@
                     var response = JSON.parse(data);
                     console.log(response);
                     if(!response["error"].length){
-                        $(e.target._popup._contentNode).find(".panel-title").text((response["data"]["first_name"]+" "+(response["data"]["middle_name"]+"").charAt(0)+(response["data"]["middle_name"] !== "" ? ".":"")+" "+response["data"]["last_name"]).toUpperCase());
+                        $(e.target._popup._contentNode).find(".panel-title span").text((response["data"]["first_name"]+" "+(response["data"]["middle_name"]+"").charAt(0)+(response["data"]["middle_name"] !== "" ? ".":"")+" "+response["data"]["last_name"]).toUpperCase());
                         $(e.target._popup._contentNode).find(".wasteMapOwnWasteEmailDetail").text(response["data"]["email_detail"]);
                         $(e.target._popup._contentNode).find(".wasteMapOwnWasteContactDetail").text(response["data"]["contact_number_detail"]);
                         var wastePost = response["data"]["waste_post"];

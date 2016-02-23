@@ -80,7 +80,7 @@
 <div class="prototype" style="display:none">
     <div class="illegalDumping panel panel-illegal-dumping">
         <div class="panel-heading">
-            <h3 class="panel-title">Report Illegal Dumping</h3>
+            <h3 class="panel-title"><i class="fa fa-flag"></i> Report Illegal Dumping</h3>
         </div>
         <div class="panel-body">
             <form class="illegalDumpingForm" method="POST" >
@@ -99,15 +99,15 @@
                             </div>
                         </div>
                         <div class="form-group " style="margin-top:0px">
-                            <p class="wasteMapIllegalDumpingDetail form-control capitalize" style="margin-top:0px"></p>
+                            <p class="wasteMapIllegalDumpingDetail form-control capitalize" style="margin-top:0px;background-image:none"></p>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12" style="text-align: center">
-                        <button type="submit" button_action="1" class="wasteMapSubmitIllegalDumpingReport btn btn-illegal-dumping">Submit</button>
-                        <button type="button" button_action="3" class="wasteMapSubmitIllegalDumpingReport btn btn-primary " style="display:none">Resolve</button>
-                        <button type="button" button_action="2" class="wasteMapSubmitIllegalDumpingReport btn btn-illegal-dumping ">Remove</button>
+                        <button type="submit" button_action="1" class="wasteMapSubmitIllegalDumpingReport btn btn-illegal-dumping"><i class="fa fa-flag"></i> Submit Report</button>
+                        <button type="button" button_action="3" class="wasteMapSubmitIllegalDumpingReport btn btn-primary " style="display:none"><i class="fa fa-check"></i> Resolve Report</button>
+                        <button type="button" button_action="2" class="wasteMapSubmitIllegalDumpingReport btn btn-illegal-dumping "><i class="fa fa-trash"></i> Remove Report</button>
                         
                         
                     </div>
@@ -117,7 +117,7 @@
     </div>
     <div class="wasteMapDumpingLocation panel panel-dumping-location">
         <div class="panel-heading">
-            <h3 class="panel-title">Dumping Location</h3>
+            <h3 class="panel-title"><i class="fa fa-map-signs"></i> Dumping Location</h3>
         </div>
         <div class="panel-body">
             <form class="wasteMapDumpingLocationForm" method="POST" >
@@ -147,8 +147,8 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12" style="text-align: center">
-                        <button type="submit" button_action="1" class="wasteMapSubmitDumpingLocationReport btn btn-dumping-location">Place Dumping Location</button>
-                        <button type="button" button_action="2" class="wasteMapSubmitDumpingLocationReport btn btn-dumping-location">Remove Dumping Location</button>
+                        <button type="submit" button_action="1" class="wasteMapSubmitDumpingLocationReport btn btn-dumping-location"><i class="fa fa-map-signs"></i> Place Dumping Location</button>
+                        <button type="button" button_action="2" class="wasteMapSubmitDumpingLocationReport btn btn-dumping-location"><i class="fa fa-trash"></i> Remove Dumping Location</button>
                     </div>
                 </div>
             </form>
@@ -156,7 +156,7 @@
     </div>
     <div class="wasteMapOwnWaste panel panel-own-waste" >
         <div class="panel-heading" form="true">
-            <h3 class="panel-title">John Enrick Plenos</h3>
+            <h3 class="panel-title"><i class="fa fa-user"></i><span>John Enrick Plenos</span></h3>
         </div>
         <div class="panel-body">
             <form class="wasteMapOwnWasteForm" method="POST" >
@@ -171,7 +171,7 @@
                 <table waste_post_type="1" class="wasteMapPostList table table-striped table-hover" style="display:none">
                     <thead>
                         <tr class="primary-head">
-                            <th colspan="2">Own Waste</th>
+                            <th colspan="2"><i class="fa fa-trash"></i> Own Waste</th>
                         </tr>
                         <tr>
                             <th>Description</th>
@@ -184,7 +184,7 @@
                 <table waste_post_type="2" class="wasteMapPostList table table-striped table-hover" style="display:none">
                     <thead>
                         <tr class="primary-head">
-                            <th colspan="2">Accept Waste</th>
+                            <th colspan="2"><i class="fa fa-exchange"></i> Accept Waste</th>
                         </tr>
                         <tr>
                             <th>Description</th>
@@ -197,7 +197,7 @@
                 <table waste_post_type="3" class="wasteMapPostList table table-striped table-hover" style="display:none">
                     <thead>
                         <tr class="service-head">
-                            <th colspan="2">Services</th>
+                            <th colspan="2"><i class="fa fa-truck"></i> Services</th>
                         </tr>
                         <tr>
                             <th>Description</th>
@@ -209,7 +209,7 @@
                 </table>
                 <div class="row wasteMapLGUOption" style="display:none">
                     <div class="col-md-12" style="text-align: center">
-                        <button type="button" button_action="1" class="btn btn-primary">Collect Waste</button>
+                        <button type="button" button_action="1" class="btn btn-primary"><i class="fa fa-hand-paper-o"></i> Collect Waste</button>
                     </div>
                 </div>
             </form>

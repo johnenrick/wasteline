@@ -5,6 +5,8 @@
 <script src="<?=asset_url("js/leaflet-heat.js")?>"></script>
 <script src="<?=asset_url("js/leaflet.markercluster.js")?>"></script>
 <script src="<?=asset_url("js/leaflet-search.src.js")?>"></script>
+<script src="<?=asset_url("js/Events.js")?>"></script>
+<script src="<?=asset_url("js/PosAnimation.js")?>"></script>
 
 <script>
     /*global webMapComponent, L */
