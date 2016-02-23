@@ -9,6 +9,12 @@
     informationPage.retrieveInformation = function(infoID){
     	var container = {};
     	if(infoID != 0) container.ID = infoID;
+        else{
+            if(user_type() == 2)
+            container.condition = {
+                "not__information__detail" : null
+            }
+        }
     	$.post(api_url("C_information/retrieveInformation"), container, function(data){
     		var response = JSON.parse(data);
     		if(!response["error"].length){
@@ -31,8 +37,7 @@
     				$(".wl-info-title h2").text(response["data"]["description"]);
     				$(".wl-info-title h4 .wl-info-author").text(response["data"]["source"]);
     				$(".wl-info-title h4 .wl-info-stamp").attr("data-livestamp", response["data"]["datetime"]);
-
-    				$("#wl-info-editor").html(response["data"]["detail"]);
+                    wysiwygEditor.setHTML(response["data"]["detail"]);
 
     				if(user_type() == 2){
     					wysiwygEditor.readOnly(true);
@@ -46,11 +51,15 @@
     	});
     }
 
-    informationPage.updateInformation = function(container){
+    informationPage.updateInformation = function(container, holderNumber){ // 1 - HTML 2 - title, source
         $.post(api_url("C_information/updateInformation"), container, function(data){
-
+            var response = JSON.parse(data);
+            if(!response["error"].length){
+                console.log(response["data"]);
+                if(holderNumber == 2) $("ul#informationList li.active").find(".wl-list-title").text(container.updated_data.description);
+            }
         }).done(function(){
-
+            
         });
     }
 
@@ -73,8 +82,25 @@
 
         });*/
 
-        $(".wl-info-title").on("blur", "h2, .wl-info-author", function(data){
-            alert($(this).attr("holder"));
+        $(".wl-info-title").on("blur", "h2, .wl-info-author", function(data){            
+            var container = {
+                ID              : ($("ul#informationList li.active").attr("informationid"))*1,
+                updated_data    : {}
+            }
+            container.updated_data[$(this).attr("holder")] = $(this).text();
+            informationPage.updateInformation(container, 2);
+        });
+
+        $("textarea#wl-info-editor").blur(function(){
+        //var myForm = $("#wl-content-form").serialize();
+
+            var container = {
+                ID              : ($("ul#informationList li.active").attr("informationid"))*1,
+                updated_data    : {
+                    detail      : $(this).val()
+                }
+            }
+            informationPage.updateInformation(container, 1);
         });
     });
 </script>
