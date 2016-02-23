@@ -47,15 +47,15 @@
         webMapComponent.map = L.map(mapNumber).setView([10.343, 123.919], 16).addLayer(webMapComponent.tileLayer);
         webMapComponent.map.addControl( new L.Control.Gps({autoActive:false}) );
         /*Icons*/
-        // Icon Properties
+        /*Icon Properties*/
         var pointers = L.Icon.extend({
             options:{
                 shadowUrl:asset_url('images/marker-shadow.png'),
-                iconSize:     [25, 42], // size of the icon
-                shadowSize:   [25, 30], // size of the shadow
-                iconAnchor:   [25, 44], // point of the icon which will correspond to marker's location
-                shadowAnchor: [18, 32],  // the same for the shadow
-                popupAnchor:  [-12, -45] // point from which the popup should open relative to the iconAnchor
+                iconSize:     [25, 42], /* size of the icon*/
+                shadowSize:   [25, 30], /* size of the shadow*/
+                iconAnchor:   [25, 44], /* point of the icon which will correspond to marker's location*/
+                shadowAnchor: [18, 32],  /* the same for the shadow*/
+                popupAnchor:  [-12, -45] /* point from which the popup should open relative to the iconAnchor*/
             }
         });
         /*Icon image*/
@@ -68,14 +68,14 @@
         };
         
         /*Events*/
-        // attaching function on map click
+        /* attaching function on map click*/
         webMapComponent.map.on('click', function(e){
             webMapComponent.onMapClick(e);
         });
         /*GPS*/
         
         /*Variable*/
-        webMapComponent.markerList = {}; //list of markers in the map
+        webMapComponent.markerList = {}; /*list of markers in the map*/
         
         
         webMapComponent.onPopupOpen = function(){
@@ -138,7 +138,7 @@
             maxClusterRadius : 50
         });
         webMapComponent.map.addLayer(webMapComponent.markerCluster );
-        webMapComponent.markersLayer = new L.LayerGroup();  //layer contain searched elements
+        webMapComponent.markersLayer = new L.LayerGroup();  /*layer contain searched elements*/
         webMapComponent.map.addLayer(webMapComponent.markersLayer);
         /**
          * Add marker to map
@@ -178,23 +178,23 @@
                 direction : "right"
             };
             switch(mapMarkerType*1){
-                case 1: //user address
+                case 1: /*user address*/
                     markerOption.icon = webMapComponent.icon.garbage;
                     labelOption.className = "markerLabel";
                     break;
-                case 2: //Dumping Location
+                case 2: /*Dumping Location*/
                     markerOption.icon = webMapComponent.icon.dumping_area;
                     break;
-                case 3: //Report
+                case 3: /*Report*/
                     markerOption.icon = webMapComponent.icon.report;
                     break;
-                case 4: //User with Waste Service
+                case 4: /*User with Waste Service*/
                     markerOption.icon = webMapComponent.icon.service;
                     break;
-                case 5: //Select Location
+                case 5: /*Select Location*/
                     markerOption.icon = webMapComponent.icon.garbage;
                     break;
-                case 6: //LGU
+                case 6: /*LGU*/
                     markerOption.icon = webMapComponent.icon.LGU;
                     labelOption.className = "markerStaticLabel";
                     labelOption.noHide = true;
@@ -215,7 +215,7 @@
             if(mapMarkerType*1 === 5){
                 webMapComponent.selectedLocation = webMapComponent.markerList[ID];
             }
-            //popup
+            /*popup*/
             if(typeof popUpContent !== "undefined" && popUpContent){
                 webMapComponent.markerList[ID].bindPopup(popUpContent);    
             }
