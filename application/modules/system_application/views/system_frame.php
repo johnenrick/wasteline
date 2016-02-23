@@ -96,7 +96,7 @@
                                 <span class="wl-c-green-1">Wasteline</span>
                                 <span class="wl-c-gray-1">&nbsp;|&nbsp;</span>
                                 <span class="wl-c-black-1 wl-page-title">Home</span>
-                                <div id="wl-header-menu" class="col-xs-12 moduleHolder wl-page-content" module_link="information_page">
+                                <div id="wl-header-menu" class="col-xs-12 moduleHolder wl-page-content" module_link="information_page" style="display:none">
                                     <ul class="unselectable">
                                         <li>
                                             <a class="wl-active" typeid="1">Articles</a>
@@ -258,6 +258,11 @@
 
         </div>
         <!-- /#wrapper -->
+
+        <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+           <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+        </svg>
+
     </body>
     <footer>
         <!-- jQuery -->
