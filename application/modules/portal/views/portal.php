@@ -57,7 +57,7 @@
                                     <form id="loginForm" method="post" action="">
                                         <h1 style="color:white;">Login</h1>
                                         <p  style="color:white;font-size:13px;">
-                                            Lorem ipsum dolor sit amet, ea eum choro homero forensibus, tantas noster corrumpit sea in.
+                                            and in just a few minutes, you can browse and enjoy the benefits of recycling. What a great way to save mother earth! 
                                         </p>
                                         <p class="formMessage" style="color:white">
 
