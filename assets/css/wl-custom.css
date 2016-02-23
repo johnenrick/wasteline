@@ -412,8 +412,16 @@ ul.sidebar-nav li a {
     border-radius: 12px;
     margin: 0 auto;
     margin-top: calc((100% / 2) - 4px);
+    padding: 2px 5px !important;
+    color: white;
 }
 
+.wl-rectangle-list div.circle i {
+    display: none;
+}
+.wl-rectangle-list.wl-confirmed div.circle i {
+    display: inline-block;
+}
 .wl-rectangle-list.wl-collected div.circle {
     background-color: #abaeb7;
 }

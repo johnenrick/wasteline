@@ -190,7 +190,7 @@
                                     <ul id="post-container-list">
                                         <li id="wl-rectangle-dummy" class="wl-rectangle-list col-xs-12">
                                             <div class="col-xs-2">
-                                                <div class="circle"></div>
+                                                <div class="circle"><i class="fa fa-check"></i></div>
                                             </div>
                                             <div class="col-xs-10">
                                                 <p class="wl-list-desciption wl-c-green-1" contenteditable="true" placeholder="Click to add Description" holder="description"></p>
