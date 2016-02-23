@@ -22,7 +22,7 @@ class C_account extends API_Controller {
         if(!$valid){
             $this->responseError(5, "Captcha Required");
         }
-        if($this->checkACL() && ($this->input->post("account_type_ID") != 2) && (($this->input->post("account_type_ID") == 1 && user_type() == 1) || ($this->input->post("account_type_ID") == 3 && user_type() == 1) || ($this->input->post("account_type_ID") == 4 && $this->input->post("status") == 3 && $this->validReCaptcha()))){
+        if($this->checkACL() /*&& ($this->input->post("account_type_ID") != 2)*/ && (($this->input->post("account_type_ID") == 1 && user_type() == 1) || ($this->input->post("account_type_ID") == 3 && user_type() == 1) || ($this->input->post("account_type_ID") == 2 && $this->input->post("status") == 3 && $this->validReCaptcha()))){
             $this->form_validation->set_rules('username', 'Username', 'required|is_unique[account.username]|alpha_numeric');
             $this->form_validation->set_rules('password', 'Password', 'required|min_length[6]');
             $this->form_validation->set_rules('status', 'Status', 'required');
@@ -59,8 +59,8 @@ class C_account extends API_Controller {
                     //Send Email Confirmation
                     if($this->input->post("account_type_ID") == 2){
                         $datetime = time();
-                        $this->sendEmail("Wasteline Registration Verification", $this->input->post("email_detail"), "Good day ".$this->input->post('username') ."! Thank you for registering in Wasteline.\nTo verify you accout, please click the following link: ".  base_url("portal/accountVerification/".(sprintf("%d%d", result, $datetime))));
-                        $this->responseDebug(base_url("porta/accountVerification/".(sprintf("%d%d", result, $datetime))));
+                        $this->sendEmail("Wasteline Registration Verification", $this->input->post("email_detail"), "Good day ".$this->input->post('username') ."! Thank you for registering in Wasteline.\nTo verify you accout, please click the following link: ".  base_url("portal/accountVerification/".(sprintf("%d%d", $result, $datetime))));
+                        $this->responseDebug(base_url("porta/accountVerification/".(sprintf("%d%d", $result, $datetime))));
                     }
                     /*Create Contact Number*/
                     if($this->input->post("contact_number_detail")){

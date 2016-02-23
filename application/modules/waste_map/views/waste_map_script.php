@@ -36,7 +36,6 @@
                 var accountID = $(e.target._popup._contentNode).find("[name=account_ID]").val();
                 $.post(api_url("C_account/retrieveAccount"), {ID : accountID, with_waste_post : true}, function(data){
                     var response = JSON.parse(data);
-                    console.log(response);
                     if(!response["error"].length){
                         $(e.target._popup._contentNode).find(".panel-title span").text((response["data"]["first_name"]+" "+(response["data"]["middle_name"]+"").charAt(0)+(response["data"]["middle_name"] !== "" ? ".":"")+" "+response["data"]["last_name"]).toUpperCase());
                         $(e.target._popup._contentNode).find(".wasteMapOwnWasteEmailDetail").text(response["data"]["email_detail"]);
@@ -70,7 +69,6 @@
                     var mapMarkerID = e.target.options.map_marker_ID;
                     $.post(api_url("C_waste_post/updateWastePost"), {condition : {account_ID : accountID, waste_post_type_ID:1, status : 1}, updated_data : {status : 2 }}, function(data){
                         var response = JSON.parse(data);
-                        console.log(response);
                         if(!response["error"].length){
                             wasteMap.webMap.markerList[mapMarkerID].closePopup();
                         }
@@ -83,7 +81,6 @@
         /*Retrieve markers with types specified in condition.map_marker_type_ID */
         $.post(api_url("C_map_marker/retrieveMapMarker"), {condition: condition, waste_post : true}, function(data){
             var response = JSON.parse(data);
-            console.log(response);
             for(var x = 0;x<response["data"].length;x++){
                 if((typeof wasteMap.webMap.markerList[response["data"][x]["ID"]] === "undefined") || (response["data"][x]["waste_post_type_ID"] === "3" || response["data"][x]["waste_post_type_ID"] === "2" )){
                     var mapMarkerTypeID = (response["data"][x]["waste_post_type_ID"] === "1") ? 1 : 4;

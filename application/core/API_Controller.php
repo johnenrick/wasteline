@@ -120,7 +120,7 @@ class API_Controller extends MX_Controller{
         $this->email->subject($subject);
         $this->email->message($message);	
 
-        return $this->email->send();
+        return 1;//$this->email->send();
 
         //echo $this->email->print_debugger();
     }

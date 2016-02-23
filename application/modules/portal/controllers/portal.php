@@ -28,8 +28,6 @@ class Portal extends FE_Controller{
         if(user_id()){
             $this->load->view("system_application/waste_post_script");
         }
-        
-        
     }
     function login(){
         $this->form_validation->set_rules('username', 'Username/Email', 'required');

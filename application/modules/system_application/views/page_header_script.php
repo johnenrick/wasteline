@@ -41,8 +41,6 @@
             $("#headerUserFullName").parent().parent().removeClass("col-sm-10");
             $("#headerUserFullName").parent().parent().addClass("col-sm-12");
             
-        }else{
-            console.log(user_type())
         }
     });
 
