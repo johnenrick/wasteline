@@ -45,7 +45,7 @@
 		$("#wl-btn-side-repost").click(function(){
 			$("#wl-btn-side-repost").button("loading");
 			//var waste_post_input = [];
-			$("ul#post-container-list li.wl-show").each(function(){
+			$("ul#post-container-list li.wl-collected").each(function(){
 				var container = {
 					ID 				: $(this).attr("wastepostid"),
 					condition		: {
@@ -64,7 +64,7 @@
 			});
 		});
 
-		$("#post-container-list").on("blur", ".wl-list-desciption, .wl-list-quantity, .wl-list-price", function(){
+		$("ul#post-container-list").on("blur", ".wl-list-desciption, .wl-list-quantity, .wl-list-price", function(){
 			if($(this).parent().parent().attr("wastepostid") || $(this).parent().parent().parent().attr("wastepostid")){
 				var id = $(this).parent().parent().attr("wastepostid") | $(this).parent().parent().parent().attr("wastepostid");
 				var table_column = $(this).attr("holder");
@@ -78,6 +78,21 @@
 				container.updated_data[table_column] = $(this).text();
 				wastePostContainer.updateWastePost(container);
 			}
+		});
+
+		$("ul#post-container-list").on("click", "li.wl-collected div.circle", function(){
+			var dummy = $(this).parent().parent();
+			var container = {
+				ID 				: dummy.attr("wastepostid"),
+				condition		: {
+					waste_post__account_ID 	: user_id()
+				},
+				updated_data 	: {
+					status 		: 3
+				}
+			}
+			wastePostContainer.updateWastePost(container);
+			wastePostContainer.triggerComplete(dummy);
 		});
 	});
 
@@ -154,7 +169,9 @@
 					dummy.find(".wl-list-price").text(response["data"][x]["price"]);
 					dummy.find("#wastePostQuantityUnitList").val(response["data"][x]["unit_ID"]);
 					dummy.removeAttr('id').show();
+					if(response["data"][x]["status"] == 3) wastePostContainer.triggerComplete(dummy); 
 			        $(dummy).insertBefore($("ul#post-container-list li").last()).addClass('wl-show');
+
 				}
 			}
 		}).done(function(){
@@ -176,5 +193,11 @@
 				
 			}
 		});
+	}
+
+	wastePostContainer.triggerComplete = function(row){
+		row.removeClass("wl-collected").addClass("wl-confirmed");
+		row.find(".wl-list-desciption, .wl-list-quantity, .wl-list-price").attr("contenteditable", false);
+		row.find("#wastePostQuantityUnitList, #wastePostCategoryList").attr("disabled", "disabled");
 	}
 </script>
