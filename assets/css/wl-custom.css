@@ -401,6 +401,11 @@ ul.sidebar-nav li a {
 
 #wl-side-list li.wl-rectangle-list.wl-collected {
     opacity: 0.5;
+    cursor: pointer;
+}
+
+#wl-side-list li.wl-rectangle-list.wl-collected:hover {
+    opacity: 1;
 }
 
 .wl-rectangle-list div.circle {
