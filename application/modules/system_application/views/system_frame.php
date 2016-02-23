@@ -96,7 +96,7 @@
                                 <span class="wl-c-green-1">Wasteline</span>
                                 <span class="wl-c-gray-1">&nbsp;|&nbsp;</span>
                                 <span class="wl-c-black-1 wl-page-title">Home</span>
-                                <div id="wl-header-menu" class="col-xs-12 wl-information_page-content wl-page-content wl-hide">
+                                <div id="wl-header-menu" class="col-xs-12 moduleHolder wl-page-content" module_link="information_page">
                                     <ul class="unselectable">
                                         <li>
                                             <a class="wl-active">Articles</a>
