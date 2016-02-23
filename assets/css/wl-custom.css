@@ -983,6 +983,9 @@ ul.sidebar-nav li a {
     padding: 0;
 }
 
+#wl-btn-editProfile {
+    display: none;
+}
 
 /* LGU Management*/
 
@@ -1443,6 +1446,11 @@ ul.sidebar-nav li a {
     }
     .wl-btn-logout {
         display: none;
+    }
+
+    #wl-btn-editProfile {
+        display: block;
+        margin-left: 28%;
     }
 }
 

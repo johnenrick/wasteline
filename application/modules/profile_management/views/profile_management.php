@@ -11,7 +11,7 @@
     <p class="wl-slogan-edit">Email</p>
     <p id="profileManagementContactNumber" class="wl-slogan"></p>
     <p class="wl-slogan-edit">Contact Number</p>
-    <button id="wl-btn-editProfile" class="btn btn-raised btn-info submitButton" data-loading-text="Please wait..." style="margin-left: 28%;">Edit Profile</button>
+    <button id="wl-btn-editProfile" class="btn btn-raised btn-info submitButton" data-loading-text="Please wait...">Edit Profile</button>
 </div>
 
 <div class="col-sm-4 wl-pro-edit scroll-on" style="height:100%;">
