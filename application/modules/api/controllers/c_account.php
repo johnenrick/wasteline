@@ -171,11 +171,16 @@ class C_account extends API_Controller {
             }
             $this->form_validation->set_rules('updated_data[password]', 'Password', 'min_length[6]');
             $this->form_validation->set_rules('updated_data[email_detail]', 'Email Address', 'valid_email|is_unique[account_contact_information.detail]');
-            if($this->input->post("updated_data[account_address_longitude]")){
-                $this->responseDebug($this->input->post("updated_data[account_address_longitude]"));
+            if($this->input->post("updated_data[account_address_longitude]") !== NULL){
                 $this->form_validation->set_rules('updated_data[account_address_description]', 'Complete Address', 'required|min_length[2]');
             }
-            
+            if($this->input->post("updated_data[account_address_description]")){
+                $this->form_validation->set_rules('updated_data[account_address_longitude]', 'Your Map Location', 'required|greater_than[0]');
+                $this->form_validation->set_message('updated_data[account_address_longitude]');
+                $this->form_validation->set_message('required', 'Click the map on the right to indicate your location');
+                $this->form_validation->set_message('greater_than', 'Click the map on the right to indicate your location');
+                
+            }
             if($this->form_validation->run()){
                 $updatedData = $this->input->post('updated_data');
                 $ID = $this->input->post('ID');
