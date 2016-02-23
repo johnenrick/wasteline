@@ -96,7 +96,7 @@
                                 <span class="wl-c-green-1">Wasteline</span>
                                 <span class="wl-c-gray-1">&nbsp;|&nbsp;</span>
                                 <span class="wl-c-black-1 wl-page-title">Home</span>
-                                <div id="wl-header-menu" class="col-xs-12 wl-information_page-content wl-page-content wl-hide">
+                                <div id="wl-header-menu" class="col-xs-12 moduleHolder wl-page-content" module_link="information_page">
                                     <ul class="unselectable">
                                         <li>
                                             <a class="wl-active">Articles</a>
@@ -190,7 +190,7 @@
                                     <ul id="post-container-list">
                                         <li id="wl-rectangle-dummy" class="wl-rectangle-list col-xs-12">
                                             <div class="col-xs-2">
-                                                <div class="circle"></div>
+                                                <div class="circle"><i class="fa fa-check"></i></div>
                                             </div>
                                             <div class="col-xs-10">
                                                 <p class="wl-list-desciption wl-c-green-1" contenteditable="true" placeholder="Click to add Description" holder="description"></p>
