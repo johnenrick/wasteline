@@ -211,6 +211,9 @@ ul.sidebar-nav li a {
     cursor: pointer;
 }
 
+#wl-post-floating-btn{
+    display: none;
+}
 
 /*
 .wl-btn-post #plus{
@@ -1170,6 +1173,12 @@ ul.sidebar-nav li a {
 }
 
 
+/* leaflet */
+.leaflet-control-search .search-input {
+    font-size: 15px !important;
+    height: 26px !important;
+}
+
 /* portal */
 @media (max-width: 768px) {
     .wl-carousel-header {
@@ -1216,20 +1225,78 @@ ul.sidebar-nav li a {
 }
 /* global */
 @media (max-width: 768px) {
+    .wl-header-content {
+        padding-right: 15px;
+    }
     .wl-header-content .wl-top-grp:nth-child(1) {
         text-align: center;
+        padding-left: 0;
+        padding-right: 0;
     }
     .wl-header-content .wl-top-grp:nth-child(2),
-    .wl-header-content .wl-top-grp:nth-child(3) div:first-child {
+    .wl-header-content .wl-top-grp:nth-child(3) {
         display: none;
     }
     .wl-menu-toggle {
-        transition: all 0.3s ease-out;
+        transition: all 0.6s ease-out;
+    }
+    .wl-rotate-360 {
+        -ms-transform: rotate(360deg); /* IE 9 */
+        -webkit-transform: rotate(360deg); /* Chrome, Safari, Opera */
+        transform: rotate(360deg);
     }
     .wl-rotate-90 {
         -ms-transform: rotate(90deg); /* IE 9 */
         -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
         transform: rotate(90deg);
+    }
+    .wl-rotate-45 {
+        -ms-transform: rotate(45deg); /* IE 9 */
+        -webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
+        transform: rotate(45deg);
+    }
+    .wl-header-btn {
+        display: inline;
+        font-size: 25px;
+        font-weight: bolder;
+    }
+    .wl-header-btn:first-child {
+        float: left;
+    }
+    .wl-header-btn:last-child {
+        float: right;
+        margin-right: 30px;
+    }
+    #wl-post-floating-btn{
+        padding: 5px;
+        font-size: 25px;
+        position: fixed;
+        z-index: 12;
+        bottom: 10px;
+        right: 50px;
+        display: block;
+    }
+    #wl-post-floating-btn button{
+        transition: all 0.3s ease-out;
+    }
+    #wl-post-floating-btn span {
+        font-size: 25px;
+        line-height: 15px;
+    }
+    .wl-header-btn a {
+        position: relative;
+        display: inline-block;
+        text-decoration: none;
+    }
+    #wl-side-content {
+        width: 95%;
+         z-index: 12;
+    }
+    #wl-side-content #wl-side-header .col-sm-3 {
+        float: left;
+    }
+    #wl-side-content #wl-side-header .col-sm-9 {
+        float: right;
     }
 }
 

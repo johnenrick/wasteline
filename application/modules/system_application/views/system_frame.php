@@ -90,7 +90,9 @@
                         <div class="wl-header-content col-xs-12 col-sm-12">
 
                             <div class="wl-top-grp col-sm-4">
-                                <span><a class="wl-menu-toggle"><span class="lnr lnr-trash"></span></a></span>
+                                <span class="input-group-btn wl-header-btn">
+                                    <a class="wl-menu-toggle"><span class="lnr lnr-menu"></span></a>
+                                </span>
                                 <span class="wl-c-green-1">Wasteline</span>
                                 <span class="wl-c-gray-1">&nbsp;|&nbsp;</span>
                                 <span class="wl-c-black-1 wl-page-title">Home</span>
@@ -158,12 +160,16 @@
                             </div>
                             <div id="wl-side-content">
                                 <div id="wl-side-header" class="col-sm-12">
+                                    <div class="row">
                                     <div class="col-sm-3 no-padding">
                                         <h3 class="wl-c-green-6">Post</h3>
                                     </div>
-                                    <div class="form-group col-sm-9 no-margin no-padding">
-                                        <a id="wl-btn-side-repost" class="btn btn-warning btn-raised" style="float:right"><span>Repost</span></a>
-                                        <a id="wl-btn-side-submit" class="btn btn-success btn-raised" style="float:right;display:none"><span>Submit</span></a>
+                                    <div class="col-sm-9 no-margin no-padding">
+                                        <div class="form-group col-sm-12 no-margin no-padding">
+                                            <a id="wl-btn-side-repost" class="btn btn-warning btn-raised" style="float:right"><span>Repost</span></a>
+                                            <a id="wl-btn-side-submit" class="btn btn-success btn-raised" style="float:right;display:none"><span>Submit</span></a>
+                                        </div>
+                                    </div>
                                     </div>
                                 </div>
                                 <div id="wl-side-menu" class="col-sm-12">
@@ -232,6 +238,11 @@
 
                             </div>
 
+                            <span id="wl-post-floating-btn" class="input-group-btn">
+                                <button type="button" class="btn btn-fab btn-primary btn-fab-mini">
+                                    <span>+</span>
+                                <div class="ripple-container"></div></button>
+                            </span>
                         </div>
                         <!-- end main content -->
 
