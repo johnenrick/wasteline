@@ -164,8 +164,8 @@
                 <input name="map_marker_type_ID" type="hidden">
                 <div class="row">
                     <div class="col-md-12" style="text-align: center">
-                        <p class="wasteMapOwnWasteEmailDetail">plenosjohn@yahoo.com</p>
-                        <p class="wasteMapOwnWasteContactDetail wl-slogan-edit">09275835504/125478563</p>
+                        <p class="wasteMapOwnWasteEmailDetail">Please wait...</p>
+                        <p class="wasteMapOwnWasteContactDetail wl-slogan-edit"></p>
                     </div>
                 </div>
                 <table waste_post_type="1" class="wasteMapPostList table table-striped table-hover" style="display:none">
@@ -209,7 +209,7 @@
                 </table>
                 <div class="row wasteMapLGUOption" style="display:none">
                     <div class="col-md-12" style="text-align: center">
-                        <button type="button" button_action="1" class="btn btn-primary"><i class="fa fa-hand-paper-o"></i> Collect Waste</button>
+                        <button type="button" button_action="1" class="btn btn-primary" style="display:none"><i class="fa fa-hand-paper-o"></i> Collect Waste</button>
                     </div>
                 </div>
             </form>

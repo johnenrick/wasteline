@@ -52,6 +52,10 @@
                                         +((wastePost[x]["price"] === null) ? "NA": wastePost[x]["price"])
                                         +"</td><tr>"
                                         );
+                                if(wastePost[x]["waste_post_type_ID"]*1 === 1){
+                                    $(e.target._popup._contentNode).find(".wasteMapLGUOption button").show();
+                                }
+                                
                             }
                         }
                     }else{
@@ -63,12 +67,12 @@
                 
                 /*Collect*/
                 $(e.target._popup._contentNode).find("button[button_action=1]").click(function(){
-                    var mapMarkerID = $(this).parent().parent().parent().find("input[name=map_marker_ID]").val();
-                    $.post(api_url("C_report/deleteReport"), {ID : wasteMap.webMap.markerList[mapMarkerID].options.associated_ID}, function(data){
+                    var mapMarkerID = e.target.options.map_marker_ID;
+                    $.post(api_url("C_waste_post/updateWastePost"), {condition : {account_ID : accountID, waste_post_type_ID:1, status : 1}, updated_data : {status : 2 }}, function(data){
                         var response = JSON.parse(data);
+                        console.log(response);
                         if(!response["error"].length){
-                            wasteMap.webMap.markerList[-1].closePopup();
-                            wasteMap.webMap.removeMarkerList(mapMarkerID);
+                            wasteMap.webMap.markerList[mapMarkerID].closePopup();
                         }
                     });
                 });

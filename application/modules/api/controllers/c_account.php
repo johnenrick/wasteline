@@ -143,7 +143,8 @@ class C_account extends API_Controller {
                     if($this->input->post("with_waste_post")){
                         $this->load->model("M_waste_post");
                         $result["waste_post"] = $this->M_waste_post->retrieveWastePost(false, NULL, 0, array("waste_post_type_ID"=>"asc"), NULL, array(
-                            "account_ID" => $ID
+                            "account_ID" => $ID,
+                            "status" => 1
                         ));
                     }
                     $this->actionLog(json_encode($this->input->post()));
