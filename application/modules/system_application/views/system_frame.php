@@ -214,7 +214,7 @@
                                                         <option val="0" hidden >Category</option>
                                                     </select>
                                                 </div>
-                                                <i class="fa fa-times fa-3 deleteWastePost" style="position: absolute; top: 0px; right: 2px; font-size: 1.5em; color: #f55549"></i>
+                                                <i class="fa fa-times fa-3 deleteWastePost btn" style="position: absolute; top: 0px; right: 2px; font-size: 1.5em; color: #f55549"></i>
                                             </div>
                                         </li>
                                         <li class="wl-rectangle-add col-xs-12 unselectable">
