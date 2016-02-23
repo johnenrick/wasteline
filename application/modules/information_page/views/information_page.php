@@ -3,7 +3,7 @@
 <div class="col-sm-4 col-md-3 wl-info-list no-padding">
     <div class="col-sm-12 wl-info-header">
         <span id="samplehaha">Shared Information</span> <span class="badge information-count"></span>
-        <span data-toggle="modal" data-target="#wl-info-modal">
+        <span data-toggle="modal" data-target="#wl-info-modal" class="informationTick">
             <a id="wl-info-addbtn" class="btn btn-default" data-toggle="tooltip" data-placement="right" title="" data-original-title="Create new information">+</a>
         </span>
     </div>
