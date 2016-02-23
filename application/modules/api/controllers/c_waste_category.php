@@ -112,4 +112,37 @@ class C_waste_category extends API_Controller {
         }
         $this->outputResponse();
     }
+
+    public function retrieveUnit(){
+        $this->accessNumber = 16;
+        if($this->checkACL()){
+            $result = $this->m_waste_category->retrieveUnit(
+                    $this->input->post("retrieve_type"),
+                    $this->input->post("limit"),
+                    $this->input->post("offset"), 
+                    $this->input->post("sort"),
+                    $this->input->post("ID"), 
+                    $this->input->post("condition")
+                    );
+            if($this->input->post("limit")){
+                $this->responseResultCount($this->m_waste_category->retrieveUnit(
+                    1,
+                    NULL,
+                    NULL,
+                    NULL,
+                    $this->input->post("ID"), 
+                    $this->input->post("condition")
+                    ));
+            }
+            if($result){
+                $this->actionLog(json_encode($this->input->post()));
+                $this->responseData($result);
+            }else{
+                $this->responseError(2, "No Result");
+            }
+        }else{
+            $this->responseError(1, "Not Authorized");
+        }
+        $this->outputResponse();
+    }
 }

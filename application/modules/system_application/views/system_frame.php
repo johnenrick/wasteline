@@ -201,9 +201,6 @@
                                                 <div class="form-group form-group-sm wl-list-category-div" style="display:inline-block;height:auto">
                                                     <select class="form-control wl-list-category" id="wastePostQuantityUnitList">
                                                         <option value="0"hidden >Unit</option>
-                                                        <option value="1">Kg</option>
-                                                        <option value="2">Pc</option>
-                                                        <option value="3">Sck</option>
                                                     </select>
                                                 </div>
 

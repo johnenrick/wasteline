@@ -2,6 +2,7 @@
 	var wastePostContainer = {};
 	$(document).ready(function(){
 		wastePostContainer.retrieveWastePostCategory();
+		wastePostContainer.retrieveUnitList();
 		
 		$(".wl-btn-post, ul.wastePostTypeList li").click(function(){
 			if ($("#wl-side-content").is(':visible') && $("ul#post-container-list li.wl-show").length == 0){
@@ -223,6 +224,17 @@
 				row.remove();
 				$("#wl-btn-side-repost").button("reset");
 				$("#wl-btn-side-submit").button("reset");
+			}
+		});
+	}
+
+	wastePostContainer.retrieveUnitList = function(){
+		$.post(api_url("C_waste_category/retrieveUnit"), {}, function(data){
+			var response = JSON.parse(data);
+			if(response["error"].length == 0){
+				for(var x in response["data"]){
+					$("#wastePostQuantityUnitList").append("<option value='"+response["data"][x]["ID"]+"' >"+response["data"][x]["notation"]+"</option>");
+				}
 			}
 		});
 	}

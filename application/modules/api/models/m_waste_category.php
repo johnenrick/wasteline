@@ -38,4 +38,16 @@ class M_waste_category extends API_Model{
     public function deleteWasteCategory($ID = NULL, $condition = array()){
         return $this->deleteTableEntry($ID, $condition);
     }
+
+    public function retrieveUnit($retrieveType = false, $limit = NULL, $offset = 0, $sort = array(), $ID = NULL, $condition = NULL) {
+        $this->TABLE = "unit";
+        $joinedTable = array(
+            
+        );
+        $selectedColumn = array(
+            "unit.*"
+        );
+        
+        return $this->retrieveTableEntry($retrieveType, $limit, $offset, $sort, $ID, $condition, $selectedColumn, $joinedTable);
+    }
 }
