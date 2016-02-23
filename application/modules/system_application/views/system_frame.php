@@ -203,7 +203,7 @@
                                                         <option value="0"hidden >Unit</option>
                                                     </select>
                                                 </div>
-
+                                                | &#8369;&nbsp;
                                                  <p class="wl-list-quantity-price" style="display:inline-block;height:auto">
                                                     <span class="wl-list-price" contenteditable="true" onkeypress="return wastePostContainer.isNumberInput(event)" placeholder="Price" holder="price"></span>
                                                 </p>
