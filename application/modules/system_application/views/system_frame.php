@@ -238,7 +238,7 @@
 
                             </div>
 
-                            <span id="wl-post-floating-btn" class="input-group-btn">
+                            <span id="wl-post-floating-btn" class="input-group-btn wl-draggable">
                                 <button type="button" class="btn btn-fab btn-primary btn-fab-mini">
                                     <span>+</span>
                                 <div class="ripple-container"></div></button>

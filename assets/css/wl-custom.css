@@ -1273,7 +1273,7 @@ ul.sidebar-nav li a {
     #wl-post-floating-btn {
         padding: 5px;
         font-size: 25px;
-        position: fixed;
+        position: absolute;
         z-index: 12;
         bottom: 10px;
         right: 50px;
