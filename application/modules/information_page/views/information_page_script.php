@@ -8,7 +8,11 @@
     var informationPage = {};
 
     informationPage.retrieveInformation = function(infoID){
-        var container = {};
+        var container = {
+            sort    : {
+                datetime    : "desc"
+            }
+        }
         if(infoID != 0) container.ID = infoID;
         else{
             if(user_type() == 2)

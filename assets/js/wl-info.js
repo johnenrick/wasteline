@@ -23,7 +23,8 @@ $(document).ready(function () {
                 dummy.find('img').attr('data-name', container.description);
                 dummy.find('.wl-list-title').text(container.description);
                 dummy.find('.wl-list-sub span').attr('data-livestamp', Math.floor(Date.now() / 1000));
-                $('.wl-info-mainlist ul').append(dummy);
+                //$('.wl-info-mainlist ul').append(dummy);
+                $(dummy).insertAfter($("ul#informationList li.wl-list-dummy"));
                 dummy.find('img.wl-info-box').initial();
             }
         }).done(function(){
