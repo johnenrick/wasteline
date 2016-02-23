@@ -33,7 +33,7 @@
                 $("#profileManagementCompleteAddress").text(response["data"]["account_address_description"]);
                 $('#profileManagementProfilePicture').attr("src","");
                 $('#profileManagementProfilePicture').initial({name:(response["data"]["first_name"]+"").charAt(0)+(response["data"]["last_name"]+"").charAt(0)});
-                
+
                 refresh_session();
             }
         });
@@ -51,7 +51,7 @@
             profileManagement.webMap.selectLocation(profileManagement.changeAddress);
             profileManagement.webMap.getCurrentLocationCallBack = profileManagement.changeAddress;
             profileManagement.viewProfile();
-            
+
         }
     };
     $(document).ready(function(){
@@ -64,7 +64,7 @@
                 if(data[8]["value"] === ""){
                     data.splice(9,1);
                     data.splice(8,1);
-                    
+
                 }else if(!(data[8]["value"] === data[9]["value"]) && data[8]["value"] !== ""){
                     $("#profileManagementForm").find(".formMessage").text("* Password mismatch");
                     $("#profileManagementForm").find("input[name='password']").val("");
@@ -73,7 +73,7 @@
                     $("#profileManagementForm").find("input[name='confirm_password']").trigger("change");
                     return false;
                 }
-                
+
                 //email is 4
                 if($("#profileManagementForm").find("[name='updated_data[email_detail]']").attr("initial_value") === $("#profileManagementForm").find("[name='updated_data[email_detail]']").val()){
                     data.splice(4,1);
@@ -101,16 +101,31 @@
                     $("#profileManagementForm").find("input[name='password']").val("");
                     $("#profileManagementForm").find("input[name='confirm_password']").val("");
                     profileManagement.viewProfile();
-                    
+
+                    var w = $(window).width();
+                    if(w <= 720){
+                        $('.wl-pro-full-info').fadeIn();
+                        $('.wl-pro-edit').fadeOut('fast');
+                    }
+
                 }else{
                     show_form_error($("#profileManagementForm"), response["error"]);
                 }
                 $("#profileManagementForm").find(".submitButton").button("reset");
             }
         });
-        
+
         add_refresh_call("profile_management", profileManagement.viewProfile);
         $("#profileManagementForm").find("[name='updated_data[account_address_description]']").autoResize();
+
+
+        $("#wl-btn-editProfile").click(function () {
+            var w = $(window).width();
+            if(w <= 720){
+                $('.wl-pro-edit').fadeIn();
+                $('.wl-pro-full-info').fadeOut('fast');
+            }
+        });
     });
-    
+
 </script>
