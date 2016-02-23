@@ -7,10 +7,13 @@
 <script>
     var informationPage = {};
 
-    informationPage.retrieveInformation = function(infoID){
+    informationPage.retrieveInformation = function(infoID, typeID){
         var container = {
             sort    : {
                 datetime    : "desc"
+            },
+            condition   : {
+                "type_ID"  : informationPage.findInformationType()
             }
         }
         if(infoID != 0) container.ID = infoID;
@@ -28,7 +31,7 @@
                 if(infoID == 0){
                     $(".information-count").text(response["data"].length);
                     for(var x in response["data"]){
-                        var dummy = $("ul#informationList li.wl-list-dummy").clone().removeClass("wl-list-dummy");
+                        var dummy = $("ul#informationList li.wl-list-dummy").clone().removeClass("wl-list-dummy").addClass("wl-list-infos");
 
                         dummy.attr("informationid", response["data"][x]["ID"]);
                         dummy.find('img').attr('data-name', response["data"][x]["description"]);
@@ -72,8 +75,12 @@
 
     }
 
+    informationPage.findInformationType = function(){
+        return ($("#wl-header-menu").find("a.wl-active").attr("typeid"))*1;
+    }
+
     $(document).ready(function(){
-        informationPage.retrieveInformation(0);
+        informationPage.retrieveInformation(0, informationPage.findInformationType());
         if(user_type() == 2) $(".informationTick").hide();
 
         $(".submitButton-list").click(function(){
@@ -125,6 +132,11 @@
                 $('.wl-info-list').fadeIn();
                 $('#wl-return-floating-btn').fadeOut('fast');
             }
-        })
+        });
+
+        $("#wl-header-menu").click(function(){
+            $("#informationList .wl-list-infos").remove();
+            informationPage.retrieveInformation(0, informationPage.findInformationType());
+        });
     });
 </script>

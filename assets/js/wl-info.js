@@ -13,7 +13,7 @@ $(document).ready(function () {
         var container = {
             description     : modal_parent.find('#inputTitle').val(),
             source          : modal_parent.find('#inputAuthor').val(),
-            type_ID         : 1
+            type_ID         : informationPage.findInformationType()
         }
 
         $.post(api_url("C_information/createInformation"), container, function(data){
