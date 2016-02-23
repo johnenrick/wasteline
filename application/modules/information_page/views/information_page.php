@@ -28,7 +28,7 @@
         <div class="col-sm-12 wl-info-description wl-heaher-dummy" style="display: none">
             <div class="col-sm-12 wl-info-fixed">
                 <div class="wl-info-box">
-                    <img data-name="" class="wl-box">
+                    <img data-name="" class="wl-box" id="sampleid">
                 </div>
                 <div class="wl-info-title">
                     <h2></h2>

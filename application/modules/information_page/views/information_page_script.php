@@ -33,7 +33,7 @@
     				$(".wl-info-title h4 .wl-info-stamp").attr("data-livestamp", response["data"]["datetime"]);
 
     				$("#wl-info-editor").html(response["data"]["detail"]);
-    				$("img.wl-box").initial();
+    				$("#sampleid").initial();
 
     				if(user_type() == 2){
     					wysiwygEditor.readOnly(true);
