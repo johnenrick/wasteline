@@ -111,6 +111,7 @@
                         wasteMap.filterFunction[$(this).attr("filter_type")]();
                     }
                 });
+                
             });
         });
     });

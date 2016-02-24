@@ -14,7 +14,7 @@
                 $("#profileManagementForm").find("[name='updated_data[contact_number_detail]']").val(response["data"]["contact_number_detail"]).attr("initial_value", response["data"]["contact_number_detail"]);
                 $("#profileManagementForm").find("[name='updated_data[username]']").val(response["data"]["username"]).attr("initial_value", response["data"]["username"]);
                 //address
-                $("#profileManagementForm").find("[name='updated_data[account_address_ID]']").val(response["data"]["acount_address_ID"]*1);
+                $("#profileManagementForm").find("[name='updated_data[account_address_ID]']").val(response["data"]["account_address_ID"]*1);
                 $("#profileManagementForm").find("[name='updated_data[account_address_description]']").text(response["data"]["account_address_description"]);
                 $("#profileManagementForm").find("[name='updated_data[account_address_map_marker_ID]']").val(response["data"]["account_address_map_marker_ID"]*1);
                 $("#profileManagementForm").find("[name='updated_data[account_address_longitude]']").val(response["data"]["account_address_longitude"]);
@@ -95,21 +95,16 @@
             },
             success : function(data){
                 var response = JSON.parse(data);
-                console.log(response);
                 clear_form_error($("#profileManagementForm"));
                 if(!response["error"].length){
                     $("#profileManagementForm").find("input[name='password']").val("");
                     $("#profileManagementForm").find("input[name='confirm_password']").val("");
                     profileManagement.viewProfile();
 
-                    var w = $(window).width();
-                    if(w <= 720){
-                        $('.wl-pro-full-info').fadeIn();
-                        $('.wl-pro-edit').fadeOut('fast');
-                    }
 
                 }else{
                     show_form_error($("#profileManagementForm"), response["error"]);
+                    $(".wl-pro-edit").mCustomScrollbar("scrollTo",".formMessage");
                 }
                 $("#profileManagementForm").find(".submitButton").button("reset");
             }
@@ -126,6 +121,7 @@
                 $('.wl-pro-full-info').fadeOut('fast');
             }
         });
+        
     });
 
 </script>

@@ -7,7 +7,9 @@
                 $("#loginForm").find(".submitButton").button("loading");
             },
             success : function(data){
+                
                 var response = JSON.parse(data);
+                //console.log(response);
                 clear_form_error($("#loginForm"));
                 if(!response["error"].length){
                     window.location = base_url();

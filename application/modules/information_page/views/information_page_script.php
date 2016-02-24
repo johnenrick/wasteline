@@ -13,16 +13,16 @@
                 datetime    : "desc"
             },
             condition   : {
-                "type_ID"  : informationPage.findInformationType()
+                type_ID  : informationPage.findInformationType()
             }
         }
         if(infoID != 0) container.ID = infoID;
         else{
-            if(user_type() == 2)
-            container.condition = {
-                "not__information__detail" : null
+            if(user_type()*1 === 2){
+                container.condition.not__information__detail = null
             }
         }
+        console.log(container);
         $.post(api_url("C_information/retrieveInformation"), container, function(data){
             var response = JSON.parse(data);
             if(!response["error"].length){

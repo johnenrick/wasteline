@@ -39,6 +39,7 @@ class Portal extends FE_Controller{
             $condition[(filter_var($this->input->post("username"), FILTER_VALIDATE_EMAIL)) ? "email__detail" : "username"] = $this->input->post("username");
             $result = $this->M_account->retrieveAccount(NULL, NULL, NULL, NULL, NULL,$condition);
             if($result){
+                $this->responseDebug($result);
                 $this->createSession($result[0]["first_name"], $result[0]["last_name"], $result[0]["middle_name"], $result[0]["account_type_ID"], $result[0]["ID"], $result[0]["username"]);
                 $this->responseData(true);
             }else{

@@ -4,7 +4,8 @@
 <script src="<?=asset_url("js/easy-button.js")?>"></script>
 <script src="<?=asset_url("js/leaflet-heat.js")?>"></script>
 <script src="<?=asset_url("js/leaflet.markercluster.js")?>"></script>
-<script src="<?=asset_url("js/leaflet-search.src.js")?>"></script>
+<!--<script src="<?=asset_url("js/leaflet-search.src.js")?>"></script>-->
+<script src="<?=asset_url("js/Control.OSMGeocoder.js")?>"></script>
 
 <script>
     /*global webMapComponent, L */
@@ -62,7 +63,8 @@
             garbage : new pointers({iconUrl:asset_url('images/garbage.png')}),
             dumping_area : new pointers({iconUrl:asset_url('images/dumpingarea.png')}),
             report : new pointers({iconUrl:asset_url('images/report.png')}),
-            service : new pointers({iconUrl:asset_url('images/services.png')})
+            service : new pointers({iconUrl:asset_url('images/services.png')}),
+            user_location : new pointers({iconUrl:asset_url('images/marker-icon-2x.png')})
         };
         
         /*Events*/
@@ -71,7 +73,9 @@
             webMapComponent.onMapClick(e);
         });
         /*GPS*/
-        
+        webMapComponent.map.on("moveend", function(){
+            console.log(webMapComponent.map.getBounds());
+        });
         /*Variable*/
         webMapComponent.markerList = {}; /*list of markers in the map*/
         
@@ -133,7 +137,7 @@
             webMapComponent.map.setView([lat, lng],17);
         };
         webMapComponent.markerCluster = L.markerClusterGroup({
-            maxClusterRadius : 50
+            maxClusterRadius : 40
         });
         webMapComponent.map.addLayer(webMapComponent.markerCluster );
         webMapComponent.markersLayer = new L.LayerGroup();  /*layer contain searched elements*/
@@ -162,9 +166,9 @@
                 delete webMapComponent.markerList[ID];
             }
             var markerOption = {
-                map_marker_ID : ID,
-                map_marker_type_ID : mapMarkerType,
-                associated_ID : associatedID,
+                map_marker_ID : ID*1,
+                map_marker_type_ID : mapMarkerType*1,
+                associated_ID : associatedID*1,
                 riseOnHover: true,
                 draggable : (typeof draggable === "undefined") ? false : draggable,
                 title : description
@@ -190,7 +194,7 @@
                     markerOption.icon = webMapComponent.icon.service;
                     break;
                 case 5: /*Select Location*/
-                    markerOption.icon = webMapComponent.icon.garbage;
+                    markerOption.icon = webMapComponent.icon.user_location;
                     break;
                 case 6: /*LGU*/
                     markerOption.icon = webMapComponent.icon.LGU;
@@ -276,8 +280,8 @@
             webMapComponent.indicateCurrentLocation(webMapComponent.getCurrentLocationCallBack);
         }).addTo( webMapComponent.map );
         webMapComponent.map._onResize(); 
-        
-        webMapComponent.controlSearch = new L.Control.Search({layer: webMapComponent.markersLayer, initial: false, position:'topright'});
-        webMapComponent.map.addControl( webMapComponent.controlSearch );
+        webMapComponent.osmGeocoder = new L.Control.OSMGeocoder();
+        webMapComponent.map.addControl(webMapComponent.osmGeocoder, {position: 'topright'});
+
     };
 </script>

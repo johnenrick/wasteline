@@ -128,6 +128,7 @@
         }
     }
     function refresh_call(moduleName){
+        console.log(moduleName)
         if(typeof system_data.refresh_call[moduleName] !== "undefined"){
             for(var x = 0; x < system_data.refresh_call[moduleName].length; x++){
                 system_data.refresh_call[moduleName][x]();
@@ -290,8 +291,6 @@ var requestVerificationCode = function(){
                 if(response["data"]["account_address_map_marker_ID"] === null){
                     $("[module_link='profile_management']").trigger("click");
                 }
-            }else{
-                
             }
         });
 

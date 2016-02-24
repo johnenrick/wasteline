@@ -22,7 +22,7 @@
 
         <div class="form-group">
             <div class="col-md-12">
-                <p class="formMessage" ></p>
+                <p class="formMessage" style="color:red"></p>
             </div>
         </div>
 

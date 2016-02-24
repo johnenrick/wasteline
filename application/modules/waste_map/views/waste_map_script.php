@@ -36,6 +36,7 @@
                 var accountID = $(e.target._popup._contentNode).find("[name=account_ID]").val();
                 $.post(api_url("C_account/retrieveAccount"), {ID : accountID, with_waste_post : true}, function(data){
                     var response = JSON.parse(data);
+                    console.log(response);
                     if(!response["error"].length){
                         $(e.target._popup._contentNode).find(".panel-title span").text((response["data"]["first_name"]+" "+(response["data"]["middle_name"]+"").charAt(0)+(response["data"]["middle_name"] !== "" ? ".":"")+" "+response["data"]["last_name"]).toUpperCase());
                         $(e.target._popup._contentNode).find(".wasteMapOwnWasteEmailDetail").text(response["data"]["email_detail"]);
@@ -81,11 +82,13 @@
         /*Retrieve markers with types specified in condition.map_marker_type_ID */
         $.post(api_url("C_map_marker/retrieveMapMarker"), {condition: condition, waste_post : true}, function(data){
             var response = JSON.parse(data);
-            for(var x = 0;x<response["data"].length;x++){
-                if((typeof wasteMap.webMap.markerList[response["data"][x]["ID"]] === "undefined") || (response["data"][x]["waste_post_type_ID"] === "3" || response["data"][x]["waste_post_type_ID"] === "2" )){
-                    var mapMarkerTypeID = (response["data"][x]["waste_post_type_ID"] === "1") ? 1 : 4;
-                    wasteMap.webMap.addMarker(response["data"][x]["ID"], mapMarkerTypeID, response["data"][x]["associated_ID"], response["data"][x][wasteMap.mapMarkerDescriptionList[response["data"][x]["map_marker_type_ID"]]], response["data"][x]["longitude"], response["data"][x]["latitude"], false, wasteMap.createOwnWasteForm(response["data"][x]["ID"], response["data"][x]["account_ID"]));
-                    wasteMap.bindOwnWasteFormAction(response["data"][x]["ID"]);
+            if(!response["error"].length){
+                for(var x = 0;x<response["data"].length;x++){console.log()
+                    if(((typeof wasteMap.webMap.markerList[response["data"][x]["ID"]] === "undefined") || ((response["data"][x]["waste_post_type_ID"] === "3" || response["data"][x]["waste_post_type_ID"] === "2" )) && (wasteMap.webMap.markerList[response["data"][x]["ID"]].options.map_marker_type_ID !== 5))  ){
+                        var mapMarkerTypeID = (response["data"][x]["waste_post_type_ID"] === "1") ? 1 : 4;
+                        wasteMap.webMap.addMarker(response["data"][x]["ID"], mapMarkerTypeID, response["data"][x]["associated_ID"], response["data"][x][wasteMap.mapMarkerDescriptionList[response["data"][x]["map_marker_type_ID"]]], response["data"][x]["longitude"], response["data"][x]["latitude"], false, wasteMap.createOwnWasteForm(response["data"][x]["ID"], response["data"][x]["account_ID"]));
+                        wasteMap.bindOwnWasteFormAction(response["data"][x]["ID"]);
+                    }
                 }
             }
         });
@@ -177,6 +180,17 @@
         });
         $(".dtp-btn-clear").click(function(){
             $(".wasteMapDateFilter[filter_type=6]").trigger("change");
+        });
+        add_refresh_call("waste_map", function(){
+            wasteMap.addInitFunction(function(){
+                $.post(api_url("C_account/retrieveAccount"), {ID:user_id()}, function(data){
+                    var response = JSON.parse(data);
+                    if(!response.length){
+                        wasteMap.webMap.addMarker(response["data"]["account_address_map_marker_ID"], 5, response["data"]["acount_address_ID"], response["data"]["account_address_description"], response["data"]["account_address_longitude"], response["data"]["account_address_latitude"], false, wasteMap.createOwnWasteForm(response["data"]["account_address_map_marker_ID"], response["data"]["account_ID"]));
+                        wasteMap.bindOwnWasteFormAction(response["data"]["account_address_map_marker_ID"]);
+                    }
+                });
+            });
         });
     });
 

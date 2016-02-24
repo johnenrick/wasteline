@@ -55,6 +55,9 @@
     .panel-own-waste .panel-body{
         font-size: 16px!important;
     }
+    .wasteMapIllegalDumpingDetail{
+        font-size: 16px!important;
+    }
     .leaflet-popup-content {
         min-width: 300px!important;
         width:auto !important;
@@ -98,8 +101,8 @@
                                 
                             </div>
                         </div>
-                        <div class="form-group " style="margin-top:0px">
-                            <p class="wasteMapIllegalDumpingDetail form-control capitalize" style="margin-top:0px;background-image:none"></p>
+                        <div class="form-group wasteMapIllegalDumpingDetail" style="margin-top:0px">
+                            <!--<p class="wasteMapIllegalDumpingDetail form-control capitalize" style="margin-top:0px;background-image:none"></p>-->
                         </div>
                     </div>
                 </div>
@@ -108,8 +111,6 @@
                         <button type="submit" button_action="1" class="wasteMapSubmitIllegalDumpingReport btn btn-illegal-dumping"><i class="fa fa-flag"></i> Submit Report</button>
                         <button type="button" button_action="3" class="wasteMapSubmitIllegalDumpingReport btn btn-primary " style="display:none"><i class="fa fa-check"></i> Resolve Report</button>
                         <button type="button" button_action="2" class="wasteMapSubmitIllegalDumpingReport btn btn-illegal-dumping "><i class="fa fa-trash"></i> Remove Report</button>
-                        
-                        
                     </div>
                 </div>
             </form>

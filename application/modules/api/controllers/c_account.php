@@ -244,7 +244,11 @@ class C_account extends API_Controller {
                     /**Updating Address Information**/
                     $this->load->model("M_account_address");
                     $this->load->model("M_map_marker");
+                    $this->responseDebug($updatedData["account_address_ID"]);
+                    $this->responseDebug($updatedData["account_address_description"]);
+                    $this->responseDebug($updatedData["account_address_longitude"]);
                     if(isset($updatedData["account_address_ID"]) && ($updatedData["account_address_ID"]*1 !== 0) && $updatedData["account_address_description"]){//update account_address
+                       
                         /*Account Address*/
                         $this->M_account_address->updateAccountAddress( NULL, 
                                 array(

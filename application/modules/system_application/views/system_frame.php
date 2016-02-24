@@ -288,7 +288,8 @@
 
         <script src="<?=asset_url('js/initial.min.js')?>"></script>
         <!--<script src="https://cdn.jsdelivr.net/jquery.mcustomscrollbar/3.1.3/jquery.mCustomScrollbar.min.js"></script><!--CDN-->
-        <script src="<?=asset_url('js/jquery.mCustomScrollbar.concat.min.js')?>"></script><!--->
+        <script src="<?=asset_url('js/jquery.mCustomScrollbar.concat.min.js')?>"></script><!---->
         <script src="<?=asset_url('js/wl-global.js')?>"></script>
+        <script src="<?=asset_url('js/scrollTo.js')?>"></script>
     </footer>
 </html>
