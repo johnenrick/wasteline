@@ -214,7 +214,7 @@
 
                                                 <div class="form-group form-group-sm wl-list-category-div">
                                                     <select class="form-control wl-list-category" id="wastePostCategoryList">
-                                                        <option val="0" hidden >Category</option>
+                                                        <option hidden >Category</option>
                                                     </select>
                                                 </div>
                                                 <i class="fa fa-times fa-3 deleteWastePost btn" style="position: absolute; top: 0px; right: 2px; font-size: 1.5em; color: #f55549; padding: 1px; margin: 0px"></i>
