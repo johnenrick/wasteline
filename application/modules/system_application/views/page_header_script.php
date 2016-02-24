@@ -25,7 +25,7 @@
         });
         if(user_id()){
             $("#headerUserFullName").text(user_first_name()+" "+user_last_name());
-            $("#headerUserImg").initial({name:(user_first_name()+"").charAt(0)+(user_last_name()+"").charAt(0)});
+            $("#headerUserImg").initial({name:((user_first_name()+"").charAt(0)+(user_last_name()+"").charAt(0)).toUpperCase()});
             $("#headerUserImg").height("30px");
             $("#headerUserImg").width("30px");
         }else{
