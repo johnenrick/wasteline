@@ -31,7 +31,7 @@ class M_report extends API_Model{
         $joinedTable = array(
             "report_type" => "report_type.ID=report.report_type_ID",
             "map_marker" => "map_marker.associated_ID=report.ID AND map_marker.map_marker_type_ID=3",
-            "account_basic_information" => "account_basic_information.account_ID=report_type.reporter_account_ID"
+            "account_basic_information" => "account_basic_information.account_ID=report.reporter_account_ID"
         );
         $selectedColumn = array(
             "report.*",

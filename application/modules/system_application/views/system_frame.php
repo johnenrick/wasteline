@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+    <title>WasteLine</title>
+    <link rel="shortcut icon" type="image/x-icon" href="<?=asset_url('images/portal/garbage.png')?>" />
     <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
         <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
-     </svg>
+    </svg>
     <head>
 
         <meta charset="utf-8">
@@ -11,8 +13,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>WasteLine</title>
-        <link rel="shortcut icon" type="image/x-icon" href="<?=asset_url('images/portal/garbage.png')?>" />
+        
 
 
         <!-- Bootstrap CSS -->
