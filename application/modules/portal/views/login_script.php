@@ -15,8 +15,9 @@
                     window.location = base_url();
                 }else{
                     show_form_error($("#loginForm"), response["error"]);
+                    $("#loginForm").find(".submitButton").button("reset");
                 }
-                $("#loginForm").find(".submitButton").button("reset");
+                
             }
         });
         $("#passwordRecoveryForm").validator();

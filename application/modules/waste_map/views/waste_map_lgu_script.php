@@ -151,12 +151,16 @@
         }
         $.post(api_url("C_report/retrieveReport"), {condition: condition}, function(data){
             var response = JSON.parse(data);
-            wasteMap.webMap.heatLayer.setLatLngs([]); //reset the heat map
+            
+            var latLng = [];
             if(!response["error"].length){
                 for(var x =0 ; x < response["data"].length;x++){
-                    wasteMap.webMap.addHeat({lat: response["data"][x]["latitude"]*1, lng : response["data"][x]["longitude"]*1, alt:0.1});
+                    //wasteMap.webMap.addHeat({lat: response["data"][x]["latitude"]*1, lng : response["data"][x]["longitude"]*1, alt:0.1});
+                    latLng.push({lat: response["data"][x]["latitude"]*1, lng : response["data"][x]["longitude"]*1, alt:0.1});
                 }
             }
+            wasteMap.webMap.heatLayer.setLatLngs(latLng); //reset the heat map
+            
         });
     };
     $(document).ready(function(){

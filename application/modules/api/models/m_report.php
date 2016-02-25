@@ -30,13 +30,14 @@ class M_report extends API_Model{
     public function retrieveReport($retrieveType = false, $limit = NULL, $offset = 0, $sort = array(), $ID = NULL, $condition = NULL) {
         $joinedTable = array(
             "report_type" => "report_type.ID=report.report_type_ID",
-            "map_marker" => "map_marker.associated_ID=report.ID AND map_marker.map_marker_type_ID=3"
+            "map_marker" => "map_marker.associated_ID=report.ID AND map_marker.map_marker_type_ID=3",
+            "account_basic_information" => "account_basic_information.account_ID=report_type.reporter_account_ID"
         );
         $selectedColumn = array(
             "report.*",
             "report_type.description AS report_type_description",
             "map_marker.ID AS map_marker_ID, map_marker.longitude, map_marker.latitude, map_marker.map_marker_type_ID",
-           
+            "account_basic_information.first_name as report_first_name, account_basic_information.middle_name as report_middle_name, account_basic_information.last_name as report_last_name"
         );
         
         return $this->retrieveTableEntry($retrieveType, $limit, $offset, $sort, $ID, $condition, $selectedColumn, $joinedTable);

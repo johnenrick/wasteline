@@ -1,7 +1,7 @@
 .leaflet-control-geocoder a {
 	background-position: 50% 50%;
 	background-repeat: no-repeat;
-	display: block;
+	 display: block; 
 }
 
 .leaflet-control-geocoder {
@@ -12,11 +12,11 @@
 	border-radius: 8px;
 }
 
-.leaflet-control-geocoder a {
+ .leaflet-control-geocoder a {
 	background-image: url(../images/geocoder.png);
 	width: 30px;
 	height: 30px;
-}
+} 
 
 .leaflet-touch .leaflet-control-geocoder a {
 	width: 35px;
@@ -25,7 +25,7 @@
 
 .leaflet-control-geocoder .leaflet-control-geocoder-form,
 .leaflet-control-geocoder-expanded .leaflet-control-geocoder-toggle {
-	display: none;
+	display: none; 
 }
 
 .leaflet-control-geocoder-expanded .leaflet-control-geocoder-form {

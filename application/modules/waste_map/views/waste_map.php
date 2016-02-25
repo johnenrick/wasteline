@@ -73,7 +73,7 @@
             <a class="btn btn-default capitalize wl-map-filter wl-active" filter_type="4" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to display Dumping Locations"><span class="circle"></span>Dumping Area</a>
         </div>
         <div class="col-md-5 wasteMapLGUFilter" style="display: none">
-            <a class="btn btn-default capitalize wl-map-filter wl-active" filter_type="5" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to display Heat Map"><span class="circle" style="background-color:red"></span>Heat Map</a>
+            <a class="btn btn-default capitalize wl-map-filter wl-active" filter_type="5" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to display Heat Map"><span class="circle" ></span>Heat Map</a>
             <input type="text" filter_type="6" class="wasteMapDateFilter form-control floating-label wl-map-date wl-datetimepicker" placeholder="Start Date">
             <span>to</span>
             <input type="text" filter_type="7" class="wasteMapDateFilter form-control floating-label wl-map-date wl-datetimepicker" placeholder="End Date">
@@ -141,8 +141,8 @@
                             <p class="help-block wl-c-gray-1">Make things clear</p>
                             <span class="material-input"></span>
                         </div>
-                        <div class="form-group " style="margin-top:0px">
-                            <p class="wasteMapDumpingLocationDetail form-control capitalize" style="margin-top:0px"></p>
+                        <div class="form-group " style="margin-top:0px;background-image:none">
+                            <p class="wasteMapDumpingLocationDetail form-control capitalize" style="margin-top:0px;background-image:none"></p>
                         </div>
                     </div>
                 </div>

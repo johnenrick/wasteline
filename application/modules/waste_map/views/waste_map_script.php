@@ -134,7 +134,6 @@
     };
     $(document).ready(function(){
         load_page_component("web_map_component", wasteMap.initializeWastemapManagement);
-        
         wasteMap.filterFunction["1"] = function(){//User with waste
             wasteMap.retrieveMapMarker({waste_post__waste_post_type_ID : [1, null], waste_post__status : [1, null]});
         };
@@ -165,6 +164,7 @@
         
         $.material.ripples(".wl-map-filter, .wl-btn-map-search");
         $(".wl-map-filter").click(function(){
+            
             if($(this).hasClass("wl-active")){//off filter
                 $(this).removeClass("wl-active");
                 wasteMap.filterFunction["not_"+$(this).attr("filter_type")]();

@@ -40,7 +40,8 @@
         });
         webMapComponent.heatLayer = false;
         webMapComponent.tileLayer.on("load", function(){
-           webMapComponent.heatLayer = L.heatLayer([], {maxZoom : 20, max : 0.5, gradient : {0.3: 'yellow', 0.65: 'orange', 1: 'red'} }).addTo(webMapComponent.map);
+           webMapComponent.heatLayer = L.heatLayer([], {maxZoom : 20, max : 0.5, gradient : {0.3: 'yellow', 0.65: 'orange', 1: 'red'} });
+           webMapComponent.map.addLayer(webMapComponent.heatLayer);
         });
         
         webMapComponent.map = L.map(mapNumber).setView([10.343, 123.919], 16).addLayer(webMapComponent.tileLayer);
@@ -74,7 +75,7 @@
         });
         /*GPS*/
         webMapComponent.map.on("moveend", function(){
-            console.log(webMapComponent.map.getBounds());
+            //console.log(webMapComponent.map.getBounds());
         });
         /*Variable*/
         webMapComponent.markerList = {}; /*list of markers in the map*/
@@ -205,7 +206,7 @@
             webMapComponent.markerList[ID] = new L.Marker([latitude, longitude], markerOption);
             webMapComponent.markerList[ID].bindLabel(description, labelOption);
             
-            if(ID*1 === -1){
+            if(ID*1 === -1 || (markerOption.draggable)){
                 webMapComponent.map.addLayer(webMapComponent.markerList[ID]);
             }else{
                 webMapComponent.markerCluster.addLayer(webMapComponent.markerList[ID]);
@@ -248,9 +249,7 @@
         webMapComponent.mapRemoveMarkerList = function(ID){
           
           if(typeof webMapComponent.markerList[ID] !== "undefined"){
-              console.log(ID)
               webMapComponent.map.removeLayer(webMapComponent.markerList[ID]);
-              console.log(ID)
               delete webMapComponent.markerList[ID];
               
               return true;
@@ -280,7 +279,7 @@
             webMapComponent.indicateCurrentLocation(webMapComponent.getCurrentLocationCallBack);
         }).addTo( webMapComponent.map );
         webMapComponent.map._onResize(); 
-        webMapComponent.osmGeocoder = new L.Control.OSMGeocoder();
+        webMapComponent.osmGeocoder = new L.Control.OSMGeocoder({collapsed : false, text:"Find"});
         webMapComponent.map.addControl(webMapComponent.osmGeocoder, {position: 'topright'});
 
     };
