@@ -1,3 +1,4 @@
+<div id="LGUManagementHolder">
 <div  class="col-md-8 col-md-offset-2">
     <button id="LGUManagementCreateUser" type="submit" class="btn btn-success btn-sm pull-right"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create LGU User</button>
 </div>
@@ -115,12 +116,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-12" style="background-image:url('<?= asset_url("images/lp-img1.jpg") ?>'); height:200px;margin-top:30px">
-                            <!-- insert Leaflet here -->
-                        </div>
-                    </div>
-
                 </div>
                 <div class="modal-footer">
                     <button status="3" type="button" class="LGUManagementUserDetailChangeAccountStatus btn btn-warning pull-left ">Deactivate Account</button>
@@ -131,4 +126,5 @@
             </form>
         </div>
     </div>
+</div>
 </div>

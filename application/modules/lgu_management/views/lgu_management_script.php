@@ -112,6 +112,7 @@
         });
     };
     $(document).ready(function(){
+        $("#LGUManagementHolder").addClass("scroll-on");
         load_page_component("table_component", LGUManagement.initializeReportManagementTable);
         $("#LGUManagementCreateUser").click(function(){
             $(".LGUManagementUserDetailChangeAccountStatus").hide();

@@ -18,7 +18,11 @@
         }
     };
     wasteMap.initializeWastemapManagement = function(){
-        wasteMap.webMap = new WebMapComponent("#wasteMapContainer");
+        wasteMap.webMap = new WebMapComponent("#wasteMapContainer",{
+            gps_location : true,
+            search_location : true,
+            heat_layer : true
+        });
         wasteMap.doneInit = true;
         for(var x = 0; x < wasteMap.initFunction.length;x++){
             wasteMap.initFunction[x]();

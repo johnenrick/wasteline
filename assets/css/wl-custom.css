@@ -989,11 +989,10 @@ ul.sidebar-nav li a {
 
 /* LGU Management*/
 
-#LGUManagement {
+#LGUManagement, #userManagement {
     background-color: white;
     border-top: 2px #eee solid;
 }
-
 
 /* table */
 

@@ -23,7 +23,7 @@
                         [10.343744, 123.925821],
                         [10.351753, 123.916018]
     ];
-    var WebMapComponent = function(containerSelector){
+    var WebMapComponent = function(containerSelector, config){
         var webMapComponent = this;
         /*Set up Webmap container*/
         webMapComponent.webMapContainer = $(containerSelector);
@@ -38,14 +38,27 @@
             maxZoom: 20,
             attribution: osmAttrib
         });
+        //Default Configuration
+        config = (typeof config === "undefined") ? {} : config;
+        console.log(config);
+        config = {
+            heat_layer : (typeof config.heat_layer === "undefined") ? false : config.heat_layer,
+            gps_location : (typeof config.gps_location === "undefined") ? false : config.gps_location,
+            search_location : (typeof config.search_location === "undefined") ? false : config.search_location,
+        };
+        console.log(config);
         webMapComponent.heatLayer = false;
         webMapComponent.tileLayer.on("load", function(){
-           webMapComponent.heatLayer = L.heatLayer([], {maxZoom : 20, max : 0.5, gradient : {0.3: 'yellow', 0.65: 'orange', 1: 'red'} });
-           webMapComponent.map.addLayer(webMapComponent.heatLayer);
+            if(config.heat_layer){
+                webMapComponent.heatLayer = L.heatLayer([], {maxZoom : 20, max : 0.5, gradient : {0.3: 'yellow', 0.65: 'orange', 1: 'red'} });
+                webMapComponent.map.addLayer(webMapComponent.heatLayer);
+            }
         });
         
         webMapComponent.map = L.map(mapNumber).setView([10.343, 123.919], 16).addLayer(webMapComponent.tileLayer);
-        webMapComponent.map.addControl( new L.Control.Gps({autoActive:false}) );
+        
+        
+        
         /*Icons*/
         /*Icon Properties*/
         var pointers = L.Icon.extend({
@@ -275,12 +288,17 @@
             
         };
         /*GPS Button*/
-        L.easyButton('<span class="fa fa-map-marker" style="font-size:20px;color:green"></span>', function(){
-            webMapComponent.indicateCurrentLocation(webMapComponent.getCurrentLocationCallBack);
-        }).addTo( webMapComponent.map );
+        
         webMapComponent.map._onResize(); 
-        webMapComponent.osmGeocoder = new L.Control.OSMGeocoder({collapsed : false, text:"Find"});
-        webMapComponent.map.addControl(webMapComponent.osmGeocoder, {position: 'topright'});
-
+        if(config.search_location){
+            webMapComponent.osmGeocoder = new L.Control.OSMGeocoder({collapsed : false, text:"Find"});
+            webMapComponent.map.addControl(webMapComponent.osmGeocoder, {position: 'topright'});
+        }
+        if(config.gps_location){
+            webMapComponent.map.addControl( new L.Control.Gps({autoActive:false}) );
+            L.easyButton('<span class="fa fa-map-marker" style="font-size:20px;color:green"></span>', function(){
+                webMapComponent.indicateCurrentLocation(webMapComponent.getCurrentLocationCallBack);
+            }).addTo( webMapComponent.map );
+        }
     };
 </script>

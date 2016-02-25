@@ -67,15 +67,17 @@
                     <li module_id="7" module_link="report_management" module_name="report_management" style="display:none">
                         <a data-page-link="report_management" data-toggle="tooltip" data-placement="right" title="" data-original-title="Report Management"><span class="lnr lnr-flag"></span></a>
                     </li>
-
-
+                    
+                    <li module_id="5" module_link="lgu_management" module_name="LGU_management" style="display:none">
+                        <a data-page-link="manage-LGU" data-toggle="tooltip" data-placement="right" title="" data-original-title="LGU Management"><span class="lnr lnr-users"></span></a>
+                    </li>
+                    <li module_id="8" module_link="user_management" module_name="user_management" style="display:none">
+                        <a data-page-link="manage-user" data-toggle="tooltip" data-placement="right" title="" data-original-title="User Management"><span class="lnr lnr-users"></span></a>
+                    </li>
                     <li id="tae" module_id="4" module_link="profile_management" module_name="profile_management" style="display:none">
                         <a data-page-link="profile" data-toggle="tooltip" data-placement="right" title="" data-original-title="Profile"><span class="lnr lnr-user"></span></a>
                     </li>
-                    <li module_id="5" module_link="lgu_management" module_name="LGU_management">
-                        <a data-page-link="manage-LGU" data-toggle="tooltip" data-placement="right" title="" data-original-title="LGU Management"><span class="lnr lnr-users"></span></a>
-                    </li>
-                    <li class="wl-btn-logout" module_name="home">
+                    <li class="wl-btn-logout" module_name="">
                         <a data-page-link="logout" data-toggle="tooltip" data-placement="right" title="" data-original-title="Log Out"><span class="lnr lnr-power-switch"></span></a>
                     </li>
                 </ul>

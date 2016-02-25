@@ -22,7 +22,7 @@ class C_account extends API_Controller {
         if(!$valid){
             $this->responseError(5, "Captcha Required");
         }
-        if($this->checkACL() /*&& ($this->input->post("account_type_ID") != 2)*/ && (($this->input->post("account_type_ID") == 1 && user_type() == 1) || ($this->input->post("account_type_ID") == 3 && user_type() == 1) || ($this->input->post("account_type_ID") == 2 && $this->input->post("status") == 3 && $this->validReCaptcha()))){
+        if($this->checkACL() && ($this->input->post("account_type_ID") != 2) && (($this->input->post("account_type_ID") == 1 && user_type() == 1) || ($this->input->post("account_type_ID") == 3 && user_type() == 1) || ($this->input->post("account_type_ID") == 2 && $this->input->post("status") == 3 && $this->validReCaptcha()))){
             $this->form_validation->set_rules('username', 'Username', 'required|is_unique[account.username]|alpha_numeric');
             $this->form_validation->set_rules('password', 'Password', 'required|min_length[6]');
             $this->form_validation->set_rules('status', 'Status', 'required');
@@ -244,9 +244,6 @@ class C_account extends API_Controller {
                     /**Updating Address Information**/
                     $this->load->model("M_account_address");
                     $this->load->model("M_map_marker");
-                    $this->responseDebug($updatedData["account_address_ID"]);
-                    $this->responseDebug($updatedData["account_address_description"]);
-                    $this->responseDebug($updatedData["account_address_longitude"]);
                     if(isset($updatedData["account_address_ID"]) && ($updatedData["account_address_ID"]*1 !== 0) && $updatedData["account_address_description"]){//update account_address
                        
                         /*Account Address*/

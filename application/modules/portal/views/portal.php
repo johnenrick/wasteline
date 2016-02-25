@@ -110,7 +110,7 @@
 
                                         </p>
                                         <input name="account_type_ID" type="hidden" value="2">
-                                        <input name="status" type="hidden" value="3">
+                                        <input name="status" type="hidden" value="1">
                                         <div class="form-group label-floating">
                                             <label class="control-label">First Name</label>
                                             <input name="first_name" type="text" class="form-control-light form-control" required="true">

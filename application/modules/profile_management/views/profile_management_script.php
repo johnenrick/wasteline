@@ -53,7 +53,10 @@
     };
     profileManagement.initializeWebMap = function(){
         if(typeof profileManagement.webMap === "undefined"){
-            profileManagement.webMap = new WebMapComponent("#profileManagementWebMap");
+            profileManagement.webMap = new WebMapComponent("#profileManagementWebMap", {
+                gps_location : true,
+                search_location : true
+            });
             profileManagement.webMap.selectLocation(profileManagement.changeAddress);
             profileManagement.webMap.getCurrentLocationCallBack = profileManagement.changeAddress;
             profileManagement.viewProfile();
@@ -106,11 +109,11 @@
                     $("#profileManagementForm").find("input[name='password']").val("");
                     $("#profileManagementForm").find("input[name='confirm_password']").val("");
                     profileManagement.viewProfile();
-
-
                 }else{
                     show_form_error($("#profileManagementForm"), response["error"]);
-                    $(".wl-pro-edit").mCustomScrollbar("scrollTo",".formMessage");
+                    $(".wl-pro-edit").mCustomScrollbar("scrollTo",".formMessage", {
+                        scrollInertia:100
+                    });
                 }
                 $("#profileManagementForm").find(".submitButton").button("reset");
             }
