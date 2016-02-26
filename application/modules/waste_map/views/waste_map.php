@@ -67,13 +67,13 @@
 <div id="wl-footer-content" class="wl-footer-map">
     <div class="row form-inline">
         <div class="col-md-7">
-            <a class="btn btn-default capitalize wl-map-filter wl-active" filter_type="1"  data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to display Garbages"><span class="circle"></span>Users</a>
-            <a class="btn btn-default capitalize wl-map-filter wl-active" filter_type="2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to display Services"><span class="circle"></span>Services</a>
-            <a class="btn btn-default capitalize wl-map-filter wl-active" filter_type="3" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to display Reports"><span class="circle"></span>Garbage Report</a>
-            <a class="btn btn-default capitalize wl-map-filter wl-active" filter_type="4" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to display Dumping Locations"><span class="circle"></span>Dumping Area</a>
+            <a class="btn btn-default capitalize wl-map-filter" filter_type="1"  data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to display Garbages"><span class="circle"></span>Users</a>
+            <a class="btn btn-default capitalize wl-map-filter" filter_type="2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to display Services"><span class="circle"></span>Services</a>
+            <a class="btn btn-default capitalize wl-map-filter" filter_type="3" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to display Reports"><span class="circle"></span>Garbage Report</a>
+            <a class="btn btn-default capitalize wl-map-filter" filter_type="4" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to display Dumping Locations"><span class="circle"></span>Dumping Area</a>
         </div>
         <div class="col-md-5 wasteMapLGUFilter" style="display: none">
-            <a class="btn btn-default capitalize wl-map-filter wl-active" filter_type="5" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to display Heat Map"><span class="circle" ></span>Heat Map</a>
+            <a class="btn btn-default capitalize wl-map-filter" filter_type="5" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to display Heat Map"><span class="circle" ></span>Heat Map</a>
             <input type="text" filter_type="6" class="wasteMapDateFilter form-control floating-label wl-map-date wl-datetimepicker" placeholder="Start Date">
             <span>to</span>
             <input type="text" filter_type="7" class="wasteMapDateFilter form-control floating-label wl-map-date wl-datetimepicker" placeholder="End Date">

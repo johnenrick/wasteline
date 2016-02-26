@@ -100,17 +100,20 @@ class API_Controller extends MX_Controller{
         return count(array_filter(array_keys($array), 'is_string')) > 0;
     }
     public function sendEmail($subject, $recipient, $message){
-        $config['protocol']    = 'smtp';
-        $config['smtp_host']    = 'ssl://smtp.gmail.com';
-        $config['smtp_port']    = '465';
-        $config['smtp_timeout'] = '7';
-        $config['smtp_user']    = 'thesis.wasteline@gmail.com';
-        $config['smtp_pass']    = 'W@5t3l1n3();';
-        $config['charset']    = 'utf-8';
-        $config['newline']    = "\r\n";
-        $config['mailtype'] = 'text'; // or html
-        $config['validation'] = TRUE; // bool whether to validate email or not   
-        
+//        $config['protocol']    = 'smtp';
+//        $config['smtp_host']    = 'ssl://smtp.gmail.com';
+//        $config['smtp_port']    = '465';
+//        $config['smtp_timeout'] = '7';
+//        $config['smtp_user']    = 'thesis.wasteline@gmail.com';
+//        $config['smtp_pass']    = 'W@5t3l1n3();';
+//        $config['charset']    = 'utf-8';
+//        $config['newline']    = "\r\n";
+//        $config['mailtype'] = 'text'; // or html
+//        $config['validation'] = TRUE; // bool whether to validate email or not   
+        $config['protocol'] = "sendmail";
+        $config['mailpath'] = "/usr/sbin/sendmail";
+        $config['charset'] = "iso-8859-1";
+        $config['wordwrap'] = TRUE;
         $this->load->library('email');
         $this->email->initialize($config); 
         $this->email->from('thesis.wasteline@gmail.com', 'Wasteline.com');
