@@ -989,7 +989,7 @@ ul.sidebar-nav li a {
 
 /* LGU Management*/
 
-#LGUManagement, #userManagement {
+#LGUManagement, #userManagement, #reportManagement {
     background-color: white;
     border-top: 2px #eee solid;
 }
