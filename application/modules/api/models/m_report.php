@@ -35,9 +35,9 @@ class M_report extends API_Model{
         );
         $selectedColumn = array(
             "report.*",
-            "report_type.description AS report_type_description",
+            "report_type.description AS reporter_type_description",
             "map_marker.ID AS map_marker_ID, map_marker.longitude, map_marker.latitude, map_marker.map_marker_type_ID",
-            "account_basic_information.first_name as report_first_name, account_basic_information.middle_name as report_middle_name, account_basic_information.last_name as report_last_name"
+            "account_basic_information.first_name as reporter_first_name, account_basic_information.middle_name as reporter_middle_name, account_basic_information.last_name as reporter_last_name"
         );
         
         return $this->retrieveTableEntry($retrieveType, $limit, $offset, $sort, $ID, $condition, $selectedColumn, $joinedTable);
