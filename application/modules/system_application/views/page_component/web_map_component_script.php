@@ -69,14 +69,12 @@
             dumping_area : new pointers({iconUrl:asset_url('images/dumpingarea.png')}),
             report : new pointers({iconUrl:asset_url('images/report.png')}),
             service : new pointers({iconUrl:asset_url('images/services.png')}),
-            user_location : new pointers({iconUrl:asset_url('images/marker-icon-2x.png')})
+            user_location : new pointers({iconUrl:asset_url('images/userlocation.png')})
         };
         
         /*Events*/
         /* attaching function on map click*/
-        webMapComponent.map.on('click', function(e){
-            webMapComponent.onMapClick(e);
-        });
+        
         /*GPS*/
         webMapComponent.map.on("moveend", function(){
             //console.log(webMapComponent.map.getBounds());
@@ -97,6 +95,9 @@
                     });
                 };
             }
+            webMapComponent.map.on('click', function(e){
+                webMapComponent.onMapClick(e);
+            });
         };
         /*GPS Button*/
         if(config.search_location){
@@ -110,7 +111,6 @@
             }).addTo( webMapComponent.map );
         }
         webMapComponent.heatMapLayer = new L.FeatureGroup();
-        webMapComponent.map.addLayer(webMapComponent.heatMapLayer);
         webMapComponent.tileLayer.on("load", function(){
             if(config.heat_layer){
                 webMapComponent.heatLayer = false;
@@ -181,13 +181,12 @@
          * @returns {undefined}         
          */
         webMapComponent.addMarker = function(ID, mapMarkerType, associatedID, description, longitude, latitude, draggable, popUpContent){
+            if(longitude === null || latitude === null || latitude === "" || longitude === ""){
+                return false;
+            }
+            
             if(typeof webMapComponent.markerList[ID] !== "undefined" && mapMarkerType*1 !== 6){
-                if(ID*1 === -1){
-                    webMapComponent.map.removeLayer(webMapComponent.markerList[ID]);
-                }else{
-                    webMapComponent.markerCluster.removeLayer(webMapComponent.markerList[ID]);
-                }
-                delete webMapComponent.markerList[ID];
+                webMapComponent.removeMarkerList(ID);
             }
             var markerOption = {
                 map_marker_ID : ID*1,
@@ -228,9 +227,7 @@
             }
             webMapComponent.markerList[ID] = new L.Marker([latitude*1, longitude*1], markerOption);
             webMapComponent.markerList[ID].bindLabel(description, labelOption);
-            
-            if(ID*1 === -1 || (markerOption.draggable)){
-                console.log([latitude*1, longitude*1])
+            if(ID*1 === -1 || (markerOption.draggable) || mapMarkerType*1 === 5){
                 webMapComponent.map.addLayer(webMapComponent.markerList[ID]);
             }else{
                 webMapComponent.markerCluster.addLayer(webMapComponent.markerList[ID]);
@@ -246,14 +243,15 @@
             return webMapComponent.markerList[ID];
         };
         webMapComponent.removeMarkerList = function(ID, markerTypeID){
-           
+        
             if(typeof webMapComponent.markerList[ID] !== "undefined" && ID !== null){
-                if(ID*1 === -1){
+                if(ID*1 === -1 || webMapComponent.markerList[ID].options.map_marker_type_ID === 5){
                     webMapComponent.mapRemoveMarkerList(ID);
                 }else{
                     webMapComponent.markerCluster.removeLayer(webMapComponent.markerList[ID]);
+                    delete webMapComponent.markerList[ID];
                 }
-              delete webMapComponent.markerList[ID];
+              
               return true;
               
             }else if(typeof markerTypeID !== "undefined"){

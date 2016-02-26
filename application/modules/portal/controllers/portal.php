@@ -72,7 +72,7 @@ class Portal extends FE_Controller{
         $this->outputResponse();
     }
     function logout(){
-        $this->createSession(false, false, false, false, false);
+        $this->createSession(false, false, false, false, false, false);
         header("Location: ".base_url());
         //$this->loadPage("portal", array("portal_script", "registration_script", "login_script"), array("message" => false));
     }
