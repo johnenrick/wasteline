@@ -42,30 +42,27 @@
                             <div class="form-group">
                                 <label  class="col-md-12 control-label">First Name:</label>
                                 <div class="col-md-12">
-                                    <input  input_name="reporter_first_name" is_data="1" type="text" class="form-control" placeholder="First Name">
-                                    <p class="help-block wl-c-gray-1">First Name</p>
+                                    <input  input_name="reporter_first_name" is_data="1" type="text" class="form-control" readonly>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label  class="col-md-12 control-label">Middle Name:</label>
                                 <div class="col-md-12">
-                                    <input input_name="reporter_middle_name" is_data="1" type="text" class="form-control"  placeholder="Middle Name">
-                                    <p class="help-block wl-c-gray-1">Middle Name</p>
+                                    <input input_name="reporter_middle_name" is_data="1" type="text" class="form-control" readonly>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label  class="col-md-12 control-label">Last Name:</label>
                                 <div class="col-md-12">
-                                    <input input_name="reporter_last_name" is_data="1" type="text" class="form-control"  placeholder="Last Name">
-                                    <p class="help-block wl-c-gray-1">Last Name</p>
+                                    <input input_name="reporter_last_name" is_data="1" type="text" class="form-control" readonly>
                                 </div>
                             </div>
                            
                             <div class="form-group">
                                 <label  class="col-md-12 control-label">Report Detail:</label>
                                 <div class="col-md-12">
-                                    <input input_name="detail" is_data="1" type="email" class="form-control"  placeholder="Email Address">
-                                    <p class="help-block wl-c-gray-1">Report Detail</p>
+                                    <input input_name="detail" is_data="1" type="email" class="form-control" readonly>
+                                   
                                 </div>
                             </div>
                         </div>
