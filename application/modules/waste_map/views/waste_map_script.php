@@ -76,6 +76,7 @@
                         var response = JSON.parse(data);
                         if(!response["error"].length){
                             wasteMap.webMap.markerList[mapMarkerID].closePopup();
+                            
                         }
                     });
                 });

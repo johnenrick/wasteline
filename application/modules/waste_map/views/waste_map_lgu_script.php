@@ -168,9 +168,11 @@
             wasteMap.webMap.selectLocation(wasteMap.openDumpingLocationForm);//open a dumping location form if the map is clicked)
             wasteMap.webMap.tileLayer.on("load", function(){
                 wasteMap.filterFunction["5"] = function(){
+                    wasteMap.webMap.map.addLayer(wasteMap.webMap.heatMapLayer);
                     $(".wasteMapDateFilter").trigger("change");
                 };
                 wasteMap.filterFunction["not_5"] = function(){
+                    wasteMap.webMap.map.removeLayer(wasteMap.webMap.heatMapLayer);
                     wasteMap.webMap.heatLayer.setLatLngs([]);
                 };
                 if($(".wl-map-filter[filter_type=5]").hasClass("wl-active")){

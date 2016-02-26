@@ -83,7 +83,6 @@
         $.post(api_url("C_account/retrieveAccount"), {ID : accountID}, function(data){
            var response = JSON.parse(data);
            if(!response["error"].length){
-               
                 $("#userManagementUserDetailForm").attr("action", api_url("C_account/updateAccount"));
                 $("#userManagementUserDetailForm").find("input[is_data=1]").each(function(){
                     $(this).attr("name", "updated_data["+$(this).attr("input_name")+"]");
@@ -118,17 +117,29 @@
                 $("#userManagementTableContainer").find(".tableComponentTable .userManagementTableViewDetail").button("reset");
                 setTimeout(function(){
                     if(userManagement.isMapInitialized){
-                        console.log(response);
-                        userManagement.webMap = new WebMapComponent("#userManagementDetailMapContainer");
-                        userManagement.webMap.addMarker(
-                                $("#userManagementUserDetailForm").find("[name=account_address_map_marker_ID]").val(), 
-                                1, 
-                                $("#userManagementUserDetailForm").find("[name=account_address_ID]").val(), 
-                                $("#userManagementUserDetailForm").find("[name=account_address_description]").val(), 
-                                $("#userManagementUserDetailForm").find("[name=account_address_longitude]").val(), 
-                                $("#userManagementUserDetailForm").find("[name=account_address_latitude]").val()
-                                );
-                        userManagement.webMap.setView($("#userManagementUserDetailForm").find("[name=account_address_latitude]").val(), $("#userManagementUserDetailForm").find("[name=account_address_longitude]").val())
+                        if(typeof userManagement.webMap === "undefined"){
+                            userManagement.webMap = new WebMapComponent("#userManagementDetailMapContainer");
+                        }
+                        if(typeof userManagement.webMap !== "undefined" ){
+                            for(var x in userManagement.webMap.markerList){
+                                if(x*1 > 0){
+                                    userManagement.webMap.removeMarkerList(x);
+                                }
+                            }
+                            if($("#userManagementUserDetailForm").find("[name=account_address_map_marker_ID]").val() !== ""){
+                                userManagement.webMap.addMarker(
+                                        $("#userManagementUserDetailForm").find("[name=account_address_map_marker_ID]").val(), 
+                                        1, 
+                                        $("#userManagementUserDetailForm").find("[name=account_address_ID]").val(), 
+                                        $("#userManagementUserDetailForm").find("[name=account_address_description]").val(), 
+                                        $("#userManagementUserDetailForm").find("[name=account_address_longitude]").val(), 
+                                        $("#userManagementUserDetailForm").find("[name=account_address_latitude]").val()
+                                        );
+                                userManagement.webMap.setView($("#userManagementUserDetailForm").find("[name=account_address_latitude]").val(), $("#userManagementUserDetailForm").find("[name=account_address_longitude]").val());
+                            }
+                        }
+                    }else{
+                        
                     }
                 },500);
            }
@@ -164,49 +175,6 @@
                     
                 }
             });
-        });
-        
-        $("#userManagementUserDetailForm").validator();
-        $("#userManagementUserDetailForm").attr("action", api_url("C_account/createAccount"));
-        $("#userManagementUserDetailForm").ajaxForm({
-            beforeSubmit : function(data){
-                //If Update
-                if(($("#userManagementUserDetailForm").attr("action") === api_url("C_account/updateAccount"))){
-                    if($("#userManagementUserDetailForm").find("input[input_name='password']").val() === ""){
-                        data.splice(11,1);
-                    }
-                    if($("#userManagementUserDetailForm").find("input[input_name='username']").val() === $("#userManagementUserDetailForm").find("input[input_name='username']").attr("initial_value")){
-                        data.splice(10,1);
-                    }
-                    if($("#userManagementUserDetailForm").find("input[input_name='email_detail']").val() === $("#userManagementUserDetailForm").find("input[input_name='email_detail']").attr("initial_value")){
-                        data.splice(9,1);
-                        data.splice(8,1);
-                    }
-                }
-                //match password
-                if( $("#userManagementUserDetailForm").find("input[input_name='password']").val() !== $("#userManagementUserDetailForm").find("input[input_name='confirm_password']").val()){
-                    $("#userManagementUserDetailForm").find(".formMessage").text("* Password mismatch");
-                    $("#userManagementUserDetailForm").find("input[input_name='password']").val("");
-                    $("#userManagementUserDetailForm").find("input[input_name='confirm_password']").val("");
-                    $("#userManagementUserDetailForm").find("input[input_name='password']").trigger("change");
-                    $("#userManagementUserDetailForm").find("input[input_name='confirm_password']").trigger("change");
-                    return false;
-                }
-                $("#userManagementUserDetailForm").find("button[type='submit']").button("loading");
-            },
-            success : function(data){
-                console.log(data);
-                var response = JSON.parse(data);
-                clear_form_error($("#userManagementUserDetailForm"));
-                $("#userManagementUserDetailForm").find("button[type='submit']").button("reset");
-                if(!response["error"].length){
-                    userManagement.viewUserDetail(($("#userManagementUserDetailForm").find("[name=ID]").val()*1) ? $("#userManagementUserDetailForm").find("[name=ID]").val() : response["data"]);
-                    userManagement.userManagementTable.refreshResult();
-                }else{
-                    show_form_error($("#userManagementUserDetailForm"), response["error"]);
-                }
-                
-            }
         });
         
     });

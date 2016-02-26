@@ -19,17 +19,12 @@
                 $("#profileManagementForm").find("[name='updated_data[account_address_map_marker_ID]']").val((response["data"]["account_address_map_marker_ID"]*1 === 0) ? -1 : response["data"]["account_address_map_marker_ID"] );
                 $("#profileManagementForm").find("[name='updated_data[account_address_longitude]']").val(response["data"]["account_address_longitude"]);
                 $("#profileManagementForm").find("[name='updated_data[account_address_latitude]']").val(response["data"]["account_address_latitude"]);
-                profileManagement.webMap.mapRemoveMarkerList(-1);
-                profileManagement.webMap.mapRemoveMarkerList(response["data"]["account_address_map_marker_ID"]);
-                console.log(response["data"]["account_address_map_marker_ID"]);
                 if(response["data"]["account_address_longitude"]*1 &&  response["data"]["account_address_latitude"]*1){
-                    
-                    profileManagement.webMap.selectedLocation = profileManagement.webMap.addMarker((response["data"]["account_address_map_marker_ID"]*1 === 0) ? -1: response["data"]["account_address_map_marker_ID"], 5, response["data"]["account_address_ID"], "Your saved current locations", response["data"]["account_address_longitude"]*1, response["data"]["account_address_latitude"]*1, false);
+                    profileManagement.changeAddress({
+                        lat : response["data"]["account_address_latitude"], 
+                        lng : response["data"]["account_address_longitude"]
+                    });
                     profileManagement.webMap.setView(response["data"]["account_address_latitude"], response["data"]["account_address_longitude"]);
-                    profileManagement.webMap.selectedLocation.on("dragend", function(e){
-                        console.log(e);
-                        profileManagement.changeAddress(e.target._latlng);
-                    })
                 }
                 /*profile summary*/
                 $("#profileManagementFullName").text(response["data"]["first_name"]+" "+response["data"]["middle_name"]+" "+response["data"]["last_name"]);
@@ -48,8 +43,7 @@
         $("#profileManagementForm").find("[name='updated_data[account_address_longitude]']").val(latlng.lng);
         $("#profileManagementForm").find("[name='updated_data[account_address_latitude]']").val(latlng.lat);
         $("#profileManagementForm").find("[name='updated_data[account_address_description]']").trigger("focus");
-        profileManagement.webMap.removeMarkerList($("#profileManagementForm").find("[name='updated_data[account_address_map_marker_ID]']").val());
-        profileManagement.webMap.selectedLocation = profileManagement.webMap.addMarker($("#profileManagementForm").find("[name='updated_data[account_address_map_marker_ID]']").val(), 5, $("#profileManagementForm").find("[name='updated_data[account_address_ID]']").val(), "Your saved current location", latlng.lng*1, latlng.lat*1, false);
+        profileManagement.webMap.selectedLocation = profileManagement.webMap.addMarker($("#profileManagementForm").find("[name='updated_data[account_address_map_marker_ID]']").val(), 5, $("#profileManagementForm").find("[name='updated_data[account_address_ID]']").val(), "Your saved current location", latlng.lng*1, latlng.lat*1, true);
         profileManagement.webMap.selectedLocation.on("dragend", function(e){
             profileManagement.changeAddress(e.target._latlng);
         })
