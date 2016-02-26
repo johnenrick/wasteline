@@ -40,20 +40,11 @@
         });
         //Default Configuration
         config = (typeof config === "undefined") ? {} : config;
-        console.log(config);
         config = {
             heat_layer : (typeof config.heat_layer === "undefined") ? false : config.heat_layer,
             gps_location : (typeof config.gps_location === "undefined") ? false : config.gps_location,
             search_location : (typeof config.search_location === "undefined") ? false : config.search_location,
         };
-        console.log(config);
-        webMapComponent.heatLayer = false;
-        webMapComponent.tileLayer.on("load", function(){
-            if(config.heat_layer){
-                webMapComponent.heatLayer = L.heatLayer([], {maxZoom : 20, max : 0.5, gradient : {0.3: 'yellow', 0.65: 'orange', 1: 'red'} });
-                webMapComponent.map.addLayer(webMapComponent.heatLayer);
-            }
-        });
         
         webMapComponent.map = L.map(mapNumber).setView([10.343, 123.919], 16).addLayer(webMapComponent.tileLayer);
         
@@ -107,6 +98,26 @@
                 };
             }
         };
+        /*GPS Button*/
+        if(config.search_location){
+            webMapComponent.osmGeocoder = new L.Control.OSMGeocoder({collapsed : false, text:"Find"});
+            webMapComponent.map.addControl(webMapComponent.osmGeocoder, {position: 'topright'});
+        }
+        if(config.gps_location){
+            webMapComponent.map.addControl( new L.Control.Gps({autoActive:false}) );
+            L.easyButton('<span class="fa fa-map-marker" style="font-size:20px;color:green"></span>', function(){
+                webMapComponent.indicateCurrentLocation(webMapComponent.getCurrentLocationCallBack);
+            }).addTo( webMapComponent.map );
+        }
+        webMapComponent.heatMapLayer = new L.FeatureGroup();
+        webMapComponent.map.addLayer(webMapComponent.heatMapLayer);
+        webMapComponent.tileLayer.on("load", function(){
+            if(config.heat_layer){
+                webMapComponent.heatLayer = false;
+                webMapComponent.heatLayer = L.heatLayer([], {maxZoom : 20, max : 0.5, gradient : {0.3: 'yellow', 0.65: 'orange', 1: 'red'} });
+                webMapComponent.heatMapLayer.addLayer(webMapComponent.heatLayer);
+            }
+        });
         /**
         * Get the current location of the user, then pass the result to the callback 
         * @param {type} callBack
@@ -125,6 +136,7 @@
                 callBack(false);
             });
         };
+        
         /**
         * Indicate the current location of the user in the map
         * @param {function} callback called after getting the location
@@ -169,12 +181,10 @@
          * @returns {undefined}         
          */
         webMapComponent.addMarker = function(ID, mapMarkerType, associatedID, description, longitude, latitude, draggable, popUpContent){
-            
             if(typeof webMapComponent.markerList[ID] !== "undefined" && mapMarkerType*1 !== 6){
                 if(ID*1 === -1){
                     webMapComponent.map.removeLayer(webMapComponent.markerList[ID]);
                 }else{
-                     
                     webMapComponent.markerCluster.removeLayer(webMapComponent.markerList[ID]);
                 }
                 delete webMapComponent.markerList[ID];
@@ -216,17 +226,15 @@
                     labelOption.noHide = true;
                     break;
             }
-            webMapComponent.markerList[ID] = new L.Marker([latitude, longitude], markerOption);
+            webMapComponent.markerList[ID] = new L.Marker([latitude*1, longitude*1], markerOption);
             webMapComponent.markerList[ID].bindLabel(description, labelOption);
             
             if(ID*1 === -1 || (markerOption.draggable)){
+                console.log([latitude*1, longitude*1])
                 webMapComponent.map.addLayer(webMapComponent.markerList[ID]);
             }else{
                 webMapComponent.markerCluster.addLayer(webMapComponent.markerList[ID]);
                 
-            }
-            if(ID*1 === 6){
-                webMapComponent.markersLayer.addLayer(webMapComponent.markerList[ID]);
             }
             if(mapMarkerType*1 === 5){
                 webMapComponent.selectedLocation = webMapComponent.markerList[ID];
@@ -272,7 +280,9 @@
           }
         };
         webMapComponent.addHeat = function(latlng){
-            webMapComponent.heatLayer.addLatLng(latlng);
+            if(config.heat_layer){
+                webMapComponent.heatLayer.addLatLng(latlng);
+            }
             
         };
         /*Banilad*/
@@ -287,18 +297,7 @@
         webMapComponent.getCurrentLocationCallBack = function(latlng){
             
         };
-        /*GPS Button*/
         
         webMapComponent.map._onResize(); 
-        if(config.search_location){
-            webMapComponent.osmGeocoder = new L.Control.OSMGeocoder({collapsed : false, text:"Find"});
-            webMapComponent.map.addControl(webMapComponent.osmGeocoder, {position: 'topright'});
-        }
-        if(config.gps_location){
-            webMapComponent.map.addControl( new L.Control.Gps({autoActive:false}) );
-            L.easyButton('<span class="fa fa-map-marker" style="font-size:20px;color:green"></span>', function(){
-                webMapComponent.indicateCurrentLocation(webMapComponent.getCurrentLocationCallBack);
-            }).addTo( webMapComponent.map );
-        }
     };
 </script>

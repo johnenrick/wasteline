@@ -1,5 +1,5 @@
 <?php
-
+date_default_timezone_set('Asia/Manila');
 /* Created by John Enrick Pleños */
 class API_Controller extends MX_Controller{
     /**
@@ -120,7 +120,7 @@ class API_Controller extends MX_Controller{
         $this->email->subject($subject);
         $this->email->message($message);	
 
-        return 1;//$this->email->send();
+        return $this->email->send();
 
         //echo $this->email->print_debugger();
     }

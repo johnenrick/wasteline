@@ -65,7 +65,7 @@
         });
     }
     function refresh_session(){
-        $.post(base_url("Portal/refreshSession"), {}, function(data){
+        $.post(base_url("portal/refreshSession"), {}, function(data){
             var response = JSON.parse(data);
             if(!response["error"].length){
                 system_data.account_information.user_ID = response["data"]["ID"];
@@ -142,8 +142,12 @@
      * @returns {undefined}
      */
     function add_refresh_call(moduleName, refreshFunction){
+        
         if(typeof system_data.refresh_call[moduleName] === "undefined"){
             system_data.refresh_call[moduleName] = [];
+        }
+        if($(".wl-active-page").attr("module_name") === moduleName){
+            refreshFunction();
         }
         system_data.refresh_call[moduleName].push(refreshFunction);
     }

@@ -109,7 +109,7 @@
                                         <p class="formMessage" style="color:white" >
 
                                         </p>
-                                        <input name="account_type_ID" type="hidden" value="2">
+                                        <input name="account_type_ID" type="hidden" value="4">
                                         <input name="status" type="hidden" value="1">
                                         <div class="form-group label-floating">
                                             <label class="control-label">First Name</label>
