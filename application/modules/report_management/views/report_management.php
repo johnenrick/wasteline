@@ -60,9 +60,9 @@
                            
                             <div class="form-group">
                                 <label  class="col-md-12 control-label">Report Detail:</label>
-                                <div class="col-md-12">
-                                    <input input_name="detail" is_data="1" type="email" class="form-control" readonly>
-                                   
+                                <div class="col-md-12"><br>
+                                        <textarea rows="5" cols="47" input_name="detail" is_data="1" type="text" readonly>
+                                    </textarea>
                                 </div>
                             </div>
                         </div>
@@ -83,10 +83,10 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button status="3" type="button" class="reportManagementUserDetailChangeAccountStatus btn btn-warning pull-left ">Resolve</button>
+                    <button status="2" type="button" class="reportManagementUserDetailChangeAccountStatus btn btn-warning pull-left ">Resolve</button>
                     <button status="1" type="button" class="reportManagementUserDetailChangeAccountStatus btn btn-info pull-left">Ongoing</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit"  class="btn btn-primary">Submit</button>
+                    
                 </div>
                 </div>
             </form>

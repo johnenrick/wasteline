@@ -114,11 +114,11 @@
                 $("#reportManagementUserDetailForm").find("[input_name=detail]").val(response["data"]["detail"]);
                 $("#reportManagementUserDetail").modal("show");
                 if(response["data"]["status"]*1 === 1){
-                    $(".reportManagementUserDetailChangeAccountStatus[status=3]").show();
+                    $(".reportManagementUserDetailChangeAccountStatus[status=2]").show();
                     $(".reportManagementUserDetailChangeAccountStatus[status=1]").hide();
                     $("#reportManagementUserDetailDeactiveNotice").hide();
-                }else if(response["data"]["status"]*1 === 3){
-                    $(".reportManagementUserDetailChangeAccountStatus[status=3]").hide();
+                }else if(response["data"]["status"]*1 === 2){
+                    $(".reportManagementUserDetailChangeAccountStatus[status=2]").hide();
                     $(".reportManagementUserDetailChangeAccountStatus[status=1]").show();
                     $("#reportManagementUserDetailDeactiveNotice").show();
                 }
