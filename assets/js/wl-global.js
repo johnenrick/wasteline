@@ -129,6 +129,5 @@ $(document).ready(function () {
         }
     });
 
-    $( ".wl-draggable" ).draggable();
 
 });
