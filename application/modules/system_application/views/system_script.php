@@ -75,10 +75,10 @@
                 system_data.account_information.username = response["data"]["username"];
                 system_data.account_information.user_type = response["data"]["user_type"];
                 system_data.account_information.account_type = response["data"]["account_type_ID"];
-                
+
                 $("#headerUserFullName").text(user_first_name()+" "+user_last_name());
                 $("#headerUserImg").initial({name:((user_first_name()+"").charAt(0)+(user_last_name()+"").charAt(0)).toUpperCase()});
-                
+
                 $("#headerUserImg").height("30px");
                 $("#headerUserImg").width("30px");
             }else{
@@ -94,13 +94,14 @@
             }
         });
     }
-    
+
 </script>
 <!--Modularization-->
 <script>
     /*Loading Modules*/
     function load_module(moduleLink, moduleName){
         if($("#moduleContainer").find(".moduleHolder[module_link='"+moduleLink+"']").length === 0){
+            $('.wl-page-content:not(.moduleHolder[module_link="'+moduleLink+'"])').hide();
             $.post(base_url(moduleLink), {}, function(data){
                 /*CHECK IF JSON OR HTML FOR AUTHORIZATION*/
 
@@ -111,7 +112,6 @@
                 moduleHolder.append(data);
                 $("#moduleContainer").append(moduleHolder);
                 /*show page*/
-                $('.wl-page-content:not(.moduleHolder[module_link="'+moduleLink+'"])').hide();
                 if($('.moduleHolder[module_link="'+moduleLink+'"]').is(":visible") === false){
                     $('.moduleHolder[module_link="'+moduleLink+'"]').fadeIn(500);
                     refresh_call(moduleName);
@@ -143,7 +143,7 @@
      * @returns {undefined}
      */
     function add_refresh_call(moduleName, refreshFunction){
-        
+
         if(typeof system_data.refresh_call[moduleName] === "undefined"){
             system_data.refresh_call[moduleName] = [];
         }
