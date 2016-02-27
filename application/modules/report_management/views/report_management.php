@@ -61,8 +61,7 @@
                             <div class="form-group">
                                 <label  class="col-md-12 control-label">Report Detail:</label>
                                 <div class="col-md-12"><br>
-                                        <textarea rows="5" cols="47" input_name="detail" is_data="1" type="text" readonly>
-                                    </textarea>
+                                        <input input_name="detail" is_data="1" type="text"class="form-control" readonly>
                                 </div>
                             </div>
                         </div>
