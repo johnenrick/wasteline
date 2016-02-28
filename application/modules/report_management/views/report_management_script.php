@@ -153,6 +153,9 @@
                 var response = JSON.parse(data);
                 if(!response["data"].length){
                     reportManagement.viewUserDetail($("#reportManagementUserDetailForm").find("[name=ID]").val());
+                    var id = $("#reportManagementUserDetailForm").find("[name=ID]").val();
+                    var status = ($(".reportManagementUserDetailChangeAccountStatus").attr("status")*1 === 1)? "Resolved" : "Ongoing";
+                    $("#reportManagementTableContainer").find("table.tableComponentTable tr[account_id='"+ id +"']").find("td.reportManagementStatus").text(status);
                 }else{
 
                 }
