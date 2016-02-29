@@ -90,10 +90,10 @@ class C_account extends API_Controller {
     public function retrieveAccount(){
         $this->accessNumber = 2;
         if($this->checkACL() && user_id()){
-            if(user_type() == 2 || user_type() == 4){
+            if(user_type() == 2 || user_type() == 4){// accessNumber = 16
                 $this->form_validation->set_rules('ID', 'ID', 'required');
             }
-            if($this->form_validation->run() || !(user_type() == 2 || user_type() == 4)){
+            if($this->form_validation->run() || !(user_type() == 2 || user_type() == 4)){//accessNumber 32 
                 $ID = $this->input->post("ID");
                 $result = $this->m_account->retrieveAccount(
                         $this->input->post("retrieve_type"),
@@ -103,7 +103,6 @@ class C_account extends API_Controller {
                         $ID,
                         $this->input->post("condition")
                         );
-                $this->responseDebug($ID);
                 if($this->input->post("limit")){
                     $this->responseResultCount($this->m_account->retrieveAccount(
                         1,
@@ -186,7 +185,7 @@ class C_account extends API_Controller {
                 $updatedData = $this->input->post('updated_data');
                 $ID = $this->input->post('ID');
                 $condition = $this->input->post("condition");
-                if(user_type() == 2 || user_type() == 4){// 32 - Dont allow to change account type if not admin or LGU
+                if(user_type() == 2 || user_type() == 4){// accessNumber 16 Dont allow to change account type if not admin or LGU
                     if($this->input->post("account_type_ID")){
                         $updatedData["account_type_ID"] = user_type();
                     }

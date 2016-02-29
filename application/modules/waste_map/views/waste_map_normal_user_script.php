@@ -114,6 +114,7 @@
                 
             });
         });
+        $(".prototype").find(".wasteMapOwnWaste .wasteMapUserOption").show();
     });
 
 

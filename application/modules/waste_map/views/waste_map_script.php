@@ -40,7 +40,6 @@
                 var accountID = $(e.target._popup._contentNode).find("[name=account_ID]").val();
                 $.post(api_url("C_account/retrieveAccount"), {ID : accountID, with_waste_post : true}, function(data){
                     var response = JSON.parse(data);
-                    console.log(response);
                     if(!response["error"].length){
                         $(e.target._popup._contentNode).find(".panel-title span").text((response["data"]["first_name"]+" "+(response["data"]["middle_name"]+"").charAt(0)+(response["data"]["middle_name"] !== "" ? ".":"")+" "+response["data"]["last_name"]).toUpperCase());
                         $(e.target._popup._contentNode).find(".wasteMapOwnWasteEmailDetail").text(response["data"]["email_detail"]);
@@ -58,6 +57,7 @@
                                         );
                                 if(wastePost[x]["waste_post_type_ID"]*1 === 1){
                                     $(e.target._popup._contentNode).find(".wasteMapLGUOption button").show();
+                                    $(e.target._popup._contentNode).find(".wasteMapUserOption button").show();
                                 }
                                 
                             }
@@ -69,7 +69,7 @@
                 
                 
                 
-                /*Collect*/
+                /*Collect*//*Admin*/
                 $(e.target._popup._contentNode).find("button[button_action=1]").click(function(){
                     var mapMarkerID = e.target.options.map_marker_ID;
                     $.post(api_url("C_waste_post/updateWastePost"), {condition : {account_ID : accountID, waste_post_type_ID:1, status : 1}, updated_data : {status : 2 }}, function(data){
@@ -187,14 +187,15 @@
             $(".wasteMapDateFilter[filter_type=6]").trigger("change");
         });
         add_refresh_call("waste_map", function(){
-            wasteMap.addInitFunction(function(){
-                $.post(api_url("C_account/retrieveAccount"), {ID:user_id()}, function(data){
-                    var response = JSON.parse(data);
-                    if(!response.length){
-                        wasteMap.webMap.addMarker(response["data"]["account_address_map_marker_ID"], 5, response["data"]["acount_address_ID"], response["data"]["account_address_description"], response["data"]["account_address_longitude"], response["data"]["account_address_latitude"], false, wasteMap.createOwnWasteForm(response["data"]["account_address_map_marker_ID"], response["data"]["account_ID"]));
-                        wasteMap.bindOwnWasteFormAction(response["data"]["account_address_map_marker_ID"]);
-                    }
-                });
+            $.post(api_url("C_account/retrieveAccount"), {ID:user_id()}, function(data){
+                var response = JSON.parse(data);
+                if(!response["error"].length){
+                    wasteMap.webMap.addMarker(response["data"]["account_address_map_marker_ID"], 5, response["data"]["acount_address_ID"], response["data"]["account_address_description"], response["data"]["account_address_longitude"], response["data"]["account_address_latitude"], false, wasteMap.createOwnWasteForm(response["data"]["account_address_map_marker_ID"], response["data"]["account_ID"]));
+                    wasteMap.bindOwnWasteFormAction(response["data"]["account_address_map_marker_ID"]);
+                }else{
+                    //show_system_message(response["error"][0]["status"]*20, 2, response["error"][0]["message"]);
+                    console.log(response);
+                }
             });
         });
     });

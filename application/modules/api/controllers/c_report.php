@@ -68,7 +68,7 @@ class C_report extends API_Controller {
     public function retrieveReport(){
         $this->accessNumber = 2;
         $condition = ($this->input->post("condition")) ? $this->input->post("condition") : array();
-        if(user_type() != 3){
+        if(user_type() != 3){//accessNumber 16 if normal user
             $condition["reporter_account_ID"] = user_id();
         }
         if($this->checkACL()){
@@ -125,7 +125,7 @@ class C_report extends API_Controller {
         }
         $this->outputResponse();
     }
-    public function deleteReport(){
+        public function deleteReport(){
         $this->accessNumber = 8;
         if($this->checkACL()){
             $condition = $this->input->post("condition");

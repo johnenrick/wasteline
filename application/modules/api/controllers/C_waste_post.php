@@ -55,6 +55,83 @@ class C_waste_post extends API_Controller {
         }
         $this->outputResponse();
     }
+    
+    public function retrieveWastePost(){
+        $this->accessNumber = 2;
+        if($this->checkACL()){
+            $result = $this->m_waste_post->retrieveWastePost(
+                    $this->input->post("retrieve_type"),
+                    $this->input->post("limit"),
+                    $this->input->post("offset"), 
+                    $this->input->post("sort"),
+                    $this->input->post("ID"), 
+                    $this->input->post("condition")
+                    );
+            if($this->input->post("limit")){
+                $this->responseResultCount($this->m_waste_post->retrieveWastePost(
+                    1,
+                    NULL,
+                    NULL,
+                    NULL,
+                    $this->input->post("ID"), 
+                    $this->input->post("condition")
+                    ));
+            }
+            if($result){
+                $this->actionLog(json_encode($this->input->post()));
+                $this->responseData($result);
+            }else{
+                $this->responseError(2, "No Result");
+            }
+        }else{
+            $this->responseError(1, "Not Authorized");
+        }
+        $this->outputResponse();
+    }
+    public function updateWastePost(){
+        $this->accessNumber = 4;
+        if($this->checkACL()){
+            $condition = $this->input->post("condition");
+            $updatedData = $this->input->post("updated_data");
+            if(user_type() == 2){//accessNumber 128 if verified normal user
+                $condition["account_ID"] = user_id();
+                $updatedData["account_ID"] = user_id();
+                unset($updatedData["waste_post_type_ID"] );
+            }
+            $result = $this->m_waste_post->updateWastePost(
+                    $this->input->post("ID"),
+                    $condition,
+                    $updatedData
+                    );
+            if($result){
+                $this->actionLog(json_encode($this->input->post()));
+                $this->responseData($result);
+            }else{
+                $this->responseError(3, "Failed to Update");
+            }
+        }else{
+            $this->responseError(1, "Not Authorized");
+        }
+        $this->outputResponse();
+    }
+    public function deleteWastePost(){
+        $this->accessNumber = 8;
+        if($this->checkACL()){
+            $result = $this->m_waste_post->deleteWastePost(
+                    $this->input->post("ID"), 
+                    $this->input->post("condition")
+                    );
+            if($result){
+                $this->actionLog(json_encode($this->input->post()));
+                $this->responseData($result);
+            }else{
+                $this->responseError(3, "Failed to delete");
+            }
+        }else{
+            $this->responseError(1, "Not Authorized");
+        }
+        $this->outputResponse();
+    }
     public function batchCreateWastePost(){
         $this->accessNumber = 16;
         if($this->checkACL()){
@@ -130,82 +207,6 @@ class C_waste_post extends API_Controller {
                 }
             }else{
                 $this->responseError(2, "ID is Required");
-            }
-        }else{
-            $this->responseError(1, "Not Authorized");
-        }
-        $this->outputResponse();
-    }
-    public function retrieveWastePost(){
-        $this->accessNumber = 2;
-        if($this->checkACL()){
-            $result = $this->m_waste_post->retrieveWastePost(
-                    $this->input->post("retrieve_type"),
-                    $this->input->post("limit"),
-                    $this->input->post("offset"), 
-                    $this->input->post("sort"),
-                    $this->input->post("ID"), 
-                    $this->input->post("condition")
-                    );
-            if($this->input->post("limit")){
-                $this->responseResultCount($this->m_waste_post->retrieveWastePost(
-                    1,
-                    NULL,
-                    NULL,
-                    NULL,
-                    $this->input->post("ID"), 
-                    $this->input->post("condition")
-                    ));
-            }
-            if($result){
-                $this->actionLog(json_encode($this->input->post()));
-                $this->responseData($result);
-            }else{
-                $this->responseError(2, "No Result");
-            }
-        }else{
-            $this->responseError(1, "Not Authorized");
-        }
-        $this->outputResponse();
-    }
-    public function updateWastePost(){
-        $this->accessNumber = 4;
-        if($this->checkACL()){
-            $condition = $this->input->post("condition");
-            $updatedData = $this->input->post("updated_data");
-            if(user_type() == 2){
-                $condition["account_ID"] = user_id();
-                $updatedData["account_ID"] = user_id();
-                unset($updatedData["waste_post_type_ID"] );
-            }
-            $result = $this->m_waste_post->updateWastePost(
-                    $this->input->post("ID"),
-                    $condition,
-                    $updatedData
-                    );
-            if($result){
-                $this->actionLog(json_encode($this->input->post()));
-                $this->responseData($result);
-            }else{
-                $this->responseError(3, "Failed to Update");
-            }
-        }else{
-            $this->responseError(1, "Not Authorized");
-        }
-        $this->outputResponse();
-    }
-    public function deleteWastePost(){
-        $this->accessNumber = 8;
-        if($this->checkACL()){
-            $result = $this->m_waste_post->deleteWastePost(
-                    $this->input->post("ID"), 
-                    $this->input->post("condition")
-                    );
-            if($result){
-                $this->actionLog(json_encode($this->input->post()));
-                $this->responseData($result);
-            }else{
-                $this->responseError(3, "Failed to delete");
             }
         }else{
             $this->responseError(1, "Not Authorized");

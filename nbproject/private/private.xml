@@ -3,10 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/wasteline/application/modules/system_application/views/page_component/web_map_component_script.php</file>
-            <file>file:/C:/xampp/htdocs/wasteline/application/modules/user_management/views/user_management_script.php</file>
-            <file>file:/C:/xampp/htdocs/wasteline/application/modules/profile_management/views/profile_management_script.php</file>
+            <file>file:/C:/xampp/htdocs/wasteline/application/modules/api/models/M_access_control_list.php</file>
             <file>file:/C:/xampp/htdocs/wasteline/application/core/API_Controller.php</file>
+            <file>file:/C:/xampp/htdocs/wasteline/application/modules/api/controllers/C_account.php</file>
+            <file>file:/C:/xampp/htdocs/wasteline/application/modules/api/controllers/C_waste_category.php</file>
+            <file>file:/C:/xampp/htdocs/wasteline/application/modules/api/controllers/C_waste_post.php</file>
         </group>
     </open-files>
 </project-private>

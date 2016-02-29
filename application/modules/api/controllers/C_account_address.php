@@ -47,18 +47,6 @@ class C_account_address extends API_Controller {
         }
         $this->outputResponse();
     }
-    public function testing(){
-         $this->form_validation->set_rules('account_ID', 'Account', 'test_valid');
-         if($this->form_validation->run()){
-             echo "test";
-         }else{
-             print_r($this->form_validation->error_array());
-         }
-    }
-    public function _test_valid(){
-        $this->form_validation->set_message("test_valid", 'year should be greater then current year.');
-        return true;
-    }
     public function retrieveAccountAddress(){
         $this->accessNumber = 2;
         if($this->checkACL()){
@@ -94,20 +82,29 @@ class C_account_address extends API_Controller {
     public function updateAccountAddress(){
         $this->accessNumber = 4;
         if($this->checkACL()){
-            $result = $this->m_account_address->updateAccountAddress(
-                    $this->input->post("ID"),
-                    $this->input->post("condition"),
-                    $this->input->post("updated_data")
-                    );
-            if($result){
-                if($this->input->post("updated_data[longitude]") && $this->input->post("updated_data[latitude]")){
-                    $this->load->model("M_map_marker");
-                    $this->M_map_marker->updateMapMarker(NULL, $this->input->post("condition"), $this->input->post("updated_data"));
+            $this->form_validation->set_rules('ID', 'ID', 'required');
+            if($this->form_validation->run()){
+                $result = $this->m_account_address->updateAccountAddress(
+                        $this->input->post("ID"),
+                        $this->input->post("condition"),
+                        $this->input->post("updated_data")
+                        );
+                if($result){
+                    if($this->input->post("updated_data[longitude]") && $this->input->post("updated_data[latitude]")){
+                        $this->load->model("M_map_marker");
+                        $this->M_map_marker->updateMapMarker(NULL, $this->input->post("condition"), $this->input->post("updated_data"));
+                    }
+                    $this->actionLog(json_encode($this->input->post()));
+                    $this->responseData($result);
+                }else{
+                    $this->responseError(3, "Failed to Update");
                 }
-                $this->actionLog(json_encode($this->input->post()));
-                $this->responseData($result);
             }else{
-                $this->responseError(3, "Failed to Update");
+                if(count($this->form_validation->error_array())){
+                    $this->responseError(102, $this->form_validation->error_array());
+                }else{
+                    $this->responseError(100, "Required Fields are empty");
+                }
             }
         }else{
             $this->responseError(1, "Not Authorized");

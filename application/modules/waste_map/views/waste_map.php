@@ -210,7 +210,14 @@
                 </table>
                 <div class="row wasteMapLGUOption" style="display:none">
                     <div class="col-md-12" style="text-align: center">
-                        <button type="button" button_action="1" class="btn btn-primary" style="display:none"><i class="fa fa-hand-paper-o"></i> Collect Waste</button>
+                        <button type="button" button_action="1" class="btn btn-primary " style="display:none"><i class="fa fa-hand-paper-o"></i> Collect Waste</button>
+                        
+                        
+                    </div>
+                </div>
+                <div class="row wasteMapUserOption" style="display:none">
+                    <div class="col-md-12" style="text-align: center">
+                        <button type="button" button_action="2" class="btn btn-warning" style="display:none" ><span class="lnr lnr-flag"></span> Report User</button>
                     </div>
                 </div>
             </form>

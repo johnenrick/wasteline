@@ -129,7 +129,6 @@
         }
     }
     function refresh_call(moduleName){
-        console.log(moduleName)
         if(typeof system_data.refresh_call[moduleName] !== "undefined"){
             for(var x = 0; x < system_data.refresh_call[moduleName].length; x++){
                 system_data.refresh_call[moduleName][x]();
@@ -143,7 +142,6 @@
      * @returns {undefined}
      */
     function add_refresh_call(moduleName, refreshFunction){
-        
         if(typeof system_data.refresh_call[moduleName] === "undefined"){
             system_data.refresh_call[moduleName] = [];
         }
