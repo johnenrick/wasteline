@@ -11,8 +11,7 @@
             tableRow.find(".reportManagementFullName").text(data[x]["reporter_last_name"]+", "+data[x]["reporter_first_name"]+" "+data[x]["reporter_middle_name"]);
             tableRow.find(".reportManagementType").text((data[x]["report_type_ID"] == 3)? "Illegal Dumping" : (data[x]["report_type_ID"] == 2)? "Article" : "Marker");
             tableRow.find(".reportManagementStatus").text((data[x]["status"] == 1)? "Ongoing" : "Resolved");
-            reportManagement.reportManagementTable.addRow(tableRow);
-            
+            reportManagement.reportManagementTable.addRow(tableRow); 
         }
     };
     
@@ -123,13 +122,13 @@
                     $("#reportManagementUserDetailDeactiveNotice").show();
                 }
                 $(".reportManagementUserDetailChangeAccountStatus").button("reset");
-                $("#reportManagementTableContainer").find(".tableComponentTable .reportManagementTableViewDetail").button("reset");
+                $("#reportManagementTableContainer").find(".tableComponentTable .reportManagementTableViewDetail").button("reset");       
            }
         });
     };
     $(document).ready(function(){
         load_page_component("table_component", reportManagement.initializeReportManagementTable);
-         load_page_component("web_map_component", reportManagement.initializeWebMap);
+        load_page_component("web_map_component", reportManagement.initializeWebMap);
         $("#reportManagementCreateUser").click(function(){
             $(".reportManagementUserDetailChangeAccountStatus").hide();
             $("#reportManagementUserDetailDeactiveNotice").hide();

@@ -1,11 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-    <title>WasteLine</title>
-    <link rel="shortcut icon" type="image/x-icon" href="<?=asset_url('images/portal/garbage.png')?>" />
-    <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
-        <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
-    </svg>
     <head>
+        <title>WasteLine</title>
+        <link rel="shortcut icon" type="image/x-icon" href="<?=asset_url('images/portal/garbage.png')?>" />
 
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,16 +10,18 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        
+
 
 
         <!-- Bootstrap CSS -->
         <!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous"><!--CDN-->
         <link href="<?= asset_url('css/bootstrap.min.css') ?>" rel="stylesheet"><!--->
     <!--<link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.css" rel="stylesheet"><!--CDN-->
-        <link href="<?= asset_url('css/jquery-ui.min.css') ?>" rel="stylesheet"><!---->
+<!--
+        <link href="<?= asset_url('css/jquery-ui.min.css') ?>" rel="stylesheet">
         <link href="<?= asset_url('css/jquery-ui.structure.min.css') ?>" rel="stylesheet">
         <link href="<?= asset_url('css/jquery-ui.theme.min.css') ?>" rel="stylesheet">
+-->
 
         <link href="<?= asset_url('css/font-awesome.min.css') ?>" rel="stylesheet">
 
@@ -49,6 +48,9 @@
 
     </head>
     <body>
+        <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+            <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+        </svg>
         <div id="wrapper" class="<?=((user_id())?'':'disabled')?>">
             <div id="sidebar-wrapper">
                 <ul class="sidebar-nav">
@@ -67,7 +69,7 @@
                     <li module_id="7" module_link="report_management" module_name="report_management" style="display:none">
                         <a data-page-link="report_management" data-toggle="tooltip" data-placement="right" title="" data-original-title="Report Management"><span class="lnr lnr-flag"></span></a>
                     </li>
-                    
+
                     <li module_id="5" module_link="lgu_management" module_name="LGU_management" style="display:none">
                         <a data-page-link="manage-LGU" data-toggle="tooltip" data-placement="right" title="" data-original-title="LGU Management"><span class="lnr lnr-users"></span></a>
                     </li>
@@ -265,7 +267,7 @@
         </div>
         <!-- /#wrapper -->
 
-        
+
 
     </body>
     <footer>
@@ -273,7 +275,7 @@
         <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script><!--CDN-->
         <script src="<?= asset_url('js/jquery-2.1.4.min.js') ?>"></script><!--->
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script><!--CDN-->
-        <script src="<?= asset_url('js/jquery-ui.min.js') ?>"></script><!--->
+<!--        <script src="<?= asset_url('js/jquery-ui.min.js') ?>"></script>-->
 
         <!-- Bootstrap Core JavaScript -->
         <script src="<?= asset_url('js/bootstrap.min.js') ?>"></script>
