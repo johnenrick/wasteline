@@ -30,7 +30,10 @@ $(document).ready(function () {
             }
         }).done(function(){
             ths.closest('div.modal').modal('hide');
+            modal_parent.find('#inputTitle').val("");
+            modal_parent.find('#inputAuthor').val("");
             $(".information-count").text((($(".information-count").text())*1)+1);
+            $("ul#informationList li.wl-list-infos").first().trigger("click");
         });
     });
 });

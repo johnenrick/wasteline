@@ -45,6 +45,13 @@
                         <i class="fa fa-times btn btn-danger buttonCancel" style="position: absolute; right: 0px; font-size: 2.5em; padding: 0px 12px"></i>
                     <span>
                 </div>
+                <div style="position: absolute; bottom: -50px; z-index: 2; display: none" class="reportInfoHolder">
+                    <button class="btn btn-warning reportInfoButton" data-loading-text="Please wait..." style="">Report</button>
+                    <span style="position: absolute; left: 55px; bottom: 56px; display: none" class="confimation-holder" >
+                        <i class="fa fa-check btn btn-success buttonConfirm" style="position: absolute; left: 0px; font-size: 2.5em; padding: 0px 12px"></i>
+                        <i class="fa fa-times btn btn-danger buttonCancel" style="position: absolute; right: 0px; font-size: 2.5em; padding: 0px 12px"></i>
+                    <span>
+                </div>
             </div>
         </div>
         <!-- ############################################ -->

@@ -1,5 +1,7 @@
 <script>
 	var wastePostContainer = {};
+	var pCounter = 0;
+	var decimalCounter = 0;
 	$(document).ready(function(){
 		wastePostContainer.retrieveWastePostCategory();
 		wastePostContainer.retrieveUnitList();
@@ -112,6 +114,15 @@
 				$("#wl-btn-side-submit").button("reset");
 			}
 		});
+
+		$("ul#post-container-list").on("keypress", ".wl-list-desciption, .wl-list-price", function(event){
+			if(event.charCode === 13) return false;
+		});
+		$("ul#post-container-list").on("keypress", ".wl-list-price", function(event){
+			/*if(event.charCode === 46 && pCounter > 0) return false;
+			else pCounter++;*/
+			console.log(event.charCode);
+		});
 	});
 
 	wastePostContainer.createWastePost = function(container, row){
@@ -169,10 +180,10 @@
 			waste_post__waste_post_type_ID		: wastePostTypeID,
 			not__waste_post__status				: 3
 		}
-		if(wastePostTypeID != 3){
+		/*if(wastePostTypeID != 3){
 			container.greater_equal__waste_post__datetime 	= ((new Date((d.getMonth() + 1) +" "+ d.getDate() + ", " + d.getFullYear() + " 00:00:00")).getTime())/1000,
 			container.lesser_equal__waste_post__datetime 	= ((new Date((d.getMonth() + 1) +" "+ d.getDate() + ", " + d.getFullYear() + " 23:59:59")).getTime())/1000
-		}
+		}*/
 
 		$.post(api_url("C_waste_post/retrieveWastePost"), {condition: container}, function(data){
 			var response = JSON.parse(data);

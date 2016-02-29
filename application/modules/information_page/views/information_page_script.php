@@ -18,7 +18,7 @@
         }
         if(infoID != 0) container.ID = infoID;
         else{
-            if(user_type()*1 === 2){
+            if(user_type()*1 !== 3){
                 container.condition.not__information__detail = null
             }
         }
@@ -47,7 +47,7 @@
                     $(".wl-info-title h4 .wl-info-stamp").attr("data-livestamp", response["data"]["datetime"]);
                     wysiwygEditor.setHTML(response["data"]["detail"]);
 
-                    if(user_type() == 2){
+                    if(user_type()*1 !== 3){
                         wysiwygEditor.readOnly(true);
                         $(".wysiwyg-toolbar-top").css("display", "none");
                         $(".deleteHolder").hide();
@@ -93,7 +93,7 @@
 
     $(document).ready(function(){
         informationPage.retrieveInformation(0, informationPage.findInformationType());
-        if(user_type() == 2) $(".informationTick").hide();
+        if(user_type()*1 !== 3) $(".informationTick").hide();
 
         $(".submitButton-list").click(function(){
             wysiwygEditor.readOnly(true);

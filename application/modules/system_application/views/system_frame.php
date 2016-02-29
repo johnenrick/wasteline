@@ -209,6 +209,7 @@
                                             </div>
                                             <div class="col-xs-10">
                                                 <p class="wl-list-desciption wl-c-green-1" contenteditable="true" placeholder="Click to add Description" holder="description"></p>
+                                                <!-- 
                                                 <p class="wl-list-quantity-price" style="display:inline-block;height:auto">
                                                     <span class="wl-list-quantity" contenteditable="true" onkeypress="return wastePostContainer.isNumberInput(event)" placeholder="Quantity" holder="quantity"></span>
                                                 </p>
@@ -222,8 +223,15 @@
                                                  <p class="wl-list-quantity-price" style="display:inline-block;height:auto">
                                                     <span class="wl-list-price" contenteditable="true" onkeypress="return wastePostContainer.isNumberInput(event)" placeholder="Price" holder="price"></span>
                                                 </p>
-
-
+                                                -->
+                                                &#8369;
+                                                <p class="wl-list-price" style="display:inline-block;height:auto" contenteditable="true" onkeypress="return wastePostContainer.isNumberInput(event)" placeholder="Price" holder="price"></p>
+                                                / 
+                                                <div class="form-group form-group-sm wl-list-category-div" style="display:inline-block;height:auto">
+                                                    <select class="form-control wl-list-category" id="wastePostQuantityUnitList">
+                                                        <option hidden >Unit</option>
+                                                    </select>
+                                                </div>
                                                 <div class="form-group form-group-sm wl-list-category-div">
                                                     <select class="form-control wl-list-category" id="wastePostCategoryList">
                                                         <option hidden >Category</option>
