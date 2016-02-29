@@ -1,7 +1,5 @@
- 
-<legend>Report Management</legend>
 
-<div id="reportManagementTableContainer" class="col-sm-12">
+<div id="reportManagementTableContainer" class="col-sm-12 scroll-on">
 
 </div>
 <div class="prototype" style="display:none">
@@ -57,11 +55,11 @@
                                     <input input_name="reporter_last_name" is_data="1" type="text" class="form-control" readonly>
                                 </div>
                             </div>
-                           
+
                             <div class="form-group">
                                 <label  class="col-md-12 control-label">Report Detail:</label>
                                 <div class="col-md-12"><br>
-                                        <input input_name="detail" is_data="1" type="text"class="form-control" readonly>
+                                    <input input_name="detail" is_data="1" type="text"class="form-control" readonly>
                                 </div>
                             </div>
                         </div>
@@ -77,7 +75,7 @@
                         <div class="row">
                             <div class="col-md-12" style="height:450px;width:410px">
                                 <div id = "reportManagementWebMap" class="w1-pro-map">
-                        	</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -85,7 +83,7 @@
                     <button status="2" type="button" class="reportManagementUserDetailChangeAccountStatus btn btn-warning pull-left ">Resolve</button>
                     <button status="1" type="button" class="reportManagementUserDetailChangeAccountStatus btn btn-info pull-left">Ongoing</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    
+
                 </div>
                 </div>
             </form>

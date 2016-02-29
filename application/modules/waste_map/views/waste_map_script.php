@@ -27,7 +27,7 @@
         for(var x = 0; x < wasteMap.initFunction.length;x++){
             wasteMap.initFunction[x]();
         }
-        
+
     };
     /**
      * Bind events to the html in PopUp since it recreates the popup eveytime it is viewed so events will have to be rebinded
@@ -40,6 +40,7 @@
                 var accountID = $(e.target._popup._contentNode).find("[name=account_ID]").val();
                 $.post(api_url("C_account/retrieveAccount"), {ID : accountID, with_waste_post : true}, function(data){
                     var response = JSON.parse(data);
+                    console.log(response);
                     if(!response["error"].length){
                         $(e.target._popup._contentNode).find(".panel-title span").text((response["data"]["first_name"]+" "+(response["data"]["middle_name"]+"").charAt(0)+(response["data"]["middle_name"] !== "" ? ".":"")+" "+response["data"]["last_name"]).toUpperCase());
                         $(e.target._popup._contentNode).find(".wasteMapOwnWasteEmailDetail").text(response["data"]["email_detail"]);
@@ -59,16 +60,18 @@
                                     $(e.target._popup._contentNode).find(".wasteMapLGUOption button").show();
                                     $(e.target._popup._contentNode).find(".wasteMapUserOption button").show();
                                 }
-                                
+
                             }
                         }
                     }else{
                         console.log(response);
                     }
                 });
-                
-                
-                
+
+
+
+
+
                 /*Collect*//*Admin*/
                 $(e.target._popup._contentNode).find("button[button_action=1]").click(function(){
                     var mapMarkerID = e.target.options.map_marker_ID;
@@ -76,7 +79,7 @@
                         var response = JSON.parse(data);
                         if(!response["error"].length){
                             wasteMap.webMap.markerList[mapMarkerID].closePopup();
-                            
+
                         }
                     });
                 });
@@ -101,19 +104,19 @@
     wasteMap.retrieveDumpingLocationMapMarker = function(){
         $.post(api_url("C_dumping_location/retrieveDumpingLocation"), {}, function(data){
             var response = JSON.parse(data);
-            
+
             if(!response["error"].length){
                 for(var x =0 ; x < response["data"].length;x++){
                     var detail  = response["data"][x]["detail"];
                     wasteMap.webMap.addMarker(response["data"][x]["map_marker_ID"], response["data"][x]["map_marker_type_ID"], response["data"][x]["ID"], response["data"][x]["description"], response["data"][x]["longitude"]*1, response["data"][x]["latitude"]*1, false, wasteMap.createDumpingLocationForm(response["data"][x]["map_marker_ID"], response["data"][x]["description"], detail));
-                    
+
                     if(typeof wasteMap.bindDumpingLocationFormAction !== "undefined"){
                         wasteMap.bindDumpingLocationFormAction(response["data"][x]["map_marker_ID"]);
                     }
                 }
             }
         });
-    };    
+    };
     wasteMap.retrieveUserReportMapMarker = function(){
         var condition = {
             status : 1,
@@ -158,18 +161,18 @@
         wasteMap.filterFunction["not_3"] = function(){
             wasteMap.webMap.removeMarkerList(null, 3);
         };
-        
+
         wasteMap.filterFunction["4"] = function(){//dumping location
             wasteMap.retrieveDumpingLocationMapMarker();
         };
         wasteMap.filterFunction["not_4"] = function(){
             wasteMap.webMap.removeMarkerList(null, 2);
         };
-        
-        
+
+
         $.material.ripples(".wl-map-filter, .wl-btn-map-search");
         $(".wl-map-filter").click(function(){
-            
+
             if($(this).hasClass("wl-active")){//off filter
                 $(this).removeClass("wl-active");
                 wasteMap.filterFunction["not_"+$(this).attr("filter_type")]();
@@ -197,6 +200,10 @@
                     console.log(response);
                 }
             });
+        });
+        $("#wl-footer-content .wl-filter-btn button").click(function(){
+            $(this).parents('#wl-footer-content').toggleClass('slideUp');
+            $(this).parents('.wl-filter-btn').children('button').toggleClass('hide');
         });
     });
 

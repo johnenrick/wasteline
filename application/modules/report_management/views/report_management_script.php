@@ -11,15 +11,16 @@
             tableRow.find(".reportManagementFullName").text(data[x]["reporter_last_name"]+", "+data[x]["reporter_first_name"]+" "+data[x]["reporter_middle_name"]);
             tableRow.find(".reportManagementType").text((data[x]["report_type_ID"] == 3)? "Illegal Dumping" : (data[x]["report_type_ID"] == 2)? "Article" : "Marker");
             tableRow.find(".reportManagementStatus").text((data[x]["status"] == 1)? "Ongoing" : "Resolved");
-            reportManagement.reportManagementTable.addRow(tableRow); 
+            reportManagement.reportManagementTable.addRow(tableRow);
+
         }
     };
-    
+
     reportManagement.initializeReportManagementTable = function(){
         var config = {
             api_link : api_url("C_report/retrieveReport"),
             filter : [{
-					name : "like__account_basic_information__first_name__CONCAT__account_basic_information__middle_name__CONCAT__account_basic_information__last_name",
+                    name : "like__account_basic_information__first_name__CONCAT__account_basic_information__middle_name__CONCAT__account_basic_information__last_name",
                     label : "User Full Name",
                     placeholder : "Full Name",
                     type : "text",
@@ -59,8 +60,8 @@
                 column_label : "ID",
                 sort : -1
             },{
-            	column_name: "detail",
-            	column_label:"Detail"
+                column_name: "detail",
+                column_label:"Detail"
 
             },{
                 column_name: "",
@@ -84,6 +85,12 @@
         reportManagement.reportManagementTable.refreshResult();
         $("#reportManagementTableContainer").find(".tableComponentTable").on("click", ".reportManagementTableViewDetail", function(){
            reportManagement.viewUserDetail($(this).parent().parent().attr("account_ID"));
+        });
+        $("#reportManagementTableContainer").find(".tableComponentTable").on("click", "tr.reportManagementTableRow", function(){
+            var w = $(window).width();
+            if(w <= 720){
+                reportManagement.viewUserDetail($(this).attr("account_ID"));
+            }
         });
     };
 
@@ -122,7 +129,7 @@
                     $("#reportManagementUserDetailDeactiveNotice").show();
                 }
                 $(".reportManagementUserDetailChangeAccountStatus").button("reset");
-                $("#reportManagementTableContainer").find(".tableComponentTable .reportManagementTableViewDetail").button("reset");       
+                $("#reportManagementTableContainer").find(".tableComponentTable .reportManagementTableViewDetail").button("reset");
            }
         });
     };
@@ -147,13 +154,13 @@
                 if(!response["data"].length){
                     reportManagement.viewUserDetail($("#reportManagementUserDetailForm").find("[name=ID]").val());
                 }else{
-                    
+
                 }
             });
         });
     });
-    
+
 </script>
 
-    
+
 

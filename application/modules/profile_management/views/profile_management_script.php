@@ -21,7 +21,7 @@
                 $("#profileManagementForm").find("[name='updated_data[account_address_latitude]']").val(response["data"]["account_address_latitude"]);
                 if(response["data"]["account_address_longitude"]*1 &&  response["data"]["account_address_latitude"]*1){
                     profileManagement.changeAddress({
-                        lat : response["data"]["account_address_latitude"], 
+                        lat : response["data"]["account_address_latitude"],
                         lng : response["data"]["account_address_longitude"]
                     });
                     profileManagement.webMap.setView(response["data"]["account_address_latitude"], response["data"]["account_address_longitude"]);
@@ -59,8 +59,8 @@
                 profileManagement.webMap.getCurrentLocationCallBack = profileManagement.changeAddress;
                 add_refresh_call("profile_management", profileManagement.viewProfile);
             });
-            
-            
+
+
 
         }
     };
@@ -112,7 +112,7 @@
                     profileManagement.viewProfile();
                 }else{
                     show_form_error($("#profileManagementForm"), response["error"]);
-                    $(".wl-pro-edit").mCustomScrollbar("scrollTo",".formMessage", {
+                    $(".wl-pro-edit div.scroll-on").mCustomScrollbar("scrollTo",".formMessage", {
                         scrollInertia:100
                     });
                 }
@@ -120,18 +120,22 @@
             }
         });
 
-        
+
         $("#profileManagementForm").find("[name='updated_data[account_address_description]']").autoResize();
 
 
         $("#wl-btn-editProfile").click(function () {
             var w = $(window).width();
             if(w <= 720){
-                $('.wl-pro-edit').fadeIn();
+                $('.wl-pro-edit, #wl-return-floating-btn').fadeIn();
                 $('.wl-pro-full-info').fadeOut('fast');
             }
         });
-        
+        $('#wl-return-floating-btn').click(function(){
+            $('.wl-pro-edit, #wl-return-floating-btn').fadeOut('fast');
+            $('.wl-pro-full-info').fadeIn();
+        });
+
     });
 
 </script>

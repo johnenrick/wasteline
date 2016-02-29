@@ -1,4 +1,4 @@
-<div class="col-sm-3 no-padding wl-pro-full-info">
+<div class="col-xs-12 col-sm-3 no-padding wl-pro-full-info">
     <img id="profileManagementProfilePicture" class="wl-profile-img" data-char-count="2">
     <p id="profileManagementFullName" class="wl-full-name capitalize">
     </p>
@@ -14,11 +14,10 @@
     <button id="wl-btn-editProfile" class="btn btn-raised btn-info submitButton" data-loading-text="Please wait...">Edit Profile</button>
 </div>
 
-<div class="col-sm-4 wl-pro-edit scroll-on" style="height:100%;">
+<div class="col-xs-12 col-sm-4 wl-pro-edit">
+    <h5>Edit Your Personal Settings</h5>
+    <div class="scroll-on">
     <form id="profileManagementForm" method="post">
-        <h5>Edit Your Personal Settings</h5>
-
-        <hr>
 
         <div class="form-group">
             <div class="col-md-12">
@@ -103,8 +102,9 @@
             <button class="btn btn-raised btn-success submitButton" data-loading-text="Please wait..." style="float:right;">Update Information</button>
         </div>
     </form>
+    </div>
 </div>
 
-<div id="profileManagementWebMap" class="col-sm-5 wl-pro-map" >
+<div id="profileManagementWebMap" class="col-xs-12 col-sm-5 wl-pro-map" >
 
 </div>

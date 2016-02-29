@@ -39,11 +39,11 @@
     }
     .panel-own-waste .primary-head{
         background-color :#50C14E;
-        background-color :#50C14E;color:white; 
+        background-color :#50C14E;color:white;
     }
     .panel-own-waste .primary-head th{
         text-align: center;
-        
+
     }
     .panel-own-waste .service-head{
         background-color :#428BDF;
@@ -66,14 +66,19 @@
 <!-- footer container-->
 <div id="wl-footer-content" class="wl-footer-map">
     <div class="row form-inline">
+        <div class="col-sm-12 wl-filter-btn">
+            <button type="button" class="btn btn-raised btn-warning"><span class="glyphicon glyphicon-filter" aria-hidden="true"></span> Filter</button>
+            <button type="button" class="btn btn-raised btn-danger hide"><span class="glyphicon glyphicon-filter" aria-hidden="true"></span> Close</button>
+        </div>
         <div class="col-md-7">
             <a class="btn btn-default capitalize wl-map-filter" filter_type="1"  data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to display Garbages"><span class="circle"></span>Users</a>
             <a class="btn btn-default capitalize wl-map-filter" filter_type="2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to display Services"><span class="circle"></span>Services</a>
             <a class="btn btn-default capitalize wl-map-filter" filter_type="3" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to display Reports"><span class="circle"></span>Garbage Report</a>
             <a class="btn btn-default capitalize wl-map-filter" filter_type="4" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to display Dumping Locations"><span class="circle"></span>Dumping Area</a>
+            <a class="btn btn-default capitalize wl-map-filter wasteMapLGUFilter" filter_type="5" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to display Heat Map" style="display:none"><span class="circle" ></span>Heat Map</a>
         </div>
         <div class="col-md-5 wasteMapLGUFilter" style="display: none">
-            <a class="btn btn-default capitalize wl-map-filter" filter_type="5" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to display Heat Map"><span class="circle" ></span>Heat Map</a>
+
             <input type="text" filter_type="6" class="wasteMapDateFilter form-control floating-label wl-map-date wl-datetimepicker" placeholder="Start Date">
             <span>to</span>
             <input type="text" filter_type="7" class="wasteMapDateFilter form-control floating-label wl-map-date wl-datetimepicker" placeholder="End Date">
@@ -98,7 +103,7 @@
                         <div class="form-group" style="margin-top:0px">
                             <div class="col-md-12">
                                 <textarea input_name="detail" class="form-control capitalize" rows="4" placeholder="Write the details or leave a note" ></textarea>
-                                
+
                             </div>
                         </div>
                         <div class="form-group wasteMapIllegalDumpingDetail" style="margin-top:0px">
@@ -137,7 +142,7 @@
                         <div class="form-group label-floating  is-empty " style="margin-top:0px">
                             <label class="control-label" for="focusedUsername">Instruction/Note</label>
                             <textarea input_name="detail" class="form-control capitalize" rows="2" required="true" ></textarea>
-                            
+
                             <p class="help-block wl-c-gray-1">Make things clear</p>
                             <span class="material-input"></span>
                         </div>
@@ -211,8 +216,6 @@
                 <div class="row wasteMapLGUOption" style="display:none">
                     <div class="col-md-12" style="text-align: center">
                         <button type="button" button_action="1" class="btn btn-primary " style="display:none"><i class="fa fa-hand-paper-o"></i> Collect Waste</button>
-                        
-                        
                     </div>
                 </div>
                 <div class="row wasteMapUserOption" style="display:none">

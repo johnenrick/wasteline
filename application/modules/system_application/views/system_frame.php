@@ -26,8 +26,11 @@
         <link href="<?= asset_url('css/font-awesome.min.css') ?>" rel="stylesheet">
 
         <!-- Material Design for Bootstrap -->
+        <link href="<?= asset_url('css/bootstrap-material-design.min.css') ?>" rel="stylesheet">
+
         <link href="<?= asset_url('css/roboto.min.css') ?>" rel="stylesheet">
-        <link href="<?= asset_url('/css/material-fullpalette.css') ?>" rel="stylesheet">
+<!--        <link href="<?= asset_url('/css/material-fullpalette.css') ?>" rel="stylesheet">
+-->
         <link href="<?= asset_url('/css/ripples.min.css') ?>" rel="stylesheet">
         <link href="<?=asset_url('css/bootstrap-material-datetimepicker.css')?>" rel="stylesheet">
 
@@ -103,6 +106,9 @@
                                 <span class="wl-c-green-1">Wasteline</span>
                                 <span class="wl-c-gray-1">&nbsp;|&nbsp;</span>
                                 <span class="wl-c-black-1 wl-page-title">Home</span>
+                                <span id="wl-btn-logout" class="input-group-btn wl-header-btn">
+                                    <a class=""><span class="lnr lnr-power-switch"></span></a>
+                                </span>
                                 <div id="wl-header-menu" class="col-xs-12 moduleHolder wl-page-content" module_link="information_page" style="display:none;overflow:visible">
                                     <ul class="unselectable">
                                         <li>
@@ -113,9 +119,6 @@
                                         </li>
                                     </ul>
                                 </div>
-                                <span id="wl-btn-logout" class="input-group-btn wl-header-btn">
-                                    <a class=""><span class="lnr lnr-power-switch"></span></a>
-                                </span>
                             </div>
                             <div class="wl-top-grp col-sm-4 unselectable">
                                 <span class="lnr lnr-calendar-full wl-c-green-1"></span>
@@ -247,12 +250,12 @@
                             </div>
 
                             <span id="wl-return-floating-btn" class="input-group-btn wl-draggable wl-floating-btn button" style="display:none">
-                                <button type="button" class="btn btn-fab btn-warning btn-fab-mini">
+                                <button type="button" class="btn btn-fab btn-raised btn-warning btn-fab-mini">
                                     <span class="lnr lnr-chevron-left"></span>
                                 <div class="ripple-container"></div></button>
                             </span>
                             <span id="wl-post-floating-btn" class="input-group-btn wl-draggable wl-floating-btn button">
-                                <button type="button" class="btn btn-fab btn-primary btn-fab-mini">
+                                <button type="button" class="btn btn-fab btn-raised btn-primary btn-fab-mini">
                                     <span>+</span>
                                 <div class="ripple-container"></div></button>
                             </span>
@@ -275,14 +278,14 @@
         <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script><!--CDN-->
         <script src="<?= asset_url('js/jquery-2.1.4.min.js') ?>"></script><!--->
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script><!--CDN-->
-<!--        <script src="<?= asset_url('js/jquery-ui.min.js') ?>"></script>-->
+        <script src="<?= asset_url('js/jquery-ui.min.js') ?>"></script>
 
         <!-- Bootstrap Core JavaScript -->
         <script src="<?= asset_url('js/bootstrap.min.js') ?>"></script>
 
 
         <!-- Material Design for Bootstrap -->
-        <script src="<?= asset_url('js/material.js') ?>"></script>
+        <script src="<?= asset_url('js/material.min.js') ?>"></script>
         <script src="<?= asset_url('js/ripples.min.js') ?>"></script>
         <script src="<?= asset_url('js/moment.min.js')?> "></script>
         <script src="<?= asset_url('js/bootstrap-material-datetimepicker.js') ?>"></script>

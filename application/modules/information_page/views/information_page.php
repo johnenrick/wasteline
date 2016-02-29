@@ -1,6 +1,6 @@
 <link href="<?= asset_url('css/wysiwyg-editor.min.css') ?>" rel="stylesheet">
 <link href="<?=asset_url('css/font-awesome.min.css')?>" rel="stylesheet">
-<div class="col-sm-4 col-md-3 wl-info-list no-padding">
+<div class="col-sm-5 col-md-3 wl-info-list no-padding">
     <div class="col-sm-12 wl-info-header">
         <span id="samplehaha">Shared Information</span> <span class="badge information-count"></span>
         <span data-toggle="modal" data-target="#wl-info-modal" class="informationTick">
@@ -22,8 +22,8 @@
         </ul>
     </div>
 </div>
-<div class="col-sm-8 col-md-9 wl-info-display no-padding">
-    <div class="col-xs-12 wl-info-full scroll-on no-padding">
+<div class="col-sm-7 col-md-9 wl-info-display no-padding">
+    <div class="col-xs-12 col-sm-12 wl-info-full scroll-on no-padding">
         <!-- ######################################## -->
         <div class="col-xs-12 wl-info-description wl-heaher-dummy" style="display: none">
             <div class="col-xs-12 wl-info-fixed">
@@ -38,8 +38,8 @@
                         <span class="wl-info-stamp" data-livestamp=""></span>
                     </h4>
                 </div>
-                <div style="position: absolute; bottom: -50px; z-index: 2" class="deleteHolder">
-                    <button class="btn btn-info deleteButton" data-loading-text="Please wait..." style="">Delete</button>
+                <div class="deleteHolder">
+                    <button class="btn btn-raised btn-info deleteButton" data-loading-text="Please wait..." style="">Delete</button>
                     <span style="position: absolute; left: 55px; bottom: 56px; display: none" class="confimation-holder" >
                         <i class="fa fa-check btn btn-success buttonConfirm" style="position: absolute; left: 0px; font-size: 2.5em; padding: 0px 12px"></i>
                         <i class="fa fa-times btn btn-danger buttonCancel" style="position: absolute; right: 0px; font-size: 2.5em; padding: 0px 12px"></i>
