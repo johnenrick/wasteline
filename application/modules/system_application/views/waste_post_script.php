@@ -69,8 +69,10 @@
 		});
 
 		$("ul#post-container-list").on("blur", ".wl-list-desciption, .wl-list-quantity, .wl-list-price", function(){
-			if($(this).parent().parent().attr("wastepostid") || $(this).parent().parent().parent().attr("wastepostid")){
-				var id = $(this).parent().parent().attr("wastepostid") | $(this).parent().parent().parent().attr("wastepostid");
+			var id = $(this).parent().parent().attr("wastepostid");
+			var value = $(this).text();
+			if(id){
+				$(this).parent().parent().parent().attr("wastepostid");
 				var table_column = $(this).attr("holder");
 				var container = {
 					ID 				: id,
@@ -79,9 +81,27 @@
 					},
 					updated_data 	: {}
 				}
-				container.updated_data[table_column] = $(this).text();
+				container.updated_data[table_column] = (table_column == "price")? (value*1).toFixed(2) : value;
+				wastePostContainer.updateWastePost(container);
+				(table_column == "price")? $(this).text((value*1).toFixed(2)) : value;
+			}
+		});
+
+		$("ul#post-container-list").on("change", "#wastePostQuantityUnitList, #wastePostCategoryList", function(){
+			var id = $(this).parent().parent().parent().attr("wastepostid");
+			if(id){
+				var table_column = $(this).attr("holder");
+				var container = {
+					ID 				: id,
+					condition		: {
+						waste_post__account_ID 	: user_id()
+					},
+					updated_data 	: {}
+				}
+				container.updated_data[table_column] = $(this).val();
 				wastePostContainer.updateWastePost(container);
 			}
+			
 		});
 
 		$("ul#post-container-list").on("click", "li.wl-collected div.circle", function(){
@@ -118,10 +138,22 @@
 		$("ul#post-container-list").on("keypress", ".wl-list-desciption, .wl-list-price", function(event){
 			if(event.charCode === 13) return false;
 		});
-		$("ul#post-container-list").on("keypress", ".wl-list-price", function(event){
-			/*if(event.charCode === 46 && pCounter > 0) return false;
-			else pCounter++;*/
-			console.log(event.charCode);
+
+		$("ul#post-container-list").on("keydown", ".wl-list-price", function(event){
+			var num_text = $(this).text();
+			if(event.keyCode == 8){
+				if((num_text.charAt(num_text.length - 1)) == ".") pCounter--;
+			}else{
+				if(event.keyCode === 190){
+					if(pCounter > 0) return false;
+					else pCounter++;
+				}
+			}
+		});
+		$("ul#post-container-list").on("focus", ".wl-list-price", function(){
+			pCounter = 0;
+			var num_text = $(this).text();
+			if(num_text.indexOf('.') >= 0) pCounter++;
 		});
 	});
 
