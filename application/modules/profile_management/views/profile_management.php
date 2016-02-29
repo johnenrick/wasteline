@@ -72,14 +72,20 @@
                 <p class="help-block wl-c-gray-1">Something unique and cool</p>
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group ">
+            
+            <div class="col-md-12">
+                <button class="btn btn-sm btn-primary" id="profileManagementFormChangePassword"> <i class="fa fa-lock"></i>  Change Password </button>
+            </div>
+        </div>
+        <div class="form-group profileManagementFormPassword" style="display:none">
             <label for="inputPassword" class="col-md-12 control-label">Password</label>
             <div class="col-md-12">
                 <input name="updated_data[password]" type="password" class="form-control" id="inputPassword" placeholder="Password">
                 <p class="help-block wl-c-gray-1">Minimum of 6 alphanumeric characters</p>
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group profileManagementFormPassword" style="display:none">
             <label for="inputPassword" class="col-md-12 control-label">Confirm Password</label>
             <div class="col-md-12">
                 <input name="updated_data[confirm_password]" type="password" class="form-control" id="inputPassword" placeholder="Password">

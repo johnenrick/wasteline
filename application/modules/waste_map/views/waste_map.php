@@ -71,7 +71,7 @@
             <button type="button" class="btn btn-raised btn-danger hide"><span class="glyphicon glyphicon-filter" aria-hidden="true"></span> Close</button>
         </div>
         <div class="col-md-7">
-            <a class="btn btn-default capitalize wl-map-filter" filter_type="1"  data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to display Garbages"><span class="circle"></span>Users</a>
+            <a class="btn btn-default capitalize wl-map-filter wl-active" filter_type="1"  data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to display Garbages"><span class="circle"></span>Users</a>
             <a class="btn btn-default capitalize wl-map-filter" filter_type="2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to display Services"><span class="circle"></span>Services</a>
             <a class="btn btn-default capitalize wl-map-filter" filter_type="3" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to display Reports"><span class="circle"></span>Garbage Report</a>
             <a class="btn btn-default capitalize wl-map-filter" filter_type="4" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to display Dumping Locations"><span class="circle"></span>Dumping Area</a>
@@ -213,6 +213,13 @@
                     <tbody>
                     </tbody>
                 </table>
+                <div class="form-group label-floating  is-empty wasteMapReportUser" style="display:none">
+                    <label class="control-label" for="focusedUsername">Report Detail</label>
+                    <textarea name="detail" class="form-control capitalize" rows="2" required="true" ></textarea>
+
+                    <p class="help-block wl-c-gray-1">Make things clear</p>
+                    <span class="material-input"></span>
+                </div>
                 <div class="row wasteMapLGUOption" style="display:none">
                     <div class="col-md-12" style="text-align: center">
                         <button type="button" button_action="1" class="btn btn-primary " style="display:none"><i class="fa fa-hand-paper-o"></i> Collect Waste</button>
@@ -220,7 +227,9 @@
                 </div>
                 <div class="row wasteMapUserOption" style="display:none">
                     <div class="col-md-12" style="text-align: center">
-                        <button type="button" button_action="2" class="btn btn-warning" style="display:none" ><span class="lnr lnr-flag"></span> Report User</button>
+                        <button type="button" button_action="2" class="btn btn-warning" style="display:none" data-loading-text="Report Submitted"><span class="lnr lnr-flag"></span> Report User</button>
+                        <button type="button" button_action="3" class="btn btn-warning" style="display:none" ><span class="lnr lnr-flag"></span> Submit</button>
+                        <button type="button" button_action="4" class="btn btn-default" style="display:none" >Cancel</button>
                     </div>
                 </div>
             </form>

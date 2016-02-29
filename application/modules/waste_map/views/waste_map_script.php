@@ -58,7 +58,7 @@
                                         );
                                 if(wastePost[x]["waste_post_type_ID"]*1 === 1){
                                     $(e.target._popup._contentNode).find(".wasteMapLGUOption button").show();
-                                    $(e.target._popup._contentNode).find(".wasteMapUserOption button").show();
+                                    $(e.target._popup._contentNode).find(".wasteMapUserOption button[button_action=2]").show();
                                 }
 
                             }
@@ -67,12 +67,7 @@
                         console.log(response);
                     }
                 });
-
-
-
-
-
-                /*Collect*//*Admin*/
+                /*Collect*/
                 $(e.target._popup._contentNode).find("button[button_action=1]").click(function(){
                     var mapMarkerID = e.target.options.map_marker_ID;
                     $.post(api_url("C_waste_post/updateWastePost"), {condition : {account_ID : accountID, waste_post_type_ID:1, status : 1}, updated_data : {status : 2 }}, function(data){
@@ -80,6 +75,46 @@
                         if(!response["error"].length){
                             wasteMap.webMap.markerList[mapMarkerID].closePopup();
 
+                        }
+                    });
+                });
+                /*Open Report User*/
+                $(e.target._popup._contentNode).find("button[button_action=2]").click(function(){
+                    $(e.target._popup._contentNode).find(".wasteMapReportUser").show();
+                    $(e.target._popup._contentNode).find(".wasteMapPostList").hide();
+                    $(e.target._popup._contentNode).find("button[button_action=2]").hide();
+                    $(e.target._popup._contentNode).find("button[button_action=3]").show();
+                    $(e.target._popup._contentNode).find("button[button_action=4]").show();
+                });
+                /*Close Report User*/
+                $(e.target._popup._contentNode).find("button[button_action=4]").click(function(){
+                    $(e.target._popup._contentNode).find(".wasteMapReportUser").hide();
+                    $(e.target._popup._contentNode).find(".wasteMapPostList").show();
+                    $(e.target._popup._contentNode).find("button[button_action=2]").show();
+                    $(e.target._popup._contentNode).find("button[button_action=3]").hide();
+                    $(e.target._popup._contentNode).find("button[button_action=4]").hide();
+                });
+                /*Submit Report User*/
+                $(e.target._popup._contentNode).find("button[button_action=3]").click(function(){
+                    $(e.target._popup._contentNode).find("button[button_action=3]").button("loading");
+                    var newData = {
+                        associated_ID : $(e.target._popup._contentNode).find("input[name=account_ID]").val(),
+                        report_type_ID : 1,
+                        detail : $(e.target._popup._contentNode).find(".wasteMapReportUser textarea[name=detail]").val()
+                    };
+                    var panel = $(e.target._popup._contentNode);
+                    $.post(api_url("C_report/createReport"), newData, function(data){
+                        var response = JSON.parse(data);
+                        if(!response["error"].length){
+                            panel.find("button[button_action=2]").button("loading");
+                            panel.find("button[button_action=3]").button("reset");
+                            panel.find(".wasteMapReportUser").hide();
+                            panel.find(".wasteMapPostList").show();
+                            panel.find("button[button_action=2]").show();
+                            panel.find("button[button_action=3]").hide();
+                            panel.find("button[button_action=4]").hide();
+                        }else{
+                            console.log(response);
                         }
                     });
                 });

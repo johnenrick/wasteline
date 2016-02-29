@@ -135,7 +135,9 @@
             $('.wl-pro-edit, #wl-return-floating-btn').fadeOut('fast');
             $('.wl-pro-full-info').fadeIn();
         });
-
+        $("#profileManagementFormChangePassword").click(function(){
+            $(".profileManagementFormPassword").toggle();
+        })
     });
 
 </script>
