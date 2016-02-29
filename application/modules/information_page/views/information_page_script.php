@@ -166,5 +166,27 @@
         $(".buttonConfirm").click(function(){
             informationPage.deleteInformation(($("ul#informationList li.active").attr("informationid"))*1);
         });
+
+        $(".reportInfoButton").click(function(){
+            $("#wl-report-modal").modal("show");
+        });
+
+        $("#wl-report-modal-submit").click(function(){
+            var ths = $(this);
+            var modal_parent = $(this).closest('div.modal-content');
+            var container = {
+                associated_ID   : ($("ul#informationList li.active").attr("informationid"))*1,
+                report_type_ID  : 2,
+                detail          : modal_parent.find('#inputReason').val()
+            }
+            $.post(api_url("C_report/createReport"), container, function(data){
+                var response = JSON.parse(data);
+                if(!response["error"].length){
+
+                }
+            }).done(function(){
+                $("#wl-report-modal").modal("hide");
+            });
+        });
     });
 </script>

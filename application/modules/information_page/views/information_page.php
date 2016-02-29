@@ -47,10 +47,6 @@
                 </div>
                 <div style="position: absolute; bottom: -50px; z-index: 2; display: none" class="reportInfoHolder">
                     <button class="btn btn-warning reportInfoButton" data-loading-text="Please wait..." style="">Report</button>
-                    <span style="position: absolute; left: 55px; bottom: 56px; display: none" class="confimation-holder" >
-                        <i class="fa fa-check btn btn-success buttonConfirm" style="position: absolute; left: 0px; font-size: 2.5em; padding: 0px 12px"></i>
-                        <i class="fa fa-times btn btn-danger buttonCancel" style="position: absolute; right: 0px; font-size: 2.5em; padding: 0px 12px"></i>
-                    <span>
                 </div>
             </div>
         </div>
@@ -91,6 +87,30 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <button type="button" id="wl-info-modal-submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- report modal -->
+    <div id="wl-report-modal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">Report Article</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="inputTitle" class="col-md-12 control-label">Reason/s:</label>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" id="inputReason" placeholder="You should really write something here">
+                            <p class="help-block wl-c-gray-1">You should really write something here</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" id="wl-report-modal-submit" class="btn btn-primary">Submit</button>
                 </div>
             </div>
         </div>
