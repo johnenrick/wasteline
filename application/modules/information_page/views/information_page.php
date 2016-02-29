@@ -39,14 +39,14 @@
                     </h4>
                 </div>
                 <div class="deleteHolder">
-                    <button class="btn btn-raised btn-info deleteButton" data-loading-text="Please wait..." style="">Delete</button>
+                    <button class="btn btn-info btn-sm deleteButton capitalize" data-loading-text="Please wait..." style="">Delete</button>
                     <span style="position: absolute; left: 55px; bottom: 56px; display: none" class="confimation-holder" >
                         <i class="fa fa-check btn btn-success buttonConfirm" style="position: absolute; left: 0px; font-size: 2.5em; padding: 0px 12px"></i>
                         <i class="fa fa-times btn btn-danger buttonCancel" style="position: absolute; right: 0px; font-size: 2.5em; padding: 0px 12px"></i>
                     <span>
                 </div>
-                <div style="position: absolute; bottom: -50px; z-index: 2; display: none" class="reportInfoHolder">
-                    <button class="btn btn-warning reportInfoButton" data-loading-text="Please wait..." style="">Report</button>
+                <div style="position: absolute; bottom: -40px; z-index: 2; display: none" class="reportInfoHolder">
+                    <button class="btn btn-warning btn-sm reportInfoButton capitalize" data-loading-text="Please wait..." style="">Report</button>
                 </div>
             </div>
         </div>
@@ -97,7 +97,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h4 class="modal-title">Report Article</h4>
+                    <h4 class="modal-title">Report Shared Information</h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">

@@ -9,15 +9,18 @@ $(document).ready(function () {
         e.preventDefault();
         var ths = $("li .wl-menu-toggle");
         var ths2 = $(".wl-header-btn .wl-menu-toggle");
-        if(ths.hasClass('wl-rotate-360')){
-            ths2.removeClass('wl-rotate-90');
-            ths.removeClass('wl-rotate-360');
+        var w = $(window).width();
+        if(w <= 720){
+            if(ths.hasClass('wl-rotate-360')){
+                ths2.removeClass('wl-rotate-90');
+                ths.removeClass('wl-rotate-360');
+            }
+            else {
+                ths.addClass('wl-rotate-360');
+                ths2.addClass('wl-rotate-90');
+            }
+            $("#wrapper").toggleClass("toggled");
         }
-        else {
-            ths.addClass('wl-rotate-360');
-            ths2.addClass('wl-rotate-90');
-        }
-        $("#wrapper").toggleClass("toggled");
     });
 
     function run_date_time() {

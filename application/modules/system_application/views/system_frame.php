@@ -128,7 +128,7 @@
                                 <span class="wl-c-green-3">&nbsp;|&nbsp;</span>
                                 <span class="wl-c-green-1 wl-time">--:--</span>
                                 <div class="col-sm-12" style="padding: 10px 0 0">
-                                    <a href="http://google.com" style="color:#413f4c;text-decoration:none"><h4>Brgy. Banilad, Mandaue City</h4></a>
+                                    <a style="color:#413f4c;text-decoration:none"><h4>Brgy. Banilad, Mandaue City</h4></a>
                                 </div>
                             </div>
                             <div class="wl-top-grp col-sm-4 no-padding">
@@ -212,7 +212,7 @@
                                                 &#8369;
                                                 <p class="wl-list-price" style="display:inline-block;height:auto" contenteditable="true" onkeypress="return wastePostContainer.isNumberInput(event)" placeholder="Price" holder="price"></p>
                                                 /
-                                                <p class="wl-list-quantity" style="display:inline-block;height:auto" contenteditable="true" onkeypress="return wastePostContainer.isNumberInput(event)" placeholder="Qty" holder="quantity"></p> 
+                                                <p class="wl-list-quantity" style="display:inline-block;height:auto" contenteditable="true" onkeypress="return wastePostContainer.isNumberInput(event)" placeholder="Qty" holder="quantity"></p>
                                                 <div class="form-group form-group-sm wl-list-category-div" style="display:inline-block;height:auto">
                                                     <select class="form-control wl-list-category" id="wastePostQuantityUnitList" holder="quantity_unit_ID">
                                                         <option hidden >Unit</option>
