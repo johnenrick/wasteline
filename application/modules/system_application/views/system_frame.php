@@ -28,9 +28,11 @@
         <!-- Material Design for Bootstrap -->
         <link href="<?= asset_url('css/bootstrap-material-design.min.css') ?>" rel="stylesheet">
 
+<!--
         <link href="<?= asset_url('css/roboto.min.css') ?>" rel="stylesheet">
-<!--        <link href="<?= asset_url('/css/material-fullpalette.css') ?>" rel="stylesheet">
+        <link href="<?= asset_url('/css/material-fullpalette.css') ?>" rel="stylesheet">
 -->
+
         <link href="<?= asset_url('/css/ripples.min.css') ?>" rel="stylesheet">
         <link href="<?=asset_url('css/bootstrap-material-datetimepicker.css')?>" rel="stylesheet">
 
