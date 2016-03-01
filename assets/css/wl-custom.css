@@ -578,6 +578,7 @@ ul.sidebar-nav li a {
 }
 #wl-footer-content .wl-filter-btn {
     display: none;
+    z-index: 2;
 }
 
 /* Information */
@@ -1555,6 +1556,9 @@ ul.sidebar-nav li a {
     }
     #wrapper.toggled #sidebar-wrapper {
         width: 60px;
+    }
+    .wl-floating-btn {
+        display: none !important;
     }
 }
 
