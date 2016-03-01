@@ -67,8 +67,8 @@
 <div id="wl-footer-content" class="wl-footer-map">
     <div class="row form-inline">
         <div class="col-sm-12 wl-filter-btn">
-            <button type="button" class="btn btn-raised btn-warning"><span class="glyphicon glyphicon-filter" aria-hidden="true"></span> Filter</button>
-            <button type="button" class="btn btn-raised btn-danger hide"><span class="glyphicon glyphicon-filter" aria-hidden="true"></span> Close</button>
+            <button type="button" class="btn btn-raised btn-sm btn-warning"><span class="glyphicon glyphicon-filter" aria-hidden="true"></span> Filter</button>
+            <button type="button" class="btn btn-raised btn-sm btn-danger hide"><span class="glyphicon glyphicon-filter" aria-hidden="true"></span> Close</button>
         </div>
         <div class="col-md-7">
             <a class="btn btn-default capitalize wl-map-filter wl-active" filter_type="1"  data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to display Garbages"><span class="circle"></span>Users</a>
