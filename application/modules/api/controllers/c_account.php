@@ -23,14 +23,14 @@ class C_account extends API_Controller {
             $this->responseError(5, "Captcha Required");
         }
         if($this->checkACL() && ($this->input->post("account_type_ID") != 2) && (($this->input->post("account_type_ID") == 1 && user_type() == 1) || ($this->input->post("account_type_ID") == 3 && user_type() == 1) || ($this->input->post("account_type_ID") == 4 && $this->validReCaptcha()))){
-            $this->form_validation->set_rules('username', 'Username', 'required|is_unique[account.username]|alpha_numeric');
-            $this->form_validation->set_rules('password', 'Password', 'required|min_length[6]');
+            $this->form_validation->set_rules('username', 'Username', 'trim|required|is_unique[account.username]|alpha_numeric');
+            $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]');
             $this->form_validation->set_rules('status', 'Status', 'required');
             $this->form_validation->set_rules('account_type_ID', 'Account Type', 'required');
             
-            $this->form_validation->set_rules('first_name', 'First Name', 'required');
-            $this->form_validation->set_rules('middle_name', 'Middle Name', 'required');
-            $this->form_validation->set_rules('last_name', 'Last Name', 'required');
+            $this->form_validation->set_rules('first_name', 'First Name', 'trim|required');
+            $this->form_validation->set_rules('middle_name', 'Middle Name', 'trim|required');
+            $this->form_validation->set_rules('last_name', 'Last Name', 'trim|required');
             $this->form_validation->set_rules('email_detail', 'Email Detail', 'required|valid_email|is_unique[account_contact_information.detail]');
             
             
@@ -172,8 +172,10 @@ class C_account extends API_Controller {
             $this->form_validation->set_rules('updated_data[password]', 'Password', 'min_length[6]');
             $this->form_validation->set_rules('updated_data[email_detail]', 'Email Address', 'valid_email|is_unique[account_contact_information.detail]');
             if($this->input->post("updated_data[account_address_longitude]") !== NULL){
-                $this->form_validation->set_rules('updated_data[account_address_description]', 'Complete Address', 'required|min_length[2]');
+                $this->form_validation->set_rules('updated_data[account_address_description]', 'Complete Address', 'trim|required|min_length[2]');
             }
+            $this->form_validation->set_rules('updated_data[first_name]', 'First Name', 'trim');
+            $this->form_validation->set_rules('updated_data[last_name]', 'Last Name', 'trim');
             if($this->input->post("updated_data[account_address_description]")){
                 $this->form_validation->set_rules('updated_data[account_address_longitude]', 'Your Map Location', 'required|greater_than[0]');
                 $this->form_validation->set_message('updated_data[account_address_longitude]');

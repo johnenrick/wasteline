@@ -75,7 +75,7 @@
         <div class="form-group ">
             
             <div class="col-md-12">
-                <button class="btn btn-sm btn-primary" id="profileManagementFormChangePassword"> <i class="fa fa-lock"></i>  Change Password </button>
+                <button type="button" class="btn btn-sm btn-primary" id="profileManagementFormChangePassword"> <i class="fa fa-lock"></i>  Change Password </button>
             </div>
         </div>
         <div class="form-group profileManagementFormPassword" style="display:none">

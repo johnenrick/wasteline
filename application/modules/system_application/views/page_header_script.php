@@ -41,8 +41,6 @@
             $("#headerUserFullName").parent().parent().removeClass("col-sm-10");
             $("#headerUserFullName").parent().parent().addClass("col-sm-12");
             $("#wl-post-floating-btn").hide();
-        }else{
-            console.log(user_type())
         }
     });
 
