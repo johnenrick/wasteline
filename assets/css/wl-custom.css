@@ -1545,8 +1545,8 @@ ul.sidebar-nav li a {
 }
 
 @media (min-width: 768px){
-    .wl-info-description,
-    .wl-info-content,
+    .wl-info-list,
+    .wl-info-display,
     .wl-pro-edit,
     .wl-pro-full-info{
         display: block !important;
