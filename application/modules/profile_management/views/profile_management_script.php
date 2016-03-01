@@ -126,7 +126,7 @@
 
         $("#wl-btn-editProfile").click(function () {
             var w = $(window).width();
-            if(w <= 720){
+            if(w <= 768){
                 $('.wl-pro-edit, #wl-return-floating-btn').fadeIn();
                 $('.wl-pro-full-info').fadeOut('fast');
             }

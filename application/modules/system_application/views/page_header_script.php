@@ -18,6 +18,9 @@
                     ths.toggleClass('wl-active-page');
                     $(".wl-page-title").text(page.replace('-', ' '));
                 });
+            if($("#wl-return-floating-btn").is(":visible")){
+                $("#wl-return-floating-btn").click();
+            }
         });
         $(".sidebar-nav").find("li[module_link='"+system_data.data.default_page+"']").trigger("click");
         $(".wl-btn-logout, #wl-btn-logout").click(function(){

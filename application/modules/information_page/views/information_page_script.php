@@ -31,7 +31,7 @@
                 if(infoID == 0){
                     $(".information-count").text(response["data"].length);
                     for(var x in response["data"]){
-                        var dummy = $("ul#informationList li.wl-list-dummy").clone().removeClass("wl-list-dummy").addClass("wl-list-infos");
+                        var dummy = $("ul#informationList li.wl-list-dummy").clone().removeClass("wl-list-dummy").addClass("wl-list-infos"+((x==0)?" active":""));
 
                         dummy.attr("informationid", response["data"][x]["ID"]);
                         dummy.find('img').attr('data-name', response["data"][x]["description"]);
@@ -39,6 +39,7 @@
                         dummy.find('.wl-list-sub span').attr('data-livestamp', response["data"][x]["datetime"]);
                         $('.wl-info-mainlist ul').append(dummy);
                         dummy.find('img.wl-info-box').initial();
+                        informationPage.retrieveInformation(1, informationPage.findInformationType());
                     }
                 }else{
                     $(".wl-info-box img").attr("src", $("ul#informationList li.active").find("img").attr("src"));
@@ -123,7 +124,7 @@
         });
         $('.wl-info-list').on('click','#wl-info-addbtn, .wl-info-li',function(){
             var w = $(window).width();
-            if(w <= 720){
+            if(w <= 768){
                 $('.wl-info-list').fadeOut('fast');
                 $('#wl-return-floating-btn, .wl-info-display').fadeIn();
             }
@@ -134,7 +135,7 @@
         });
         $('#wl-info-modal').on('hidden.bs.modal', function (e) {
             var w = $(window).width();
-            if(w <= 720){
+            if(w <= 768){
                 $('.wl-info-list').fadeIn();
                 $('#wl-return-floating-btn, .wl-info-display').fadeOut('fast');
             }
@@ -146,7 +147,7 @@
             $("#informationList .wl-list-infos").remove();
             $(".information-count").text("...");
             var w = $(window).width();
-            if(w <= 720){
+            if(w <= 768){
                 $('.wl-info-list').fadeIn();
                 $('#wl-return-floating-btn, .wl-info-display').fadeOut('fast');
             }

@@ -887,6 +887,7 @@ ul.sidebar-nav li a {
 
 .wl-pro-edit div.scroll-on {
     height: calc(100% - 65px);
+    overflow: hidden;
 }
 
 .wl-pro-edit div.form-group {
@@ -1087,7 +1088,7 @@ ul.sidebar-nav li a {
 }
 
 .scroll-on {
-    overflow: auto;
+    overflow: auto !impotant;
     position: relative;
     height: 100%;
 }
@@ -1524,6 +1525,7 @@ ul.sidebar-nav li a {
     #wl-footer-content {
         text-align: center;
         transition: all 0.5s ease-out;
+        height: 50px
     }
     #wl-footer-content.slideUp {
         height: auto;
@@ -1541,6 +1543,21 @@ ul.sidebar-nav li a {
     }
 }
 
+@media (min-width: 768px){
+    .wl-info-description,
+    .wl-info-content,
+    .wl-pro-edit,
+    .wl-pro-full-info{
+        display: block !important;
+    }
+    #wrapper.toggled {
+        padding-left: 60px !important;
+    }
+    #wrapper.toggled #sidebar-wrapper {
+        width: 60px;
+    }
+}
+
 @media (min-width: 768px) and (max-width: 1000px) {
     .wl-top-grp span:nth-child(3),
     .wl-top-grp span:nth-child(4) {
@@ -1552,4 +1569,13 @@ ul.sidebar-nav li a {
     }
 }
 
+@media (max-width: 375px) {
+    .wl-top-grp span:nth-child(3),
+    .wl-top-grp span:nth-child(4) {
+        display: none;
+    }
+    #wl-side-menu ul li a {
+        padding: .2em .2em .8em;
+    }
+}
 /* end */

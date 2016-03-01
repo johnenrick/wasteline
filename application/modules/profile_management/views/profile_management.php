@@ -1,4 +1,4 @@
-<div class="col-xs-12 col-sm-3 no-padding wl-pro-full-info">
+<div class="col-xs-12 col-sm-3 no-padding wl-pro-full-info scroll-on">
     <img id="profileManagementProfilePicture" class="wl-profile-img" data-char-count="2">
     <p id="profileManagementFullName" class="wl-full-name capitalize">
     </p>
@@ -73,7 +73,7 @@
             </div>
         </div>
         <div class="form-group ">
-            
+
             <div class="col-md-12">
                 <button type="button" class="btn btn-sm btn-primary" id="profileManagementFormChangePassword"> <i class="fa fa-lock"></i>  Change Password </button>
             </div>
@@ -100,7 +100,7 @@
                 <input name="updated_data[account_address_latitude]" type="hidden">
                 <input name="updated_data[account_address_map_marker_ID]" type="hidden" value="-1">
                 <textarea name="updated_data[account_address_description]" class="form-control capitalize" rows="2" placeholder="Complete Address"></textarea>
-                <span class="help-block">Click the map on the right to indicate your address. Or use GPS <i class="fa fa-map-marker"></i> location on the bottom left in the map</span>
+                <span class="help-block">Click the map to indicate your address. Or use GPS <i class="fa fa-map-marker"></i> location on the bottom left in the map</span>
             </div>
         </div>
 

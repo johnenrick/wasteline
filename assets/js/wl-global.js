@@ -10,7 +10,7 @@ $(document).ready(function () {
         var ths = $("li .wl-menu-toggle");
         var ths2 = $(".wl-header-btn .wl-menu-toggle");
         var w = $(window).width();
-        if(w <= 720){
+        if(w <= 768){
             if(ths.hasClass('wl-rotate-360')){
                 ths2.removeClass('wl-rotate-90');
                 ths.removeClass('wl-rotate-360');
