@@ -10,7 +10,7 @@
             LGUManagement.LGUManagementTable.addRow(tableRow);
         }
     };
-    
+
     LGUManagement.initializeReportManagementTable = function(){
         var config = {
             api_link : api_url("C_account/retrieveAccount"),
@@ -112,7 +112,7 @@
         });
     };
     $(document).ready(function(){
-        $("#LGUManagementHolder").addClass("scroll-on");
+        //$("#LGUManagementHolder").addClass("scroll-on");
         load_page_component("table_component", LGUManagement.initializeReportManagementTable);
         $("#LGUManagementCreateUser").click(function(){
             $(".LGUManagementUserDetailChangeAccountStatus").hide();
@@ -128,16 +128,16 @@
         $(".LGUManagementUserDetailChangeAccountStatus").click(function(){
             $(".LGUManagementUserDetailChangeAccountStatus").button("loading");
             $.post(api_url("C_account/updateAccount"), {ID : $("#LGUManagementUserDetailForm").find("[name=ID]").val(),updated_data : {status : $(this).attr("status")}}, function(data){
-            
+
                 var response = JSON.parse(data);
                 if(!response["data"].length){
                     LGUManagement.viewUserDetail($("#LGUManagementUserDetailForm").find("[name=ID]").val());
                 }else{
-                    
+
                 }
             });
         });
-        
+
         $("#LGUManagementUserDetailForm").validator();
         $("#LGUManagementUserDetailForm").attr("action", api_url("C_account/createAccount"));
         $("#LGUManagementUserDetailForm").ajaxForm({
@@ -176,10 +176,10 @@
                 }else{
                     show_form_error($("#LGUManagementUserDetailForm"), response["error"]);
                 }
-                
+
             }
         });
-        
+
     });
-    
+
 </script>

@@ -1,10 +1,11 @@
-<div id="LGUManagementHolder">
+<div id="LGUManagementHolder" class="scroll-on">
 <div  class="col-md-8 col-md-offset-2">
     <button id="LGUManagementCreateUser" type="submit" class="btn btn-success btn-sm pull-right"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create LGU User</button>
 </div>
 
 <div id="LGUManagementTableContainer" class="col-md-8 col-md-offset-2">
 
+</div>
 </div>
 <div class="prototype" style="display:none">
     <table>
@@ -39,8 +40,8 @@
                     </div>
                     <div class="col-md-6">
                         <div class="row">
-                            
-                            <div class="col-md-12"> 
+
+                            <div class="col-md-12">
                                 <h5 class="modal-title">Personal Information</h5>
                                 <hr>
                             </div>
@@ -81,7 +82,7 @@
                                     <p class="help-block wl-c-gray-1">Email Address</p>
                                 </div>
                             </div>
-                            
+
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -126,5 +127,4 @@
             </form>
         </div>
     </div>
-</div>
 </div>
