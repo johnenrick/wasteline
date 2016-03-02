@@ -1,4 +1,4 @@
-<div id="userManagementHolder" style="height:100%;width:100%">
+<div id="userManagementHolder" class="scroll-on" style="height:100%;width:100%">
 <div id="userManagementTableContainer" class="col-md-8 col-md-offset-2">
 
 </div>
@@ -11,6 +11,7 @@
             <td ><button class="userManagementTableViewDetail btn btn-raised btn-xs btn-info no-margin">view</button></td>
         </tr>
     </table>
+</div>
 </div>
 <!-- info modal -->
 <div id="userManagementUserDetail" class="modal fade">
@@ -40,8 +41,8 @@
                     </div>
                     <div class="col-md-12">
                         <div class="row">
-                            
-                            <div class="col-md-12"> 
+
+                            <div class="col-md-12">
                                 <h5 class="modal-title">Personal Information</h5>
                                 <hr>
                             </div>
@@ -99,5 +100,4 @@
             </form>
         </div>
     </div>
-</div>
 </div>
