@@ -290,9 +290,12 @@ var requestVerificationCode = function(){
         }
         $.post(api_url("C_account/retrieveAccount"), {ID:user_id()}, function(data){
             var response = JSON.parse(data);
-            if(!response.length){
-                if(response["data"]["account_address_map_marker_ID"] === null && (response["data"]["account_type_ID"]*1 === 2 || response["data"]["account_typr_ID"]*1 === 4)){
+            console.log(response);
+            if(!response["error"].length){
+                console.log(response["data"]["account_address_map_marker_ID"] === null)
+                if(response["data"]["account_address_map_marker_ID"] === null && (response["data"]["account_type_ID"]*1 === 2 || response["data"]["account_type_ID"]*1 === 4)){
                     $("[module_link='profile_management']").trigger("click");
+                    show_system_message(121, 4, "Please complete all the information required especially your location and complete address.");
                 }
             }
         });

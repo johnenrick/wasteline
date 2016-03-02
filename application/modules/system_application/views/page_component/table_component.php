@@ -42,13 +42,13 @@
             </nav>
         </div>
         <div class="col-sm-4">
-            <form class="form-inline pull-right">
+            <div class="form-inline pull-right">
                 <div class="form-group">
                     <label>Page</label>
                     <input type="text" class="form-control input-sm tableComponentCurrentPage" placeholder="" size="2" value="0" style="text-align:right">
                     <label>/ <span class="tableComponentTotalPage">3</span></label>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
     <div class="prototype" style="display:none">

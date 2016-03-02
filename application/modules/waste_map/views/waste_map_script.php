@@ -35,6 +35,7 @@
      * @returns {undefined}
      */
     wasteMap.bindOwnWasteFormAction = function(markerListID){
+        console.log(markerListID);
         wasteMap.webMap.markerList[markerListID].on("click",function(e){
             if(e.target._popup._isOpen){
                 var accountID = $(e.target._popup._contentNode).find("[name=account_ID]").val();
@@ -74,6 +75,9 @@
                         var response = JSON.parse(data);
                         if(!response["error"].length){
                             wasteMap.webMap.markerList[mapMarkerID].closePopup();
+                            if(wasteMap.webMap.markerList[mapMarkerID].options.map_marker_type_ID === 1){
+                                wasteMap.webMap.removeMarkerList(mapMarkerID);
+                            }
 
                         }
                     });
@@ -130,6 +134,7 @@
                     if(((typeof wasteMap.webMap.markerList[response["data"][x]["ID"]] === "undefined") || ((response["data"][x]["waste_post_type_ID"] === "3" || response["data"][x]["waste_post_type_ID"] === "2" )) && (wasteMap.webMap.markerList[response["data"][x]["ID"]].options.map_marker_type_ID !== 5))  ){
                         var mapMarkerTypeID = (response["data"][x]["waste_post_type_ID"] === "1") ? 1 : 4;
                         wasteMap.webMap.addMarker(response["data"][x]["ID"], mapMarkerTypeID, response["data"][x]["associated_ID"], response["data"][x][wasteMap.mapMarkerDescriptionList[response["data"][x]["map_marker_type_ID"]]], response["data"][x]["longitude"], response["data"][x]["latitude"], false, wasteMap.createOwnWasteForm(response["data"][x]["ID"], response["data"][x]["account_ID"]));
+                        console.log(response["data"][x]["ID"]);
                         wasteMap.bindOwnWasteFormAction(response["data"][x]["ID"]);
                     }
                 }
@@ -228,8 +233,10 @@
             $.post(api_url("C_account/retrieveAccount"), {ID:user_id()}, function(data){
                 var response = JSON.parse(data);
                 if(!response["error"].length){
-                    wasteMap.webMap.addMarker(response["data"]["account_address_map_marker_ID"], 5, response["data"]["acount_address_ID"], response["data"]["account_address_description"], response["data"]["account_address_longitude"], response["data"]["account_address_latitude"], false, wasteMap.createOwnWasteForm(response["data"]["account_address_map_marker_ID"], response["data"]["account_ID"]));
-                    wasteMap.bindOwnWasteFormAction(response["data"]["account_address_map_marker_ID"]);
+                    if(response["data"]["account_address_map_marker_ID"] !== null){
+                        wasteMap.webMap.addMarker(response["data"]["account_address_map_marker_ID"], 5, response["data"]["acount_address_ID"], response["data"]["account_address_description"], response["data"]["account_address_longitude"], response["data"]["account_address_latitude"], false, wasteMap.createOwnWasteForm(response["data"]["account_address_map_marker_ID"], response["data"]["account_ID"]));
+                        wasteMap.bindOwnWasteFormAction(response["data"]["account_address_map_marker_ID"]);
+                    }
                 }else{
                     //show_system_message(response["error"][0]["status"]*20, 2, response["error"][0]["message"]);
                     console.log(response);

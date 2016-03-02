@@ -21,6 +21,11 @@
             <form id="reportManagementUserDetailForm" method="POST">
                 <input name="ID" value="0" type="hidden">
                 <input name="account_type_ID" value="3" type="hidden">
+                <input name="report_type_ID" value="" type="hidden">
+                <input name="map_marker_ID" value="" type="hidden">
+                <input name="associated_ID" value="" type="hidden">
+                <input name="longitude" value="" type="hidden">
+                <input name="latitude" value="" type="hidden">
                 <input name="status" value="1" type="hidden">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>

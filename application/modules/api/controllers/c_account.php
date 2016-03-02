@@ -33,6 +33,7 @@ class C_account extends API_Controller {
             $this->form_validation->set_rules('last_name', 'Last Name', 'trim|required');
             $this->form_validation->set_rules('email_detail', 'Email Detail', 'required|valid_email|is_unique[account_contact_information.detail]');
             
+//            $this->form_validation->set_message('alpha_dash_space', 'Only accept alpha and spaces');
             
             if($this->form_validation->run()){
                 $result = $this->m_account->createAccount(
@@ -87,6 +88,7 @@ class C_account extends API_Controller {
         }
         $this->outputResponse();
     }
+    
     public function retrieveAccount(){
         $this->accessNumber = 2;
         if($this->checkACL() && user_id()){
@@ -307,6 +309,9 @@ class C_account extends API_Controller {
         }
         $this->outputResponse();
     }
+    function alpha_dash_space($str){
+        return ( !preg_match('/^[a-z .,\-]+$/i', $str)) ? false : true;
+    } 
     public function validReCaptcha(){
 //        $url = 'https://www.google.com/recaptcha/api/siteverify';
 //        $data = array('secret' => '6LehRRUTAAAAAI4FaRRWhVpjjNarhe4ZYjaodC7y', 'response' => "The value of 'g-recaptcha-response'.");

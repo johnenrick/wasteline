@@ -1,4 +1,4 @@
-<div id="userManagementHolder">
+<div id="userManagementHolder" style="height:100%;width:100%">
 <div id="userManagementTableContainer" class="col-md-8 col-md-offset-2">
 
 </div>

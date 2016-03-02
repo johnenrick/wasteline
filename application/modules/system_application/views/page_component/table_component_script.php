@@ -176,6 +176,12 @@
             tableComponent.tableContainer.find(".tableComponentCurrentPage").val(tableComponent.tableContainer.find(".tableComponentCurrentPage").val()*1+1);
             tableComponent.tableContainer.find(".tableComponentFilterForm").trigger("submit");
         });
+        tableComponent.tableContainer.find(".tableComponentCurrentPage").change(function(){
+            if(isNaN($(this).val()*1)){
+                $(this).val(1);
+            }
+            tableComponent.tableContainer.find(".tableComponentFilterForm").trigger("submit");
+        })
         /**
          * Appending Row
          *

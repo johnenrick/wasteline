@@ -114,8 +114,8 @@
                 <div class="row">
                     <div class="col-md-12" style="text-align: center">
                         <button type="submit" button_action="1" class="wasteMapSubmitIllegalDumpingReport btn btn-illegal-dumping"><i class="fa fa-flag"></i> Submit Report</button>
-                        <button type="button" button_action="3" class="wasteMapSubmitIllegalDumpingReport btn btn-primary " style="display:none"><i class="fa fa-check"></i> Resolve Report</button>
-                        <button type="button" button_action="2" class="wasteMapSubmitIllegalDumpingReport btn btn-illegal-dumping "><i class="fa fa-trash"></i> Remove Report</button>
+                        <button type="button" button_action="3" class="wasteMapSubmitIllegalDumpingReport btn btn-primary btn-raised" style="display:none"><i class="fa fa-check"></i> Resolve Report</button>
+                        <button type="button" button_action="2" class="wasteMapSubmitIllegalDumpingReport btn btn-danger "><i class="fa fa-trash"></i> Remove Report</button>
                     </div>
                 </div>
             </form>
@@ -222,7 +222,7 @@
                 </div>
                 <div class="row wasteMapLGUOption" style="display:none">
                     <div class="col-md-12" style="text-align: center">
-                        <button type="button" button_action="1" class="btn btn-primary " style="display:none"><i class="fa fa-hand-paper-o"></i> Collect Waste</button>
+                        <button type="button" button_action="1" class="btn btn-primary btn-raised" style="display:none"><i class="fa fa-hand-paper-o"></i> Collect Waste</button>
                     </div>
                 </div>
                 <div class="row wasteMapUserOption" style="display:none">
