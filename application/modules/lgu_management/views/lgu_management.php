@@ -3,7 +3,7 @@
     <button id="LGUManagementCreateUser" type="submit" class="btn btn-success btn-sm pull-right"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create LGU User</button>
 </div>
 
-<div id="LGUManagementTableContainer" class="col-md-8 col-md-offset-2">
+<div id="LGUManagementTableContainer" class="col-md-12">
 
 </div>
 </div>

@@ -28,9 +28,9 @@ class C_account extends API_Controller {
             $this->form_validation->set_rules('status', 'Status', 'required');
             $this->form_validation->set_rules('account_type_ID', 'Account Type', 'required');
             
-            $this->form_validation->set_rules('first_name', 'First Name', 'trim|required');
-            $this->form_validation->set_rules('middle_name', 'Middle Name', 'trim|required');
-            $this->form_validation->set_rules('last_name', 'Last Name', 'trim|required');
+            $this->form_validation->set_rules('first_name', 'First Name', 'trim|required|callback_alpha_dash_space');
+            $this->form_validation->set_rules('middle_name', 'Middle Name', 'trim|required|callback_alpha_dash_space');
+            $this->form_validation->set_rules('last_name', 'Last Name', 'trim|required|callback_alpha_dash_space');
             $this->form_validation->set_rules('email_detail', 'Email Detail', 'required|valid_email|is_unique[account_contact_information.detail]');
             
 //            $this->form_validation->set_message('alpha_dash_space', 'Only accept alpha and spaces');
@@ -176,8 +176,8 @@ class C_account extends API_Controller {
             if($this->input->post("updated_data[account_address_longitude]") !== NULL){
                 $this->form_validation->set_rules('updated_data[account_address_description]', 'Complete Address', 'trim|required|min_length[2]');
             }
-            $this->form_validation->set_rules('updated_data[first_name]', 'First Name', 'trim');
-            $this->form_validation->set_rules('updated_data[last_name]', 'Last Name', 'trim');
+            $this->form_validation->set_rules('updated_data[first_name]', 'First Name', 'trim|callback_alpha_dash_space');
+            $this->form_validation->set_rules('updated_data[last_name]', 'Last Name', 'trim|callback_alpha_dash_space');
             if($this->input->post("updated_data[account_address_description]")){
                 $this->form_validation->set_rules('updated_data[account_address_longitude]', 'Your Map Location', 'required|greater_than[0]');
                 $this->form_validation->set_message('updated_data[account_address_longitude]');
@@ -309,7 +309,8 @@ class C_account extends API_Controller {
         }
         $this->outputResponse();
     }
-    function alpha_dash_space($str){
+    public function alpha_dash_space($str){
+         $this->form_validation->set_message('alpha_dash_space', '{field} only accepts alphabets and spaces');
         return ( !preg_match('/^[a-z .,\-]+$/i', $str)) ? false : true;
     } 
     public function validReCaptcha(){
