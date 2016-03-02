@@ -78,7 +78,7 @@
                 column_name: "status",
                 column_label : "Status"
             }],
-            result_limit : 5,
+            result_limit : 20,
             result_callback : reportManagement.retrieveReportAccount
         };
         reportManagement.reportManagementTable = new TableComponent("#reportManagementTableContainer", config);
