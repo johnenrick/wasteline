@@ -1,16 +1,17 @@
 <div id="userManagementHolder" style="height:100%;width:100%">
-<div id="userManagementTableContainer" class="col-md-12 ">
+    <div id="userManagementTableContainer" class="col-md-12 ">
 
-</div>
-<div class="prototype" style="display:none">
-    <table>
-        <tr class="userManagementTableRow">
-            <td class="userManagementID"></td>
-            <td class="userManagementUsername wl-c-green-1" ></td>
-            <td class="userManagementFullName capitalize" ></td>
-            <td ><button class="userManagementTableViewDetail btn btn-raised btn-xs btn-info no-margin">view</button></td>
-        </tr>
-    </table>
+    </div>
+    <div class="prototype" style="display:none">
+        <table>
+            <tr class="userManagementTableRow">
+                <td class="userManagementID"></td>
+                <td class="userManagementUsername wl-c-green-1" ></td>
+                <td class="userManagementFullName capitalize" ></td>
+                <td ><button class="userManagementTableViewDetail btn btn-raised btn-xs btn-info no-margin">view</button></td>
+            </tr>
+        </table>
+    </div>
 </div>
 <!-- info modal -->
 <div id="userManagementUserDetail" class="modal fade">
@@ -40,7 +41,7 @@
                     </div>
                     <div class="col-md-12">
                         <div class="row">
-                            
+
                             <div class="col-md-12"> 
                                 <h5 class="modal-title">Personal Information</h5>
                                 <hr>
@@ -99,5 +100,5 @@
             </form>
         </div>
     </div>
-</div>
+
 </div>
