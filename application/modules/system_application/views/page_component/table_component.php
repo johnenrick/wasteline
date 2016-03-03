@@ -1,6 +1,6 @@
 <div class="table_component">
     <div class="row">
-        <div class="col-sm-12">
+        <div class="col-xs-12">
             <form action="" class="tableComponentFilterForm form-inline" method="post">
                 <input name="limit" value="20" type="hidden">
                 <button type="submit" class="btn btn-raised btn-warning btn-sm"><span class="glyphicon glyphicon-filter" aria-hidden="true"></span> Filter</button>
@@ -8,7 +8,7 @@
         </div>
     </div>
     <div class="row table-responsive">
-        <div class="col-sm-12">
+        <div class="col-xs-12">
             <table class="tableComponentTable table table-hover ">
                 <thead>
                     <tr>
@@ -24,7 +24,7 @@
 
     </div>
     <div class="row">
-        <div class="col-sm-4">
+        <div class="col-xs-4">
             <form class="form-inline ">
                 <div class="form-group">
                     <label class="tableComponentTotalResult"></label>
@@ -32,7 +32,7 @@
                 </div>
             </form>
         </div>
-        <div class="col-sm-4 ">
+        <div class="col-xs-4 ">
             <nav>
                 <ul class="pager">
                     <li class="tableComponentPreviousPage"><a href="#" class="inactive-link"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Previous</a></li>
@@ -41,7 +41,7 @@
                 </ul>
             </nav>
         </div>
-        <div class="col-sm-4">
+        <div class="col-xs-4">
             <div class="form-inline pull-right">
                 <div class="form-group">
                     <label>Page</label>
