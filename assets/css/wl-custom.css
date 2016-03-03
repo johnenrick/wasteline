@@ -80,6 +80,10 @@ a, a:focus, a:hover {
 #wrapper.disabled .wl-carousel-item {
     background-position: 0 0;
 }
+
+#wrapper.disabled .wl-carousel-item .row {
+    padding-top: 40%;
+}
 #wrapper.disabled .wl-carousel-item.wl-carousel-item1,
 #wrapper.disabled .wl-carousel-item.wl-carousel-item3 {
     background-position: center 0;
@@ -1346,6 +1350,23 @@ ul.sidebar-nav li a {
   }
 }
 
+
+/* carousel */
+#wrapper .wl-carousel-item .row {
+    padding-top: 20%;
+}
+#wrapper .wl-carousel-item .row div {
+    margin-left: 2%;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+#wrapper .wl-carousel-item .row h2{
+    font-weight: bold;
+}
+#wrapper .wl-carousel-item .row p {
+    font-size: 22px;
+}
+
 /* portal */
 @media (max-width: 768px) {
     .wl-carousel-header {
@@ -1526,6 +1547,9 @@ ul.sidebar-nav li a {
     }
     #profileManagementMapLocation {
         display: block;
+    }
+    #wrapper.disabled .wl-carousel-item .row {
+        display: none;
     }
 }
 

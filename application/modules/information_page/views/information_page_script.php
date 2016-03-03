@@ -39,7 +39,7 @@
                         dummy.find('.wl-list-sub span').attr('data-livestamp', response["data"][x]["datetime"]);
                         $('.wl-info-mainlist ul').append(dummy);
                         dummy.find('img.wl-info-box').initial();
-                        informationPage.retrieveInformation(1, informationPage.findInformationType());
+                        informationPage.retrieveInformation($(".wl-info-mainlist .wl-list-infos").attr("informationid"), informationPage.findInformationType());
                     }
                 }else{
                     $(".wl-info-box img").attr("src", $("ul#informationList li.active").find("img").attr("src"));

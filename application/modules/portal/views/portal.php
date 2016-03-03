@@ -10,40 +10,59 @@
         <div class="container-fluid wl-full-height">
             <div class="row wl-full-height">
                 <!-- main content -->
-                <div  class="wl-full-height col-sm-12 no-padding">
+                <div  class="wl-full-height col-xs-12 no-padding">
                     <div id="portalInformationPanel" class="wl-full-height col-sm-7 no-padding">
-                        <div class="col-sm-12 wl-carousel-header">
+                        <div class="col-xs-12 wl-carousel-header">
                             <h4 style="padding:20px"><span class="lnr lnr-trash"></span>&nbsp;WasteLine</h4>
                         </div>
-                        <div class="col-sm-12 no-padding wl-full-height">
-                            <div id="contentCarousel" class="owl-carousel wl-full-height">
+                        <div class="col-xs-12 no-padding wl-full-height">
+                            <div id="contentCarousel" class="owl-carousel col-xs-12 no-padding wl-full-height">
                                 <div class="wl-carousel-item wl-carousel-item1" style="background-image:url('<?= asset_url("images/sample/1.jpg") ?>')">
                                     <div class="row">
+                                        <div class="col-xs-5">
+                                            <h2>Title Here</h2>
+                                            <p>some text here...</p>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="wl-carousel-item wl-carousel-item2" style="background-image:url('<?= asset_url("images/sample/2.jpg") ?>')">
                                     <div class="row">
-
+                                        <div class="col-xs-5">
+                                            <h2>Title Here</h2>
+                                            <p>some text here...</p>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="wl-carousel-item wl-carousel-item3" style="background-image:url('<?= asset_url("images/sample/3.jpg") ?>')">
                                     <div class="row">
-
+                                        <div class="col-xs-5">
+                                            <h2>Title Here</h2>
+                                            <p>some text here...</p>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="wl-carousel-item wl-carousel-item4" style="background-image:url('<?= asset_url("images/sample/4.jpg") ?>')">
                                     <div class="row">
-
+                                        <div class="col-xs-5">
+                                            <h2>Title Here</h2>
+                                            <p>some text here...</p>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="wl-carousel-item wl-carousel-item5" style="background-image:url('<?= asset_url("images/sample/5.jpg") ?>')">
                                     <div class="row">
-
+                                        <div class="col-xs-5">
+                                            <h2>Title Here</h2>
+                                            <p>some text here...</p>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="wl-carousel-item wl-carousel-item6" style="background-image:url('<?= asset_url("images/sample/6.jpg") ?>')">
                                     <div class="row">
-
+                                        <div class="col-xs-5">
+                                            <h2>Title Here</h2>
+                                            <p>some text here...</p>
+                                        </div>
                                     </div>
                                 </div>
 
