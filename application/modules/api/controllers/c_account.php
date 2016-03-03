@@ -320,7 +320,7 @@ class C_account extends API_Controller {
     } 
     public function validReCaptcha(){
 //        $url = 'https://www.google.com/recaptcha/api/siteverify';
-//        $data = array('secret' => '6LehRRUTAAAAAI4FaRRWhVpjjNarhe4ZYjaodC7y', 'response' => "The value of 'g-recaptcha-response'.");
+//        $data = array('secret' => '6Ld26BkTAAAAAHFkrfknWzaQhRkey-edRO5KEMU0', 'response' => "The value of 'g-recaptcha-response'.");
 //
 //        // use key 'http' even if you send the request to https://...
 //        $options = array(
@@ -332,8 +332,9 @@ class C_account extends API_Controller {
 //        );
 //        $context  = stream_context_create($options);
 //        $result = file_get_contents($url, false, $context);
-//        if ($result === FALSE) { /* Handle error */ }
-//        $response = json_decode($result, true);
+//        if ($result === FALSE) { 
+//          return false;
+//        }
         return true;
     }
 }

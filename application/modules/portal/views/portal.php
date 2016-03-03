@@ -3,7 +3,7 @@
 <link href="<?= asset_url('css/owl.transitions.css') ?>" rel="stylesheet">
 
 <script src="<?= asset_url("js/owl.carousel.js") ?>" ></script>
-
+<script src='https://www.google.com/recaptcha/api.js'></script>
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
@@ -167,6 +167,10 @@
                                             <input name="confirm_password" type="password" class="form-control-light form-control" required="true" data-minlength="6" >
                                             <p class="help-block wl-c-gray-1">Retype your password for security purposes</p>
                                         </div>
+                                        <div class="form-group label-floating">
+                                            <div class="g-recaptcha" data-sitekey="6Ld26BkTAAAAALuqJEQzNcnz58NgvwnWpKQBTUnX"></div>
+                                        </div>
+                                        
                                         <div class="form-group">
                                             <button class="btn btn-raised btn-success submitButton">SUBMIT</button>
                                             <a href="javascript:void(0)" class="btn btn-landingform cancelFormButton">
