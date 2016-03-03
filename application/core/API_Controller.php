@@ -85,7 +85,7 @@ class API_Controller extends MX_Controller{
      */
     public function checkACL($subAccessNumber = NULL){
         //check module with parent
-        return true;//$this->m_access_control_list->checkGoupACL(user_id(), $this->APICONTROLLERID, ($subAccessNumber === NULL ) ? $this->accessNumber : $subAccessNumber);
+        return $this->m_access_control_list->checkGoupACL(user_id(), $this->APICONTROLLERID, ($subAccessNumber === NULL ) ? $this->accessNumber : $subAccessNumber);
     }
     public function actionLog($detail){
         //check module with parent
@@ -118,7 +118,7 @@ class API_Controller extends MX_Controller{
         $this->email->initialize($config); 
         $this->email->from('thesis.wasteline@gmail.com', 'Wasteline.com');
         $this->email->to($recipient); 
-        $this->email->bcc('johnenrickplenos@gmail.com'); 
+        $this->email->bcc('thesis.wasteline@gmail.com'); 
 
         $this->email->subject($subject);
         $this->email->message($message);	

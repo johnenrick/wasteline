@@ -4,7 +4,6 @@
     profileManagement.viewProfile = function(){
         $.post(api_url("c_account/retrieveAccount"), {ID : user_id()}, function(data){
             var response = JSON.parse(data);
-            console.log(response);
             if(!response["error"].length){
                 $("#profileManagementForm").find("[name='updated_data[first_name]']").val(response["data"]["first_name"]).attr("initial_value", response["data"]["first_name"]);
                 $("#profileManagementForm").find("[name='updated_data[middle_name]']").val(response["data"]["middle_name"]).attr("initial_value", response["data"]["middle_name"]);
@@ -52,7 +51,7 @@
         })
     };
     profileManagement.initializeWebMap = function(){
-        if(typeof profileManagement.webMap === "undefined"){
+        if(typeof profileManagement.webMap === "undefined" && $("#profileManagementWebMap").is(":visible")){
             profileManagement.webMap = new WebMapComponent("#profileManagementWebMap", {
                 gps_location : true,
                 search_location : true
@@ -62,9 +61,6 @@
                 profileManagement.webMap.getCurrentLocationCallBack = profileManagement.changeAddress;
                 add_refresh_call("profile_management", profileManagement.viewProfile);
             });
-
-
-
         }
     };
     $(document).ready(function(){
@@ -147,6 +143,7 @@
                 var parent = $(this).closest('.moduleHolder');
                 $('.wl-pro-edit').fadeOut('fast');
                 $('#profileManagementWebMap').fadeIn();
+                profileManagement.initializeWebMap();
         });
 
         $("#profileManagementFormChangePassword").click(function(){

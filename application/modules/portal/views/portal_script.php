@@ -1,6 +1,15 @@
 <script type="text/javascript">
+    var portalExplore = {};
+    portalExplore.initializeWastemapManagement = function(){
+        portalExplore.webMap = new WebMapComponent("#portalExploreMap",{
+            gps_location : true,
+            search_location : true,
+            heat_layer : true
+        });
+    };
     $(document).ready(function(){
         $.material.init();
+        load_page_component("web_map_component", portalExplore.initializeWastemapManagement);
         $(".btn-landingform").click(function(){
             if($("#login-form").is(":visible")){
                 $("#login-form").hide();
@@ -34,11 +43,7 @@
             $("#portalInformationPanel").removeClass("col-sm-7");
             $("#portalLoginPanel").removeClass("col-sm-5");
             $("#portalInformationPanel").addClass("col-sm-12");
-        }else{
-//            $("#pageHeader").hide();
-//            $(".wl-main-content ").css("margin-top","0px");
-//            $("#sidebar-wrapper").hide();
-//            $("#wrapper").css("padding-left", "0px");
         }
+        
     });
 </script>

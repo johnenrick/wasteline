@@ -129,7 +129,7 @@ class C_report extends API_Controller {
         $this->accessNumber = 8;
         if($this->checkACL()){
             $condition = $this->input->post("condition");
-            if(user_type() == 2 ||user_type() == 4){
+            if(!$this->checkACL(16)){
                 $condition["reporter_account_ID"] = user_id();
             }
             $result = $this->m_report->deleteReport(

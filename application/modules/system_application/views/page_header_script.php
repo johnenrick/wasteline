@@ -22,6 +22,7 @@
                 $("#wl-return-floating-btn").click();
             }
         });
+        console.log(system_data.data.default_page);
         $(".sidebar-nav").find("li[module_link='"+system_data.data.default_page+"']").trigger("click");
         $(".wl-btn-logout, #wl-btn-logout").click(function(){
             window.location = base_url("portal/logout");
@@ -38,7 +39,7 @@
             }
         }
 
-        if(user_type()!== 2 && user_type()!== 4){//hide post button if not normal user
+        if(user_type()!== 2){//hide post button if not normal user
             $(".wl-btn-post").parent().parent().hide();
             $("#headerUserFullName").parent().parent().removeClass("no-padding")
             $("#headerUserFullName").parent().parent().removeClass("col-sm-10");

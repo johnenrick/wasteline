@@ -18,7 +18,7 @@ class Portal extends FE_Controller{
     }
     public function visitPage($pageLink = "portal", $pageLink2 = false, $extraData = false){
         $data = array(
-            "defaultPage" => $pageLink2 ? $pageLink."/".$pageLink2 : $pageLink, //if index or function in controller
+            "defaultPage" => ($pageLink2 !== "false" && $pageLink2 !== false) ? $pageLink."/".$pageLink2 : $pageLink, //if index or function in controller
             "extra_data" => ($extraData) ? base64_decode($extraData) : false
         );
         $this->load->view("system_application/system_frame", $data);

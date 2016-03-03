@@ -316,7 +316,7 @@ class C_account extends API_Controller {
     }
     public function alpha_dash_space($str){
          $this->form_validation->set_message('alpha_dash_space', '{field} only accepts alphabets and spaces');
-        return ( !preg_match('/^[a-z .,\-]+$/i', $str)) ? false : true;
+        return ( !preg_match('/^[ a-z - ñÑ]+$/iu', $str)) ? false : true;
     } 
     public function validReCaptcha(){
 //        $url = 'https://www.google.com/recaptcha/api/siteverify';

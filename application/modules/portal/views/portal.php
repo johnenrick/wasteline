@@ -10,12 +10,12 @@
         <div class="container-fluid wl-full-height">
             <div class="row wl-full-height">
                 <!-- main content -->
-                <div  class="wl-full-height col-xs-12 no-padding">
+                <div  class="wl-full-height col-xs-12 no-padding" >
                     <div id="portalInformationPanel" class="wl-full-height col-sm-7 no-padding">
                         <div class="col-xs-12 wl-carousel-header">
                             <h4 style="padding:20px"><span class="lnr lnr-trash"></span>&nbsp;WasteLine</h4>
                         </div>
-                        <div class="col-xs-12 no-padding wl-full-height">
+                        <div class="col-xs-12 no-padding wl-full-height " >
                             <div id="contentCarousel" class="owl-carousel col-xs-12 no-padding wl-full-height">
                                 <div class="wl-carousel-item wl-carousel-item1" style="background-image:url(<?= asset_url("images/sample/1x/1.jpg")?>);background-image: image-set(url(<?= asset_url("images/sample/1x/1.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/1.jpg")?>) 2x);background-image: -webkit-image-set(url(<?= asset_url("images/sample/1x/1.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/1.jpg")?>) 2x);background-image: -o-image-set(url(<?= asset_url("images/sample/1x/1.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/1.jpg")?>) 2x);background-image: -moz-image-set(url(<?= asset_url("images/sample/1x/1.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/1.jpg")?>) 2x);background-image: -ms-image-set(url(<?= asset_url("images/sample/1x/1.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/1.jpg")?>) 2x);">
                                     <div class="row">
@@ -67,7 +67,9 @@
                                 </div>
 
                             </div>
+                            
                         </div>
+                        
                     </div>
                     <div id='portalLoginPanel' class="col-sm-5 no-padding">
                         <div class="col-md-12 no-padding wl-login-wrapper">
@@ -176,7 +178,11 @@
                             </div>
                         </div>
                     </div>
+                    
                 </div>
+                <div id="portalExploreMap" class="col-xs-12 no-padding wl-full-height">
+                                
+                    </div>
                 <!-- end main content -->
 
             </div>

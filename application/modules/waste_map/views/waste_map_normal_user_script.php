@@ -30,6 +30,7 @@
                     var mapMarkerID = $(this).parent().parent().parent().find("input[name=map_marker_ID]").val();
                     $.post(api_url("C_report/deleteReport"), {ID : wasteMap.webMap.markerList[mapMarkerID].options.associated_ID}, function(data){
                         var response = JSON.parse(data);
+                        console.log(response);
                         if(!response["error"].length){
                             wasteMap.webMap.removeMarkerList(mapMarkerID);
                         }
@@ -100,6 +101,7 @@
         return popupContent.prop("outerHTML");//converts the html to string since popup only accept string
     };
     $(document).ready(function(){
+    
         wasteMap.addInitFunction(function(){
             wasteMap.webMap.selectLocation(wasteMap.openIllegalDumpingReport);//open a report if the map is clicked)
         });

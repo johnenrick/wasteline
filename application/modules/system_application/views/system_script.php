@@ -255,6 +255,7 @@ var requestVerificationCode = function(){
     $("#systemMessageContainer").find(".systemMessage[message_status='"+51+"']").find(".alert-link").button("loading");
     $.post(base_url("portal/requestVerificationCode"), {}, function(data){
         var response = JSON.parse(data);
+        console.log(response);
         remove_system_message(51);
         if(!response["error"].length){
             show_system_message(52, 4,
