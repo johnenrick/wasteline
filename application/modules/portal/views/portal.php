@@ -19,7 +19,7 @@
                             <div id="contentCarousel" class="owl-carousel col-xs-12 no-padding wl-full-height">
                                 <div class="wl-carousel-item wl-carousel-item1" style="background-image:url(<?= asset_url("images/sample/1x/1.jpg")?>);background-image: image-set(url(<?= asset_url("images/sample/1x/1.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/1.jpg")?>) 2x);background-image: -webkit-image-set(url(<?= asset_url("images/sample/1x/1.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/1.jpg")?>) 2x);background-image: -o-image-set(url(<?= asset_url("images/sample/1x/1.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/1.jpg")?>) 2x);background-image: -moz-image-set(url(<?= asset_url("images/sample/1x/1.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/1.jpg")?>) 2x);background-image: -ms-image-set(url(<?= asset_url("images/sample/1x/1.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/1.jpg")?>) 2x);">
                                     <div class="row">
-                                        <div class="col-xs-5">
+                                        <div class="col-xs-3 col-sm-5">
                                             <h2>Title Here</h2>
                                             <p>some text here...</p>
                                         </div>
@@ -27,7 +27,7 @@
                                 </div>
                                 <div class="wl-carousel-item wl-carousel-item2" style="background-image:url(<?= asset_url("images/sample/1x/2.jpg")?>);background-image: image-set(url(<?= asset_url("images/sample/1x/2.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/2.jpg")?>) 2x);background-image: -webkit-image-set(url(<?= asset_url("images/sample/1x/2.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/2.jpg")?>) 2x);background-image: -o-image-set(url(<?= asset_url("images/sample/1x/2.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/2.jpg")?>) 2x);background-image: -moz-image-set(url(<?= asset_url("images/sample/1x/2.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/2.jpg")?>) 2x);background-image: -ms-image-set(url(<?= asset_url("images/sample/1x/2.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/2.jpg")?>) 2x);">
                                     <div class="row">
-                                        <div class="col-xs-5">
+                                        <div class="col-xs-3 col-sm-5">
                                             <h2>Title Here</h2>
                                             <p>some text here...</p>
                                         </div>
@@ -35,7 +35,7 @@
                                 </div>
                                 <div class="wl-carousel-item wl-carousel-item3" style="background-image:url(<?= asset_url("images/sample/1x/3.jpg")?>);background-image: image-set(url(<?= asset_url("images/sample/1x/3.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/3.jpg")?>) 2x);background-image: -webkit-image-set(url(<?= asset_url("images/sample/1x/3.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/3.jpg")?>) 2x);background-image: -o-image-set(url(<?= asset_url("images/sample/1x/3.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/3.jpg")?>) 2x);background-image: -moz-image-set(url(<?= asset_url("images/sample/1x/3.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/3.jpg")?>) 2x);background-image: -ms-image-set(url(<?= asset_url("images/sample/1x/3.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/3.jpg")?>) 2x);">
                                     <div class="row">
-                                        <div class="col-xs-5">
+                                        <div class="col-xs-3 col-sm-5">
                                             <h2>Title Here</h2>
                                             <p>some text here...</p>
                                         </div>
@@ -43,7 +43,7 @@
                                 </div>
                                 <div class="wl-carousel-item wl-carousel-item4" style="background-image:url(<?= asset_url("images/sample/1x/4.jpg")?>);background-image: image-set(url(<?= asset_url("images/sample/1x/4.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/4.jpg")?>) 2x);background-image: -webkit-image-set(url(<?= asset_url("images/sample/1x/4.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/4.jpg")?>) 2x);background-image: -o-image-set(url(<?= asset_url("images/sample/1x/4.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/4.jpg")?>) 2x);background-image: -moz-image-set(url(<?= asset_url("images/sample/1x/4.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/4.jpg")?>) 2x);background-image: -ms-image-set(url(<?= asset_url("images/sample/1x/4.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/4.jpg")?>) 2x);">
                                     <div class="row">
-                                        <div class="col-xs-5">
+                                        <div class="col-xs-3 col-sm-5">
                                             <h2>Title Here</h2>
                                             <p>some text here...</p>
                                         </div>
@@ -51,7 +51,7 @@
                                 </div>
                                 <div class="wl-carousel-item wl-carousel-item5" style="background-image:url(<?= asset_url("images/sample/1x/5.jpg")?>);background-image: image-set(url(<?= asset_url("images/sample/1x/5.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/5.jpg")?>) 2x);background-image: -webkit-image-set(url(<?= asset_url("images/sample/1x/5.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/5.jpg")?>) 2x);background-image: -o-image-set(url(<?= asset_url("images/sample/1x/5.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/5.jpg")?>) 2x);background-image: -moz-image-set(url(<?= asset_url("images/sample/1x/5.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/5.jpg")?>) 2x);background-image: -ms-image-set(url(<?= asset_url("images/sample/1x/5.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/5.jpg")?>) 2x);">
                                     <div class="row">
-                                        <div class="col-xs-5">
+                                        <div class="col-xs-3 col-sm-5">
                                             <h2>Title Here</h2>
                                             <p>some text here...</p>
                                         </div>
@@ -59,7 +59,7 @@
                                 </div>
                                 <div class="wl-carousel-item wl-carousel-item6" style="background-image:url(<?= asset_url("images/sample/1x/6.jpg")?>);background-image: image-set(url(<?= asset_url("images/sample/1x/6.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/6.jpg")?>) 2x);background-image: -webkit-image-set(url(<?= asset_url("images/sample/1x/6.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/6.jpg")?>) 2x);background-image: -o-image-set(url(<?= asset_url("images/sample/1x/6.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/6.jpg")?>) 2x);background-image: -moz-image-set(url(<?= asset_url("images/sample/1x/6.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/6.jpg")?>) 2x);background-image: -ms-image-set(url(<?= asset_url("images/sample/1x/6.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/6.jpg")?>) 2x);">
                                     <div class="row">
-                                        <div class="col-xs-5">
+                                        <div class="col-xs-3 col-sm-5">
                                             <h2>Title Here</h2>
                                             <p>some text here...</p>
                                         </div>
@@ -67,9 +67,9 @@
                                 </div>
 
                             </div>
-                            
+
                         </div>
-                        
+
                     </div>
                     <div id='portalLoginPanel' class="col-sm-5 no-padding">
                         <div class="col-md-12 no-padding wl-login-wrapper">
@@ -170,7 +170,7 @@
                                         <div class="form-group label-floating">
                                             <div class="g-recaptcha" data-sitekey="6Ld26BkTAAAAALuqJEQzNcnz58NgvwnWpKQBTUnX"></div>
                                         </div>
-                                        
+
                                         <div class="form-group">
                                             <button class="btn btn-raised btn-success submitButton">SUBMIT</button>
                                             <a href="javascript:void(0)" class="btn btn-landingform cancelFormButton">
@@ -182,10 +182,10 @@
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
                 <div id="portalExploreMap" class="col-xs-12 no-padding wl-full-height">
-                                
+
                     </div>
                 <!-- end main content -->
 
