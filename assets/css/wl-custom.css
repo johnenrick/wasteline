@@ -1551,6 +1551,24 @@ ul.sidebar-nav li a {
     #wrapper.disabled .wl-carousel-item .row {
         display: none;
     }
+    .wl-header-content {
+        position: relative;
+        height: auto;
+        padding-bottom: 10px;
+    }
+    .wl-header-content .wl-top-grp:first-child {
+        height: 60px;
+    }
+    #moduleContainer {
+        margin-top: 0;
+        height: calc(100% - 70px);
+    }
+    #informationPage {
+        height: calc(100% - 20px);
+    }
+    #informationPage .wl-info-content {
+        margin-top: 20px;
+    }
 }
 
 @media (max-width: 1000px) {

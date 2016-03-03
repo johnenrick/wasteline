@@ -245,16 +245,6 @@
 
                             </div>
 
-                            <span id="wl-return-floating-btn" class="input-group-btn wl-draggable wl-floating-btn button" style="display:none">
-                                <button type="button" class="btn btn-fab btn-raised btn-warning btn-fab-mini">
-                                    <span class="lnr lnr-chevron-left"></span>
-                                <div class="ripple-container"></div></button>
-                            </span>
-                            <span id="wl-post-floating-btn" class="input-group-btn wl-draggable wl-floating-btn button">
-                                <button type="button" class="btn btn-fab btn-raised btn-primary btn-fab-mini">
-                                    <span>+</span>
-                                <div class="ripple-container"></div></button>
-                            </span>
                         </div>
                         <!-- end main content -->
 
@@ -262,6 +252,17 @@
                 </div>
             </div>
             <!-- /#page-content-wrapper -->
+
+            <span id="wl-return-floating-btn" class="input-group-btn wl-draggable wl-floating-btn button" style="display:none">
+                <button type="button" class="btn btn-fab btn-raised btn-warning btn-fab-mini">
+                    <span class="lnr lnr-chevron-left"></span>
+                <div class="ripple-container"></div></button>
+            </span>
+            <span id="wl-post-floating-btn" class="input-group-btn wl-draggable wl-floating-btn button">
+                <button type="button" class="btn btn-fab btn-raised btn-primary btn-fab-mini">
+                    <span>+</span>
+                <div class="ripple-container"></div></button>
+            </span>
 
         </div>
         <!-- /#wrapper -->

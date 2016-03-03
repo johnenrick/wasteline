@@ -46,7 +46,7 @@
                     <span>
                 </div>
                 <div style="position: absolute; bottom: -40px; z-index: 2; display: none" class="reportInfoHolder">
-                    <button class="btn btn-warning btn-sm reportInfoButton capitalize" data-loading-text="Please wait..." style="">Report</button>
+                    <button class="btn btn-warning btn-sm reportInfoButton capitalize" data-loading-text="Please wait..." style="">Report Info.</button>
                 </div>
             </div>
         </div>
