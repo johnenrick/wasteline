@@ -103,6 +103,11 @@
                 <span class="help-block">Click the map to indicate your address. Or use GPS <i class="fa fa-map-marker"></i> location on the bottom left in the map</span>
             </div>
         </div>
+        <div class="form-group ">
+            <div class="col-md-12">
+                <button type="button" class="btn btn-sm btn-primary" id="profileManagementMapLocation"> <i class="fa fa-map-marker"></i>  Set Location </button>
+            </div>
+        </div>
 
         <div class="form-group wl-update-info">
             <button class="btn btn-raised btn-success submitButton" data-loading-text="Please wait..." style="float:right;">Update Information</button>

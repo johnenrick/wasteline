@@ -916,6 +916,10 @@ ul.sidebar-nav li a {
     padding: 0;
 }
 
+#profileManagementMapLocation {
+    display: none;
+}
+
 #wl-btn-editProfile {
     display: none;
 }
@@ -1520,6 +1524,9 @@ ul.sidebar-nav li a {
     .reportManagementTableRow td:last-child{
         display: none;
     }
+    #profileManagementMapLocation {
+        display: block;
+    }
 }
 
 @media (max-width: 1000px) {
@@ -1548,6 +1555,7 @@ ul.sidebar-nav li a {
     .wl-info-list,
     .wl-info-display,
     .wl-pro-edit,
+    .wl-pro-map,
     .wl-pro-full-info{
         display: block !important;
     }

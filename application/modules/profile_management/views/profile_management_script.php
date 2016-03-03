@@ -125,28 +125,27 @@
 
 
         $("#wl-btn-editProfile").click(function () {
-            var w = $(window).width();
-            if(w <= 768){
                 $('.wl-pro-edit, #wl-return-floating-btn').fadeIn();
                 $('.wl-pro-full-info').fadeOut('fast');
-            }
-        });
-
-
-        $("textarea[name='updated_data[account_address_description]']").focus(function () {
-            var w = $(window).width();
-            if(w <= 768){
-                var parent = $(this).closest('.moduleHolder');
-                $('.wl-pro-edit').fadeOut('fast');
-                $('#profileManagementWebMap').fadeIn();
-
-            }
         });
 
         $('#wl-return-floating-btn').click(function(){
-            $('.wl-pro-edit, #wl-return-floating-btn').fadeOut('fast');
-            $('.wl-pro-full-info').fadeIn();
+            if($("#profileManagementWebMap").is(':visible')){
+                $('.wl-pro-edit').fadeIn();
+                $('#profileManagementWebMap').fadeOut('fast');
+            }
+            else {
+                $('.wl-pro-edit, #wl-return-floating-btn').fadeOut('fast');
+                $('.wl-pro-full-info').fadeIn();
+            }
         });
+
+        $("#profileManagementMapLocation").click(function(){
+                var parent = $(this).closest('.moduleHolder');
+                $('.wl-pro-edit').fadeOut('fast');
+                $('#profileManagementWebMap').fadeIn();
+        });
+
         $("#profileManagementFormChangePassword").click(function(){
             $(".profileManagementFormPassword").toggle();
         })
