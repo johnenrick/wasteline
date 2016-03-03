@@ -8,11 +8,12 @@
 		
 		$(".wl-btn-post, ul.wastePostTypeList li").click(function(){
 			if ($("#wl-side-content").is(':visible') && $("ul#post-container-list li.wl-show").length == 0){
-				$("#wl-btn-side-repost").button("loading");
+				//$("#wl-btn-side-repost").button("loading");
 				wastePostContainer.retrieveWastePost(wastePostContainer.findWastePostType());
 		        //else $("ul#post-container-list li.wl-show").remove();
 			}
-			if(wastePostContainer.findWastePostType() != 1) $("#wl-btn-side-repost").hide();
+			//if(wastePostContainer.findWastePostType() != 1) 
+			$("#wl-btn-side-repost").hide();
 	    });
 		/*$("#wl-btn-side-submit").click(function(){
 			var waste_post_input = [];
@@ -219,12 +220,16 @@
 
 		$.post(api_url("C_waste_post/retrieveWastePost"), {condition: container}, function(data){
 			var response = JSON.parse(data);
+			var collected_status = 0;
 			if(!response["error"].length){
 				for(var x in response["data"]){
 					var dummy = $("#wl-rectangle-dummy").clone();
 
 					dummy.attr("wastepostid", response["data"][x]["ID"]);
-					if(response["data"][x]["status"] == 2) dummy.addClass("wl-collected");
+					if(response["data"][x]["status"] == 2){
+						dummy.addClass("wl-collected");
+						collected_status++;
+					} 
 					dummy.find("#wastePostCategoryList").val(response["data"][x]["waste_category_ID"]);
 					dummy.find(".wl-list-desciption").text(response["data"][x]["description"]);
 					dummy.find(".wl-list-quantity").text(response["data"][x]["quantity"]);
@@ -234,9 +239,10 @@
 					//if(response["data"][x]["status"] == 3) wastePostContainer.triggerComplete(dummy); 
 			        $(dummy).insertBefore($("ul#post-container-list li").last()).addClass('wl-show');
 				}
+				if(collected_status > 0) $("#wl-btn-side-repost").show();
 			}
 		}).done(function(){
-			$("#wl-btn-side-repost").button("reset");
+
 		});
 	}
 

@@ -181,7 +181,7 @@
                                     </div>
                                     <div class="col-xs-9 no-margin no-padding">
                                         <div class="form-group col-xs-12 no-margin no-padding">
-                                            <a id="wl-btn-side-repost" class="btn btn-warning btn-raised" style="float:right"><span>Repost</span></a>
+                                            <a id="wl-btn-side-repost" class="btn btn-warning btn-raised" style="float:right;display:none"><span>Repost</span></a>
                                             <a id="wl-btn-side-submit" class="btn btn-success btn-raised" style="float:right;display:none"><span>Submit</span></a>
                                         </div>
                                     </div>
