@@ -45,6 +45,16 @@
 				//if(container.waste_post_type_ID != 0 && container.waste_category_ID != 0 && container.description != "Click to add Description" && container.quantity != "Quantity" && container.price != "Price" ) 
 				$("#wl-btn-side-submit").button("loading");
 				wastePostContainer.createWastePost(container, last_li);
+				if(($(this).attr("id")) === "wl-btn-side-submit") $("#wl-btn-side-submit").hide();
+				else {
+					$("#wl-btn-side-submit").hide();
+					$(".wl-rectangle-add").hide();
+				}
+				
+				
+			}else{
+				$(".wl-rectangle-add").hide();
+				$("#wl-btn-side-submit").hide();
 			}
 		});
 		$("#wl-btn-side-repost").click(function(){
@@ -90,6 +100,10 @@
 
 		$("ul#post-container-list").on("change", "#wastePostQuantityUnitList, #wastePostCategoryList", function(){
 			var id = $(this).parent().parent().parent().attr("wastepostid");
+			if(($(this).attr("id")) === "wastePostCategoryList" && ($(this).parent().parent().parent().find(".wl-list-desciption").text()) !== ""){
+				$(".wl-rectangle-add").show();
+				$("#wl-btn-side-submit").show();
+			}
 			if(id){
 				var table_column = $(this).attr("holder");
 				var container = {
@@ -101,8 +115,8 @@
 				}
 				container.updated_data[table_column] = $(this).val();
 				wastePostContainer.updateWastePost(container);
+				$("#wl-btn-side-submit").hide();
 			}
-			
 		});
 
 		$("ul#post-container-list").on("click", "li.wl-collected div.circle", function(){
