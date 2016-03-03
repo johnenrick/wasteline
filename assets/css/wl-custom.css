@@ -1491,7 +1491,7 @@ ul.sidebar-nav li a {
         z-index: 12;
     }
     #wl-return-floating-btn {
-        top: 10px;
+        bottom: 60px;
         right: 50px;
         z-index: 4;
     }
