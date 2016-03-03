@@ -74,13 +74,6 @@ class Portal extends FE_Controller{
     function logout(){
         $this->createSession(false, false, false, false, false, false);
         header("Location: ".base_url());
-        //$this->loadPage("portal", array("portal_script", "registration_script", "login_script"), array("message" => false));
-    }
-    function testing(){
-        $this->form_validation->set_rules('email_detail', 'Email Address', 'alpha_numeric');
-        if($this->form_validation->run()){
-            
-        }
     }
     function passwordRecoveryRequest(){
         $this->form_validation->set_rules('email_detail', 'Email Address', 'required|valid_email');
@@ -167,16 +160,13 @@ class Portal extends FE_Controller{
         $accountID = substr($verificationCode, 0, strlen($verificationCode)-10);
         $accountDetail = $this->M_account->retrieveAccount(NULL, NULL, NULL, NULL, $accountID);
         $message = array();
-        print_r($accountDetail);
         if($accountDetail){
-            
             if($accountDetail["account_type_ID"] == 4){
                 $this->M_account->updateAccount($accountID, NULL, array("account_type_ID" => 2));
                 if(user_id()){
                     $this->createSession($accountDetail["first_name"], $accountDetail["last_name"], $accountDetail["middle_name"], 2, $accountDetail["ID"], $accountDetail["username"]);
                 }
                 header("Location: ".base_url("portal/visitPage"));
-                
             }else{
                 $message[0] = array(
                     "status" => 12,
@@ -184,7 +174,6 @@ class Portal extends FE_Controller{
                     "message" => "Your account has already been verified"
                     );
             }
-            
         }else{
             $message[0] = array(
                     "status" => 13,
@@ -195,7 +184,7 @@ class Portal extends FE_Controller{
         $extraData = base64_encode (json_encode(array("message" => $message)));
         header("Location: ".base_url("portal/visitPage/portal/false/". $extraData));
     }
-    function createSession($firstName, $lastName, $middleName, $userType, $userID, $username){
+    protected function createSession($firstName, $lastName, $middleName, $userType, $userID, $username){
         $this->session->set_userdata(array(
             "first_name" => $firstName,
             "last_name" => $lastName,

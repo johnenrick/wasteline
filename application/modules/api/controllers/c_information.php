@@ -17,7 +17,7 @@ class C_information extends API_Controller {
     }
     public function createInformation(){
         $this->accessNumber = 1;
-        if($this->checkACL() && user_type() === 3){//accessNumber 16 should lgu
+        if($this->checkACL() && $this->checkACL(16)){//accessNumber 16 should lgu
             
             $this->form_validation->set_rules('description', 'Description', 'required');
             $this->form_validation->set_rules('source', 'Source', 'required');

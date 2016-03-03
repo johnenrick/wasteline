@@ -91,11 +91,11 @@ class C_account extends API_Controller {
     
     public function retrieveAccount(){
         $this->accessNumber = 2;
-        if($this->checkACL() && user_id()){
-            if(user_type() == 2 || user_type() == 4){// accessNumber = 16
+        if($this->checkACL()){
+            if(!$this->checkACL(32)){// accessNumber = 16 if not admin
                 $this->form_validation->set_rules('ID', 'ID', 'required');
             }
-            if($this->form_validation->run() || !(user_type() == 2 || user_type() == 4)){//accessNumber 32 
+            if($this->checkACL(32) || $this->form_validation->run()){//accessNumber 32 
                 $ID = $this->input->post("ID");
                 $result = $this->m_account->retrieveAccount(
                         $this->input->post("retrieve_type"),
@@ -161,6 +161,9 @@ class C_account extends API_Controller {
                 }
             }
         }else{
+            $this->responseDebug(user_id());
+            $this->responseDebug($this->APICONTROLLERID);
+            $this->responseDebug($this->accessNumber);
             $this->responseError(1, "Not Authorized");
         }
         $this->outputResponse();
@@ -176,8 +179,10 @@ class C_account extends API_Controller {
             if($this->input->post("updated_data[account_address_longitude]") !== NULL){
                 $this->form_validation->set_rules('updated_data[account_address_description]', 'Complete Address', 'trim|required|min_length[2]');
             }
-            $this->form_validation->set_rules('updated_data[first_name]', 'First Name', 'trim|callback_alpha_dash_space');
-            $this->form_validation->set_rules('updated_data[last_name]', 'Last Name', 'trim|callback_alpha_dash_space');
+            ($this->input->post('updated_data[first_name]')) ? $this->form_validation->set_rules('updated_data[first_name]', 'First Name', 'trim|callback_alpha_dash_space') : null;
+            ($this->input->post('updated_data[last_name]')) ? $this->form_validation->set_rules('updated_data[last_name]', 'Last Name', 'trim|callback_alpha_dash_space') : null;
+            ($this->input->post('updated_data[middle_name]')) ? $this->form_validation->set_rules('updated_data[middle_name]', 'Last Name', 'trim|callback_alpha_dash_space') : null;
+            
             if($this->input->post("updated_data[account_address_description]")){
                 $this->form_validation->set_rules('updated_data[account_address_longitude]', 'Your Map Location', 'required|greater_than[0]');
                 $this->form_validation->set_message('updated_data[account_address_longitude]');
@@ -189,7 +194,7 @@ class C_account extends API_Controller {
                 $updatedData = $this->input->post('updated_data');
                 $ID = $this->input->post('ID');
                 $condition = $this->input->post("condition");
-                if(user_type() == 2 || user_type() == 4){// accessNumber 16 Dont allow to change account type if not admin or LGU
+                if(!$this->checkACL(32)){// accessNumber 32 Dont allow to change account type if not admin or LGU
                     if($this->input->post("account_type_ID")){
                         $updatedData["account_type_ID"] = user_type();
                     }
@@ -270,7 +275,7 @@ class C_account extends API_Controller {
                                     "latitude" => $updatedData["account_address_latitude"],
                                 ));
                     }else if(isset($updatedData["account_address_ID"]) && $updatedData["account_address_ID"]*1 == 0 && $updatedData["account_address_description"]){//create account_address
-                        $accountAddressID = $this->M_account_address->createAccountAddress(user_id(), 2, $updatedData["account_address_description"]);
+                        $accountAddressID = $this->M_account_address->createAccountAddress(user_id(), 1, $updatedData["account_address_description"]);
                         $this->M_map_marker->createMapMarker($accountAddressID, 1, $updatedData["account_address_longitude"], $updatedData["account_address_latitude"]);
                     }
                     $this->actionLog(json_encode($this->input->post()));

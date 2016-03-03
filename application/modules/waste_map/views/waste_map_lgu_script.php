@@ -36,16 +36,16 @@
                 });
                 $(e.target._popup._contentNode).find("button[button_action=3]").click(function(){
                     var mapMarkerID = $(this).parent().parent().parent().find("input[name=map_marker_ID]").val();
-                    var latlng = {
-                        lat : $(this).parent().parent().parent().find("input[name=latitude]").val(),
-                        lng : $(this).parent().parent().parent().find("input[name=longitude]").val()
-                    };
+//                    var latlng = {
+//                        lat : $(this).parent().parent().parent().find("input[name=latitude]").val(),
+//                        lng : $(this).parent().parent().parent().find("input[name=longitude]").val()
+//                    };
                     $.post(api_url("C_report/updateReport"), {ID : wasteMap.webMap.markerList[mapMarkerID].options.associated_ID, updated_data : {status : 2}}, function(data){
                         var response = JSON.parse(data);
                         if(!response["error"].length){
                             //add heat map
                             wasteMap.webMap.removeMarkerList(mapMarkerID);
-                            wasteMap.webMap.addHeat(latlng);
+//                            wasteMap.webMap.addHeat(latlng);
                         }
                     });
                 });
@@ -138,7 +138,9 @@
         }
         return popupContent.prop("outerHTML");//converts the html to string since popup only accept string
     };
+    wasteMap.illegalDumpingHeatMapRequest = false;
     wasteMap.retrieveIllegalDumpingHeatMap = function(startDate, endDate){
+        $(".wl-map-filter[filter_type=5]").button("loading");
         var condition = {
             status : 2,
             report_type_ID : 3
@@ -149,9 +151,18 @@
         if(typeof endDate !== "undefined" && endDate){
             condition.lesser_equal__report__datetime = endDate;
         }
-        $.post(api_url("C_report/retrieveReport"), {condition: condition}, function(data){
+        var bounds = wasteMap.webMap.getViewBounds();
+        /*NorthEast*/
+        condition["lesser_equal__map_marker__longitude"] = bounds.north_east.lng;
+        condition["lesser_equal__map_marker__latitude"] = bounds.north_east.lat;
+        /*SouthWest*/
+        condition["greater_equal__map_marker__longitude"] = bounds.south_west.lng;
+        condition["greater_equal__map_marker__latitude"] = bounds.south_west.lat;
+        if(wasteMap.illegalDumpingHeatMapRequest){
+            wasteMap.illegalDumpingHeatMapRequest.abort();
+        }
+        wasteMap.illegalDumpingHeatMapRequest = $.post(api_url("C_report/retrieveReport"), {condition: condition}, function(data){
             var response = JSON.parse(data);
-            
             var latLng = [];
             if(!response["error"].length){
                 for(var x =0 ; x < response["data"].length;x++){
@@ -160,7 +171,8 @@
                 }
             }
             wasteMap.webMap.heatLayer.setLatLngs(latLng); //reset the heat map
-            
+            wasteMap.illegalDumpingHeatMapRequest = false;
+            $(".wl-map-filter[filter_type=5]").button("reset");
         });
     };
     $(document).ready(function(){
@@ -188,11 +200,7 @@
         });
         add_refresh_call("waste_map", function(){
             wasteMap.addInitFunction(function(){
-                $(".wl-map-filter.wl-active").each(function(){
-                    if(typeof wasteMap.filterFunction[$(this).attr("filter_type")] !== "undefined"){
-                        wasteMap.filterFunction[$(this).attr("filter_type")]();
-                    }
-                });
+                wasteMap.refreshMarker();
             });
         });
         $(".prototype").find(".wasteMapOwnWaste .wasteMapLGUOption").show();

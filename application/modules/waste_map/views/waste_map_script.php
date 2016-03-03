@@ -27,7 +27,16 @@
         for(var x = 0; x < wasteMap.initFunction.length;x++){
             wasteMap.initFunction[x]();
         }
-
+        wasteMap.webMap.map.on('zoomend', function() {
+            wasteMap.webMap.tileLayer.on("load", function(){
+                wasteMap.refreshMarker();
+            });
+        });
+        wasteMap.webMap.map.on('dragend', function() {
+            wasteMap.webMap.tileLayer.on("load", function(){
+                wasteMap.refreshMarker();
+            });
+        });
     };
     /**
      * Bind events to the html in PopUp since it recreates the popup eveytime it is viewed so events will have to be rebinded
@@ -35,13 +44,11 @@
      * @returns {undefined}
      */
     wasteMap.bindOwnWasteFormAction = function(markerListID){
-        console.log(markerListID);
         wasteMap.webMap.markerList[markerListID].on("click",function(e){
             if(e.target._popup._isOpen){
                 var accountID = $(e.target._popup._contentNode).find("[name=account_ID]").val();
                 $.post(api_url("C_account/retrieveAccount"), {ID : accountID, with_waste_post : true}, function(data){
                     var response = JSON.parse(data);
-                    console.log(response);
                     if(!response["error"].length){
                         $(e.target._popup._contentNode).find(".panel-title span").text((response["data"]["first_name"]+" "+(response["data"]["middle_name"]+"").charAt(0)+(response["data"]["middle_name"] !== "" ? ".":"")+" "+response["data"]["last_name"]).toUpperCase());
                         $(e.target._popup._contentNode).find(".wasteMapOwnWasteEmailDetail").text(response["data"]["email_detail"]);
@@ -125,44 +132,106 @@
             }
         });
     };
-    wasteMap.retrieveMapMarker = function(condition){
+    wasteMap.mapMarkerRequest = {
+        1 : false,
+        2 : false
+    }
+    wasteMap.retrieveMapMarker = function(condition, type){
         /*Retrieve markers with types specified in condition.map_marker_type_ID */
-        $.post(api_url("C_map_marker/retrieveMapMarker"), {condition: condition, waste_post : true}, function(data){
+        var bounds = wasteMap.webMap.getViewBounds();
+        /*NorthEast*/
+        condition["lesser_equal__map_marker__longitude"] = bounds.north_east.lng;
+        condition["lesser_equal__map_marker__latitude"] = bounds.north_east.lat;
+        /*SouthWest*/
+        condition["greater_equal__map_marker__longitude"] = bounds.south_west.lng;
+        condition["greater_equal__map_marker__latitude"] = bounds.south_west.lat;
+        if(type === 1){
+            $(".wl-map-filter[filter_type=1]").button("loading");
+        }else if(type === 2){
+            $(".wl-map-filter[filter_type=2]").button("loading");
+        }
+        if(wasteMap.mapMarkerRequest[type]){
+            wasteMap.mapMarkerRequest[type].abort();
+        }
+        wasteMap.mapMarkerRequest[type] = $.post(api_url("C_map_marker/retrieveMapMarker"), {condition: condition, waste_post : true}, function(data){
             var response = JSON.parse(data);
             if(!response["error"].length){
-                for(var x = 0;x<response["data"].length;x++){console.log()
-                    if(((typeof wasteMap.webMap.markerList[response["data"][x]["ID"]] === "undefined") || ((response["data"][x]["waste_post_type_ID"] === "3" || response["data"][x]["waste_post_type_ID"] === "2" )) && (wasteMap.webMap.markerList[response["data"][x]["ID"]].options.map_marker_type_ID !== 5))  ){
-                        var mapMarkerTypeID = (response["data"][x]["waste_post_type_ID"] === "1") ? 1 : 4;
+                
+                for(var x = 0;x<response["data"].length;x++){
+                    var mapMarkerTypeID = (response["data"][x]["waste_post_type_ID"] === "1") ? 1 : 4;
+                    if((typeof wasteMap.webMap.markerList[response["data"][x]["ID"]] === "undefined") 
+                            || ((response["data"][x]["waste_post_type_ID"] === "3" || response["data"][x]["waste_post_type_ID"] === "2" ))
+                            && (wasteMap.webMap.markerList[response["data"][x]["ID"]].options.map_marker_type_ID !== 5)
+                            && (
+                                wasteMap.webMap.markerList[response["data"][x]["ID"]]._latlng.lat !== response["data"][x]["latitude"]*1
+                                && wasteMap.webMap.markerList[response["data"][x]["ID"]]._latlng.lng !== response["data"][x]["longitude"]*1
+                                && wasteMap.webMap.markerList[response["data"][x]["ID"]].options.map_marker_type_ID !== mapMarkerTypeID
+                            )
+                            ){
+                        
                         wasteMap.webMap.addMarker(response["data"][x]["ID"], mapMarkerTypeID, response["data"][x]["associated_ID"], response["data"][x][wasteMap.mapMarkerDescriptionList[response["data"][x]["map_marker_type_ID"]]], response["data"][x]["longitude"], response["data"][x]["latitude"], false, wasteMap.createOwnWasteForm(response["data"][x]["ID"], response["data"][x]["account_ID"]));
-                        console.log(response["data"][x]["ID"]);
                         wasteMap.bindOwnWasteFormAction(response["data"][x]["ID"]);
                     }
+                }
+                wasteMap.mapMarkerRequest[type] = false;
+                if(type === 1){
+                    $(".wl-map-filter[filter_type=1]").button("reset");
+                }else if(type === 2){
+                    $(".wl-map-filter[filter_type=2]").button("reset");
                 }
             }
         });
     };
+    wasteMap.dumpingLocationRequest = false;
     wasteMap.retrieveDumpingLocationMapMarker = function(){
-        $.post(api_url("C_dumping_location/retrieveDumpingLocation"), {}, function(data){
+        $(".wl-map-filter[filter_type=4]").button("loading");
+        var condition = {};
+        var bounds = wasteMap.webMap.getViewBounds();
+        /*NorthEast*/
+        condition["lesser_equal__map_marker__longitude"] = bounds.north_east.lng;
+        condition["lesser_equal__map_marker__latitude"] = bounds.north_east.lat;
+        /*SouthWest*/
+        condition["greater_equal__map_marker__longitude"] = bounds.south_west.lng;
+        condition["greater_equal__map_marker__latitude"] = bounds.south_west.lat;
+        if(wasteMap.dumpingLocationRequest){
+            wasteMap.dumpingLocationRequest.abort();
+        }
+        wasteMap.dumpingLocationRequest = $.post(api_url("C_dumping_location/retrieveDumpingLocation"), {condition: condition}, function(data){
             var response = JSON.parse(data);
 
             if(!response["error"].length){
                 for(var x =0 ; x < response["data"].length;x++){
-                    var detail  = response["data"][x]["detail"];
-                    wasteMap.webMap.addMarker(response["data"][x]["map_marker_ID"], response["data"][x]["map_marker_type_ID"], response["data"][x]["ID"], response["data"][x]["description"], response["data"][x]["longitude"]*1, response["data"][x]["latitude"]*1, false, wasteMap.createDumpingLocationForm(response["data"][x]["map_marker_ID"], response["data"][x]["description"], detail));
-
-                    if(typeof wasteMap.bindDumpingLocationFormAction !== "undefined"){
-                        wasteMap.bindDumpingLocationFormAction(response["data"][x]["map_marker_ID"]);
+                    if((typeof wasteMap.webMap.markerList[response["data"][x]["ID"]] === "undefined") || (wasteMap.webMap.markerList[response["data"][x]["ID"]]._latlng.lng !== response["data"][x]["longitude"]*1 && wasteMap.webMap.markerList[response["data"][x]["ID"]].options.map_marker_type_ID)){
+                        var detail  = response["data"][x]["detail"];
+                        wasteMap.webMap.addMarker(response["data"][x]["map_marker_ID"], response["data"][x]["map_marker_type_ID"], response["data"][x]["ID"], response["data"][x]["description"], response["data"][x]["longitude"]*1, response["data"][x]["latitude"]*1, false, wasteMap.createDumpingLocationForm(response["data"][x]["map_marker_ID"], response["data"][x]["description"], detail));
+                        if(typeof wasteMap.bindDumpingLocationFormAction !== "undefined"){
+                            wasteMap.bindDumpingLocationFormAction(response["data"][x]["map_marker_ID"]);
+                        }
                     }
                 }
             }
+            wasteMap.dumpingLocationRequest = false;
+            $(".wl-map-filter[filter_type=4]").button("reset");
         });
     };
+    wasteMap.userReportRequest = false;
     wasteMap.retrieveUserReportMapMarker = function(){
+        $(".wl-map-filter[filter_type=3]").button("loading");
         var condition = {
             status : 1,
             report_type_ID : 3
         };
-        $.post(api_url("C_report/retrieveReport"), {condition: condition}, function(data){
+        var bounds = wasteMap.webMap.getViewBounds();
+        /*NorthEast*/
+        condition["lesser_equal__map_marker__longitude"] = bounds.north_east.lng;
+        condition["lesser_equal__map_marker__latitude"] = bounds.north_east.lat;
+        /*SouthWest*/
+        condition["greater_equal__map_marker__longitude"] = bounds.south_west.lng;
+        condition["greater_equal__map_marker__latitude"] = bounds.south_west.lat;
+        if(wasteMap.userReportRequest){
+            wasteMap.userReportRequest.abort();
+        }
+        wasteMap.userReportRequest = $.post(api_url("C_report/retrieveReport"), {condition: condition}, function(data){
             var response = JSON.parse(data);
             if(!response["error"].length){
                 for(var x =0 ; x < response["data"].length;x++){
@@ -172,6 +241,8 @@
                     wasteMap.bindIllegalDumpingFormAction(response["data"][x]["map_marker_ID"]);
                 }
             }
+            wasteMap.userReportRequest = false;
+            $(".wl-map-filter[filter_type=3]").button("reset");
         });
     };
     wasteMap.createOwnWasteForm = function(mapMarkerID, accountID){
@@ -180,16 +251,23 @@
         popupContent.find(".wasteMapOwnWasteForm").find("input[name=account_ID]").val(accountID);
         return popupContent.prop("outerHTML");//converts the html to string since popup only accept string
     };
+    wasteMap.refreshMarker = function(){
+        $(".wl-map-filter.wl-active").each(function(){
+            if(typeof wasteMap.filterFunction[$(this).attr("filter_type")] !== "undefined"){
+                wasteMap.filterFunction[$(this).attr("filter_type")]();
+            }
+        });
+    }
     $(document).ready(function(){
         load_page_component("web_map_component", wasteMap.initializeWastemapManagement);
         wasteMap.filterFunction["1"] = function(){//User with waste
-            wasteMap.retrieveMapMarker({waste_post__waste_post_type_ID : [1, null], waste_post__status : [1, null]});
+            wasteMap.retrieveMapMarker({waste_post__waste_post_type_ID : [1, null], waste_post__status : [1, null]}, 1);
         };
         wasteMap.filterFunction["not_1"] = function(){
             wasteMap.webMap.removeMarkerList(null, 1);
         };
         wasteMap.filterFunction["2"] = function(){//user with services
-            wasteMap.retrieveMapMarker({waste_post__waste_post_type_ID : [2, 3], waste_post__status : 1});
+            wasteMap.retrieveMapMarker({waste_post__waste_post_type_ID : [2, 3], waste_post__status : 1}, 2);
         };
         wasteMap.filterFunction["not_2"] = function(){
             wasteMap.webMap.removeMarkerList(null, 4);

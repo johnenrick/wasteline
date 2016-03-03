@@ -205,7 +205,6 @@ class API_Model extends CI_Model{
                             $this->db->where("$leftValue<", $tableColumnValue);
                             break;
                         case "lesser_equal":
-                            
                             $this->db->where("$leftValue<=", $tableColumnValue);
                             break;
                         case "greater_equal":

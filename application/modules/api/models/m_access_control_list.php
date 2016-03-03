@@ -23,7 +23,8 @@ class M_access_control_list extends API_Model{
         $this->db->flush_cache();
         $selectScript = "SELECT * FROM `group_access_control_list` ";
         $joinScript =  "LEFT JOIN `account` ON `account`.`ID`=".$accountID." LEFT JOIN `module_api_controller` ON `module_api_controller`.`module_ID`=`group_access_control_list`.`module_ID` AND `module_api_controller`.`api_controller_ID`=".$apiControllerID." ";
-        $whereScript = "WHERE `group_access_control_list`.`group_ID`=`account`.`account_type_ID` AND `module_api_controller`.`privilege_code`&".$accessNumber."=1";
+        $whereScript = "WHERE `group_access_control_list`.`group_ID`=`account`.`account_type_ID` AND ((`module_api_controller`.`privilege_code`)&".$accessNumber.") > 0";
+      
         $result = $this->db->query($selectScript.$joinScript.$whereScript)->result_array();
         if(count($result) > 0){
             return true;

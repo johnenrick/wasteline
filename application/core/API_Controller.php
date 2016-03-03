@@ -17,9 +17,9 @@ class API_Controller extends MX_Controller{
     );
     /**
      *
-     * @var int $accessNumberID The ID number set by the checkACL function
+     * @var int $accessNumber The ID number set by the checkACL function
      */
-    public $accessNumberID = 0;
+    public $accessNumber = 0;
     
     public function __construct() {
         parent::__construct();
@@ -85,12 +85,11 @@ class API_Controller extends MX_Controller{
      */
     public function checkACL($subAccessNumber = NULL){
         //check module with parent
-        return true;//$this->m_access_control_list->checkGoupACL(user_id(), $this->APICONTROLLERID, ($subAccessNumber === NULL ) ? $this->accessNumberID : $subAccessNumber);
-       
+        return true;//$this->m_access_control_list->checkGoupACL(user_id(), $this->APICONTROLLERID, ($subAccessNumber === NULL ) ? $this->accessNumber : $subAccessNumber);
     }
     public function actionLog($detail){
         //check module with parent
-        return $this->m_action_log->createActionLog(user_id(), $this->APICONTROLLERID, $this->accessNumberID, $detail);
+        return $this->m_action_log->createActionLog(user_id(), $this->APICONTROLLERID, $this->accessNumber, $detail);
     }
     public function printR($data){
         echo "<pre>";

@@ -93,7 +93,7 @@ class C_waste_post extends API_Controller {
         if($this->checkACL()){
             $condition = $this->input->post("condition");
             $updatedData = $this->input->post("updated_data");
-            if(user_type() == 2){//accessNumber 128 if verified normal user
+            if(!$this->checkACL(128)){//accessNumber 128 if verified normal user
                 $condition["account_ID"] = user_id();
                 $updatedData["account_ID"] = user_id();
                 unset($updatedData["waste_post_type_ID"] );

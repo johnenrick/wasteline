@@ -37,7 +37,8 @@
         osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> Banilad Waste Map';
         webMapComponent.tileLayer = L.tileLayer(osmUrl, {
             maxZoom: 20,
-            attribution: osmAttrib
+            attribution: osmAttrib,
+            
         });
         //Default Configuration
         config = (typeof config === "undefined") ? {} : config;
@@ -47,7 +48,7 @@
             search_location : (typeof config.search_location === "undefined") ? false : config.search_location,
         };
         
-        webMapComponent.map = L.map(mapNumber).setView([10.343, 123.919], 16).addLayer(webMapComponent.tileLayer);
+        webMapComponent.map = L.map(mapNumber, {doubleClickZoom : false}).setView([10.343, 123.919], 16).addLayer(webMapComponent.tileLayer);
         
         
         
@@ -90,13 +91,14 @@
         webMapComponent.selectLocation = function(callBack){
             if(typeof callBack !== "undefined"){
                 webMapComponent.onMapClick = function(e){
+                    console.log(e);
                     callBack({
                         lat : e.latlng.lat,
                         lng : e.latlng.lng
                     });
                 };
             }
-            webMapComponent.map.on('click', function(e){
+            webMapComponent.map.on('dblclick', function(e){
                 webMapComponent.onMapClick(e);
             });
         };
@@ -160,6 +162,13 @@
                 });
             }
         };
+        webMapComponent.getViewBounds = function(){
+            var bounds = webMapComponent.map.getBounds();
+            return {
+                north_east : bounds._northEast,
+                south_west : bounds._southWest
+            };
+        }
         webMapComponent.setView = function(lat, lng){
             webMapComponent.map.setView([lat, lng],17);
         };
@@ -243,6 +252,11 @@
             }
             return webMapComponent.markerList[ID];
         };
+        /**
+         * Remove marker from the cluster layer or map layer
+         * @param {type} ID
+         * @returns {Boolean}
+         */
         webMapComponent.removeMarkerList = function(ID, markerTypeID){
         
             if(typeof webMapComponent.markerList[ID] !== "undefined" && ID !== null){
@@ -266,8 +280,12 @@
               return false;
           }
         };
+        /**
+         * Remove Marker from the map layer
+         * @param {type} ID
+         * @returns {Boolean}
+         */
         webMapComponent.mapRemoveMarkerList = function(ID){
-          
           if(typeof webMapComponent.markerList[ID] !== "undefined"){
               webMapComponent.map.removeLayer(webMapComponent.markerList[ID]);
               delete webMapComponent.markerList[ID];
@@ -278,6 +296,11 @@
               return false;
           }
         };
+        /**
+         * Add a heat layer to the map
+         * @param {type} latlng
+         * @returns {undefined}
+         */
         webMapComponent.addHeat = function(latlng){
             if(config.heat_layer){
                 webMapComponent.heatLayer.addLatLng(latlng);

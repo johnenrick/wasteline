@@ -71,11 +71,12 @@
             <button type="button" class="btn btn-raised btn-sm btn-danger hide"><span class="glyphicon glyphicon-filter" aria-hidden="true"></span> Close</button>
         </div>
         <div class="col-md-7">
-            <a class="btn btn-default capitalize wl-map-filter wl-active" filter_type="1"  data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to display Garbages"><span class="circle"></span>Users</a>
-            <a class="btn btn-default capitalize wl-map-filter wl-active" filter_type="2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to display Services"><span class="circle"></span>Services</a>
-            <a class="btn btn-default capitalize wl-map-filter wl-active" filter_type="3" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to display Reports"><span class="circle"></span>Garbage Report</a>
-            <a class="btn btn-default capitalize wl-map-filter wl-active" filter_type="4" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to display Dumping Locations"><span class="circle"></span>Dumping Area</a>
-            <a class="btn btn-default capitalize wl-map-filter wl-active wasteMapLGUFilter" filter_type="5" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to display Heat Map" style="display:none"><span class="circle" ></span>Heat Map</a>
+            
+            <a class="btn btn-default capitalize wl-map-filter wl-active" filter_type="1"  data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to display Garbages" data-loading-text=" Users"><span class="circle"></span>Users</a>
+            <a class="btn btn-default capitalize wl-map-filter wl-active" filter_type="2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to display Services" data-loading-text=" Services"><span class="circle"></span>Services</a>
+            <a class="btn btn-default capitalize wl-map-filter wl-active" filter_type="3" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to display Reports" data-loading-text=" Garbage Report"><span class="circle"></span>Garbage Report</a>
+            <a class="btn btn-default capitalize wl-map-filter wl-active" filter_type="4" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to display Dumping Locations" data-loading-text=" Dumping Area"><span class="circle"></span>Dumping Area</a>
+            <a class="btn btn-default capitalize wl-map-filter wl-active wasteMapLGUFilter" filter_type="5" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to display Heat Map" data-loading-text=" Heat Map" style="display:none"><span class="circle" ></span>Heat Map</a>
         </div>
         <div class="col-md-5 wasteMapLGUFilter" style="display: none">
 
