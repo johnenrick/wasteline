@@ -40,7 +40,7 @@
                         $('.wl-info-mainlist ul').append(dummy);
                         dummy.find('img.wl-info-box').initial();
                         //informationPage.retrieveInformation($(".wl-info-mainlist .wl-list-infos").attr("informationid"), informationPage.findInformationType());
-                        $("ul#informationList li.wl-list-infos").first().trigger("click");
+                        if($(window).width() > 768) $("ul#informationList li.wl-list-infos").first().trigger("click");
                     }
                 }else{
                     $(".wl-info-box img").attr("src", $("ul#informationList li.active").find("img").attr("src"));

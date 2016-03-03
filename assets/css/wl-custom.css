@@ -1486,12 +1486,12 @@ ul.sidebar-nav li a {
         line-height: 15px;
     }
     #wl-post-floating-btn {
-        bottom: 10px;
+        bottom: 20px;
         right: 50px;
         z-index: 12;
     }
     #wl-return-floating-btn {
-        bottom: 60px;
+        bottom: 70px;
         right: 50px;
         z-index: 4;
     }
