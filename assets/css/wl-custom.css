@@ -1428,7 +1428,7 @@ ul.sidebar-nav li a {
     }
     .wl-header-content .wl-top-grp #wl-btn-logout {
         float: right;
-        margin-right: 15px;
+        right: 10px;
     }
     #wl-header-menu {
         padding-top: 0;
@@ -1558,6 +1558,10 @@ ul.sidebar-nav li a {
     }
     .wl-header-content .wl-top-grp:first-child {
         height: 60px;
+    }
+    .wl-header-content .wl-top-grp span {
+/*        vertical-align: middle;*/
+        font-size: 21px;
     }
     #moduleContainer {
         margin-top: 0;
