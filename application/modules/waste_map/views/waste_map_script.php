@@ -155,7 +155,6 @@
         }
         wasteMap.mapMarkerRequest[type] = $.post(api_url("C_map_marker/retrieveMapMarker"), {condition: condition, waste_post : true}, function(data){
             var response = JSON.parse(data);
-            console.log(response);
             if(!response["error"].length){
                 
                 for(var x = 0;x<response["data"].length;x++){

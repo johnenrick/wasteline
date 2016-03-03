@@ -19,12 +19,14 @@
                 $("#profileManagementForm").find("[name='updated_data[account_address_map_marker_ID]']").val((response["data"]["account_address_map_marker_ID"]*1 === 0) ? -1 : response["data"]["account_address_map_marker_ID"] );
                 $("#profileManagementForm").find("[name='updated_data[account_address_longitude]']").val(response["data"]["account_address_longitude"]);
                 $("#profileManagementForm").find("[name='updated_data[account_address_latitude]']").val(response["data"]["account_address_latitude"]);
-                if(response["data"]["account_address_longitude"]*1 &&  response["data"]["account_address_latitude"]*1){
-                    profileManagement.changeAddress({
-                        lat : response["data"]["account_address_latitude"],
-                        lng : response["data"]["account_address_longitude"]
-                    });
-                    profileManagement.webMap.setView(response["data"]["account_address_latitude"], response["data"]["account_address_longitude"]);
+                if(typeof profileManagement.webMap !== "undefined"){
+                    if(response["data"]["account_address_longitude"]*1 &&  response["data"]["account_address_latitude"]*1){
+                        profileManagement.changeAddress({
+                            lat : response["data"]["account_address_latitude"],
+                            lng : response["data"]["account_address_longitude"]
+                        });
+                        profileManagement.webMap.setView(response["data"]["account_address_latitude"], response["data"]["account_address_longitude"]);
+                    }
                 }
                 /*profile summary*/
                 $("#profileManagementFullName").text(response["data"]["first_name"]+" "+response["data"]["middle_name"]+" "+response["data"]["last_name"]);
@@ -59,12 +61,19 @@
             profileManagement.webMap.tileLayer.on("load", function(){
                 profileManagement.webMap.selectLocation(profileManagement.changeAddress);
                 profileManagement.webMap.getCurrentLocationCallBack = profileManagement.changeAddress;
-                add_refresh_call("profile_management", profileManagement.viewProfile);
+                profileManagement.changeAddress({
+                    lat : $("#profileManagementForm").find("[name='updated_data[account_address_latitude]']").val(),
+                    lng : $("#profileManagementForm").find("[name='updated_data[account_address_longitude]']").val()
+                });
+                profileManagement.webMap.setView($("#profileManagementForm").find("[name='updated_data[account_address_latitude]']").val(), $("#profileManagementForm").find("[name='updated_data[account_address_longitude]']").val());
+                
             });
+        }else{
         }
     };
     $(document).ready(function(){
         load_page_component("web_map_component", profileManagement.initializeWebMap);
+            add_refresh_call("profile_management", profileManagement.viewProfile);
         $("#profileManagementForm").validator();
         $("#profileManagementForm").attr("action", api_url("c_account/updateAccount"));
         $("#profileManagementForm").ajaxForm({

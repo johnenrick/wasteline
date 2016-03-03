@@ -30,7 +30,6 @@
                     var mapMarkerID = $(this).parent().parent().parent().find("input[name=map_marker_ID]").val();
                     $.post(api_url("C_report/deleteReport"), {ID : wasteMap.webMap.markerList[mapMarkerID].options.associated_ID}, function(data){
                         var response = JSON.parse(data);
-                        console.log(response);
                         if(!response["error"].length){
                             wasteMap.webMap.removeMarkerList(mapMarkerID);
                         }

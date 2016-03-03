@@ -29,7 +29,7 @@ class C_account extends API_Controller {
             $this->form_validation->set_rules('account_type_ID', 'Account Type', 'required');
             
             $this->form_validation->set_rules('first_name', 'First Name', 'trim|required|callback_alpha_dash_space');
-            $this->form_validation->set_rules('middle_name', 'Middle Name', 'trim|required|callback_alpha_dash_space');
+            ($this->input->post("middle_name")) ? $this->form_validation->set_rules('middle_name', 'Middle Name', 'trim|callback_alpha_dash_space') : null;
             $this->form_validation->set_rules('last_name', 'Last Name', 'trim|required|callback_alpha_dash_space');
             $this->form_validation->set_rules('email_detail', 'Email Detail', 'required|valid_email|is_unique[account_contact_information.detail]');
             
@@ -319,22 +319,23 @@ class C_account extends API_Controller {
         return ( !preg_match('/^[ a-z - ñÑ]+$/iu', $str)) ? false : true;
     } 
     public function validReCaptcha(){
-//        $url = 'https://www.google.com/recaptcha/api/siteverify';
-//        $data = array('secret' => '6Ld26BkTAAAAAHFkrfknWzaQhRkey-edRO5KEMU0', 'response' => "The value of 'g-recaptcha-response'.");
-//
-//        // use key 'http' even if you send the request to https://...
-//        $options = array(
-//            'http' => array(
-//                'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-//                'method'  => 'POST',
-//                'content' => http_build_query($data),
-//            ),
-//        );
-//        $context  = stream_context_create($options);
-//        $result = file_get_contents($url, false, $context);
-//        if ($result === FALSE) { 
-//          return false;
-//        }
-        return true;
+        $url = 'https://www.google.com/recaptcha/api/siteverify';
+        $data = array('secret' => '6Ld26BkTAAAAAHFkrfknWzaQhRkey-edRO5KEMU0', 'response' => "The value of 'g-recaptcha-response'.");
+
+        // use key 'http' even if you send the request to https://...
+        $options = array(
+            'http' => array(
+                'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+                'method'  => 'POST',
+                'content' => http_build_query($data),
+            ),
+        );
+        $context  = stream_context_create($options);
+        $result = file_get_contents($url, false, $context);
+        if ($result === FALSE) { 
+          return false;
+        }
+        $response = json_decode($result, true);
+        return $response["success"];
     }
 }
