@@ -22,7 +22,7 @@
                 container.condition.not__information__detail = null
             }
         }
-        console.log(container);
+        //console.log(container);
         $.post(api_url("C_information/retrieveInformation"), container, function(data){
             var response = JSON.parse(data);
             if(!response["error"].length){
@@ -95,23 +95,28 @@
 
     $(document).ready(function(){
         informationPage.retrieveInformation(0, informationPage.findInformationType());
-        if(user_type()*1 !== 3) $(".informationTick").hide();
+        if(user_type()*1 !== 3){
+            $(".informationTick").hide();
+            $(".wl-info-title h2").attr("contenteditable", false);
+            $(".wl-info-title .wl-info-author").attr("contenteditable", false);
+        } 
         if(user_type()*1 === 4) $("#wl-report-modal-submit").hide();
-
         $("#informationList").on("click", ".wl-list-infos", function(){
             $(".reportInfoHolder").hide();
             informationPage.retrieveInformation($(this).attr("informationid"));
             if(user_type()*1 !== 3) $(".reportInfoHolder").show();
         });
 
-        $(".wl-info-title").on("blur", "h2, .wl-info-author", function(data){
-            var container = {
-                ID              : ($("ul#informationList li.active").attr("informationid"))*1,
-                updated_data    : {}
-            }
-            container.updated_data[$(this).attr("holder")] = $(this).text();
-            informationPage.updateInformation(container, 2);
-        });
+
+         $(".wl-info-title").on("blur", "h2, .wl-info-author", function(data){
+                var container = {
+                    ID              : ($("ul#informationList li.active").attr("informationid"))*1,
+                    updated_data    : {}
+                }
+                container.updated_data[$(this).attr("holder")] = $(this).text();
+                console.log(container)
+                informationPage.updateInformation(container, 2);
+            });
 
         $("textarea#wl-info-editor").blur(function(){
         //var myForm = $("#wl-content-form").serialize();
