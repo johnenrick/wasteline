@@ -22,7 +22,6 @@
                 $("#wl-return-floating-btn").click();
             }
         });
-        console.log(system_data.data.default_page);
         $(".sidebar-nav").find("li[module_link='"+system_data.data.default_page+"']").trigger("click");
         $(".wl-btn-logout, #wl-btn-logout").click(function(){
             window.location = base_url("portal/logout");

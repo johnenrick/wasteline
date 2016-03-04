@@ -50,7 +50,19 @@
               display: block;
             }
         </style>
-        
+         <!-- jQuery -->
+        <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script><!--CDN-->
+        <script src="<?= asset_url('js/jquery-2.1.4.min.js') ?>"></script><!--->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script><!--CDN-->
+        <script src="<?= asset_url('js/jquery-ui.min.js') ?>"></script>
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="<?= asset_url('js/bootstrap.min.js') ?>"></script>
+
+
+        <!-- Material Design for Bootstrap -->
+        <script src="<?= asset_url('js/material.min.js') ?>"></script>
+        <script src="<?= asset_url('js/ripples.min.js') ?>"></script>
     </head>
     <body>
         <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
@@ -271,19 +283,7 @@
 
     </body>
     <footer>
-        <!-- jQuery -->
-        <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script><!--CDN-->
-        <script src="<?= asset_url('js/jquery-2.1.4.min.js') ?>"></script><!--->
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script><!--CDN-->
-        <script src="<?= asset_url('js/jquery-ui.min.js') ?>"></script>
-
-        <!-- Bootstrap Core JavaScript -->
-        <script src="<?= asset_url('js/bootstrap.min.js') ?>"></script>
-
-
-        <!-- Material Design for Bootstrap -->
-        <script src="<?= asset_url('js/material.min.js') ?>"></script>
-        <script src="<?= asset_url('js/ripples.min.js') ?>"></script>
+       
         <script src="<?= asset_url('js/moment.min.js')?> "></script>
         <script src="<?= asset_url('js/bootstrap-material-datetimepicker.js') ?>"></script>
 

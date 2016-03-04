@@ -76,7 +76,7 @@ class API_Controller extends MX_Controller{
      */
     public function outputResponse(){
         echo json_encode($this->response);
-        //exit();
+        exit();
     }
     /**
      * Check if a user is authorize

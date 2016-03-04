@@ -292,7 +292,9 @@ var requestVerificationCode = function(){
         $.post(api_url("C_account/retrieveAccount"), {ID:user_id()}, function(data){
             var response = JSON.parse(data);
             if(!response["error"].length){
-                if(response["data"]["account_address_map_marker_ID"] === null && (response["data"]["account_type_ID"]*1 === 2 || response["data"]["account_type_ID"]*1 === 4)){
+                if(response["data"]["account_address_map_marker_ID"] === null && (response["data"]["account_type_ID"]*1 === 2 || response["data"]["account_type_ID"]*1 === 4)
+                        && (response["data"]["account_address_longitude"]*1 === 123.922587 && response["data"]["account_address_latitude"]*1 === 10.339634)
+                    ){
                     $("[module_link='profile_management']").trigger("click");
                     show_system_message(121, 4, "Please complete all the information required especially your location and complete address.");
                 }

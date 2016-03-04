@@ -23,7 +23,8 @@ class C_account extends API_Controller {
                 $this->responseError(5, "Invalid Captcha");
                 $this->outputResponse();
             }
-            $this->form_validation->set_rules('username', 'Username', 'trim|required|is_unique[account.username]|alpha_numeric');
+            $this->responseDebug($this->input->post("username"));
+            $this->form_validation->set_rules('username', 'Username', 'trim|required|alpha_numeric|callback_is_unique_username');
             $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]');
             $this->form_validation->set_rules('status', 'Status', 'required');
             $this->form_validation->set_rules('account_type_ID', 'Account Type', 'required');
@@ -31,7 +32,7 @@ class C_account extends API_Controller {
             $this->form_validation->set_rules('first_name', 'First Name', 'trim|required|callback_alpha_dash_space');
             ($this->input->post("middle_name")) ? $this->form_validation->set_rules('middle_name', 'Middle Name', 'trim|callback_alpha_dash_space') : null;
             $this->form_validation->set_rules('last_name', 'Last Name', 'trim|required|callback_alpha_dash_space');
-            $this->form_validation->set_rules('email_detail', 'Email Detail', 'required|valid_email|is_unique[account_contact_information.detail]');
+            $this->form_validation->set_rules('email_detail', 'Email Detail', 'required|valid_email|callback_is_unique_email');
             
 //            $this->form_validation->set_message('alpha_dash_space', 'Only accept alpha and spaces');
             
@@ -71,6 +72,11 @@ class C_account extends API_Controller {
                             $this->input->post("contact_number_detail")
                             );
                     }
+                    /*Default Account Address*/
+                    $this->load->model("M_account_address");
+                    $this->load->model("M_map_marker");
+                    $accountAddressID = $this->M_account_address->createAccountAddress($result, 1, $this->input->post("last_name")."'s Residence" );
+                    $this->M_map_marker->createMapMarker($accountAddressID, 1, 123.922587, 10.339634);
                     $this->actionLog($result);
                     $this->responseData($result);
                 }else{
@@ -172,17 +178,16 @@ class C_account extends API_Controller {
         $this->accessNumber = 4;
         if($this->checkACL()){
             if($this->input->post("updated_data[username]") != username()){
-                $this->form_validation->set_rules('updated_data[username]', 'Username', 'is_unique[account.username]|alpha_numeric');
+                $this->form_validation->set_rules('updated_data[username]', 'Username', 'alpha_numeric|callback_is_unique_username');
             }
             $this->form_validation->set_rules('updated_data[password]', 'Password', 'min_length[6]');
-            $this->form_validation->set_rules('updated_data[email_detail]', 'Email Address', 'valid_email|is_unique[account_contact_information.detail]');
+            ($this->input->post("updated_data[email_detail]")) ? $this->form_validation->set_rules('updated_data[email_detail]', 'Email Address', 'valid_email|callback_is_unique_email') : null;
             if($this->input->post("updated_data[account_address_longitude]") !== NULL){
                 $this->form_validation->set_rules('updated_data[account_address_description]', 'Complete Address', 'trim|required|min_length[2]');
             }
             ($this->input->post('updated_data[first_name]')) ? $this->form_validation->set_rules('updated_data[first_name]', 'First Name', 'trim|callback_alpha_dash_space') : null;
             ($this->input->post('updated_data[last_name]')) ? $this->form_validation->set_rules('updated_data[last_name]', 'Last Name', 'trim|callback_alpha_dash_space') : null;
             ($this->input->post('updated_data[middle_name]')) ? $this->form_validation->set_rules('updated_data[middle_name]', 'Last Name', 'trim|callback_alpha_dash_space') : null;
-            
             if($this->input->post("updated_data[account_address_description]")){
                 $this->form_validation->set_rules('updated_data[account_address_longitude]', 'Your Map Location', 'required|greater_than[0]');
                 $this->form_validation->set_message('updated_data[account_address_longitude]');
@@ -315,12 +320,40 @@ class C_account extends API_Controller {
         $this->outputResponse();
     }
     public function alpha_dash_space($str){
-         $this->form_validation->set_message('alpha_dash_space', '{field} only accepts alphabets and spaces');
+        $this->form_validation->set_message('alpha_dash_space', '{field} only accepts alphabets and spaces');
         return ( !preg_match('/^[ a-z - ñÑ]+$/iu', $str)) ? false : true;
-    } 
+    }
+    public function is_unique_email($str){
+        $this->load->model("M_account_contact_information");
+        $result = $this->M_account_contact_information->retrieveAccountContactInformation(false, NULL, 0, array(), NULL, array(
+            "detail"=>$str
+        ));
+        $this->form_validation->set_message('is_unique_email', '{field} already used.');
+        if($result){
+            return false;
+        }else{
+            return true;
+        }
+    }
+    public function is_unique_username($str){
+        $this->load->model("M_account");
+        $result = $this->m_account->retrieveAccount(false, NULL, 0, array(), NULL, array(
+            "username"=>$str
+        ));
+        $this->responseDebug($str);
+        $this->form_validation->set_message('is_unique_username', '{field} already used.');
+        if($result){
+            return false;
+        }else{
+            return true;
+        }
+    }
     public function validReCaptcha(){
         $url = 'https://www.google.com/recaptcha/api/siteverify';
-        $data = array('secret' => '6Ld26BkTAAAAAHFkrfknWzaQhRkey-edRO5KEMU0', 'response' => "The value of 'g-recaptcha-response'.");
+        $data = array(
+            'secret' => '6Ld26BkTAAAAAHFkrfknWzaQhRkey-edRO5KEMU0', 
+            'response' => $this->input->post("g-recaptcha-response")
+                );
 
         // use key 'http' even if you send the request to https://...
         $options = array(
@@ -332,9 +365,6 @@ class C_account extends API_Controller {
         );
         $context  = stream_context_create($options);
         $result = file_get_contents($url, false, $context);
-        if ($result === FALSE) { 
-          return false;
-        }
         $response = json_decode($result, true);
         return $response["success"];
     }

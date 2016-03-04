@@ -16,7 +16,9 @@
                 $("#registrationForm").find(".submitButton").button("loading");
             },
             success : function(data){
+                console.log(data);
                 var response = JSON.parse(data);
+                console.log(response);
                 clear_form_error($("#registrationForm"));
                 if(!response["error"].length){
                     $("#registrationForm").find(".cancelFormButton").trigger("click");
@@ -28,6 +30,7 @@
                 }else{
                     show_form_error($("#registrationForm"), response["error"]);
                 }
+                grecaptcha.reset();
                 $("#registrationForm").find(".submitButton").button("reset");
             }
         });
