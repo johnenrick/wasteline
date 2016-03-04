@@ -20,48 +20,49 @@
                                 <div class="wl-carousel-item wl-carousel-item1" style="background-image:url(<?= asset_url("images/sample/1x/1.jpg")?>);background-image: image-set(url(<?= asset_url("images/sample/1x/1.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/1.jpg")?>) 2x);background-image: -webkit-image-set(url(<?= asset_url("images/sample/1x/1.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/1.jpg")?>) 2x);background-image: -o-image-set(url(<?= asset_url("images/sample/1x/1.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/1.jpg")?>) 2x);background-image: -moz-image-set(url(<?= asset_url("images/sample/1x/1.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/1.jpg")?>) 2x);background-image: -ms-image-set(url(<?= asset_url("images/sample/1x/1.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/1.jpg")?>) 2x);">
                                     <div class="row">
                                         <div class="col-xs-3 col-sm-5">
-                                            <h2>Title Here</h2>
-                                            <p>some text here...</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="wl-carousel-item wl-carousel-item2" style="background-image:url(<?= asset_url("images/sample/1x/2.jpg")?>);background-image: image-set(url(<?= asset_url("images/sample/1x/2.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/2.jpg")?>) 2x);background-image: -webkit-image-set(url(<?= asset_url("images/sample/1x/2.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/2.jpg")?>) 2x);background-image: -o-image-set(url(<?= asset_url("images/sample/1x/2.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/2.jpg")?>) 2x);background-image: -moz-image-set(url(<?= asset_url("images/sample/1x/2.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/2.jpg")?>) 2x);background-image: -ms-image-set(url(<?= asset_url("images/sample/1x/2.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/2.jpg")?>) 2x);">
-                                    <div class="row">
-                                        <div class="col-xs-3 col-sm-5">
-                                            <h2>Title Here</h2>
-                                            <p>some text here...</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="wl-carousel-item wl-carousel-item3" style="background-image:url(<?= asset_url("images/sample/1x/3.jpg")?>);background-image: image-set(url(<?= asset_url("images/sample/1x/3.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/3.jpg")?>) 2x);background-image: -webkit-image-set(url(<?= asset_url("images/sample/1x/3.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/3.jpg")?>) 2x);background-image: -o-image-set(url(<?= asset_url("images/sample/1x/3.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/3.jpg")?>) 2x);background-image: -moz-image-set(url(<?= asset_url("images/sample/1x/3.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/3.jpg")?>) 2x);background-image: -ms-image-set(url(<?= asset_url("images/sample/1x/3.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/3.jpg")?>) 2x);">
-                                    <div class="row">
-                                        <div class="col-xs-3 col-sm-5">
-                                            <h2>Title Here</h2>
-                                            <p>some text here...</p>
+                                            <h2>Wasteline</h2>
+                                            <p>a web portal that helps households, Small and Medium Enterprises and the Local Government Unit to engage in Proper Waste Management.</p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="wl-carousel-item wl-carousel-item4" style="background-image:url(<?= asset_url("images/sample/1x/4.jpg")?>);background-image: image-set(url(<?= asset_url("images/sample/1x/4.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/4.jpg")?>) 2x);background-image: -webkit-image-set(url(<?= asset_url("images/sample/1x/4.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/4.jpg")?>) 2x);background-image: -o-image-set(url(<?= asset_url("images/sample/1x/4.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/4.jpg")?>) 2x);background-image: -moz-image-set(url(<?= asset_url("images/sample/1x/4.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/4.jpg")?>) 2x);background-image: -ms-image-set(url(<?= asset_url("images/sample/1x/4.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/4.jpg")?>) 2x);">
                                     <div class="row">
                                         <div class="col-xs-3 col-sm-5">
-                                            <h2>Title Here</h2>
-                                            <p>some text here...</p>
+                                            <h2>Login</h2>
+                                            <p>sign up and login now to experience what Wasteline has in store for you</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="wl-carousel-item wl-carousel-item3" style="background-image:url(<?= asset_url("images/sample/1x/3.jpg")?>);background-image: image-set(url(<?= asset_url("images/sample/1x/3.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/3.jpg")?>) 2x);background-image: -webkit-image-set(url(<?= asset_url("images/sample/1x/3.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/3.jpg")?>) 2x);background-image: -o-image-set(url(<?= asset_url("images/sample/1x/3.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/3.jpg")?>) 2x);background-image: -moz-image-set(url(<?= asset_url("images/sample/1x/3.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/3.jpg")?>) 2x);background-image: -ms-image-set(url(<?= asset_url("images/sample/1x/3.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/3.jpg")?>) 2x);">
+                                    <div class="row">
+                                        <div class="col-xs-3 col-sm-5">
+                                            <h2>User Profile</h2>
+                                            <p>set up your profile for easier transactions, access posted information from the LGU, and report waste pile</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="wl-carousel-item wl-carousel-item2" style="background-image:url(<?= asset_url("images/sample/1x/2.jpg")?>);background-image: image-set(url(<?= asset_url("images/sample/1x/2.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/2.jpg")?>) 2x);background-image: -webkit-image-set(url(<?= asset_url("images/sample/1x/2.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/2.jpg")?>) 2x);background-image: -o-image-set(url(<?= asset_url("images/sample/1x/2.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/2.jpg")?>) 2x);background-image: -moz-image-set(url(<?= asset_url("images/sample/1x/2.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/2.jpg")?>) 2x);background-image: -ms-image-set(url(<?= asset_url("images/sample/1x/2.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/2.jpg")?>) 2x);">
+                                    <div class="row">
+                                        <div class="col-xs-3 col-sm-5">
+                                            <h2>Inform the community</h2>
+                                            <p>for the Local Government Unit to disseminate articles and guidelines to spread awareness on waste issues.</p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="wl-carousel-item wl-carousel-item5" style="background-image:url(<?= asset_url("images/sample/1x/5.jpg")?>);background-image: image-set(url(<?= asset_url("images/sample/1x/5.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/5.jpg")?>) 2x);background-image: -webkit-image-set(url(<?= asset_url("images/sample/1x/5.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/5.jpg")?>) 2x);background-image: -o-image-set(url(<?= asset_url("images/sample/1x/5.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/5.jpg")?>) 2x);background-image: -moz-image-set(url(<?= asset_url("images/sample/1x/5.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/5.jpg")?>) 2x);background-image: -ms-image-set(url(<?= asset_url("images/sample/1x/5.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/5.jpg")?>) 2x);">
                                     <div class="row">
                                         <div class="col-xs-3 col-sm-5">
-                                            <h2>Title Here</h2>
-                                            <p>some text here...</p>
+                                            <h2>Post Announcements</h2>
+                                            <p>for the LGU to also announce their schedules on garbage collection </p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="wl-carousel-item wl-carousel-item6" style="background-image:url(<?= asset_url("images/sample/1x/6.jpg")?>);background-image: image-set(url(<?= asset_url("images/sample/1x/6.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/6.jpg")?>) 2x);background-image: -webkit-image-set(url(<?= asset_url("images/sample/1x/6.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/6.jpg")?>) 2x);background-image: -o-image-set(url(<?= asset_url("images/sample/1x/6.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/6.jpg")?>) 2x);background-image: -moz-image-set(url(<?= asset_url("images/sample/1x/6.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/6.jpg")?>) 2x);background-image: -ms-image-set(url(<?= asset_url("images/sample/1x/6.jpg")?>) 1x, url(<?= asset_url("images/sample/2x/6.jpg")?>) 2x);">
                                     <div class="row">
                                         <div class="col-xs-3 col-sm-5">
-                                            <h2>Title Here</h2>
-                                            <p>some text here...</p>
+                                            <h2>Waste Map</h2>
+                                            <p>for the households and SMEs to view other recyclers, report illegally dumped waste pile and post their bargained garbage </p>
                                         </div>
                                     </div>
                                 </div>
