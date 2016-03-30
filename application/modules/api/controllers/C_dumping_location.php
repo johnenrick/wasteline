@@ -18,8 +18,8 @@ class C_dumping_location extends API_Controller {
     public function createDumpingLocation(){
         $this->accessNumber = 1;
         if($this->checkACL()){
-            $this->form_validation->set_rules('description', 'Description', 'required');
-            $this->form_validation->set_rules('detail', 'Detail', 'required');
+            $this->form_validation->set_rules('description', 'Description', 'required|strip_tags');
+            $this->form_validation->set_rules('detail', 'Detail', 'required|strip_tags');
             $this->form_validation->set_rules('longitude', 'Longitude', 'required');
             $this->form_validation->set_rules('latitude', 'Latitude', 'required');
             

@@ -20,6 +20,7 @@ class C_report extends API_Controller {
         if($this->checkACL() && user_id()){
             $this->form_validation->set_rules('associated_ID', 'Associated ID', 'required');
             $this->form_validation->set_rules('report_type_ID', 'Report Type', 'required');
+            $this->form_validation->set_rules('detail', 'Detail', 'required|strip_tags');
             if($this->input->post("report_type_ID") == 3){
                 $this->form_validation->set_rules('longitude', 'Longitude', 'required');
                 $this->form_validation->set_rules('latitude', 'Latitude', 'required');

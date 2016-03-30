@@ -260,7 +260,7 @@ class C_account extends API_Controller {
                                     "account_contact_information_type_ID" => 3
                                 ), 
                                 array(
-                                    "detail" => $updatedData["contact_number_detail"]
+                                    "detail" => $this->stripHTMLtags($updatedData["contact_number_detail"])
                                 ));
                     }else if(isset($updatedData["contact_number_ID"]) && $updatedData["contact_number_ID"] == 0 && $updatedData["contact_number_detail"]){//create contact_number
                         $this->M_account_contact_information->createAccountContactInformation(user_id(), 3, $updatedData["contact_number_detail"]);
@@ -277,7 +277,7 @@ class C_account extends API_Controller {
                                     "ID" => $updatedData["account_address_ID"]
                                 ), 
                                 array(
-                                    "description" => $updatedData["account_address_description"],
+                                    "description" => $this->stripHTMLtags($updatedData["account_address_description"]),
                                 ));
                         /*Map Marker*/
                         $this->M_map_marker->updateMapMarker( NULL, 

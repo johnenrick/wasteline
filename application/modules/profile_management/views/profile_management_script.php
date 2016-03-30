@@ -15,7 +15,7 @@
                 $("#profileManagementForm").find("[name='updated_data[username]']").val(response["data"]["username"]).attr("initial_value", response["data"]["username"]);
                 //address
                 $("#profileManagementForm").find("[name='updated_data[account_address_ID]']").val(response["data"]["account_address_ID"] * 1);
-                $("#profileManagementForm").find("[name='updated_data[account_address_description]']").text(response["data"]["account_address_description"]);
+                $("#profileManagementForm").find("[name='updated_data[account_address_description]']").val(response["data"]["account_address_description"]);
                 $("#profileManagementForm").find("[name='updated_data[account_address_map_marker_ID]']").val((response["data"]["account_address_map_marker_ID"] * 1 === 0) ? -1 : response["data"]["account_address_map_marker_ID"]);
                 $("#profileManagementForm").find("[name='updated_data[account_address_longitude]']").val(response["data"]["account_address_longitude"]);
                 $("#profileManagementForm").find("[name='updated_data[account_address_latitude]']").val(response["data"]["account_address_latitude"]);

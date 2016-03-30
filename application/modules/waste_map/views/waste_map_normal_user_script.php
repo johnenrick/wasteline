@@ -52,7 +52,7 @@
                                     wasteMap.webMap.markerList[-1].closePopup();
                                     /*Add the report to the map*/
                                     var datetime = new Date(response["data"]["datetime"]*1000);
-                                    var detail  = response["data"]["detail"]+"<br> <i>Reported on "+datetime.getDate()+"/"+datetime.getMonth()+"/"+datetime.getFullYear()+"</i>";
+                                    var detail  = response["data"]["detail"]+"<br> <i>Reported on "+datetime.getDate()+"/"+(datetime.getMonth()+1)+"/"+datetime.getFullYear()+"</i>";
                                     wasteMap.webMap.addMarker(response["data"]["map_marker_ID"], response["data"]["map_marker_type_ID"], response["data"]["ID"], response["data"]["detail"], response["data"]["longitude"], response["data"]["latitude"], false, wasteMap.createIllegalDumpingForm(response["data"]["map_marker_ID"], detail));
                                     wasteMap.bindIllegalDumpingFormAction(response["data"]["map_marker_ID"]);
                                 }else{
