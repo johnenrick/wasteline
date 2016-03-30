@@ -7,6 +7,7 @@
 <script>
     var informationPage = {};
 
+    informationPage.isLoading = false;
     informationPage.retrieveInformation = function(infoID, typeID){
         var container = {
             sort    : {
@@ -23,7 +24,10 @@
             }
         }
         //console.log(container);
-        $.post(api_url("C_information/retrieveInformation"), container, function(data){
+        if(informationPage.isLoading != false){
+           informationPage.isLoading.abort();
+        }
+        informationPage.isLoading = $.post(api_url("C_information/retrieveInformation"), container, function(data){
             var response = JSON.parse(data);
             if(!response["error"].length){
                 $(".wl-info-description").hide();
@@ -62,6 +66,7 @@
                     $(".wl-info-diplay .scroll-on").mCustomScrollbar("scrollTo",0);
                 }
             }
+            informationPage.isLoading = false;
         });
     }
 
