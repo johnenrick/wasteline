@@ -1,5 +1,4 @@
 <script>
-    console.log(<?=$extra_data?>)
     var system_data = {
         account_information : {
             user_ID : "<?=user_id()?>"*1,
@@ -23,7 +22,6 @@
 
         }
     };
-    console.log(<?=$extra_data?>);
     function user_id(){
         return system_data.account_information.user_ID;
     }
@@ -277,6 +275,13 @@ var requestVerificationCode = function(){
 <!--Document Ready-->
 <script>
     $(document).ready(function(){
+        //redirect www
+        if(window.location.href.indexOf("www") === 0){
+            window.history.pushState('Object', 'Title', window.location.href.replace("www."));
+
+        }
+        
+        
         retrieve_access_control();
         if(user_type() === 4){
             setTimeout(function(){
