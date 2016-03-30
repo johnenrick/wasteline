@@ -45,6 +45,13 @@
                 $('#profileManagementProfilePicture').attr("src", "");
                 $('#profileManagementProfilePicture').initial({name: (response["data"]["first_name"] + "").charAt(0) + (response["data"]["last_name"] + "").charAt(0)});
                 refresh_session();
+                if(response["data"]["account_type_ID"]*1===4){                 
+                    setTimeout(function(){
+                        if($(".systemMessage[message_status=51]").length === 0){
+                            show_system_message(51, 1, "Please verify your account by clicking the link sent to your new email.", {text : "Resend Verification Code", callback: requestVerificationCode});
+                        }
+                    }, 1300);
+                }
             }
         });
     };

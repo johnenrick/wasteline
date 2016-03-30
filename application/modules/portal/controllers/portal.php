@@ -178,10 +178,10 @@ class Portal extends FE_Controller{
             $message[0] = array(
                     "status" => 13,
                     "type" => 2,
-                    "message" => "Verification Code is invalid. Contact us if you feel there's something wrong."
+                    "message" => "Verification Code is invalid. Contact us if you feel there s something wrong."
                     );
         }
-        $extraData = base64_encode (json_encode(array("message" => $message)));
+        $extraData = str_replace("=","",base64_encode(json_encode(array("message" => $message))));
         header("Location: ".base_url("portal/visitPage/portal/false/". $extraData));
     }
     protected function createSession($firstName, $lastName, $middleName, $userType, $userID, $username){

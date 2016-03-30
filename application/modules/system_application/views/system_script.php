@@ -1,4 +1,5 @@
 <script>
+    console.log(<?=$extra_data?>)
     var system_data = {
         account_information : {
             user_ID : "<?=user_id()?>"*1,
@@ -15,13 +16,14 @@
         },
         data : {
             default_page : "<?=$defaultPage?>",
-            extra_data : ('<?=$extra_data?>' !== "") ? JSON.parse('<?=$extra_data?>') : false
+            extra_data : ('<?=$extra_data? $extra_data : "false"?>' !== "false") ? JSON.parse('<?=$extra_data?>') : false
         },
         access_control_list :{},
         refresh_call : {
 
         }
     };
+    console.log(<?=$extra_data?>);
     function user_id(){
         return system_data.account_information.user_ID;
     }
@@ -255,7 +257,6 @@ var requestVerificationCode = function(){
     $("#systemMessageContainer").find(".systemMessage[message_status='"+51+"']").find(".alert-link").button("loading");
     $.post(base_url("portal/requestVerificationCode"), {}, function(data){
         var response = JSON.parse(data);
-        console.log(response);
         remove_system_message(51);
         if(!response["error"].length){
             show_system_message(52, 4,

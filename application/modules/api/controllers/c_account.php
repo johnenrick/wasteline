@@ -61,8 +61,8 @@ class C_account extends API_Controller {
                     //Send Email Confirmation
                     if($this->input->post("account_type_ID") == 2){
                         $datetime = time();
-                        $this->sendEmail("Wasteline Registration Verification", $this->input->post("email_detail"), "Good day ".$this->input->post('username') ."! Thank you for registering in Wasteline.\nTo verify you accout, please click the following link: ".  base_url("portal/accountVerification/".(sprintf("%d%d", $result, $datetime))));
-                        $this->responseDebug(base_url("porta/accountVerification/".(sprintf("%d%d", $result, $datetime))));
+                        $this->sendEmail("Wasteline Registration Verification", $this->input->post("email_detail"), "Good day ".$this->input->post('username') ."! Thank you for registering in Wasteline.\nTo verify your account, please click the following link: ".  base_url("portal/accountVerification/".(sprintf("%d%d", $result, $datetime))));
+                        $this->responseDebug(base_url("portal/accountVerification/".(sprintf("%d%d", $result, $datetime))));
                     }
                     /*Create Contact Number*/
                     if($this->input->post("contact_number_detail")){
@@ -236,8 +236,19 @@ class C_account extends API_Controller {
                                 array(
                                     "detail" => $updatedData["email_detail"]
                                 ));
+                        $this->m_account->updateAccount($ID, NULL, array(
+                            "account_type_ID" => 4
+                        ));
+                        if(user_type() == 4 || user_type() == 2){
+                            $datetime = time();
+                            $this->sendEmail("Wasteline Registration Verification", $this->input->post("email_detail"), "Good day ".$this->input->post('username') ."! Thank you for using in Wasteline.\nTo verify your account, please click the following link: ".  base_url("portal/accountVerification/".(sprintf("%d%d", user_id(), $datetime))));
+                            $this->responseDebug(base_url("portal/accountVerification/".(sprintf("%d%d", user_id(), $datetime))));
+                            
+                        }
                     }else if(isset($updatedData["email_ID"]) && isset($updatedData["email_detail"]) && $updatedData["email_ID"] == 0 && $updatedData["email_detail"]){//create email
                         $this->M_account_contact_information->createAccountContactInformation(user_id(), 1, $updatedData["email_detail"]);
+                        $this->responseDebug(user_type());
+                        
                     }
                     /*Contact Number*/
                     if(isset($updatedData["contact_number_ID"]) && $updatedData["contact_number_ID"] && $updatedData["contact_number_detail"]){//update contact_number
