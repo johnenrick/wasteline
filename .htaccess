@@ -5,3 +5,8 @@ RewriteRule ^(.*)$ index.php?/$1 [L]
   CheckCaseOnly On
   CheckSpelling On
 </IfModule>
+
+RewriteCond %{HTTP_HOST} ^wasteline\.projectone\.ph$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.wasteline\.projectone\.ph$
+RewriteRule ^/?$ "http\:\/\/projectone\.ph\/" [R=301,L]
+
